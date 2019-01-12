@@ -61,7 +61,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 			throw new NullPointerException("SdTemplate 集合不能为空,你需要先创建一个SdTemplate,因为需要它来生成");
 		}
 
-		Class content = converter.toClass();
+		Class content = converter.converter(getBean());
 		String format = codeFormat == null ? Constant.UTF_8 : codeFormat;
 		for (SdTemplate temp : templates) {
 			templateUtil.render(projectPath, format, content, temp);

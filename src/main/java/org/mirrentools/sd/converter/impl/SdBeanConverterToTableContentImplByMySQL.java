@@ -12,15 +12,8 @@ import org.mirrentools.sd.models.db.update.AbstractTableContent;
 public class SdBeanConverterToTableContentImplByMySQL implements SdBeanConverterToTableContent {
 
 	@Override
-	public void setSdBean(SdBean bean) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public AbstractTableContent toTableContent() {
+	public AbstractTableContent converter(SdBean bean) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

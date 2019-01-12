@@ -40,8 +40,7 @@ public class SdSqlUtillImpl implements SdSqlUtil {
 
 	@Override
 	public boolean execute() {
-		converter.setSdBean(bean);
-		AbstractTableContent content = converter.toTableContent();
+		AbstractTableContent content = converter.converter(bean);
 		try {
 			return dbUtil.createTable(content);
 		} catch (Exception e) {

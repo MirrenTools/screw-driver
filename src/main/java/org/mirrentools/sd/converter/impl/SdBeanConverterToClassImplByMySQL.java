@@ -13,13 +13,7 @@ import org.mirrentools.sd.models.entity.Class;
 public class SdBeanConverterToClassImplByMySQL implements SdBeanConverterToClass {
 
 	@Override
-	public void setSdBean(SdBean bean) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Class toClass() {
+	public Class converter(SdBean bean) {
 		return null;
 	}
 

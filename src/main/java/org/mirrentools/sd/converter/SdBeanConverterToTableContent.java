@@ -10,18 +10,13 @@ import org.mirrentools.sd.models.db.update.AbstractTableContent;
  *
  */
 public interface SdBeanConverterToTableContent {
-	/**
-	 * 设置SdBean
-	 * 
-	 * @param bean
-	 */
-	void setSdBean(SdBean bean);
 
 	/**
-	 * 将SdBean转换为数据库操作属性
+	 * 转换属性
 	 * 
+	 * @param bean
 	 * @return
 	 */
-	AbstractTableContent toTableContent();
+	AbstractTableContent converter(SdBean bean);
 
 }

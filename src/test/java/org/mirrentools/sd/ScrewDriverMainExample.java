@@ -16,7 +16,7 @@ import org.mirrentools.sd.util.impl.SdCodeUtilImpl;
 import org.mirrentools.sd.util.impl.SdSqlUtillImpl;
 import org.mirrentools.sd.util.impl.SdTemplateUtilImplMyFreeMarker;
 
-public class ScrewDriverTest {
+public class ScrewDriverMainExample {
 
 	public static void main(String[] args) throws Exception {
 		// 创建一个实体描述

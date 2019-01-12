@@ -7,7 +7,7 @@ import org.mirrentools.sd.util.SdProjectUtil;
 import org.mirrentools.sd.util.SdSqlUtil;
 
 /**
- * java-s-generator的生成工具
+ * 生成工具的接口
  * 
  * @author <a href="http://mirrentools.org">Mirren</a>
  *

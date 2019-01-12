@@ -11,17 +11,10 @@ import org.mirrentools.sd.models.entity.Class;
  */
 public interface SdBeanConverterToClass {
 	/**
-	 * 设置SdBean
+	 * 转换属性
 	 * 
 	 * @param bean
-	 */
-	void setSdBean(SdBean bean);
-
-	/**
-	 * 将SdBean装换为类属性
-	 * 
 	 * @return
 	 */
-	Class toClass();
-
+	Class converter(SdBean bean);
 }
