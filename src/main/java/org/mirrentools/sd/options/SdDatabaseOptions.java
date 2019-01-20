@@ -6,7 +6,7 @@ package org.mirrentools.sd.options;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class DatabaseOptions {
+public class SdDatabaseOptions {
 	/** 模式的连接超时时间 */
 	public static final int DEFAULT_LOGIN_TIMEOUTS_SECONDS = 3;
 
@@ -28,7 +28,7 @@ public class DatabaseOptions {
 	 * @param url
 	 *          完整的数据库连接地址
 	 */
-	public DatabaseOptions(String driverClass, String url) {
+	public SdDatabaseOptions(String driverClass, String url) {
 		super();
 		this.driverClass = driverClass;
 		this.url = url;
@@ -45,7 +45,7 @@ public class DatabaseOptions {
 	 * @param password
 	 *          密码
 	 */
-	public DatabaseOptions(String driverClass, String url, String user, String password) {
+	public SdDatabaseOptions(String driverClass, String url, String user, String password) {
 		super();
 		this.driverClass = driverClass;
 		this.url = url;
@@ -67,7 +67,7 @@ public class DatabaseOptions {
 	 * @param password
 	 *          密码
 	 */
-	public DatabaseOptions(int loginTimeout, String driverClass, String url, String user, String password) {
+	public SdDatabaseOptions(int loginTimeout, String driverClass, String url, String user, String password) {
 		super();
 		this.loginTimeout = loginTimeout;
 		this.driverClass = driverClass;
@@ -78,35 +78,35 @@ public class DatabaseOptions {
 	public int getLoginTimeout() {
 		return loginTimeout;
 	}
-	public DatabaseOptions setLoginTimeout(int loginTimeout) {
+	public SdDatabaseOptions setLoginTimeout(int loginTimeout) {
 		this.loginTimeout = loginTimeout;
 		return this;
 	}
 	public String getDriverClass() {
 		return driverClass;
 	}
-	public DatabaseOptions setDriverClass(String driverClass) {
+	public SdDatabaseOptions setDriverClass(String driverClass) {
 		this.driverClass = driverClass;
 		return this;
 	}
 	public String getUrl() {
 		return url;
 	}
-	public DatabaseOptions setUrl(String url) {
+	public SdDatabaseOptions setUrl(String url) {
 		this.url = url;
 		return this;
 	}
 	public String getUser() {
 		return user;
 	}
-	public DatabaseOptions setUser(String user) {
+	public SdDatabaseOptions setUser(String user) {
 		this.user = user;
 		return this;
 	}
 	public String getPassword() {
 		return password;
 	}
-	public DatabaseOptions setPassword(String password) {
+	public SdDatabaseOptions setPassword(String password) {
 		this.password = password;
 		return this;
 	}

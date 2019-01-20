@@ -2,7 +2,7 @@ package org.mirrentools.sd.converter.impl;
 
 import org.mirrentools.sd.converter.SdBeanConverterToClass;
 import org.mirrentools.sd.models.SdBean;
-import org.mirrentools.sd.models.entity.Class;
+import org.mirrentools.sd.models.SdClassContent;
 
 /**
  * SdBean装换器MySQL版实现
@@ -13,8 +13,10 @@ import org.mirrentools.sd.models.entity.Class;
 public class SdBeanConverterToClassImplByMySQL implements SdBeanConverterToClass {
 
 	@Override
-	public Class converter(SdBean bean) {
-		return null;
+	public SdClassContent converter(SdBean bean) {
+		SdClassContent result = new SdClassContent();
+
+		return result;
 	}
 
 }

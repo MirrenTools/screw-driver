@@ -16,7 +16,7 @@ import org.mirrentools.sd.util.SdSqlUtil;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdSqlUtillImpl implements SdSqlUtil {
+public class SdSqlUtilImpl implements SdSqlUtil {
 	/** 创建类需要的属性 */
 	private SdBean bean;
 	/** 数据库执行工具 */
@@ -31,7 +31,7 @@ public class SdSqlUtillImpl implements SdSqlUtil {
 	 * @param dbUtil
 	 * @param converter
 	 */
-	public SdSqlUtillImpl(SdBean bean, SdDbUtil dbUtil, SdBeanConverterToTableContent converter) {
+	public SdSqlUtilImpl(SdBean bean, SdDbUtil dbUtil, SdBeanConverterToTableContent converter) {
 		super();
 		this.bean = bean;
 		this.dbUtil = dbUtil;
@@ -54,7 +54,7 @@ public class SdSqlUtillImpl implements SdSqlUtil {
 	}
 
 	@Override
-	public SdSqlUtillImpl setBean(SdBean bean) {
+	public SdSqlUtilImpl setBean(SdBean bean) {
 		this.bean = bean;
 		return this;
 	}
@@ -65,7 +65,7 @@ public class SdSqlUtillImpl implements SdSqlUtil {
 	}
 
 	@Override
-	public SdSqlUtillImpl setDbUtil(SdDbUtil dbUtil) {
+	public SdSqlUtilImpl setDbUtil(SdDbUtil dbUtil) {
 		this.dbUtil = dbUtil;
 		return this;
 	}
@@ -76,7 +76,7 @@ public class SdSqlUtillImpl implements SdSqlUtil {
 	}
 
 	@Override
-	public SdSqlUtillImpl setConverter(SdBeanConverterToTableContent converter) {
+	public SdSqlUtilImpl setConverter(SdBeanConverterToTableContent converter) {
 		this.converter = converter;
 		return this;
 	}

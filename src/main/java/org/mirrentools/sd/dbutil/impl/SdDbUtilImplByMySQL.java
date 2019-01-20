@@ -10,7 +10,7 @@ import org.mirrentools.sd.models.db.query.TableAttribute;
 import org.mirrentools.sd.models.db.query.TableColumnAttribute;
 import org.mirrentools.sd.models.db.query.TablePrimaryKeyAttribute;
 import org.mirrentools.sd.models.db.update.AbstractTableContent;
-import org.mirrentools.sd.options.DatabaseOptions;
+import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
  * 数据库操作相关的工具接口,MySQL的抽象实现,其他数据库或者不兼容可以重写该类
@@ -20,9 +20,9 @@ import org.mirrentools.sd.options.DatabaseOptions;
  */
 public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
 	/** 数据库配置文件 */
-	private DatabaseOptions config;
+	private SdDatabaseOptions config;
 
-	public SdDbUtilImplByMySQL(DatabaseOptions config) {
+	public SdDbUtilImplByMySQL(SdDatabaseOptions config) {
 		super(config);
 		this.config = config;
 	}
@@ -111,7 +111,7 @@ public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
 	 * 
 	 * @return
 	 */
-	public DatabaseOptions getConfig() {
+	public SdDatabaseOptions getConfig() {
 		return config;
 	}
 
@@ -121,7 +121,7 @@ public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
 	 * @param config
 	 * @return
 	 */
-	public SdDbUtilImplByMySQL setConfig(DatabaseOptions config) {
+	public SdDbUtilImplByMySQL setConfig(SdDatabaseOptions config) {
 		this.config = config;
 		return this;
 	}

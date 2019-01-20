@@ -3,7 +3,7 @@ package org.mirrentools.sd.models.entity.impl;
 import java.util.Map;
 import java.util.Set;
 
-import org.mirrentools.sd.models.entity.Field;
+import org.mirrentools.sd.models.entity.SdField;
 
 /**
  * Java版类的属性配置
@@ -11,94 +11,94 @@ import org.mirrentools.sd.models.entity.Field;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class JavaField extends Field {
+public class JavaSdField extends SdField {
 
 	@Override
-	public JavaField addImports(String imports) {
+	public JavaSdField addImports(String imports) {
 		super.addImports(imports);
 		return this;
 	}
 
 	@Override
-	public JavaField setImports(Set<String> imports) {
+	public JavaSdField setImports(Set<String> imports) {
 		super.setImports(imports);
 		return this;
 	}
 
 	@Override
-	public JavaField addAnnotation(String annotation) {
+	public JavaSdField addAnnotation(String annotation) {
 		super.addAnnotation(annotation);
 		return this;
 	}
 
 	@Override
-	public JavaField setAnnotations(Set<String> annotations) {
+	public JavaSdField setAnnotations(Set<String> annotations) {
 		super.setAnnotations(annotations);
 		return this;
 	}
 
 	@Override
-	public JavaField setRemark(String remark) {
+	public JavaSdField setRemark(String remark) {
 		super.setRemark(remark);
 		return this;
 	}
 
 	@Override
-	public JavaField setModifier(String modifier) {
+	public JavaSdField setModifier(String modifier) {
 		super.setModifier(modifier);
 		return this;
 	}
 
 	@Override
-	public JavaField setType(String type) {
+	public JavaSdField setType(String type) {
 		super.setType(type);
 		return this;
 	}
 
 	@Override
-	public JavaField setName(String name) {
+	public JavaSdField setName(String name) {
 		super.setName(name);
 		return this;
 	}
 
 	@Override
-	public JavaField setGet(boolean get) {
+	public JavaSdField setGet(boolean get) {
 		super.setGet(get);
 		return this;
 	}
 
 	@Override
-	public JavaField setSet(boolean set) {
+	public JavaSdField setSet(boolean set) {
 		super.setSet(set);
 		return this;
 	}
 
 	@Override
-	public JavaField addExtension(String key, Object value) {
+	public JavaSdField addExtension(String key, Object value) {
 		super.addExtension(key, value);
 		return this;
 	}
 
 	@Override
-	public JavaField setExtensions(Map<String, Object> extensions) {
+	public JavaSdField setExtensions(Map<String, Object> extensions) {
 		super.setExtensions(extensions);
 		return this;
 	}
 
 	@Override
-	public JavaField setNullable(boolean nullable) {
+	public JavaSdField setNullable(boolean nullable) {
 		super.setNullable(nullable);
 		return this;
 	}
 
 	@Override
-	public JavaField setMin(String min) {
+	public JavaSdField setMin(String min) {
 		super.setMin(min);
 		return this;
 	}
 
 	@Override
-	public JavaField setMax(String max) {
+	public JavaSdField setMax(String max) {
 		super.setMax(max);
 		return this;
 	}

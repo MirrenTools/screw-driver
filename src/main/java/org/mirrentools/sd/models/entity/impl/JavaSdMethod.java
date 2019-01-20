@@ -3,7 +3,7 @@ package org.mirrentools.sd.models.entity.impl;
 import java.util.Map;
 import java.util.Set;
 
-import org.mirrentools.sd.models.entity.Method;
+import org.mirrentools.sd.models.entity.SdMethod;
 
 /**
  * Java版累的方法配置
@@ -11,64 +11,64 @@ import org.mirrentools.sd.models.entity.Method;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class JavaMethod extends Method {
+public class JavaSdMethod extends SdMethod {
 
 	@Override
-	public JavaMethod setImports(Set<String> imports) {
+	public JavaSdMethod setImports(Set<String> imports) {
 		super.setImports(imports);
 		return this;
 	}
 
 	@Override
-	public JavaMethod setAnnotations(Set<String> annotations) {
+	public JavaSdMethod setAnnotations(Set<String> annotations) {
 		super.setAnnotations(annotations);
 		return this;
 	}
 
 	@Override
-	public JavaMethod setRemark(String remark) {
+	public JavaSdMethod setRemark(String remark) {
 		super.setRemark(remark);
 		return this;
 	}
 
 	@Override
-	public JavaMethod setModifier(String modifier) {
+	public JavaSdMethod setModifier(String modifier) {
 		super.setModifier(modifier);
 		return this;
 	}
 
 	@Override
-	public JavaMethod setAbs(boolean abs) {
+	public JavaSdMethod setAbs(boolean abs) {
 		super.setAbs(abs);
 		return this;
 	}
 
 	@Override
-	public JavaMethod setType(String type) {
+	public JavaSdMethod setType(String type) {
 		super.setType(type);
 		return this;
 	}
 
 	@Override
-	public JavaMethod setName(String name) {
+	public JavaSdMethod setName(String name) {
 		super.setName(name);
 		return this;
 	}
 
 	@Override
-	public JavaMethod setBody(String body) {
+	public JavaSdMethod setBody(String body) {
 		super.setBody(body);
 		return this;
 	}
 
 	@Override
-	public JavaMethod addExtension(String key, Object value) {
+	public JavaSdMethod addExtension(String key, Object value) {
 		super.addExtension(key, value);
 		return this;
 	}
 
 	@Override
-	public JavaMethod setExtensions(Map<String, Object> extensions) {
+	public JavaSdMethod setExtensions(Map<String, Object> extensions) {
 		super.setExtensions(extensions);
 		return this;
 	}

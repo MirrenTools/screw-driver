@@ -252,9 +252,22 @@ public class SdUtil {
 	 * @param str
 	 * @return
 	 */
+	public static boolean isNullOrEmpty(Object obj) {
+		if (obj == null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 判断一个对象是否为null或者空,如果是返回true
+	 * 
+	 * @param str
+	 * @return
+	 */
 	public static boolean isNullOrEmpty(Object... obj) {
 		for (int i = 0; i < obj.length; i++) {
-			if (obj[i] == null || "".equals(obj[i].toString().trim())) {
+			if (obj[i] == null) {
 				return true;
 			}
 		}

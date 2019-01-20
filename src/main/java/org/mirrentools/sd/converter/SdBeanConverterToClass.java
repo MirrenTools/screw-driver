@@ -1,7 +1,7 @@
 package org.mirrentools.sd.converter;
 
 import org.mirrentools.sd.models.SdBean;
-import org.mirrentools.sd.models.entity.Class;
+import org.mirrentools.sd.models.SdClassContent;
 
 /**
  * 将SdBean转换成类属性
@@ -16,5 +16,5 @@ public interface SdBeanConverterToClass {
 	 * @param bean
 	 * @return
 	 */
-	Class converter(SdBean bean);
+	SdClassContent converter(SdBean bean);
 }

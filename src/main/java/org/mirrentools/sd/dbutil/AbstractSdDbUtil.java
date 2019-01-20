@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import org.mirrentools.sd.models.db.update.AbstractDatabaseContent;
-import org.mirrentools.sd.options.DatabaseOptions;
+import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
  * 数据库操作相关的工具接口的抽象类,默认以MySQL为基准的实现,<br>
@@ -15,12 +15,12 @@ import org.mirrentools.sd.options.DatabaseOptions;
  */
 public abstract class AbstractSdDbUtil implements SdDbUtil {
 	/** 数据库配置 */
-	private DatabaseOptions config;
+	private SdDatabaseOptions config;
 
 	/**
 	 * 初始化一个默认的数据库管理实现类
 	 */
-	public AbstractSdDbUtil(DatabaseOptions config) {
+	public AbstractSdDbUtil(SdDatabaseOptions config) {
 		super();
 		this.config = config;
 	}
@@ -31,7 +31,7 @@ public abstract class AbstractSdDbUtil implements SdDbUtil {
 	}
 
 	@Override
-	public Connection getConnection(DatabaseOptions config) throws Exception {
+	public Connection getConnection(SdDatabaseOptions config) throws Exception {
 		DriverManager.setLoginTimeout(config.getLoginTimeout());
 		Class.forName(config.getDriverClass());
 		return DriverManager.getConnection(config.getUrl(), config.getUser(), config.getPassword());

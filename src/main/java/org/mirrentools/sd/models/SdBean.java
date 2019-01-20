@@ -14,13 +14,13 @@ import org.mirrentools.sd.common.SdUtil;
  *
  */
 public class SdBean {
-	/** 表的名字 */
+	/** 表或类的名字 */
 	private String name;
-	/** 表的名字 */
+	/** 表或类的注释 */
 	private String remark;
-	/** 表的列属性 */
+	/** 表或类的属性 */
 	private List<SdColumn> columns;
-	/** 表的关系属性 */
+	/** 表或类的关系属性 */
 	private List<SdRelational> relationals;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;

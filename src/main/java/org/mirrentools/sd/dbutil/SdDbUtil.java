@@ -8,7 +8,7 @@ import org.mirrentools.sd.models.db.query.TableColumnAttribute;
 import org.mirrentools.sd.models.db.query.TablePrimaryKeyAttribute;
 import org.mirrentools.sd.models.db.update.AbstractDatabaseContent;
 import org.mirrentools.sd.models.db.update.AbstractTableContent;
-import org.mirrentools.sd.options.DatabaseOptions;
+import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
  * 数据库操作相关的工具接口,该工具用户创建/读取:库.表.属性等
@@ -31,7 +31,7 @@ public interface SdDbUtil {
 	 * @param config
 	 * @return
 	 */
-	Connection getConnection(DatabaseOptions config) throws Exception;
+	Connection getConnection(SdDatabaseOptions config) throws Exception;
 
 	/**
 	 * 数据库是否存在

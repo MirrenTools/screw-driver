@@ -12,7 +12,7 @@ import org.mirrentools.sd.common.SdUtil;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public abstract class Method {
+public abstract class SdMethod {
 	/** 方法需要导入的包 */
 	private Set<String> imports;
 	/** 方法的注解 */
@@ -36,7 +36,7 @@ public abstract class Method {
 		return imports;
 	}
 
-	public Method setImports(Set<String> imports) {
+	public SdMethod setImports(Set<String> imports) {
 		this.imports = imports;
 		return this;
 	}
@@ -45,7 +45,7 @@ public abstract class Method {
 		return annotations;
 	}
 
-	public Method setAnnotations(Set<String> annotations) {
+	public SdMethod setAnnotations(Set<String> annotations) {
 		this.annotations = annotations;
 		return this;
 	}
@@ -54,7 +54,7 @@ public abstract class Method {
 		return remark;
 	}
 
-	public Method setRemark(String remark) {
+	public SdMethod setRemark(String remark) {
 		this.remark = remark;
 		return this;
 	}
@@ -63,7 +63,7 @@ public abstract class Method {
 		return modifier;
 	}
 
-	public Method setModifier(String modifier) {
+	public SdMethod setModifier(String modifier) {
 		this.modifier = modifier;
 		return this;
 	}
@@ -72,7 +72,7 @@ public abstract class Method {
 		return abs;
 	}
 
-	public Method setAbs(boolean abs) {
+	public SdMethod setAbs(boolean abs) {
 		this.abs = abs;
 		return this;
 	}
@@ -81,7 +81,7 @@ public abstract class Method {
 		return type;
 	}
 
-	public Method setType(String type) {
+	public SdMethod setType(String type) {
 		this.type = type;
 		return this;
 	}
@@ -90,7 +90,7 @@ public abstract class Method {
 		return name;
 	}
 
-	public Method setName(String name) {
+	public SdMethod setName(String name) {
 		this.name = name;
 		return this;
 	}
@@ -99,7 +99,7 @@ public abstract class Method {
 		return body;
 	}
 
-	public Method setBody(String body) {
+	public SdMethod setBody(String body) {
 		this.body = body;
 		return this;
 	}
@@ -123,7 +123,7 @@ public abstract class Method {
 	 * @param value
 	 * @return
 	 */
-	public Method addExtension(String key, Object value) {
+	public SdMethod addExtension(String key, Object value) {
 		if (SdUtil.isNullOrEmpty(key)) {
 			return this;
 		}
@@ -138,7 +138,7 @@ public abstract class Method {
 		return extensions;
 	}
 
-	public Method setExtensions(Map<String, Object> extensions) {
+	public SdMethod setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
 	}

@@ -1,9 +1,9 @@
 package org.mirrentools.sd.util;
 
-import java.util.List;
 import java.util.Map;
 
 import org.mirrentools.sd.converter.SdBeanConverterToClass;
+import org.mirrentools.sd.converter.SdConverterToTemplateContent;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdTemplate;
 
@@ -71,15 +71,16 @@ public interface SdCodeUtil {
 	 * 
 	 * @return
 	 */
-	List<SdTemplate> getTemplates();
+	Map<String, SdTemplate> getTemplateMaps();
 
 	/**
 	 * 添加一个模板
 	 * 
+	 * @param key
 	 * @param template
 	 * @return
 	 */
-	SdCodeUtil addTemplates(SdTemplate template);
+	SdCodeUtil addTemplate(String key, SdTemplate template);
 
 	/**
 	 * 设置模板集
@@ -87,22 +88,37 @@ public interface SdCodeUtil {
 	 * @param templates
 	 * @return
 	 */
-	SdCodeUtil setTemplates(List<SdTemplate> templates);
+	SdCodeUtil setTemplateMaps(Map<String, SdTemplate> templates);
 
 	/**
-	 * 获取转换器
+	 * 获取实体类属性转换器
 	 * 
 	 * @return
 	 */
-	SdBeanConverterToClass getConverter();
+	SdBeanConverterToClass getBeanConverter();
 
 	/**
-	 * 设置转换器
+	 * 设置实体类属性转换器
 	 * 
 	 * @param converter
 	 * @return
 	 */
-	SdCodeUtil setConverter(SdBeanConverterToClass converter);
+	SdCodeUtil setBeanConverter(SdBeanConverterToClass converter);
+
+	/**
+	 * 获取模板工具所需要的内容转换器
+	 * 
+	 * @return
+	 */
+	SdConverterToTemplateContent getContentConverter();
+
+	/**
+	 * 设置模板工具所需要的内容转换器
+	 * 
+	 * @param contentConverter
+	 * @return
+	 */
+	SdCodeUtil setContentConverter(SdConverterToTemplateContent contentConverter);
 
 	/**
 	 * 设置模板工具

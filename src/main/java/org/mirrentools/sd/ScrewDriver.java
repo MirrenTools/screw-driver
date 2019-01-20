@@ -14,21 +14,21 @@ import org.mirrentools.sd.util.SdSqlUtil;
  */
 public interface ScrewDriver {
 	/**
-	 * 生成项目
+	 * 执行生成项目
 	 * 
 	 * @return
 	 */
 	boolean createProject();
 
 	/**
-	 * 生成代码
+	 * 执行生成代码
 	 * 
 	 * @return
 	 */
 	boolean createCode();
 
 	/**
-	 * 生成SQL
+	 * 执行生成SQL
 	 * 
 	 * @return
 	 */

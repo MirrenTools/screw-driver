@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.mirrentools.sd.models.entity.Class;
-import org.mirrentools.sd.models.entity.Field;
-import org.mirrentools.sd.models.entity.Method;
+import org.mirrentools.sd.models.entity.SdClass;
+import org.mirrentools.sd.models.entity.SdField;
+import org.mirrentools.sd.models.entity.SdMethod;
 
 /**
  * Java版类的配置
@@ -14,82 +14,82 @@ import org.mirrentools.sd.models.entity.Method;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class JavaClass extends Class {
+public class JavaSdClass extends SdClass {
 
 	@Override
-	public JavaClass setPackages(String packages) {
+	public JavaSdClass setPackages(String packages) {
 		super.setPackages(packages);
 		return this;
 	}
 
 	@Override
-	public JavaClass addImports(String imports) {
+	public JavaSdClass addImports(String imports) {
 		super.addImports(imports);
 		return this;
 	}
 
 	@Override
-	public JavaClass setImports(Set<String> imports) {
+	public JavaSdClass setImports(Set<String> imports) {
 		super.setImports(imports);
 		return this;
 	}
 
 	@Override
-	public JavaClass setModifier(String modifier) {
+	public JavaSdClass setModifier(String modifier) {
 		super.setModifier(modifier);
 		return this;
 	}
 
 	@Override
-	public JavaClass setType(String type) {
+	public JavaSdClass setType(String type) {
 		super.setType(type);
 		return this;
 	}
 
 	@Override
-	public JavaClass setRemark(String remark) {
+	public JavaSdClass setRemark(String remark) {
 		super.setRemark(remark);
 		return this;
 	}
 
 	@Override
-	public JavaClass setName(String name) {
+	public JavaSdClass setName(String name) {
 		super.setName(name);
 		return this;
 	}
 
 	@Override
-	public JavaClass addFields(Field field) {
+	public JavaSdClass addFields(SdField field) {
 		super.addFields(field);
 		return this;
 	}
 
 	@Override
-	public JavaClass setFields(List<Field> fields) {
+	public JavaSdClass setFields(List<SdField> fields) {
 		super.setFields(fields);
 		return this;
 	}
 
 	@Override
-	public JavaClass addMethod(Method method) {
+	public JavaSdClass addMethod(SdMethod method) {
 		super.addMethod(method);
 		return this;
 	}
 
 	@Override
-	public JavaClass setMethods(List<Method> methods) {
+	public JavaSdClass setMethods(List<SdMethod> methods) {
 		super.setMethods(methods);
 		return this;
 	}
 
 	@Override
-	public JavaClass addExtension(String key, Object value) {
+	public JavaSdClass addExtension(String key, Object value) {
 		super.addExtension(key, value);
 		return this;
 	}
 
 	@Override
-	public JavaClass setExtensions(Map<String, Object> extensions) {
+	public JavaSdClass setExtensions(Map<String, Object> extensions) {
 		super.setExtensions(extensions);
 		return this;
 	}

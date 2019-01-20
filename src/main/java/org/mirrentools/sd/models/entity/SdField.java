@@ -13,7 +13,7 @@ import org.mirrentools.sd.common.SdUtil;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public abstract class Field {
+public abstract class SdField {
 	/** 属性需要导入的包 */
 	private Set<String> imports;
 	/** 属性的注解 */
@@ -44,7 +44,7 @@ public abstract class Field {
 	 * 
 	 * @param annotation
 	 */
-	public Field addImports(String imports) {
+	public SdField addImports(String imports) {
 		if (SdUtil.isNullOrEmpty(imports)) {
 			return this;
 		}
@@ -59,7 +59,7 @@ public abstract class Field {
 		return imports;
 	}
 
-	public Field setImports(Set<String> imports) {
+	public SdField setImports(Set<String> imports) {
 		this.imports = imports;
 		return this;
 	}
@@ -69,7 +69,7 @@ public abstract class Field {
 	 * 
 	 * @param annotation
 	 */
-	public Field addAnnotation(String annotation) {
+	public SdField addAnnotation(String annotation) {
 		if (SdUtil.isNullOrEmpty(annotation)) {
 			return this;
 		}
@@ -84,7 +84,7 @@ public abstract class Field {
 		return annotations;
 	}
 
-	public Field setAnnotations(Set<String> annotations) {
+	public SdField setAnnotations(Set<String> annotations) {
 		this.annotations = annotations;
 		return this;
 	}
@@ -93,7 +93,7 @@ public abstract class Field {
 		return remark;
 	}
 
-	public Field setRemark(String remark) {
+	public SdField setRemark(String remark) {
 		this.remark = remark;
 		return this;
 	}
@@ -102,7 +102,7 @@ public abstract class Field {
 		return modifier;
 	}
 
-	public Field setModifier(String modifier) {
+	public SdField setModifier(String modifier) {
 		this.modifier = modifier;
 		return this;
 	}
@@ -111,7 +111,7 @@ public abstract class Field {
 		return type;
 	}
 
-	public Field setType(String type) {
+	public SdField setType(String type) {
 		this.type = type;
 		return this;
 	}
@@ -120,7 +120,7 @@ public abstract class Field {
 		return name;
 	}
 
-	public Field setName(String name) {
+	public SdField setName(String name) {
 		this.name = name;
 		return this;
 	}
@@ -129,7 +129,7 @@ public abstract class Field {
 		return get;
 	}
 
-	public Field setGet(boolean get) {
+	public SdField setGet(boolean get) {
 		this.get = get;
 		return this;
 	}
@@ -138,7 +138,7 @@ public abstract class Field {
 		return set;
 	}
 
-	public Field setSet(boolean set) {
+	public SdField setSet(boolean set) {
 		this.set = set;
 		return this;
 	}
@@ -162,7 +162,7 @@ public abstract class Field {
 	 * @param value
 	 * @return
 	 */
-	public Field addExtension(String key, Object value) {
+	public SdField addExtension(String key, Object value) {
 		if (SdUtil.isNullOrEmpty(key)) {
 			return this;
 		}
@@ -177,7 +177,7 @@ public abstract class Field {
 		return extensions;
 	}
 
-	public Field setExtensions(Map<String, Object> extensions) {
+	public SdField setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
 	}
@@ -186,7 +186,7 @@ public abstract class Field {
 		return nullable;
 	}
 
-	public Field setNullable(boolean nullable) {
+	public SdField setNullable(boolean nullable) {
 		this.nullable = nullable;
 		return this;
 	}
@@ -205,7 +205,7 @@ public abstract class Field {
 	 * 
 	 * @param min
 	 */
-	public Field setMin(String min) {
+	public SdField setMin(String min) {
 		this.min = min;
 		return this;
 	}
@@ -224,7 +224,7 @@ public abstract class Field {
 	 * 
 	 * @param max
 	 */
-	public Field setMax(String max) {
+	public SdField setMax(String max) {
 		this.max = max;
 		return this;
 	}

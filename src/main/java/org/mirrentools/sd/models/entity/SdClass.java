@@ -15,7 +15,7 @@ import org.mirrentools.sd.common.SdUtil;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class Class {
+public class SdClass {
 	/** 包名 */
 	private String packages;
 	/** 类需要导入的包 */
@@ -29,9 +29,9 @@ public class Class {
 	/** 类名 */
 	private String name;
 	/** 类的属性 */
-	private List<Field> fields;
+	private List<SdField> fields;
 	/** 类的方法 */
-	private List<Method> methods;
+	private List<SdMethod> methods;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -39,7 +39,7 @@ public class Class {
 		return packages;
 	}
 
-	public Class setPackages(String packages) {
+	public SdClass setPackages(String packages) {
 		this.packages = packages;
 		return this;
 	}
@@ -53,7 +53,7 @@ public class Class {
 	 * 
 	 * @param annotation
 	 */
-	public Class addImports(String imports) {
+	public SdClass addImports(String imports) {
 		if (SdUtil.isNullOrEmpty(imports)) {
 			return this;
 		}
@@ -64,7 +64,7 @@ public class Class {
 		return this;
 	}
 
-	public Class setImports(Set<String> imports) {
+	public SdClass setImports(Set<String> imports) {
 		this.imports = imports;
 		return this;
 	}
@@ -73,7 +73,7 @@ public class Class {
 		return modifier;
 	}
 
-	public Class setModifier(String modifier) {
+	public SdClass setModifier(String modifier) {
 		this.modifier = modifier;
 		return this;
 	}
@@ -82,7 +82,7 @@ public class Class {
 		return type;
 	}
 
-	public Class setType(String type) {
+	public SdClass setType(String type) {
 		this.type = type;
 		return this;
 	}
@@ -91,7 +91,7 @@ public class Class {
 		return remark;
 	}
 
-	public Class setRemark(String remark) {
+	public SdClass setRemark(String remark) {
 		this.remark = remark;
 		return this;
 	}
@@ -100,12 +100,12 @@ public class Class {
 		return name;
 	}
 
-	public Class setName(String name) {
+	public SdClass setName(String name) {
 		this.name = name;
 		return this;
 	}
 
-	public List<Field> getFields() {
+	public List<SdField> getFields() {
 		return fields;
 	}
 
@@ -114,23 +114,23 @@ public class Class {
 	 * 
 	 * @param annotation
 	 */
-	public Class addFields(Field field) {
+	public SdClass addFields(SdField field) {
 		if (SdUtil.isNullOrEmpty(field)) {
 			return this;
 		}
 		if (this.fields == null) {
-			this.fields = new ArrayList<Field>();
+			this.fields = new ArrayList<SdField>();
 		}
 		this.fields.add(field);
 		return this;
 	}
 
-	public Class setFields(List<Field> fields) {
+	public SdClass setFields(List<SdField> fields) {
 		this.fields = fields;
 		return this;
 	}
 
-	public List<Method> getMethods() {
+	public List<SdMethod> getMethods() {
 		return methods;
 	}
 
@@ -139,18 +139,18 @@ public class Class {
 	 * 
 	 * @param annotation
 	 */
-	public Class addMethod(Method method) {
+	public SdClass addMethod(SdMethod method) {
 		if (SdUtil.isNullOrEmpty(method)) {
 			return this;
 		}
 		if (this.methods == null) {
-			this.methods = new ArrayList<Method>();
+			this.methods = new ArrayList<SdMethod>();
 		}
 		this.methods.add(method);
 		return this;
 	}
 
-	public Class setMethods(List<Method> methods) {
+	public SdClass setMethods(List<SdMethod> methods) {
 		this.methods = methods;
 		return this;
 	}
@@ -166,7 +166,7 @@ public class Class {
 	 * @param value
 	 * @return
 	 */
-	public Class addExtension(String key, Object value) {
+	public SdClass addExtension(String key, Object value) {
 		if (SdUtil.isNullOrEmpty(key)) {
 			return this;
 		}
@@ -177,7 +177,7 @@ public class Class {
 		return this;
 	}
 
-	public Class setExtensions(Map<String, Object> extensions) {
+	public SdClass setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
 	}

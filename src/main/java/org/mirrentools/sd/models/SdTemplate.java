@@ -1,13 +1,9 @@
 package org.mirrentools.sd.models;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.mirrentools.sd.common.SdUtil;
-
-import com.google.protobuf.Method;
 
 /**
  * 工具生成所需要的模板材料
@@ -24,7 +20,7 @@ public class SdTemplate {
 	 */
 	private String path;
 	/** 模板的名字 */
-	private String name;
+	private String file;
 	/** 如果文件已经存在是否覆盖,默认覆盖 */
 	private boolean override = true;
 	/** 项目的源码目录,比如java版maven项目的src/main/java */
@@ -33,8 +29,6 @@ public class SdTemplate {
 	private String packageName;
 	/** 类的名字 */
 	private String className;
-	/** 类的方法 */
-	private List<Method> methods;
 
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
@@ -57,18 +51,18 @@ public class SdTemplate {
 		return this;
 	}
 
-	public String getName() {
-		return name;
+	public String getFile() {
+		return file;
 	}
 
 	/**
 	 * 设置模板的名字
 	 * 
-	 * @param name
+	 * @param file
 	 * @return
 	 */
-	public SdTemplate setName(String name) {
-		this.name = name;
+	public SdTemplate setFile(String file) {
+		this.file = file;
 		return this;
 	}
 
@@ -132,34 +126,6 @@ public class SdTemplate {
 		return this;
 	}
 
-	public List<Method> getMethods() {
-		return methods;
-	}
-
-	/**
-	 * 添加模板需要用到类办法属性
-	 * 
-	 * @param method
-	 * @return
-	 */
-	public SdTemplate addMethod(Method method) {
-		if (this.methods == null) {
-			this.methods = new ArrayList<Method>();
-		}
-		this.methods.add(method);
-		return this;
-	}
-
-	/**
-	 * 设置模板需要用到类方法属性
-	 * 
-	 * @param methods
-	 */
-	public SdTemplate setMethods(List<Method> methods) {
-		this.methods = methods;
-		return this;
-	}
-
 	/**
 	 * 获得拓展属性值
 	 * 
@@ -207,7 +173,7 @@ public class SdTemplate {
 
 	@Override
 	public String toString() {
-		return "JsgTemplate [path=" + path + ", name=" + name + ", override=" + override + ", sourceFolder=" + sourceFolder + ", packageName=" + packageName + ", className=" + className + ", extensions="
+		return "JsgTemplate [path=" + path + ", file=" + file + ", override=" + override + ", sourceFolder=" + sourceFolder + ", packageName=" + packageName + ", className=" + className + ", extensions="
 				+ extensions + "]";
 	}
 
