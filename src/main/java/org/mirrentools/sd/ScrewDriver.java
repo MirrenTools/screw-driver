@@ -21,7 +21,6 @@ public interface ScrewDriver {
 	 */
 	boolean createProject();
 
-
 	/**
 	 * 执行生成代码
 	 * 
@@ -104,6 +103,5 @@ public interface ScrewDriver {
 	 * @return
 	 */
 	SdCodeUtil setExtensions(Map<String, Object> extensions);
-
 
 }
