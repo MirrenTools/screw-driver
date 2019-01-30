@@ -21,7 +21,7 @@ public class SdException extends RuntimeException {
 	/**
 	 * 初始化一个异常
 	 * 
-	 * @param throwable
+	 * @param msg
 	 */
 	public SdException(Throwable throwable) {
 		super(throwable);
