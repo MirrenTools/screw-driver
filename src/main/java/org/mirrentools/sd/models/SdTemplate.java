@@ -1,6 +1,8 @@
 package org.mirrentools.sd.models;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mirrentools.sd.common.SdUtil;
@@ -29,10 +31,15 @@ public class SdTemplate {
 	private String packageName;
 	/** 类的名字 */
 	private String className;
-
+	/** 模板中需要用到的属性 */
+	private List<SdTemplateAttribute> attributes;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
-
+	/**
+	 * 获取模板所在路径
+	 * 
+	 * @return
+	 */
 	public String getPath() {
 		return path;
 	}
@@ -50,7 +57,11 @@ public class SdTemplate {
 		this.path = path;
 		return this;
 	}
-
+	/**
+	 * 获取模板的名字
+	 * 
+	 * @return
+	 */
 	public String getFile() {
 		return file;
 	}
@@ -65,7 +76,11 @@ public class SdTemplate {
 		this.file = file;
 		return this;
 	}
-
+	/**
+	 * 获取如果生成对象已经存在是否将其覆盖
+	 * 
+	 * @return
+	 */
 	public boolean isOverride() {
 		return override;
 	}
@@ -80,7 +95,11 @@ public class SdTemplate {
 		this.override = override;
 		return this;
 	}
-
+	/**
+	 * 获取项目源码路径
+	 * 
+	 * @return
+	 */
 	public String getSourceFolder() {
 		return sourceFolder;
 	}
@@ -95,13 +114,17 @@ public class SdTemplate {
 		this.sourceFolder = sourceFolder;
 		return this;
 	}
-
+	/**
+	 * 获取生成文件的包名
+	 * 
+	 * @return
+	 */
 	public String getPackageName() {
 		return packageName;
 	}
 
 	/**
-	 * 设置文件的包名
+	 * 设置生成文件的包名
 	 * 
 	 * @param packageName
 	 * @return
@@ -110,7 +133,11 @@ public class SdTemplate {
 		this.packageName = packageName;
 		return this;
 	}
-
+	/**
+	 * 获取生成文件的名字
+	 * 
+	 * @return
+	 */
 	public String getClassName() {
 		return className;
 	}
@@ -123,6 +150,53 @@ public class SdTemplate {
 	 */
 	public SdTemplate setClassName(String className) {
 		this.className = className;
+		return this;
+	}
+	/**
+	 * 获取模板中需要用到的属性中的指定属性
+	 * 
+	 * @param index
+	 * @return
+	 */
+	public SdTemplateAttribute getAttribute(int index) {
+		if (SdUtil.isNullOrEmpty(getAttributes()) || index > getAttributes().size()) {
+			return null;
+		}
+		return getAttributes().get(index);
+	}
+	/**
+	 * 获取模板中需要用到的属性
+	 * 
+	 * @return
+	 */
+	public List<SdTemplateAttribute> getAttributes() {
+		return attributes;
+	}
+	/**
+	 * 添加模板中需要用到的属性
+	 * 
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public SdTemplate addAttribute(SdTemplateAttribute attr) {
+		if (SdUtil.isNullOrEmpty(attr)) {
+			return this;
+		}
+		if (this.attributes == null) {
+			this.attributes = new ArrayList<SdTemplateAttribute>();
+		}
+		this.attributes.add(attr);
+		return this;
+	}
+	/**
+	 * 设置模板中需要用到的属性
+	 * 
+	 * @param attributes
+	 * @return
+	 */
+	public SdTemplate setAttributes(List<SdTemplateAttribute> attributes) {
+		this.attributes = attributes;
 		return this;
 	}
 
@@ -173,8 +247,8 @@ public class SdTemplate {
 
 	@Override
 	public String toString() {
-		return "JsgTemplate [path=" + path + ", file=" + file + ", override=" + override + ", sourceFolder=" + sourceFolder + ", packageName=" + packageName + ", className=" + className + ", extensions="
-				+ extensions + "]";
+		return "JsgTemplate [path=" + path + ", file=" + file + ", override=" + override + ", sourceFolder=" + sourceFolder + ", packageName="
+				+ packageName + ", className=" + className + ", extensions=" + extensions + "]";
 	}
 
 }

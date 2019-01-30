@@ -1,7 +1,11 @@
 package org.mirrentools.sd.models;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import org.mirrentools.sd.common.SdUtil;
 
 /**
  * 模板生成所需要的实体属性
@@ -10,6 +14,14 @@ import java.util.Set;
  *
  */
 public class SdClassContent {
+	/** 表的名字 */
+	private String tableName;
+	/** 表的名字帕斯卡命名 */
+	private String pascalName;
+	/** 表的名字驼峰命名 */
+	private String camelName;
+	/** 表的注释 */
+	private String remark;
 	/** 需要导入的包 */
 	private Set<String> imports;
 	/** 所有属性集 */
@@ -22,6 +34,8 @@ public class SdClassContent {
 	private List<SdRelational> relationals;
 	/** 属性的获取与设置方法 */
 	private Set<String> getSet;
+	/** 拓展属性 */
+	private Map<String, Object> extensions;
 
 	/**
 	 * 获取需要引入的包
@@ -139,6 +153,50 @@ public class SdClassContent {
 	 */
 	public SdClassContent setGetSet(Set<String> getSet) {
 		this.getSet = getSet;
+		return this;
+	}
+	/**
+	 * 获得拓展属性值
+	 * 
+	 * @return
+	 */
+	public Object getExtension(String key) {
+		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
+			return null;
+		}
+		return getExtensions().get(key);
+	}
+
+	/**
+	 * 添加附加属性
+	 * 
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public SdClassContent addExtension(String key, Object value) {
+		if (SdUtil.isNullOrEmpty(key)) {
+			return this;
+		}
+		if (this.extensions == null) {
+			this.extensions = new LinkedHashMap<String, Object>();
+		}
+		this.extensions.put(key, value);
+		return this;
+	}
+
+	public Map<String, Object> getExtensions() {
+		return extensions;
+	}
+
+	/**
+	 * 设置拓展属性
+	 * 
+	 * @param extensions
+	 * @return
+	 */
+	public SdClassContent setExtensions(Map<String, Object> extensions) {
+		this.extensions = extensions;
 		return this;
 	}
 

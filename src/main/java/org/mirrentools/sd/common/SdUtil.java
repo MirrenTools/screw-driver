@@ -1,6 +1,10 @@
 package org.mirrentools.sd.common;
 
+import static org.hamcrest.CoreMatchers.both;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -10,6 +14,9 @@ import java.util.List;
  *
  */
 public class SdUtil {
+	/** 指定字符串替换为下划线的默认值 */
+	private static final String[] DEFAULT_REPLACE_REPS = {" ", "-"};
+
 	/**
 	 * 获取用户项目根目录
 	 * 
@@ -20,96 +27,70 @@ public class SdUtil {
 	}
 
 	/**
-	 * 将帕斯卡规则命名转换为下划线命名
+	 * 将字符串转换为连字符命名
 	 * 
+	 * @param str
 	 * @return
 	 */
-	public static String pascalToUnderScoreCase() {
+	public static String toHyphenCase(String str) {
 
 		return null;
 	}
-
 	/**
-	 * 去掉下划线并将字符串转换成帕斯卡命名规范
+	 * 将字符串转换为连字符命名
 	 * 
 	 * @param str
 	 * @return
 	 */
-	public static String unlineToPascal(String str) {
-		if (str != null) {
-			if (str.indexOf("_") == -1) {
-				return fristToUpCase(str);
-			}
-			StringBuilder result = new StringBuilder();
-			String[] temp = str.split("_");
-			for (int i = 0; i < temp.length; i++) {
-				if (temp[i].equals("") || temp[i].isEmpty()) {
-					continue;
-				}
-				result.append(fristToUpCaseLaterToLoCase(temp[i]));
-			}
-			return result.toString();
-		}
+	public static String toUpperHyphenCase(String str) {
+
+		return toHyphenCase(str).toUpperCase();
+	}
+	/**
+	 * 将字符串转换为下划线命名
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String toUnderScoreCase(String str) {
+
+		return null;
+	}
+	/**
+	 * 将字符串转换为下划线命名
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String toUpperUnderScoreCase(String str) {
+		return toUnderScoreCase(str).toUpperCase();
+	}
+
+	/**
+	 * 将字符串转换成帕斯卡命名规范
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String toPascalCase(String str) {
 
 		return str;
 	}
 
 	/**
-	 * 去掉下划线并将字符串转换成驼峰命名规范
+	 * 将字符串转换成驼峰命名规范
 	 * 
 	 * @param str
 	 * @return
 	 */
-	public static String unlineToCamel(String str) {
-		if (str != null) {
-			if (str.indexOf("_") == -1) {
-				return fristToLoCase(str);
-			}
-			StringBuilder result = new StringBuilder();
-			String[] temp = str.split("_");
-			boolean falg = false;
-			for (int i = 0; i < temp.length; i++) {
-				if (temp[i].equals("") || temp[i].isEmpty()) {
-					continue;
-				}
-				if (falg == false) {
-					falg = true;
-					result.append(temp[i].toLowerCase());
-				} else {
-					result.append(fristToUpCaseLaterToLoCase(temp[i]));
-				}
-			}
-			return result.toString();
+	public static String toCamelCase(String str) {
+		String underScore = replaceToUnderScore(str, DEFAULT_REPLACE_REPS);
+		String[] split = underScore.split("_");
+		StringBuilder sb = new StringBuilder(split[0]);
+		for (int i = 1; i < split.length; i++) {
+			sb.append(firstToUpperCase(split[i]));
 		}
-
-		return str;
-	}
-
-	/**
-	 * 将字符串首字母大写其后小写
-	 * 
-	 * @param str
-	 * @return
-	 */
-	public static String fristToUpCaseLaterToLoCase(String str) {
-		if (str != null && str.length() > 0) {
-			str = (str.substring(0, 1).toUpperCase()) + (str.substring(1).toLowerCase());
-		}
-		return str;
-	}
-
-	/**
-	 * 将字符串首字母小写其后大写
-	 * 
-	 * @param str
-	 * @return
-	 */
-	public static String fristToLoCaseLaterToUpCase(String str) {
-		if (str != null && str.length() > 0) {
-			str = (str.substring(0, 1).toLowerCase()) + (str.substring(1).toUpperCase());
-
-		}
-		return str;
+		return sb.toString();
 	}
 
 	/**
@@ -118,9 +99,13 @@ public class SdUtil {
 	 * @param str
 	 * @return
 	 */
-	public static String fristToUpCase(String str) {
+	public static String firstToUpperCase(String str) {
 		if (str != null && str.length() > 0) {
-			str = str.substring(0, 1).toUpperCase() + str.substring(1);
+			char[] s = str.toCharArray();
+			if (s[0] >= 97 && s[0] <= 122) {
+				s[0] -= 32;
+				return String.valueOf(s);
+			}
 		}
 		return str;
 	}
@@ -131,11 +116,140 @@ public class SdUtil {
 	 * @param str
 	 * @return
 	 */
-	public static String fristToLoCase(String str) {
+	public static String firstToLowerCase(String str) {
 		if (str != null && str.length() > 0) {
-			str = str.substring(0, 1).toLowerCase() + str.substring(1);
+			char[] s = str.toCharArray();
+			if (s[0] >= 65 && s[0] <= 90) {
+				s[0] += 32;
+				return String.valueOf(s);
+			}
 		}
 		return str;
+	}
+
+	/**
+	 * 将字符串替换为使用下划线分割词语并将词汇小写,如果字符串以_开头则将其删除
+	 * 
+	 * @param str
+	 * @param reps
+	 *          指定将什么字符替换为下划线
+	 * @return
+	 */
+	public static String replaceToUnderScore(String str, String... reps) {
+		for (String r : reps) {
+			str = str.replace(r, "_");
+		}
+		StringBuilder sb = new StringBuilder();
+		int i = 0;
+		while (i < str.length()) {
+			if (isLetters(str.charAt(i))) {
+				break;
+			}
+			if ('_' != str.charAt(i)) {
+				sb.append(str.charAt(i));
+			}
+			i++;
+		}
+		boolean first = true;
+		for (; i < str.length(); i++) {
+			char c = str.charAt(i);
+			if (!first && (isUpper(c) != isUpper(str.charAt(i - 1)) || isLower(c) != isLower(str.charAt(i - 1)))) {
+				sb.append("_");
+				sb.append(c);
+			} else {
+				sb.append(c);
+			}
+			first = false;
+		}
+		String temp = sb.toString().replaceAll("_+", "_").toLowerCase().trim();
+		int startWith = 0;
+		while (startWith < temp.length()) {
+			if (temp.charAt(startWith) != '_') {
+				break;
+			}
+			startWith++;
+		}
+		return temp.substring(startWith);
+	}
+	/**
+	 * 将字符串大小写字母按词拆分,并将其连接成新的字符串
+	 * 
+	 * @param str
+	 *          字符串
+	 * @param join
+	 *          连接词
+	 * @param excludes
+	 *          去除掉那些词
+	 * @return
+	 */
+	public static String splitJoin(String str, String join, String... excludes) {
+		for (String r : excludes) {
+			str = str.replace(r, "");
+		}
+		//TODO 完善工具分词
+		List<String> items = new ArrayList<String>();
+		int i = 0;
+		while (i < str.length()) {
+			StringBuilder word = new StringBuilder();
+			char c = str.charAt(i);
+			word.append(c);
+			i++;
+			if (isLetters(c)) {
+				while (i < str.length()) {
+					char next = str.charAt(i);
+					if (isLetters(next)) {
+						if (isLower(next) != isLower(c)) {
+							break;
+						}
+						c = next;
+						word.append(c);
+						i++;
+					}
+				}
+			}
+			items.add(word.toString());
+		}
+		return magre(join, items).replaceAll(join + "+", join).toLowerCase();
+	}
+	/**
+	 * 判断字符是否为英文中的26大小写字母
+	 * 
+	 * @param c
+	 * @return
+	 */
+	public static boolean isLetters(char c) {
+		if (c >= 65 && c <= 90) {
+			return true;
+		} else if (c >= 97 && c <= 122) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 判断字符是否为英文中的26小写字母
+	 * 
+	 * @param c
+	 * @return
+	 */
+	public static boolean isLower(char c) {
+		if (c >= 97 && c <= 122) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 判断字符是否为英文中的26大写字母
+	 * 
+	 * @param c
+	 * @return
+	 */
+	public static boolean isUpper(char c) {
+		if (c >= 65 && c <= 90) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -168,16 +282,34 @@ public class SdUtil {
 	 * @param str
 	 * @return
 	 */
-	@Deprecated()
 	public static String magre(String separator, String... str) {
-		StringBuffer result = null;
+		StringBuilder result = null;
 		for (String temp : str) {
 			if (result == null) {
-				result = new StringBuffer(temp);
+				result = new StringBuilder(temp);
 			}
-			result.append("," + temp);
+			result.append(separator + temp);
 		}
-		return result.toString();
+		return result == null ? null : result.toString();
+	}
+	/**
+	 * 将字符串集合按指定字符串拼接成一个新的字符串
+	 * 
+	 * @param separator
+	 *          分割符号
+	 * @param items
+	 *          字符串数组
+	 * @return
+	 */
+	public static String magre(String separator, List<String> items) {
+		StringBuilder result = null;
+		for (String temp : items) {
+			if (result == null) {
+				result = new StringBuilder(temp);
+			}
+			result.append(separator + temp);
+		}
+		return result == null ? null : result.toString();
 	}
 
 	/**
