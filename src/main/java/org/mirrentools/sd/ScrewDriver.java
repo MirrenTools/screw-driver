@@ -90,12 +90,14 @@ public interface ScrewDriver {
 	 */
 	SdCodeUtil addExtension(String key, Object value);
 
+
 	/**
 	 * 获取附加属性集合
 	 * 
 	 * @return
 	 */
 	Map<String, Object> getExtensions();
+
 
 	/**
 	 * 设置附加属性集合
