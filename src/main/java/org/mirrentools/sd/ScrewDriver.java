@@ -13,14 +13,12 @@ import org.mirrentools.sd.util.SdSqlUtil;
  *
  */
 public interface ScrewDriver {
-
 	/**
 	 * 执行生成项目
 	 * 
 	 * @return
 	 */
 	boolean createProject();
-
 
 	/**
 	 * 执行生成代码
@@ -104,6 +102,5 @@ public interface ScrewDriver {
 	 * @return
 	 */
 	SdCodeUtil setExtensions(Map<String, Object> extensions);
-
 
 }
