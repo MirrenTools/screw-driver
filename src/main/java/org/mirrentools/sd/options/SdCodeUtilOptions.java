@@ -4,8 +4,8 @@ import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.converter.SdBeanConverterToClass;
 import org.mirrentools.sd.converter.SdConverterToTemplateContent;
-import org.mirrentools.sd.converter.impl.SdBeanConverterToClassImplByMySQL;
 import org.mirrentools.sd.converter.impl.SdConverterToTemplateContentImplByFreeMarker;
+import org.mirrentools.sd.converter.impl.mysql.SdBeanConverterToClassImplByMySQL;
 import org.mirrentools.sd.util.SdTemplateUtil;
 import org.mirrentools.sd.util.impl.SdTemplateUtilImplMyFreeMarker;
 

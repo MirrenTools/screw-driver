@@ -14,6 +14,8 @@ public interface Constant {
 	public static final String MAVEN_SRC = "src/main/java";
 	/** src/test/java */
 	public static final String MAVEN_TEST = "src/test/java";
+	/** java的文件后缀名 */
+	public static final String JAVA_SUFFIX = ".java";
 
 	/** 2个空白缩进 */
 	public static final String TAG2 = "  ";

@@ -1,4 +1,4 @@
-package org.mirrentools.sd.converter.impl;
+package org.mirrentools.sd.converter.impl.mysql;
 
 import org.mirrentools.sd.converter.SdBeanConverterToTableContent;
 import org.mirrentools.sd.models.SdBean;

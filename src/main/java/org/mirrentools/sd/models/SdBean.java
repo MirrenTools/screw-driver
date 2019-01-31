@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.mirrentools.sd.common.SdUtil;
 
@@ -16,6 +17,8 @@ import org.mirrentools.sd.common.SdUtil;
 public class SdBean {
 	/** 表或类的名字 */
 	private String name;
+	/** 表或类的别名 */
+	private String alias;
 	/** 表或类的注释 */
 	private String remark;
 	/** 表或类的属性 */
@@ -24,25 +27,70 @@ public class SdBean {
 	private List<SdRelational> relationals;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
-
+	/**
+	 * 获取表或者类的名字
+	 * 
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
-
+	/**
+	 * 设置表或者类的名字,默认一般是设置表名,因为类名一般根据表名生成
+	 * 
+	 * @param name
+	 * @return
+	 */
 	public SdBean setName(String name) {
 		this.name = name;
 		return this;
 	}
+	/**
+	 * 获取表或者类的别名
+	 * 
+	 * @return
+	 */
+	public String getAlias() {
+		return alias;
+	}
+	/**
+	 * 设置表或者类的别名
+	 * 
+	 * @param alias
+	 * @return
+	 */
+	public SdBean setAlias(String alias) {
+		this.alias = alias;
+		return this;
+	}
 
+	/**
+	 * 获取注释信息
+	 * 
+	 * @return
+	 */
 	public String getRemark() {
 		return remark;
 	}
-
+	/**
+	 * 设置注释信息
+	 * 
+	 * @param remark
+	 * @return
+	 */
 	public SdBean setRemark(String remark) {
 		this.remark = remark;
 		return this;
 	}
 
+	/**
+	 * 获取属性列
+	 * 
+	 * @return
+	 */
+	public List<SdColumn> getColumns() {
+		return columns;
+	}
 	/**
 	 * 添加属性列
 	 * 
@@ -59,11 +107,28 @@ public class SdBean {
 		this.columns.add(column);
 		return this;
 	}
-
-	public List<SdColumn> getColumns() {
-		return columns;
+	/**
+	 * 添加属性列
+	 * 
+	 * @param column
+	 * @return
+	 */
+	public SdBean addColumn(SdColumn... columns) {
+		Objects.requireNonNull(columns);
+		if (this.columns == null) {
+			this.columns = new ArrayList<SdColumn>();
+		}
+		for (SdColumn col : columns) {
+			this.columns.add(col);
+		}
+		return this;
 	}
-
+	/**
+	 * 设置属性列
+	 * 
+	 * @param columns
+	 * @return
+	 */
 	public SdBean setColumns(List<SdColumn> columns) {
 		this.columns = columns;
 		return this;
@@ -85,11 +150,20 @@ public class SdBean {
 		this.relationals.add(relational);
 		return this;
 	}
-
+	/**
+	 * 获取关系属性
+	 * 
+	 * @return
+	 */
 	public List<SdRelational> getRelationals() {
 		return relationals;
 	}
-
+	/**
+	 * 设置关系属性
+	 * 
+	 * @param relationals
+	 * @return
+	 */
 	public SdBean setRelationals(List<SdRelational> relationals) {
 		this.relationals = relationals;
 		return this;
@@ -124,11 +198,20 @@ public class SdBean {
 		this.extensions.put(key, value);
 		return this;
 	}
-
+	/**
+	 * 获取拓展属性
+	 * 
+	 * @return
+	 */
 	public Map<String, Object> getExtensions() {
 		return extensions;
 	}
-
+	/**
+	 * 设置拓展属性
+	 * 
+	 * @param extensions
+	 * @return
+	 */
 	public SdBean setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
@@ -136,7 +219,8 @@ public class SdBean {
 
 	@Override
 	public String toString() {
-		return "JsgBean [name=" + name + ", remark=" + remark + ", columns=" + columns + ", relationals=" + relationals + ", extensions=" + extensions + "]";
+		return "JsgBean [name=" + name + ", remark=" + remark + ", columns=" + columns + ", relationals=" + relationals + ", extensions="
+				+ extensions + "]";
 	}
 
 }

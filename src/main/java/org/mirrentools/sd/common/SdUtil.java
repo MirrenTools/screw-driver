@@ -12,11 +12,11 @@ import java.util.List;
  */
 public class SdUtil {
 	/** 默认分词符号 */
-	public final static String DEFAULT_PARTICIPLE_FLAG = "<--->";
+	public final static String DEFAULT_PARTICIPLE_FLAG = "<╋>";
 	/** 分词中默认要移除的字符串 */
-	public final static List<String> DEFAULT_PARTICIPLE_EXCLUDES = asList(" ");
+	public final static List<String> DEFAULT_PARTICIPLE_EXCLUDES =null;
 	/** 分词中默认要转换为连接词的字符串 */
-	public final static List<String> DEFAULT_PARTICIPLE_TO_JOIN = asList("-", "_");
+	public final static List<String> DEFAULT_PARTICIPLE_TO_JOIN = asList(" ","-", "_");
 
 	/**
 	 * 获取用户项目根目录

@@ -1,4 +1,4 @@
-package org.mirrentools.sd;
+package org.mirrentools.sd.dbutil;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

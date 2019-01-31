@@ -24,10 +24,18 @@ public class SdColumn {
 	private Set<String> imports;
 	/** 类属性的注解 */
 	private Set<String> annotations;
+	/** 类属性的关系属性 */
+	private SdRelationalContent relationalContent;
 	/** 类属性数据类型 */
 	private String fieldType;
 	/** 类属性的名字 */
 	private String fieldName;
+	/** 类属性的名字帕斯卡命名 */
+	private String fieldNamePascal;
+	/** 类属性的名字连字符命名 */
+	private String fieldNameHyphen;
+	/** 类属性的名字下划线命名 */
+	private String fieldNameUnderScore;
 	/** 类属性的注释 */
 	private String fieldRemark;
 
@@ -55,7 +63,7 @@ public class SdColumn {
 	/** 索引的名字 */
 	private String indexName;
 	/** 列是否允许为空 */
-	private boolean nullable;
+	private boolean nullable = true;
 	/** 列是否为无符号 */
 	private boolean unsigned;
 	/** 列是否自增量 */
@@ -130,6 +138,24 @@ public class SdColumn {
 		this.annotations = annotations;
 		return this;
 	}
+	/**
+	 * 获取属性的关系属性内容
+	 * 
+	 * @return
+	 */
+	public SdRelationalContent getRelationalContent() {
+		return relationalContent;
+	}
+	/**
+	 * 设置属性的关系属性内容
+	 * 
+	 * @param relationalContent
+	 * @return
+	 */
+	public SdColumn setRelationalContent(SdRelationalContent relationalContent) {
+		this.relationalContent = relationalContent;
+		return this;
+	}
 
 	/**
 	 * 获取类的属性类型
@@ -152,7 +178,7 @@ public class SdColumn {
 	}
 
 	/**
-	 * 获取类的属性名字
+	 * 获取类的属性名字,实现时最好是它为驼峰命名
 	 * 
 	 * @return
 	 */
@@ -161,13 +187,67 @@ public class SdColumn {
 	}
 
 	/**
-	 * 设置类的属性名字,默认将表中的列名转换为类属性名
+	 * 设置类的属性名字,默认将表中的列名转换为类属性名,实现时最好是它为驼峰命名
 	 * 
 	 * @param fieldName
 	 * @return
 	 */
 	public SdColumn setFieldName(String fieldName) {
 		this.fieldName = fieldName;
+		return this;
+	}
+	/**
+	 * 获取类的属性名字按帕斯卡命名
+	 * 
+	 * @return
+	 */
+	public String getFieldNamePascal() {
+		return fieldNamePascal;
+	}
+	/**
+	 * 设置类的属性名字按帕斯卡命名
+	 * 
+	 * @param fieldNamePascal
+	 * @return
+	 */
+	public SdColumn setFieldNamePascal(String fieldNamePascal) {
+		this.fieldNamePascal = fieldNamePascal;
+		return this;
+	}
+	/**
+	 * 获取类的属性名字按连字符命名
+	 * 
+	 * @return
+	 */
+	public String getFieldNameHyphen() {
+		return fieldNameHyphen;
+	}
+	/**
+	 * 设置类的属性名字按连字符命名
+	 * 
+	 * @param fieldNameHyphen
+	 * @return
+	 */
+	public SdColumn setFieldNameHyphen(String fieldNameHyphen) {
+		this.fieldNameHyphen = fieldNameHyphen;
+		return this;
+	}
+	/**
+	 * 获取类的属性名字按下划线命名
+	 * 
+	 * @return
+	 */
+	public String getFieldNameUnderScore() {
+		return fieldNameUnderScore;
+	}
+	/**
+	 * 设置类的属性名字按下划线命名
+	 * 
+	 * @param fieldNameUnderScore
+	 * @return
+	 */
+	public SdColumn setFieldNameUnderScore(String fieldNameUnderScore) {
+		this.fieldNameUnderScore = fieldNameUnderScore;
 		return this;
 	}
 
@@ -246,6 +326,16 @@ public class SdColumn {
 	 * @param length
 	 * @return
 	 */
+	public SdColumn setLength(int length) {
+		this.length = Integer.toString(length);
+		return this;
+	}
+	/**
+	 * 设置列的长度
+	 * 
+	 * @param length
+	 * @return
+	 */
 	public SdColumn setLength(String length) {
 		this.length = length;
 		return this;
@@ -281,13 +371,16 @@ public class SdColumn {
 	}
 
 	/**
-	 * 设置是否为主键
+	 * 设置是否为主键,如果==true,则不能为空
 	 * 
 	 * @param primary
 	 * @return
 	 */
 	public SdColumn setPrimary(boolean primary) {
 		this.primary = primary;
+		if (primary) {
+			this.nullable = false;
+		}
 		return this;
 	}
 
@@ -503,9 +596,33 @@ public class SdColumn {
 
 	@Override
 	public String toString() {
-		return "SdColumn [imports=" + imports + ", annotations=" + annotations + ", fieldType=" + fieldType + ", fieldName=" + fieldName + ", fieldRemark=" + fieldRemark + ", name=" + name + ", type="
-				+ type + ", remark=" + remark + ", length=" + length + ", _default=" + _default + ", primary=" + primary + ", primaryName=" + primaryName + ", index=" + index + ", indexType=" + indexType
-				+ ", indexName=" + indexName + ", nullable=" + nullable + ", unsigned=" + unsigned + ", autoIncrement=" + autoIncrement + ", extensions=" + extensions + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("SdColumn: \n");
+		sb.append("  ┣━imports = " + imports + "\n");
+		sb.append("  ┣━annotations = " + annotations + "\n");
+		sb.append("  ┣━relationalContent = " + relationalContent + "\n");
+		sb.append("  ┣━fieldType = " + fieldType + "\n");
+		sb.append("  ┣━fieldName = " + fieldName + "\n");
+		sb.append("  ┣━fieldNamePascal = " + fieldNamePascal + "\n");
+		sb.append("  ┣━fieldNameHyphen = " + fieldNameHyphen + "\n");
+		sb.append("  ┣━fieldNameUnderScore = " + fieldNameUnderScore + "\n");
+		sb.append("  ┣━fieldRemark = " + fieldRemark + "\n");
+		sb.append("  ┣━name = " + name + "\n");
+		sb.append("  ┣━type = " + type + "\n");
+		sb.append("  ┣━remark = " + remark + "\n");
+		sb.append("  ┣━length = " + length + "\n");
+		sb.append("  ┣━default = " + _default + "\n");
+		sb.append("  ┣━primary = " + primary + "\n");
+		sb.append("  ┣━primaryName = " + primaryName + "\n");
+		sb.append("  ┣━index = " + index + "\n");
+		sb.append("  ┣━indexType = " + indexType + "\n");
+		sb.append("  ┣━indexName = " + indexName + "\n");
+		sb.append("  ┣━nullable = " + nullable + "\n");
+		sb.append("  ┣━unsigned = " + unsigned + "\n");
+		sb.append("  ┣━autoIncrement = " + autoIncrement + "\n");
+		sb.append("  ┗━extensions = " + extensions + "\n");
+		return sb.toString();
+
 	}
 
 }

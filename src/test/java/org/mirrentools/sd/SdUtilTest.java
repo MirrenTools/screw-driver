@@ -4,7 +4,7 @@ import org.mirrentools.sd.common.SdUtil;
 
 public class SdUtilTest {
 	public static void main(String[] args) {
-		String str = "my_name_is_mirren-my-NameIsMirren出生年份BornIn1991";
+		String str = "my_name_is_mirren-my-NameIsMirren name id mirren出生年份BornIn1991";
 		System.out.println("原字符串: " + str);
 		String camelCase = SdUtil.toCamelCase(str);
 		System.out.println(camelCase);

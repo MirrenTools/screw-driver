@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mirrentools.sd.common.SdUtil;
+import org.mirrentools.sd.constant.Constant;
 
 /**
  * 工具生成所需要的模板材料
@@ -31,6 +32,8 @@ public class SdTemplate {
 	private String packageName;
 	/** 类的名字 */
 	private String className;
+	/** 文件的后缀名 */
+	private String suffix = Constant.JAVA_SUFFIX;
 	/** 模板中需要用到的属性 */
 	private List<SdTemplateAttribute> attributes;
 	/** 拓展属性 */
@@ -152,6 +155,26 @@ public class SdTemplate {
 		this.className = className;
 		return this;
 	}
+
+	/**
+	 * 获取文件后缀名
+	 * 
+	 * @return
+	 */
+	public String getSuffix() {
+		return suffix;
+	}
+	/**
+	 * 设置文件后缀名,默认.java
+	 * 
+	 * @param suffix
+	 * @return
+	 */
+	public SdTemplate setSuffix(String suffix) {
+		this.suffix = suffix;
+		return this;
+	}
+
 	/**
 	 * 获取模板中需要用到的属性中的指定属性
 	 * 

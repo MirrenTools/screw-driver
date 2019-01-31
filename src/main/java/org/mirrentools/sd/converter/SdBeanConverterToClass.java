@@ -17,4 +17,17 @@ public interface SdBeanConverterToClass {
 	 * @return
 	 */
 	SdClassContent converter(SdBean bean);
+	/**
+	 * 获取数据类型转换器
+	 * 
+	 * @return
+	 */
+	SdTypeConverter getTypeConverter();
+	/**
+	 * 设置数据类型转换器
+	 * 
+	 * @param typeConverter
+	 * @return
+	 */
+	SdBeanConverterToClass setTypeConverter(SdTypeConverter typeConverter);
 }
