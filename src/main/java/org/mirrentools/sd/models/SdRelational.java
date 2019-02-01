@@ -1,5 +1,6 @@
 package org.mirrentools.sd.models;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -23,9 +24,9 @@ public class SdRelational {
 	/** 关系属性的注释 */
 	private String fieldRemark;
 	/** 属性数据类型,比如List<Type> */
-	private String fliedType;
+	private String fieldType;
 	/** 属性的名字 */
-	private String fliedName;
+	private String fieldName;
 	/** 创建类与表所需要的属性 */
 	private SdBean bean;
 	/** 拓展属性 */
@@ -38,6 +39,19 @@ public class SdRelational {
 	 */
 	public Set<String> getImports() {
 		return imports;
+	}
+	/**
+	 * 添加需要引入的包
+	 * 
+	 * @param imports
+	 * @return
+	 */
+	public SdRelational addImport(String imports) {
+		if (getImports() == null) {
+			setImports(new HashSet<String>());
+		}
+		getImports().add(imports);
+		return this;
 	}
 	/**
 	 * 设置需要引入的包
@@ -56,6 +70,19 @@ public class SdRelational {
 	 */
 	public Set<String> getAnnotations() {
 		return annotations;
+	}
+	/**
+	 * 添加注释
+	 * 
+	 * @param annotations
+	 * @return
+	 */
+	public SdRelational addAnnotation(String annotation) {
+		if (getAnnotations() == null) {
+			setAnnotations(new HashSet<String>());
+		}
+		getAnnotations().add(annotation);
+		return this;
 	}
 	/**
 	 * 设置注释
@@ -87,6 +114,7 @@ public class SdRelational {
 	}
 	/**
 	 * 获取关系属性注释
+	 * 
 	 * @return
 	 */
 	public String getFieldRemark() {
@@ -94,6 +122,7 @@ public class SdRelational {
 	}
 	/**
 	 * 设置关系属性注释
+	 * 
 	 * @param fieldRemark
 	 * @return
 	 */
@@ -106,17 +135,17 @@ public class SdRelational {
 	 * 
 	 * @return
 	 */
-	public String getFliedType() {
-		return fliedType;
+	public String getFieldType() {
+		return fieldType;
 	}
 	/**
 	 * 设置属性类型
 	 * 
-	 * @param fliedType
+	 * @param fieldType
 	 * @return
 	 */
-	public SdRelational setFliedType(String fliedType) {
-		this.fliedType = fliedType;
+	public SdRelational setFieldType(String fieldType) {
+		this.fieldType = fieldType;
 		return this;
 	}
 	/**
@@ -124,17 +153,17 @@ public class SdRelational {
 	 * 
 	 * @return
 	 */
-	public String getFliedName() {
-		return fliedName;
+	public String getFieldName() {
+		return fieldName;
 	}
 	/**
 	 * 设置属性名字
 	 * 
-	 * @param fliedName
+	 * @param fieldName
 	 * @return
 	 */
-	public SdRelational setFliedName(String fliedName) {
-		this.fliedName = fliedName;
+	public SdRelational setFieldName(String fieldName) {
+		this.fieldName = fieldName;
 		return this;
 	}
 	/**
@@ -193,6 +222,11 @@ public class SdRelational {
 	public SdRelational setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
+	}
+	@Override
+	public String toString() {
+		return "SdRelational [imports=" + imports + ", annotations=" + annotations + ", relationalType=" + relationalType + ", fieldRemark="
+				+ fieldRemark + ", fieldType=" + fieldType + ", fieldName=" + fieldName + ", bean=" + bean + ", extensions=" + extensions + "]";
 	}
 
 }

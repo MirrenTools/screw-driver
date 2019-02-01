@@ -1,5 +1,6 @@
 package org.mirrentools.sd.models;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -24,9 +25,9 @@ public class SdRelationalContent {
 	/** 关系属性的注释 */
 	private String fieldRemark;
 	/** 关系属性数据类型,比如List<Type> */
-	private String fliedType;
+	private String fieldType;
 	/** 属性的名字 */
-	private String fliedName;
+	private String fieldName;
 	/** 表的名字帕斯卡命名 */
 	private String pascalName;
 	/** 表的名字驼峰命名 */
@@ -49,6 +50,19 @@ public class SdRelationalContent {
 		return imports;
 	}
 	/**
+	 * 添加需要引入的包
+	 * 
+	 * @param imports
+	 * @return
+	 */
+	public SdRelationalContent addImport(String imports) {
+		if (getImports() == null) {
+			setImports(new HashSet<String>());
+		}
+		getImports().add(imports);
+		return this;
+	}
+	/**
 	 * 设置需要引入的包
 	 * 
 	 * @param imports
@@ -65,6 +79,19 @@ public class SdRelationalContent {
 	 */
 	public Set<String> getAnnotations() {
 		return annotations;
+	}
+	/**
+	 * 添加注释
+	 * 
+	 * @param annotations
+	 * @return
+	 */
+	public SdRelationalContent addAnnotation(String annotation) {
+		if (getAnnotations() == null) {
+			setAnnotations(new HashSet<String>());
+		}
+		getAnnotations().add(annotation);
+		return this;
 	}
 	/**
 	 * 设置注解
@@ -118,17 +145,17 @@ public class SdRelationalContent {
 	 * 
 	 * @return
 	 */
-	public String getFliedType() {
-		return fliedType;
+	public String getFieldType() {
+		return fieldType;
 	}
 	/**
 	 * 设置属性类型
 	 * 
-	 * @param fliedType
+	 * @param fieldType
 	 * @return
 	 */
-	public SdRelationalContent setFliedType(String fliedType) {
-		this.fliedType = fliedType;
+	public SdRelationalContent setFieldType(String fieldType) {
+		this.fieldType = fieldType;
 		return this;
 	}
 	/**
@@ -136,17 +163,17 @@ public class SdRelationalContent {
 	 * 
 	 * @return
 	 */
-	public String getFliedName() {
-		return fliedName;
+	public String getFieldName() {
+		return fieldName;
 	}
 	/**
 	 * 设置属性名字
 	 * 
-	 * @param fliedName
+	 * @param fieldName
 	 * @return
 	 */
-	public SdRelationalContent setFliedName(String fliedName) {
-		this.fliedName = fliedName;
+	public SdRelationalContent setFieldName(String fieldName) {
+		this.fieldName = fieldName;
 		return this;
 	}
 	/**
@@ -286,8 +313,8 @@ public class SdRelationalContent {
 		sb.append("┣━annotations = " + annotations + "\n");
 		sb.append("┣━relationalType = " + relationalType + "\n");
 		sb.append("┣━fieldRemark = " + fieldRemark + "\n");
-		sb.append("┣━fliedType = " + fliedType + "\n");
-		sb.append("┣━fliedName = " + fliedName + "\n");
+		sb.append("┣━fieldType = " + fieldType + "\n");
+		sb.append("┣━fieldName = " + fieldName + "\n");
 		sb.append("┣━pascalName = " + pascalName + "\n");
 		sb.append("┣━camelName = " + camelName + "\n");
 		sb.append("┣━hyphenName = " + hyphenName + "\n");

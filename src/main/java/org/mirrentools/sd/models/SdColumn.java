@@ -10,7 +10,7 @@ import org.mirrentools.sd.common.SdUtil;
 /**
  * 创建类与表列所需要的属性,<br>
  * 在被
- * {@link org.mirrentools.sd.converter.SdConverterToTemplateContent}转换时,如果类属性为空需要将表中的列属性转换为类属性<br>
+ * {@link org.mirrentools.sd.converter.SdConverterToTemplateContent}转换时,如果类属性为空需要将表中的列属性转换为类属性,主外键索引等同名则算为联合列<br>
  * 所以在生成时添加表属性就可以了,如果列属性不能很好的转换为类属性才设置类属性
  * 
  * @author <a href="http://mirrentools.org">Mirren</a>
@@ -56,6 +56,12 @@ public class SdColumn {
 	private boolean primary;
 	/** 列的主键名称 */
 	private String primaryName;
+	/** 列是否为外键 */
+	private boolean foreignKey;
+	/** 外键引用那个表 */
+	private String foreignReferences;
+	/** 外键的名字 */
+	private String foreignConstraint;
 	/** 是否为索引 */
 	private boolean index;
 	/** 索引的类型 */
@@ -383,6 +389,60 @@ public class SdColumn {
 		}
 		return this;
 	}
+	/**
+	 * 获取是否为外键
+	 * 
+	 * @return
+	 */
+	public boolean isForeignKey() {
+		return foreignKey;
+	}
+	/**
+	 * 是指是否为外键
+	 * 
+	 * @param foreignKey
+	 * @return
+	 */
+	public SdColumn setForeignKey(boolean foreignKey) {
+		this.foreignKey = foreignKey;
+		return this;
+	}
+	/**
+	 * 获取外键引用
+	 * 
+	 * @return
+	 */
+	public String getForeignReferences() {
+		return foreignReferences;
+	}
+	/**
+	 * 设置外键的引用
+	 * 
+	 * @param foreignReferences
+	 * @return
+	 */
+	public SdColumn setForeignReferences(String foreignReferences) {
+		this.foreignReferences = foreignReferences;
+		return this;
+	}
+	/**
+	 * 获取外键的名字
+	 * 
+	 * @return
+	 */
+	public String getForeignConstraint() {
+		return foreignConstraint;
+	}
+	/**
+	 * 设置外键的名字
+	 * 
+	 * @param foreignConstraint
+	 * @return
+	 */
+	public SdColumn setForeignConstraint(String foreignConstraint) {
+		this.foreignConstraint = foreignConstraint;
+		return this;
+	}
 
 	/**
 	 * 获取主键的名字
@@ -614,6 +674,9 @@ public class SdColumn {
 		sb.append("  ┣━default = " + _default + "\n");
 		sb.append("  ┣━primary = " + primary + "\n");
 		sb.append("  ┣━primaryName = " + primaryName + "\n");
+		sb.append("  ┣━foreignKey = " + foreignKey + "\n");
+		sb.append("  ┣━foreignReferences = " + foreignReferences + "\n");
+		sb.append("  ┣━foreignConstraint = " + foreignConstraint + "\n");
 		sb.append("  ┣━index = " + index + "\n");
 		sb.append("  ┣━indexType = " + indexType + "\n");
 		sb.append("  ┣━indexName = " + indexName + "\n");

@@ -32,16 +32,18 @@ public class SdClassContent {
 	private String remark;
 	/** 需要导入的包 */
 	private Set<String> imports;
-	/** 属性集(包含下方主键.索引.不能为空.其他普通属性集) */
+	/** 属性集(包含下方主键.外键.索引.其他普通属性集) */
 	private List<SdColumn> fields;
 	/** 所有主键属性集 */
 	private List<SdColumn> primaryField;
+	/** 所有外键属性集 */
+	private List<SdColumn> foreignField;
 	/** 所有索引属性集 */
 	private List<SdColumn> indexField;
-	/** 所有不能为空的属性集 */
-	private List<SdColumn> cantNullField;
 	/** 所有其他普通的属性集 */
 	private List<SdColumn> otherField;
+	/** 所有不能为空的属性集 */
+	private List<SdColumn> cantNullField;
 	/** 类的关系属性 */
 	private List<SdRelationalContent> relationals;
 	/** 拓展属性 */
@@ -270,7 +272,38 @@ public class SdClassContent {
 		this.primaryField = primaryField;
 		return this;
 	}
+	/**
+	 * 获取外键属性
+	 * 
+	 * @return
+	 */
+	public List<SdColumn> getForeignField() {
+		return foreignField;
+	}
+	/**
+	 * 添加外键属性
+	 * 
+	 * @param foreignField
+	 * @return
+	 */
+	public SdClassContent addForeignField(SdColumn foreignField) {
+		if (getForeignField() == null) {
+			setForeignField(new ArrayList<SdColumn>());
+		}
+		getForeignField().add(foreignField);
+		return this;
+	}
 
+	/**
+	 * 设置外键属性
+	 * 
+	 * @param foreignField
+	 * @return
+	 */
+	public SdClassContent setForeignField(List<SdColumn> foreignField) {
+		this.foreignField = foreignField;
+		return this;
+	}
 	/**
 	 * 获取索引属性列
 	 * 
@@ -482,6 +515,14 @@ public class SdClassContent {
 		} else {
 			sb.append("primaryField: " + primaryField + "\n");
 		}
+		if (foreignField != null) {
+			sb.append("*******************foreignField***************************\n");
+			for (SdColumn f : foreignField) {
+				sb.append(f);
+			}
+		} else {
+			sb.append("indexField: " + foreignField + "\n");
+		}
 		if (indexField != null) {
 			sb.append("*******************indexField***************************\n");
 			for (SdColumn f : indexField) {
@@ -490,14 +531,6 @@ public class SdClassContent {
 		} else {
 			sb.append("indexField: " + indexField + "\n");
 		}
-		if (cantNullField != null) {
-			sb.append("*******************cantNullField***************************\n");
-			for (SdColumn f : cantNullField) {
-				sb.append(f);
-			}
-		} else {
-			sb.append("cantNullField: " + cantNullField + "\n");
-		}
 		if (otherField != null) {
 			sb.append("*******************otherField***************************\n");
 			for (SdColumn f : otherField) {
@@ -505,6 +538,14 @@ public class SdClassContent {
 			}
 		} else {
 			sb.append("otherField: " + otherField + "\n");
+		}
+		if (cantNullField != null) {
+			sb.append("*******************cantNullField***************************\n");
+			for (SdColumn f : cantNullField) {
+				sb.append(f);
+			}
+		} else {
+			sb.append("cantNullField: " + cantNullField + "\n");
 		}
 		if (relationals != null) {
 			sb.append("*******************relationals***************************\n");
