@@ -14,14 +14,14 @@ public class SdUtil {
 	/** 默认分词符号 */
 	public final static String DEFAULT_PARTICIPLE_FLAG = "<╋>";
 	/** 分词中默认要移除的字符串 */
-	public final static List<String> DEFAULT_PARTICIPLE_EXCLUDES =null;
+	public final static List<String> DEFAULT_PARTICIPLE_EXCLUDES = null;
 	/** 分词中默认要转换为连接词的字符串 */
-	public final static List<String> DEFAULT_PARTICIPLE_TO_JOIN = asList(" ","-", "_");
+	public final static List<String> DEFAULT_PARTICIPLE_TO_JOIN = asList(" ", "-", "_");
 
 	/**
 	 * 获取用户项目根目录
 	 * 
-	 * @return
+	 * @return System.getProperty("user.dir") + "/"
 	 */
 	public static String getUserDir() {
 		return System.getProperty("user.dir") + "/";
@@ -409,7 +409,6 @@ public class SdUtil {
 	 * @param t
 	 * @return
 	 */
-	@SafeVarargs
 	public static <T> List<T> asList(T... t) {
 		return Arrays.asList(t);
 	}
@@ -476,7 +475,6 @@ public class SdUtil {
 	 * @param str
 	 * @return
 	 */
-	@SafeVarargs
 	public static <T> boolean isNullOrEmpty(List<T>... list) {
 		for (int i = 0; i < list.length; i++) {
 			if (list[i] == null || list[i].isEmpty()) {
@@ -484,6 +482,49 @@ public class SdUtil {
 			}
 		}
 		return false;
+	}
+	/**
+	 * 检查对象是否为null,为null则抛异常
+	 * 
+	 * @param obj
+	 */
+	public static void requireNonNull(Object obj) {
+		if (obj == null) {
+			throw new NullPointerException();
+		}
+	}
+	/**
+	 * 检查对象是否为null,为null则抛异常
+	 * 
+	 * @param obj
+	 * @param msg
+	 */
+	public static void requireNonNull(Object obj, String msg) {
+		if (obj == null) {
+			throw new NullPointerException(msg == null ? "null" : msg);
+		}
+	}
+
+	/**
+	 * 检查对象是否为空,为空则抛异常
+	 * 
+	 * @param obj
+	 */
+	public static void requireNonEmpty(Object obj) {
+		if (isNullOrEmpty(obj)) {
+			throw new NullPointerException();
+		}
+	}
+	/**
+	 * 检查对象是否为空,为空则抛异常
+	 * 
+	 * @param obj
+	 * @param msg
+	 */
+	public static void requireNonEmpty(Object obj, String msg) {
+		if (isNullOrEmpty(obj)) {
+			throw new NullPointerException(msg == null ? "null" : msg);
+		}
 	}
 
 }

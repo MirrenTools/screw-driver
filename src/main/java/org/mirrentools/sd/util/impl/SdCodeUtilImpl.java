@@ -9,11 +9,12 @@ import org.mirrentools.sd.common.SdException;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.converter.SdBeanConverterToClass;
-import org.mirrentools.sd.converter.SdConverterToTemplateContent;
+import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.SdCodeUtilOptions;
+import org.mirrentools.sd.options.SdDatabaseOptions;
 import org.mirrentools.sd.util.SdCodeUtil;
 import org.mirrentools.sd.util.SdTemplateUtil;
 
@@ -29,6 +30,8 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 
 	/** 创建类需要的属性 */
 	private SdBean bean;
+	/** 数据库连接属性 */
+	private SdDatabaseOptions databaseOptions;
 	/** 模板集合key为模板的名字,value为模板属性 */
 	private Map<String, SdTemplate> templateMaps;
 
@@ -39,7 +42,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	/** SdBean转换器 */
 	private SdBeanConverterToClass beanConverter;
 	/** SdBean转换器 */
-	private SdConverterToTemplateContent contentConverter;
+	private SdTemplateContentConverter contentConverter;
 	/** 模板生成工具 */
 	private SdTemplateUtil templateUtil;
 
@@ -92,7 +95,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 			throw new NullPointerException("SdTemplate 集合不能为空,你需要先创建一个SdTemplate,因为需要它来生成");
 		}
 		SdClassContent clz = beanConverter.converter(getBean());
-		Object content = contentConverter.converter(clz, templateMaps);
+		Object content = contentConverter.converter(clz, databaseOptions, templateMaps);
 		String format = codeFormat == null ? Constant.UTF_8 : codeFormat;
 		for (Entry<String, SdTemplate> temp : templateMaps.entrySet()) {
 			LOG.info(String.format("执行生成%s...", temp.getKey()));
@@ -140,6 +143,17 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
+	public SdDatabaseOptions getDatabaseOptions() {
+		return databaseOptions;
+	}
+
+	@Override
+	public SdCodeUtilImpl setDatabaseOptions(SdDatabaseOptions dbOptions) {
+		this.databaseOptions = dbOptions;
+		return this;
+	}
+
+	@Override
 	public Map<String, SdTemplate> getTemplateMaps() {
 		return templateMaps;
 	}
@@ -171,12 +185,12 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdConverterToTemplateContent getContentConverter() {
+	public SdTemplateContentConverter getContentConverter() {
 		return contentConverter;
 	}
 
 	@Override
-	public SdCodeUtilImpl setContentConverter(SdConverterToTemplateContent contentConverter) {
+	public SdCodeUtilImpl setContentConverter(SdTemplateContentConverter contentConverter) {
 		this.contentConverter = contentConverter;
 		return this;
 	}

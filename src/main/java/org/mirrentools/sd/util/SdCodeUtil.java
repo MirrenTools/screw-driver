@@ -3,9 +3,10 @@ package org.mirrentools.sd.util;
 import java.util.Map;
 
 import org.mirrentools.sd.converter.SdBeanConverterToClass;
-import org.mirrentools.sd.converter.SdConverterToTemplateContent;
+import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdTemplate;
+import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
  * 代码生成工具
@@ -65,6 +66,20 @@ public interface SdCodeUtil {
 	 * @param bean
 	 */
 	SdCodeUtil setBean(SdBean bean);
+	/**
+	 * 获取数据库连接属性
+	 * 
+	 * @return
+	 */
+	SdDatabaseOptions getDatabaseOptions();
+
+	/**
+	 * 设置数据库连接属性
+	 * 
+	 * @param dbOptions
+	 * @return
+	 */
+	SdCodeUtil setDatabaseOptions(SdDatabaseOptions dbOptions);
 
 	/**
 	 * 获取生成模板
@@ -110,7 +125,7 @@ public interface SdCodeUtil {
 	 * 
 	 * @return
 	 */
-	SdConverterToTemplateContent getContentConverter();
+	SdTemplateContentConverter getContentConverter();
 
 	/**
 	 * 设置模板工具所需要的内容转换器
@@ -118,7 +133,7 @@ public interface SdCodeUtil {
 	 * @param contentConverter
 	 * @return
 	 */
-	SdCodeUtil setContentConverter(SdConverterToTemplateContent contentConverter);
+	SdCodeUtil setContentConverter(SdTemplateContentConverter contentConverter);
 
 	/**
 	 * 设置模板工具

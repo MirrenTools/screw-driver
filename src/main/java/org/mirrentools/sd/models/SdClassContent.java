@@ -32,7 +32,7 @@ public class SdClassContent {
 	private String remark;
 	/** 需要导入的包 */
 	private Set<String> imports;
-	/** 属性集(包含下方主键.外键.索引.其他普通属性集) */
+	/** 属性集(包含下方主键.外键.索引.其他普通属性集,不包含不能为空以及附加属性) */
 	private List<SdColumn> fields;
 	/** 所有主键属性集 */
 	private List<SdColumn> primaryField;
@@ -44,6 +44,8 @@ public class SdClassContent {
 	private List<SdColumn> otherField;
 	/** 所有不能为空的属性集 */
 	private List<SdColumn> cantNullField;
+	/** 附加的属性,该属性一般用于只需要创建类属性而不需要创建表属性时使用,可以直接定义Field属性 */
+	private List<SdColumn> additionalField;
 	/** 类的关系属性 */
 	private List<SdRelationalContent> relationals;
 	/** 拓展属性 */
@@ -337,6 +339,38 @@ public class SdClassContent {
 		return this;
 	}
 	/**
+	 * 获取其他普通的属性列
+	 * 
+	 * @return
+	 */
+	public List<SdColumn> getOtherField() {
+		return otherField;
+	}
+
+	/**
+	 * 添加其他普通的属性列
+	 * 
+	 * @param field
+	 * @return
+	 */
+	public SdClassContent addOtherField(SdColumn field) {
+		if (getOtherField() == null) {
+			setOtherField(new ArrayList<SdColumn>());
+		}
+		getOtherField().add(field);
+		return this;
+	}
+	/**
+	 * 设置其他普通的属性列
+	 * 
+	 * @param otherField
+	 * @return
+	 */
+	public SdClassContent setOtherField(List<SdColumn> otherField) {
+		this.otherField = otherField;
+		return this;
+	}
+	/**
 	 * 获取不能为空的属性列
 	 * 
 	 * @return
@@ -368,35 +402,34 @@ public class SdClassContent {
 		return this;
 	}
 	/**
-	 * 获取其他普通的属性列
+	 * 获取附加属性
 	 * 
 	 * @return
 	 */
-	public List<SdColumn> getOtherField() {
-		return otherField;
+	public List<SdColumn> getAdditionalField() {
+		return additionalField;
 	}
-
 	/**
-	 * 添加其他普通的属性列
+	 * 添加附加属性
 	 * 
-	 * @param field
+	 * @param additionalField
 	 * @return
 	 */
-	public SdClassContent addOtherField(SdColumn field) {
-		if (getOtherField() == null) {
-			setOtherField(new ArrayList<SdColumn>());
+	public SdClassContent addAdditionalField(SdColumn additionalField) {
+		if (getAdditionalField() == null) {
+			setAdditionalField(new ArrayList<SdColumn>());
 		}
-		getOtherField().add(field);
+		getAdditionalField().add(additionalField);
 		return this;
 	}
 	/**
-	 * 设置其他普通的属性列
+	 * 设置附加属性
 	 * 
-	 * @param otherField
+	 * @param additionalField
 	 * @return
 	 */
-	public SdClassContent setOtherField(List<SdColumn> otherField) {
-		this.otherField = otherField;
+	public SdClassContent setAdditionalField(List<SdColumn> additionalField) {
+		this.additionalField = additionalField;
 		return this;
 	}
 	/**

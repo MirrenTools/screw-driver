@@ -7,6 +7,7 @@ import org.mirrentools.sd.converter.SdBeanConverterToTableContent;
 import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.db.update.AbstractTableContent;
+import org.mirrentools.sd.options.SdDatabaseOptions;
 import org.mirrentools.sd.util.SdCodeUtil;
 import org.mirrentools.sd.util.SdSqlUtil;
 
@@ -19,6 +20,8 @@ import org.mirrentools.sd.util.SdSqlUtil;
 public class SdSqlUtilImpl implements SdSqlUtil {
 	/** 创建类需要的属性 */
 	private SdBean bean;
+	/** 数据库连接属性 */
+	private SdDatabaseOptions databaseOptions;
 	/** 数据库执行工具 */
 	private SdDbUtil dbUtil;
 	/** SdBean转换器 */
@@ -58,7 +61,16 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 		this.bean = bean;
 		return this;
 	}
+	@Override
+	public SdDatabaseOptions getDatabaseOptions() {
+		return databaseOptions;
+	}
 
+	@Override
+	public SdSqlUtilImpl setDatabaseOptions(SdDatabaseOptions dbOptions) {
+		this.databaseOptions = dbOptions;
+		return this;
+	}
 	@Override
 	public SdDbUtil getDbUtil() {
 		return dbUtil;

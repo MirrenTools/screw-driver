@@ -1,10 +1,10 @@
 package org.mirrentools.sd.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import org.mirrentools.sd.common.SdUtil;
 
@@ -23,6 +23,8 @@ public class SdBean {
 	private String remark;
 	/** 表或类的属性 */
 	private List<SdColumn> columns;
+	/** 附加的属性,该属性一般用于只需要创建类属性而不需要创建表属性时使用,可以直接定义Field属性 */
+	private List<SdColumn> additionalColumns;
 	/** 表或类的关系属性 */
 	private List<SdRelational> relationals;
 	/** 拓展属性 */
@@ -98,13 +100,11 @@ public class SdBean {
 	 * @return
 	 */
 	public SdBean addColumn(SdColumn column) {
-		if (SdUtil.isNullOrEmpty(column)) {
-			return this;
+		SdUtil.requireNonNull(columns);
+		if (getColumns() == null) {
+			setColumns(new ArrayList<SdColumn>());
 		}
-		if (this.columns == null) {
-			this.columns = new ArrayList<SdColumn>();
-		}
-		this.columns.add(column);
+		getColumns().add(column);
 		return this;
 	}
 	/**
@@ -114,13 +114,11 @@ public class SdBean {
 	 * @return
 	 */
 	public SdBean addColumn(SdColumn... columns) {
-		Objects.requireNonNull(columns);
-		if (this.columns == null) {
-			this.columns = new ArrayList<SdColumn>();
+		SdUtil.requireNonNull(columns);
+		if (getColumns() == null) {
+			setColumns(new ArrayList<SdColumn>());
 		}
-		for (SdColumn col : columns) {
-			this.columns.add(col);
-		}
+		getColumns().addAll(Arrays.asList(columns));
 		return this;
 	}
 	/**
@@ -134,6 +132,51 @@ public class SdBean {
 		return this;
 	}
 
+	/**
+	 * 获取附加属性
+	 * 
+	 * @return
+	 */
+	public List<SdColumn> getAdditionalColumns() {
+		return additionalColumns;
+	}
+	/**
+	 * 添加附加属性,该属性一般用在类需要该属性,表不需要该属性的地方
+	 * 
+	 * @param additionalColumn
+	 * @return
+	 */
+	public SdBean addAdditionalColumn(SdColumn additionalColumn) {
+		if (getAdditionalColumns() == null) {
+			setAdditionalColumns(new ArrayList<SdColumn>());
+		}
+		getAdditionalColumns().add(additionalColumn);
+		return this;
+	}
+	/**
+	 * 添加附加属性,该属性一般用在类需要该属性,表不需要该属性的地方
+	 * 
+	 * @param additionalColumn
+	 * @return
+	 */
+	public SdBean addAdditionalColumn(SdColumn... additionalColumn) {
+		SdUtil.requireNonNull(additionalColumn);
+		if (getAdditionalColumns() == null) {
+			setAdditionalColumns(new ArrayList<SdColumn>());
+		}
+		getAdditionalColumns().addAll(Arrays.asList(additionalColumn));
+		return this;
+	}
+	/**
+	 * 设置附加属性,该属性一般用在类需要该属性,表不需要该属性的地方
+	 * 
+	 * @param additionalColumns
+	 * @return
+	 */
+	public SdBean setAdditionalColumns(List<SdColumn> additionalColumns) {
+		this.additionalColumns = additionalColumns;
+		return this;
+	}
 	/**
 	 * 添加关联关系
 	 * 

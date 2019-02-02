@@ -16,13 +16,25 @@ import org.mirrentools.sd.constant.Constant;
  */
 public class SdTemplate {
 	/**
-	 * 模板的所在路径<br>
-	 * 1. 默认寻找项目根路径的template<br>
-	 * 2. 如果不存在寻找classpath<br>
-	 * 3. 如果还不存在则寻找Jsg工具jar包的resource目录,所以在一般都不需要自己设置路径
+	 * 模板的所在路径,获取顺序获取,如果到最后还获取不到则抛出异常<br>
+	 * 如果path为空则获取 <br>
+	 * 1. classPath/templates<br>
+	 * 2. user.dir/templates<br>
+	 * 3. 创建user.dir/templates<br>
+	 * 如果path不为空则获取<br>
+	 * 1. path<br>
+	 * 2. user.dir/path<br>
+	 * 3. user.dir/templates/path<br>
+	 * 4. 创建user.dir/templates/path<<br>
 	 */
 	private String path;
-	/** 模板的名字 */
+	/**
+	 * 模板的名字<br>
+	 * 获取模板的规则,获取顺序获取,如果到最后还获取不到则抛出异常<br>
+	 * 1. path/file<br>
+	 * 2. user.dir/templates/path/file<br>
+	 * 3. 复制screw-driver-X.jar/templates/path/file 到 user.dir/templates/path/file<br>
+	 */
 	private String file;
 	/** 如果文件已经存在是否覆盖,默认覆盖 */
 	private boolean override = true;
@@ -32,12 +44,13 @@ public class SdTemplate {
 	private String packageName;
 	/** 类的名字 */
 	private String className;
-	/** 文件的后缀名 */
+	/** 类的后缀名 */
 	private String suffix = Constant.JAVA_SUFFIX;
 	/** 模板中需要用到的属性 */
 	private List<SdTemplateAttribute> attributes;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
+
 	/**
 	 * 获取模板所在路径
 	 * 
@@ -48,10 +61,16 @@ public class SdTemplate {
 	}
 
 	/**
-	 * 模板的所在路径<br>
-	 * 1. 默认寻找项目根路径的template<br>
-	 * 2. 如果不存在寻找classpath<br>
-	 * 3. 如果还不存在则寻找Jsg工具jar包的resource目录,所以在一般都不需要自己设置路径
+	 * 设置模板的所在路径,获取顺序<br>
+	 * 如果path为空则获取 <br>
+	 * 1. classPath/templates<br>
+	 * 2. user.dir/templates<br>
+	 * 4. 创建user.dir/templates<br>
+	 * 如果path不为空则获取<br>
+	 * 1. path<br>
+	 * 2. user.dir/path<br>
+	 * 3. user.dir/templates/path<br>
+	 * 4. 创建user.dir/templates/path
 	 * 
 	 * @param path
 	 * @return
@@ -70,7 +89,16 @@ public class SdTemplate {
 	}
 
 	/**
-	 * 设置模板的名字
+	 * 设置模板的名字 获取模板的规则,获取顺序获取,如果到最后还获取不到则抛出异常<br>
+	 * path为空
+	 * 1. templates/file<br>
+	 * 2. user.dir/templates/file<br>
+	 * 3. 复制screw-driver-X.jar/templates/file 到 user.dir/templates/file<br>
+	 * path不为空
+	 * 1. templates/path/file<br>
+	 * 2. user.dir/templates/path/file<br>
+	 * 3. 复制screw-driver-X.jar/templates/path/file 到 user.dir/templates/path/file<br>
+	 * 4. 复制screw-driver-X.jar/templates/file 到  user.dir/templates/path/file<br>
 	 * 
 	 * @param file
 	 * @return
@@ -157,7 +185,7 @@ public class SdTemplate {
 	}
 
 	/**
-	 * 获取文件后缀名
+	 * 获取类的后缀名
 	 * 
 	 * @return
 	 */
@@ -165,7 +193,7 @@ public class SdTemplate {
 		return suffix;
 	}
 	/**
-	 * 设置文件后缀名,默认.java
+	 * 设置类的后缀名,默认.java
 	 * 
 	 * @param suffix
 	 * @return
@@ -242,7 +270,7 @@ public class SdTemplate {
 	 * @param value
 	 * @return
 	 */
-	public SdTemplate addExtension(String key, Object value) {
+	public SdTemplate putExtension(String key, Object value) {
 		if (SdUtil.isNullOrEmpty(key)) {
 			return this;
 		}

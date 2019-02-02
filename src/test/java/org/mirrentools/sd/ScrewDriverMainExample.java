@@ -28,11 +28,11 @@ public class ScrewDriverMainExample {
 		SdColumn column3 = new SdColumn().setName("pwd").setType(MySQL.VARCHAR).setLength("60").setRemark("用户的的密码");
 		bean.setName("user").setRemark("用户").setColumns(SdUtil.asList(column, column2, column3));
 		// 设置实体生成模板
-		Map<String, SdTemplate> templates = new HashMap<>();
+		Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 		templates.put("entity",
-				new SdTemplate().setFile("entity.ftl").setSourceFolder(Constant.MAVEN_SRC).setPackageName("entity").setClassName("User.java"));
+				new SdTemplate().setFile("entity.ftl").setSourceFolder(Constant.MAVEN_SRC).setPackageName("entity").setClassName("User"));
 		templates.put("dao",
-				new SdTemplate().setFile("dao.ftl").setSourceFolder(Constant.MAVEN_SRC).setPackageName("dao").setClassName("UserDao.java"));
+				new SdTemplate().setFile("dao.ftl").setSourceFolder(Constant.MAVEN_SRC).setPackageName("dao").setClassName("UserDao"));
 		// 初始化代码执行生成工具
 		SdCodeUtil codeUtil = new SdCodeUtilImpl(bean, templates);
 		// 初始化SQL执行生成工具

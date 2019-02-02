@@ -25,6 +25,7 @@ public abstract class SdAbstractBeanConverterToClass implements SdBeanConverterT
 		SdClassContent result = new SdClassContent();
 		converterBean(bean, result);
 		converterFields(bean, result);
+		converterAdditionalField(bean, result);
 		converterRelationals(bean, result);
 		converterExtensions(bean, result);
 		return result;
@@ -53,6 +54,7 @@ public abstract class SdAbstractBeanConverterToClass implements SdBeanConverterT
 	 */
 	public void converterFields(SdBean bean, SdClassContent result) {
 		for (SdColumn col : bean.getColumns()) {
+			SdUtil.requireNonNull(col.getName(), "属性列的名字不能为空");
 			// 设置类属性
 			if (SdUtil.isNullOrEmpty(col.getFieldType())) {
 				col.setFieldType(getTypeConverter().converter(col.getType()));
@@ -103,6 +105,42 @@ public abstract class SdAbstractBeanConverterToClass implements SdBeanConverterT
 			}
 		}
 	}
+	/**
+	 * 转换附加属性
+	 * 
+	 * @param bean
+	 * @param result
+	 */
+	public void converterAdditionalField(SdBean bean, SdClassContent result) {
+		if (bean.getAdditionalColumns() != null) {
+			for (SdColumn col : bean.getAdditionalColumns()) {
+				// 设置类属性
+				if (col.getName() == null && col.getFieldName() == null) {
+					throw new NullPointerException("附加属性中name或者fieldName至少需要有一个名字不为空");
+				}
+				String name = col.getFieldName() == null ? col.getName() : col.getFieldName();
+				if (SdUtil.isNullOrEmpty(col.getFieldType())) {
+					col.setFieldType(getTypeConverter().converter(col.getType()));
+				}
+				if (SdUtil.isNullOrEmpty(col.getFieldName())) {
+					col.setFieldName(SdUtil.toCamelCase(name));
+				}
+				if (SdUtil.isNullOrEmpty(col.getFieldNamePascal())) {
+					col.setFieldNamePascal(SdUtil.toPascalCase(name));
+				}
+				if (SdUtil.isNullOrEmpty(col.getFieldNameHyphen())) {
+					col.setFieldNameHyphen(SdUtil.toHyphenCase(name));
+				}
+				if (SdUtil.isNullOrEmpty(col.getFieldNameUnderScore())) {
+					col.setFieldNameUnderScore(SdUtil.toUnderScoreCase(name));
+				}
+				if (col.getFieldRemark() == null) {
+					col.setFieldRemark(col.getRemark());
+				}
+				result.addAdditionalField(col);
+			}
+		}
+	}
 
 	/**
 	 * 转换关系属性
@@ -142,6 +180,7 @@ public abstract class SdAbstractBeanConverterToClass implements SdBeanConverterT
 		}
 		converterBean(bean, result);
 		converterFields(bean, result);
+		converterAdditionalField(bean, result);
 		if (bean.getRelationals() != null) {
 			for (SdRelational rel : bean.getRelationals()) {
 				if (rel.getImports() != null) {

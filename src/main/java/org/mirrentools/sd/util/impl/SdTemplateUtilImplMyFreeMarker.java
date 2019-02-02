@@ -17,6 +17,7 @@ public class SdTemplateUtilImplMyFreeMarker implements SdTemplateUtil {
 
 	@Override
 	public <T> boolean render(String projectPath, String format, T content, SdTemplate template) {
+
 		return false;
 	}
 

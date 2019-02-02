@@ -5,6 +5,7 @@ import java.util.Map;
 import org.mirrentools.sd.converter.SdBeanConverterToTableContent;
 import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
+import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
  * 数据库生成工具
@@ -34,7 +35,20 @@ public interface SdSqlUtil {
 	 * @return
 	 */
 	SdSqlUtil setBean(SdBean bean);
+	/**
+	 * 获取数据库连接属性
+	 * 
+	 * @return
+	 */
+	SdDatabaseOptions getDatabaseOptions();
 
+	/**
+	 * 设置数据库连接属性
+	 * 
+	 * @param dbOptions
+	 * @return
+	 */
+	SdSqlUtil setDatabaseOptions(SdDatabaseOptions dbOptions);
 	/**
 	 * 获取数据库操作工具
 	 * 

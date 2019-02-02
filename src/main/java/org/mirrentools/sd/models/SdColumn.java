@@ -10,7 +10,7 @@ import org.mirrentools.sd.common.SdUtil;
 /**
  * 创建类与表列所需要的属性,<br>
  * 在被
- * {@link org.mirrentools.sd.converter.SdConverterToTemplateContent}转换时,如果类属性为空需要将表中的列属性转换为类属性,主外键索引等同名则算为联合列<br>
+ * {@link org.mirrentools.sd.converter.SdTemplateContentConverter}转换时,如果类属性为空需要将表中的列属性转换为类属性,主外键索引等同名则算为联合列<br>
  * 所以在生成时添加表属性就可以了,如果列属性不能很好的转换为类属性才设置类属性
  * 
  * @author <a href="http://mirrentools.org">Mirren</a>

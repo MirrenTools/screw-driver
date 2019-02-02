@@ -3,8 +3,8 @@ package org.mirrentools.sd.options;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.converter.SdBeanConverterToClass;
-import org.mirrentools.sd.converter.SdConverterToTemplateContent;
-import org.mirrentools.sd.converter.impl.SdConverterToTemplateContentImplByFreeMarker;
+import org.mirrentools.sd.converter.SdTemplateContentConverter;
+import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
 import org.mirrentools.sd.converter.impl.mysql.SdBeanConverterToClassImplByMySQL;
 import org.mirrentools.sd.util.SdTemplateUtil;
 import org.mirrentools.sd.util.impl.SdTemplateUtilImplMyFreeMarker;
@@ -23,7 +23,7 @@ public class SdCodeUtilOptions {
 	/** SdBean转换器,默认MySQL实现 */
 	private SdBeanConverterToClass beanConverter = new SdBeanConverterToClassImplByMySQL();
 	/** 模板转换器,默认FreeMarker实现 */
-	private SdConverterToTemplateContent contentConverter = new SdConverterToTemplateContentImplByFreeMarker();
+	private SdTemplateContentConverter contentConverter = new SdTemplateContentConverterDefaultImpl();
 	/** 模板生成工具,默认FreeMarker实现 */
 	private SdTemplateUtil templateUtil = new SdTemplateUtilImplMyFreeMarker();
 
@@ -92,7 +92,7 @@ public class SdCodeUtilOptions {
 	 * 
 	 * @return
 	 */
-	public SdConverterToTemplateContent getContentConverter() {
+	public SdTemplateContentConverter getContentConverter() {
 		return contentConverter;
 	}
 
@@ -102,7 +102,7 @@ public class SdCodeUtilOptions {
 	 * @param contentConverter
 	 * @return
 	 */
-	public SdCodeUtilOptions setContentConverter(SdConverterToTemplateContent contentConverter) {
+	public SdCodeUtilOptions setContentConverter(SdTemplateContentConverter contentConverter) {
 		this.contentConverter = contentConverter;
 		return this;
 	}

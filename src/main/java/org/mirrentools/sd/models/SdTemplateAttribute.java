@@ -9,17 +9,18 @@ package org.mirrentools.sd.models;
 public class SdTemplateAttribute {
 	/** 属性值的key */
 	private String key;
-	/** 属性值的value */
-	private Object value;
-	/** 属性值的描述 */
+	/** 属性值的value SdBean名字占位符{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名 */
+	private String value;
+	/** 属性值的描述 SdBean名字占位符{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名 */
 	private String describe;
 	/**
 	 * 初始化
 	 * 
 	 * @param key
 	 * @param value
+	 *          如果值中需要用到SdBean名字可以使用占位符{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名
 	 */
-	public SdTemplateAttribute(String key, Object value) {
+	public SdTemplateAttribute(String key, String value) {
 		super();
 		this.key = key;
 		this.value = value;
@@ -29,9 +30,11 @@ public class SdTemplateAttribute {
 	 * 
 	 * @param key
 	 * @param value
+	 *          如果值中需要用到SdBean名字可以使用占位符{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名
 	 * @param describe
+	 *          如果值中需要用到SdBean名字可以使用占位符{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名
 	 */
-	public SdTemplateAttribute(String key, Object value, String describe) {
+	public SdTemplateAttribute(String key, String value, String describe) {
 		super();
 		this.key = key;
 		this.value = value;
@@ -60,16 +63,17 @@ public class SdTemplateAttribute {
 	 * 
 	 * @return
 	 */
-	public Object getValue() {
+	public String getValue() {
 		return value;
 	}
 	/**
 	 * 设置属性值
 	 * 
 	 * @param value
+	 *          如果值中需要用到SdBean名字可以使用占位符{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名
 	 * @return
 	 */
-	public SdTemplateAttribute setValue(Object value) {
+	public SdTemplateAttribute setValue(String value) {
 		this.value = value;
 		return this;
 	}
@@ -85,6 +89,7 @@ public class SdTemplateAttribute {
 	 * 设置属性值的描述
 	 * 
 	 * @param describe
+	 *          如果值中需要用到SdBean名字可以使用占位符{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名
 	 * @return
 	 */
 	public SdTemplateAttribute setDescribe(String describe) {

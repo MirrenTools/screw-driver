@@ -1,8 +1,8 @@
 package org.mirrentools.sd.converter.impl.mysql;
 
 import java.util.Map;
-import java.util.Objects;
 
+import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Java;
 import org.mirrentools.sd.constant.MySqlAndJavaTypeDictionary;
 import org.mirrentools.sd.converter.SdAbstractTypeConverter;
@@ -31,7 +31,7 @@ public class SdTypeConverterImplByMySqlToJava extends SdAbstractTypeConverter {
 	 */
 	public SdTypeConverterImplByMySqlToJava(Map<String, String> dict) {
 		super(Java.OBJECT);
-		Objects.requireNonNull(dict);
+		SdUtil.requireNonNull(dict);
 		this.dict = dict;
 	}
 
