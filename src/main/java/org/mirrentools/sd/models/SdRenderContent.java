@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.mirrentools.sd.options.SdDatabaseOptions;
+
 /**
  * 模板渲染需要的内容
  * 
@@ -17,6 +18,31 @@ public class SdRenderContent {
 	private SdDatabaseOptions dbOptions;
 	/** 模板渲染中需要用到哪些模板内容 */
 	private Map<String, SdTemplateContent> items;
+
+	/**
+	 * 模板渲染需要的上下文
+	 */
+	public SdRenderContent() {
+		super();
+	}
+
+	/**
+	 * 模板渲染需要的上下文
+	 * 
+	 * @param content
+	 *          类相关属性
+	 * @param dbOptions
+	 *          数据库相关属性
+	 * @param items
+	 *          模板相关属性
+	 */
+	public SdRenderContent(SdClassContent content, SdDatabaseOptions dbOptions, Map<String, SdTemplateContent> items) {
+		super();
+		this.content = content;
+		this.dbOptions = dbOptions;
+		this.items = items;
+	}
+
 	/**
 	 * 获取生成表或类需要的属性内容
 	 * 
@@ -25,6 +51,7 @@ public class SdRenderContent {
 	public SdClassContent getContent() {
 		return content;
 	}
+
 	/**
 	 * 设置生成表或类需要的属性内容
 	 * 
@@ -35,6 +62,7 @@ public class SdRenderContent {
 		this.content = content;
 		return this;
 	}
+
 	/**
 	 * 获取数据库配置信息
 	 * 
@@ -43,6 +71,7 @@ public class SdRenderContent {
 	public SdDatabaseOptions getDbOptions() {
 		return dbOptions;
 	}
+
 	/**
 	 * 设置数据库配置信息
 	 * 
@@ -53,6 +82,7 @@ public class SdRenderContent {
 		this.dbOptions = dbOptions;
 		return this;
 	}
+
 	/**
 	 * 获取模板渲染中需要用到哪些模板内容
 	 * 
@@ -61,6 +91,7 @@ public class SdRenderContent {
 	public Map<String, SdTemplateContent> getItems() {
 		return items;
 	}
+
 	/**
 	 * 模板渲染中需要用到哪些模板内容
 	 * 
@@ -74,6 +105,7 @@ public class SdRenderContent {
 		getItems().put(key, item);
 		return this;
 	}
+
 	/**
 	 * 模板渲染中需要用到哪些模板内容
 	 * 
@@ -84,6 +116,7 @@ public class SdRenderContent {
 		this.items = items;
 		return this;
 	}
+
 	@Override
 	public String toString() {
 		return "SdRenderContent [content=" + content + ", dbOptions=" + dbOptions + ", items=" + items + "]";

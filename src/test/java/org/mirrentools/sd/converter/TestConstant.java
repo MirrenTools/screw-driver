@@ -5,12 +5,15 @@ import java.util.Map;
 
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.constant.MySQL;
+import org.mirrentools.sd.converter.impl.mysql.SdBeanConverterToClassImplByMySQL;
 import org.mirrentools.sd.enums.Relational;
 import org.mirrentools.sd.models.SdBean;
+import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.SdRelational;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.models.SdTemplateAttribute;
+import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
  * 一些测试中可能灰反复使用的类
@@ -19,17 +22,26 @@ import org.mirrentools.sd.models.SdTemplateAttribute;
  *
  */
 public class TestConstant {
-	/** 用于班级的SDBean */
+	/** 班级的SDBean */
 	public static SdBean classesBean;
-	/** 用于学生的SDBean */
+	/** 班级的内容 */
+	public static SdClassContent classesBeanContent;
+	/** 学生的SDBean */
 	public static SdBean studentBean;
+	/** 学生的内容 */
+	public static SdClassContent studentBeanContent;
 	// 设置实体生成模板
 	public static Map<String, SdTemplate> templates;
+	// 数据库配置文件
+	public static SdDatabaseOptions databaseOptions;
 
 	static {
 		initBean();
+		initClassContent();
 		initTemplates();
+		initDatabaseOptions();
 	}
+
 	/**
 	 * 初始化学生与班级bean
 	 */
@@ -48,8 +60,7 @@ public class TestConstant {
 		SdColumn column2 = new SdColumn().setName("name").setType(MySQL.VARCHAR).setNullable(false).setLength("30").setRemark("学生的名字");
 		SdColumn column3 = new SdColumn().setName("age").setType(MySQL.INT).setNullable(false).setRemark("学生的年龄");
 		SdColumn column4 = new SdColumn().setName("age").setType(MySQL.INT).setRemark("学生的年龄");
-		SdColumn column5 = new SdColumn().setName("mobile_phone").setType(MySQL.VARCHAR).setNullable(false).setLength("30")
-				.setRemark("学生的手机号码");
+		SdColumn column5 = new SdColumn().setName("mobile_phone").setType(MySQL.VARCHAR).setNullable(false).setLength("30").setRemark("学生的手机号码");
 		column5.setIndex(true).setIndexType(MySQL.INDEX_KEY).setIndexName("idx_user_mobile_phone");
 		SdColumn column6 = new SdColumn().setName("classes_id").setType(MySQL.INT).setNullable(false).setRemark("班级的id");
 		column6.setForeignKey(true).setForeignReferences(classesBean.getName()).setForeignConstraint("FK_classes_student_id");
@@ -75,17 +86,33 @@ public class TestConstant {
 		classesRelational.setBean(studentBean);
 		classesBean.addRelational(classesRelational);
 	}
+
+	/**
+	 * 初始化内容
+	 */
+	private static void initClassContent() {
+		SdBeanConverterToClass converter = new SdBeanConverterToClassImplByMySQL();
+		classesBeanContent = converter.converter(classesBean);
+		studentBeanContent = converter.converter(studentBean);
+	}
+
 	/**
 	 * 初始化模板工具
 	 */
 	private static void initTemplates() {
 		templates = new HashMap<String, SdTemplate>();
-		SdTemplate entity = new SdTemplate().setFile("entity.ftl").setSourceFolder(Constant.MAVEN_SRC).setPackageName("entity")
-				.setClassName("User");
+		SdTemplate entity = new SdTemplate().setFile("entity.ftl").setSourceFolder(Constant.MAVEN_TEST).setPackageName("com.entity").setClassName("User");
 		templates.put("entity", entity);
-		SdTemplate dao = new SdTemplate().setFile("dao.ftl").setSourceFolder(Constant.MAVEN_SRC).setPackageName("dao").setClassName("UserDao");
+		SdTemplate dao = new SdTemplate().setFile("dao.ftl").setSourceFolder(Constant.MAVEN_TEST).setPackageName("com.dao").setClassName("UserDao");
 		dao.addAttribute(new SdTemplateAttribute("test", "{c}{p}", "测试驼峰与帕斯卡还有下划线{u},连字符{h}"));
 		templates.put("dao", dao);
+	}
+
+	private static void initDatabaseOptions() {
+		databaseOptions = new SdDatabaseOptions(MySQL.MYSQL_8_DERVER, "jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
+		databaseOptions.setUser("root");
+		databaseOptions.setPassword("root");
+		databaseOptions.setLoginTimeout(10);
 	}
 
 }

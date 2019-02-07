@@ -12,7 +12,9 @@ import org.mirrentools.sd.converter.SdBeanConverterToClass;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
+import org.mirrentools.sd.models.SdRenderContent;
 import org.mirrentools.sd.models.SdTemplate;
+import org.mirrentools.sd.models.SdTemplateContent;
 import org.mirrentools.sd.options.SdCodeUtilOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 import org.mirrentools.sd.util.SdCodeUtil;
@@ -35,14 +37,14 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	/** 模板集合key为模板的名字,value为模板属性 */
 	private Map<String, SdTemplate> templateMaps;
 
-	/** 项目所在路径 */
+	/** 项目所在路径,默认当前项目 */
 	private String projectPath;
 	/** 生成使用编码格式,默认UTF-8 */
-	private String codeFormat = Constant.UTF_8;
+	private String codeFormat;
 	/** SdBean转换器 */
 	private SdBeanConverterToClass beanConverter;
-	/** SdBean转换器 */
-	private SdTemplateContentConverter contentConverter;
+	/** 模板内容转换器 */
+	private SdTemplateContentConverter templateConverter;
 	/** 模板生成工具 */
 	private SdTemplateUtil templateUtil;
 
@@ -67,7 +69,9 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	 * @param bean
 	 *          生成代码所需要的实体属性
 	 * @param templateMap
+	 *          生成代码所需要的模板
 	 * @param options
+	 *          生成代码所需要的数据库配置文件
 	 */
 	public SdCodeUtilImpl(SdBean bean, Map<String, SdTemplate> templateMaps, SdCodeUtilOptions options) {
 		super();
@@ -85,7 +89,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 		this.projectPath = options.getProjectPath();
 		this.codeFormat = options.getCodeFormat();
 		this.beanConverter = options.getBeanConverter();
-		this.contentConverter = options.getContentConverter();
+		this.templateConverter = options.getTemplateContentConverter();
 		this.templateUtil = options.getTemplateUtil();
 	}
 
@@ -94,12 +98,16 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 		if (SdUtil.isNullOrEmpty(templateMaps)) {
 			throw new NullPointerException("SdTemplate 集合不能为空,你需要先创建一个SdTemplate,因为需要它来生成");
 		}
-		SdClassContent clz = beanConverter.converter(getBean());
-		Object content = contentConverter.converter(clz, databaseOptions, templateMaps);
-		String format = codeFormat == null ? Constant.UTF_8 : codeFormat;
+		String path = getProjectPath();
+		String format = getCodeFormat();
+
+		SdClassContent clzContent = beanConverter.converter(getBean());
+		Map<String, SdTemplateContent> templates = templateConverter.converter(clzContent, databaseOptions, templateMaps);
+		SdRenderContent content = new SdRenderContent(clzContent, databaseOptions, templates);
+
 		for (Entry<String, SdTemplate> temp : templateMaps.entrySet()) {
 			LOG.info(String.format("执行生成%s...", temp.getKey()));
-			boolean render = templateUtil.render(projectPath, format, content, temp.getValue());
+			boolean render = templateUtil.render(path, format, content, temp.getValue());
 			if (render) {
 				LOG.info(String.format("执行生成%s-->成功!", temp.getKey()));
 			} else {
@@ -111,7 +119,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 
 	@Override
 	public String getProjectPath() {
-		return projectPath;
+		return projectPath == null ? SdUtil.getUserDir() : projectPath;
 	}
 
 	@Override
@@ -122,7 +130,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 
 	@Override
 	public String getCodeFormat() {
-		return codeFormat;
+		return codeFormat == null ? Constant.UTF_8 : codeFormat;
 	}
 
 	@Override
@@ -185,13 +193,13 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdTemplateContentConverter getContentConverter() {
-		return contentConverter;
+	public SdTemplateContentConverter getTemplateConverter() {
+		return templateConverter;
 	}
 
 	@Override
-	public SdCodeUtilImpl setContentConverter(SdTemplateContentConverter contentConverter) {
-		this.contentConverter = contentConverter;
+	public SdCodeUtilImpl setTemplateConverter(SdTemplateContentConverter templateConverter) {
+		this.templateConverter = templateConverter;
 		return this;
 	}
 

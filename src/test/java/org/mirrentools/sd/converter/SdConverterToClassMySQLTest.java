@@ -16,7 +16,7 @@ import org.mirrentools.sd.models.SdRelationalContent;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdConvertorToClassMySQLTest {
+public class SdConverterToClassMySQLTest {
 	/** 转换接口 */
 	private SdBeanConverterToClass converter;
 	/** 用于班级的SDBean */

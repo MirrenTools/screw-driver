@@ -66,6 +66,7 @@ public interface SdCodeUtil {
 	 * @param bean
 	 */
 	SdCodeUtil setBean(SdBean bean);
+
 	/**
 	 * 获取数据库连接属性
 	 * 
@@ -125,15 +126,15 @@ public interface SdCodeUtil {
 	 * 
 	 * @return
 	 */
-	SdTemplateContentConverter getContentConverter();
+	SdTemplateContentConverter getTemplateConverter();
 
 	/**
 	 * 设置模板工具所需要的内容转换器
 	 * 
-	 * @param contentConverter
+	 * @param templateConverter
 	 * @return
 	 */
-	SdCodeUtil setContentConverter(SdTemplateContentConverter contentConverter);
+	SdCodeUtil setTemplateConverter(SdTemplateContentConverter templateConverter);
 
 	/**
 	 * 设置模板工具

@@ -17,20 +17,20 @@ import java.util.logging.Logger;
 public class SdTemplatePathUtil {
 	/** JUL日志 */
 	private static final Logger LOG = Logger.getLogger(SdTemplatePathUtil.class.getName());
-
 	/** 默认的模板文件夹 */
-	private final static String DEFAULT_PATH = "templates/";
+	private final static String DEFAULT_PATH = "SdTemplates/";
+
 	/**
 	 * 获取模板所在文件夹,返回的文件夹有可能不是/结尾 获取顺序获取,如果到最后还获取不到则抛出异常<br>
 	 * 如果path为空则获取 <br>
-	 * 1. classPath/templates<br>
-	 * 2. user.dir/templates<br>
-	 * 3. 创建user.dir/templates<br>
+	 * 1. classPath/SdTemplates<br>
+	 * 2. user.dir/SdTemplates<br>
+	 * 3. 创建user.dir/SdTemplates<br>
 	 * 如果path不为空则获取<br>
 	 * 1. path<br>
 	 * 2. user.dir/path<br>
-	 * 3. user.dir/templates/path<br>
-	 * 4. 创建user.dir/templates/path<<br>
+	 * 3. user.dir/SdTemplates/path<br>
+	 * 4. 创建user.dir/SdTemplates/path<<br>
 	 * 
 	 * @return
 	 */
@@ -53,12 +53,17 @@ public class SdTemplatePathUtil {
 		}
 		return userdirTemplates;
 	}
+
 	/**
 	 * getPath(String path)当path为null时的实现
 	 * 
 	 * @return
 	 */
 	public static String getPath() {
+		URL url = Thread.currentThread().getContextClassLoader().getResource(DEFAULT_PATH);
+		if (new File(url.getFile()).exists()) {
+			return url.getFile();
+		}
 		if (new File(DEFAULT_PATH).exists()) {
 			return DEFAULT_PATH;
 		}
@@ -74,9 +79,9 @@ public class SdTemplatePathUtil {
 	/**
 	 * 获取文件,也可以用于做为检查文件是否存在,不存在就复制架包的文件<br>
 	 * 获取模板的规则,获取顺序获取,如果到最后还获取不到则抛出异常<br>
-	 * 1. templates/file<br>
-	 * 2. user.dir/templates/file<br>
-	 * 3. 复制screw-driver-X.jar/templates/file 到 user.dir/templates/file<br>
+	 * 1. SdTemplates/file<br>
+	 * 2. user.dir/SdTemplates/file<br>
+	 * 3. 复制screw-driver-X.jar/SdTemplates/file 到 user.dir/SdTemplates/file<br>
 	 * 
 	 * @param path
 	 *          所在路径
@@ -87,14 +92,15 @@ public class SdTemplatePathUtil {
 	public static File getFile(String fileName) {
 		return getFile(null, fileName);
 	}
+
 	/**
 	 * 获取文件,也可以用于做为检查文件是否存在,不存在就复制架包的文件<br>
 	 * 获取模板的规则,获取顺序获取,如果到最后还获取不到则抛出异常<br>
 	 * 1. path/file<br>
-	 * 2. user.dir/templates/path/file<br>
-	 * 3. 复制screw-driver-X.jar/templates/path/file 到
-	 * user.dir/templates/path/file<br>
-	 * 4. 复制screw-driver-X.jar/templates/file 到 user.dir/templates/path/file<br>
+	 * 2. user.dir/SdTemplates/path/file<br>
+	 * 3. 复制screw-driver-X.jar/SdTemplates/path/file 到
+	 * user.dir/SdTemplates/path/file<br>
+	 * 4. 复制screw-driver-X.jar/SdTemplates/file 到 user.dir/SdTemplates/path/file<br>
 	 * 
 	 * @param path
 	 *          所在路径
@@ -118,6 +124,7 @@ public class SdTemplatePathUtil {
 		} else if (!path.endsWith("/")) {
 			path += "/";
 		}
+
 		try {
 			String jarPath = SdTemplatePathUtil.class.getProtectionDomain().getCodeSource().getLocation().getFile();
 			URL url = new URL("jar:file:" + jarPath + "!/" + path + fileName);
@@ -140,6 +147,7 @@ public class SdTemplatePathUtil {
 				}
 			}
 		}
+
 		OutputStream outputStream = null;
 		try {
 			boolean newFile = file.createNewFile();

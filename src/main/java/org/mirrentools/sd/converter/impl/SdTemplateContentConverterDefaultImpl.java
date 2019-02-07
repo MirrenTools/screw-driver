@@ -76,7 +76,12 @@ public class SdTemplateContentConverterDefaultImpl implements SdTemplateContentC
 	public void converterExtensions(SdClassContent bean, SdDatabaseOptions databaseOptions, SdTemplate template, SdTemplateContent result) {
 		result.setExtensions(template.getExtensions());
 	}
-
+	/**
+	 * 填充替换属性里面的占位符
+	 * @param bean
+	 * @param databaseOptions
+	 * @param attribute
+	 */
 	public void replaceTemplateAttributePlaceholder(SdClassContent bean, SdDatabaseOptions databaseOptions, SdTemplateAttribute attribute) {
 		if (attribute.getValue() != null) {
 			String value = attribute.getValue()
@@ -87,7 +92,7 @@ public class SdTemplateContentConverterDefaultImpl implements SdTemplateContentC
 			attribute.setValue(value);
 		}
 		if (attribute.getDescribe() != null) {
-			String value = attribute.getValue()
+			String value = attribute.getDescribe()
 					.replace("{c}", bean.getCamelName())
 					.replace("{p}", bean.getPascalName())
 					.replace("{u}", bean.getUnderScoreName())

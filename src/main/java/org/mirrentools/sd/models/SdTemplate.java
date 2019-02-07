@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.mirrentools.sd.common.SdTemplatePathUtil;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 
@@ -18,27 +19,28 @@ public class SdTemplate {
 	/**
 	 * 模板的所在路径,获取顺序获取,如果到最后还获取不到则抛出异常<br>
 	 * 如果path为空则获取 <br>
-	 * 1. classPath/templates<br>
-	 * 2. user.dir/templates<br>
-	 * 3. 创建user.dir/templates<br>
+	 * 1. classPath/SdTemplates<br>
+	 * 2. user.dir/SdTemplates<br>
+	 * 3. 创建user.dir/SdTemplates<br>
 	 * 如果path不为空则获取<br>
 	 * 1. path<br>
 	 * 2. user.dir/path<br>
-	 * 3. user.dir/templates/path<br>
-	 * 4. 创建user.dir/templates/path<<br>
+	 * 3. user.dir/SdTemplates/path<br>
+	 * 4. 创建user.dir/SdTemplates/path<<br>
 	 */
 	private String path;
 	/**
 	 * 模板的名字<br>
 	 * 获取模板的规则,获取顺序获取,如果到最后还获取不到则抛出异常<br>
 	 * 1. path/file<br>
-	 * 2. user.dir/templates/path/file<br>
-	 * 3. 复制screw-driver-X.jar/templates/path/file 到 user.dir/templates/path/file<br>
+	 * 2. user.dir/SdTemplates/path/file<br>
+	 * 3. 复制screw-driver-X.jar/SdTemplates/path/file 到
+	 * user.dir/SdTemplates/path/file<br>
 	 */
 	private String file;
 	/** 如果文件已经存在是否覆盖,默认覆盖 */
 	private boolean override = true;
-	/** 项目的源码目录,比如java版maven项目的src/main/java */
+	/** 项目的源码目录,比如java版maven项目的src/main/java/ */
 	private String sourceFolder;
 	/** 类的包名 */
 	private String packageName;
@@ -52,25 +54,25 @@ public class SdTemplate {
 	private Map<String, Object> extensions;
 
 	/**
-	 * 获取模板所在路径
+	 * 获取模板所在路径,获取顺序<br>
+	 * 如果path为空则获取 <br>
+	 * 1. classPath/SdTemplates<br>
+	 * 2. user.dir/SdTemplates<br>
+	 * 4. 创建user.dir/SdTemplates<br>
+	 * 如果path不为空则获取<br>
+	 * 1. path<br>
+	 * 2. user.dir/path<br>
+	 * 3. user.dir/SdTemplates/path<br>
+	 * 4. 创建user.dir/SdTemplates/path
 	 * 
 	 * @return
 	 */
 	public String getPath() {
-		return path;
+		return SdTemplatePathUtil.getPath(path);
 	}
 
 	/**
-	 * 设置模板的所在路径,获取顺序<br>
-	 * 如果path为空则获取 <br>
-	 * 1. classPath/templates<br>
-	 * 2. user.dir/templates<br>
-	 * 4. 创建user.dir/templates<br>
-	 * 如果path不为空则获取<br>
-	 * 1. path<br>
-	 * 2. user.dir/path<br>
-	 * 3. user.dir/templates/path<br>
-	 * 4. 创建user.dir/templates/path
+	 * 设置模板的所在路径
 	 * 
 	 * @param path
 	 * @return
@@ -79,26 +81,28 @@ public class SdTemplate {
 		this.path = path;
 		return this;
 	}
+
 	/**
-	 * 获取模板的名字
+	 * 获取模板的名字, 获取模板的规则,获取顺序获取,如果到最后还获取不到则抛出异常<br>
+	 * path为空 1. SdTemplates/file<br>
+	 * 2. user.dir/SdTemplates/file<br>
+	 * 3. 复制screw-driver-X.jar/SdTemplates/file 到 user.dir/SdTemplates/file<br>
+	 * path不为空 1. SdTemplates/path/file<br>
+	 * 2. user.dir/SdTemplates/path/file<br>
+	 * 3. 复制screw-driver-X.jar/SdTemplates/path/file 到
+	 * user.dir/SdTemplates/path/file<br>
+	 * 4. 复制screw-driver-X.jar/SdTemplates/file 到 user.dir/SdTemplates/path/file<br>
+	 * 
 	 * 
 	 * @return
 	 */
 	public String getFile() {
+		SdTemplatePathUtil.getFile(getPath(), file);
 		return file;
 	}
 
 	/**
-	 * 设置模板的名字 获取模板的规则,获取顺序获取,如果到最后还获取不到则抛出异常<br>
-	 * path为空
-	 * 1. templates/file<br>
-	 * 2. user.dir/templates/file<br>
-	 * 3. 复制screw-driver-X.jar/templates/file 到 user.dir/templates/file<br>
-	 * path不为空
-	 * 1. templates/path/file<br>
-	 * 2. user.dir/templates/path/file<br>
-	 * 3. 复制screw-driver-X.jar/templates/path/file 到 user.dir/templates/path/file<br>
-	 * 4. 复制screw-driver-X.jar/templates/file 到  user.dir/templates/path/file<br>
+	 * 设置模板的名字
 	 * 
 	 * @param file
 	 * @return
@@ -107,6 +111,7 @@ public class SdTemplate {
 		this.file = file;
 		return this;
 	}
+
 	/**
 	 * 获取如果生成对象已经存在是否将其覆盖
 	 * 
@@ -126,17 +131,18 @@ public class SdTemplate {
 		this.override = override;
 		return this;
 	}
+
 	/**
 	 * 获取项目源码路径
 	 * 
 	 * @return
 	 */
 	public String getSourceFolder() {
-		return sourceFolder;
+		return sourceFolder == null ? Constant.MAVEN_SRC : sourceFolder;
 	}
 
 	/**
-	 * 设置项目的源码目录,比如java版maven项目的代码源目录src/main/java
+	 * 设置项目的源码目录,比如java版maven项目的代码源目录src/main/java/
 	 * 
 	 * @param sourceFolder
 	 * @return
@@ -145,6 +151,7 @@ public class SdTemplate {
 		this.sourceFolder = sourceFolder;
 		return this;
 	}
+
 	/**
 	 * 获取生成文件的包名
 	 * 
@@ -164,6 +171,7 @@ public class SdTemplate {
 		this.packageName = packageName;
 		return this;
 	}
+
 	/**
 	 * 获取生成文件的名字
 	 * 
@@ -192,6 +200,7 @@ public class SdTemplate {
 	public String getSuffix() {
 		return suffix;
 	}
+
 	/**
 	 * 设置类的后缀名,默认.java
 	 * 
@@ -215,6 +224,7 @@ public class SdTemplate {
 		}
 		return getAttributes().get(index);
 	}
+
 	/**
 	 * 获取模板中需要用到的属性
 	 * 
@@ -223,6 +233,7 @@ public class SdTemplate {
 	public List<SdTemplateAttribute> getAttributes() {
 		return attributes;
 	}
+
 	/**
 	 * 添加模板中需要用到的属性
 	 * 
@@ -240,6 +251,7 @@ public class SdTemplate {
 		this.attributes.add(attr);
 		return this;
 	}
+
 	/**
 	 * 设置模板中需要用到的属性
 	 * 
@@ -298,8 +310,8 @@ public class SdTemplate {
 
 	@Override
 	public String toString() {
-		return "JsgTemplate [path=" + path + ", file=" + file + ", override=" + override + ", sourceFolder=" + sourceFolder + ", packageName="
-				+ packageName + ", className=" + className + ", extensions=" + extensions + "]";
+		return "JsgTemplate [path=" + path + ", file=" + file + ", override=" + override + ", sourceFolder=" + sourceFolder + ", packageName=" + packageName + ", className=" + className + ", extensions="
+				+ extensions + "]";
 	}
 
 }

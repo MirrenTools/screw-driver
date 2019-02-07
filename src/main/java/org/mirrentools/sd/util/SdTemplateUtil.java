@@ -2,6 +2,7 @@ package org.mirrentools.sd.util;
 
 import java.util.Map;
 
+import org.mirrentools.sd.models.SdRenderContent;
 import org.mirrentools.sd.models.SdTemplate;
 
 /**
@@ -23,7 +24,7 @@ public interface SdTemplateUtil {
 	 *          模板
 	 * @return
 	 */
-	<T> boolean render(String projectPath, String format, T content, SdTemplate template);
+	boolean render(String projectPath, String format, SdRenderContent content, SdTemplate template);
 
 	/**
 	 * 添加附加属性

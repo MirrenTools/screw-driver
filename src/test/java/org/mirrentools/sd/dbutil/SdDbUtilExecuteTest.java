@@ -9,7 +9,7 @@ import java.sql.Connection;
 import org.mirrentools.sd.constant.MySQL;
 import org.mirrentools.sd.dbutil.impl.SdDbUtilImplByMySQL;
 import org.mirrentools.sd.models.db.update.AbstractDatabaseContent;
-import org.mirrentools.sd.models.db.update.impl.DatabaseContentByMySQL;
+import org.mirrentools.sd.models.db.update.impl.mysql.DatabaseContentByMySQL;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**

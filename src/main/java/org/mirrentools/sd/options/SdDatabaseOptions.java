@@ -20,6 +20,7 @@ public class SdDatabaseOptions {
 	private String user;
 	/** 数据库连接密码 */
 	private String password;
+
 	/**
 	 * 初始化一个数据库配置
 	 * 
@@ -33,6 +34,7 @@ public class SdDatabaseOptions {
 		this.driverClass = driverClass;
 		this.url = url;
 	}
+
 	/**
 	 * 初始化一个数据库配置
 	 * 
@@ -75,45 +77,110 @@ public class SdDatabaseOptions {
 		this.user = user;
 		this.password = password;
 	}
+
+	/**
+	 * 获取连接超时的时间,单位秒
+	 * 
+	 * @return
+	 */
 	public int getLoginTimeout() {
 		return loginTimeout;
 	}
+
+	/**
+	 * 设置连接超时的时间,单位秒
+	 * 
+	 * @param loginTimeout
+	 * @return
+	 */
 	public SdDatabaseOptions setLoginTimeout(int loginTimeout) {
 		this.loginTimeout = loginTimeout;
 		return this;
 	}
+
+	/**
+	 * 获取数据库连接驱动
+	 * 
+	 * @return
+	 */
 	public String getDriverClass() {
 		return driverClass;
 	}
+
+	/**
+	 * 设置数据库连接驱动
+	 * 
+	 * @param driverClass
+	 * @return
+	 */
 	public SdDatabaseOptions setDriverClass(String driverClass) {
 		this.driverClass = driverClass;
 		return this;
 	}
+
+	/**
+	 * 获取数据库连接语句
+	 * 
+	 * @return
+	 */
 	public String getUrl() {
 		return url;
 	}
+
+	/**
+	 * 设置数据库连接语句
+	 * 
+	 * @param url
+	 * @return
+	 */
 	public SdDatabaseOptions setUrl(String url) {
 		this.url = url;
 		return this;
 	}
+
+	/**
+	 * 获取数据库连接用户名
+	 * 
+	 * @return
+	 */
 	public String getUser() {
 		return user;
 	}
+
+	/**
+	 * 设置数据库连接用户名
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public SdDatabaseOptions setUser(String user) {
 		this.user = user;
 		return this;
 	}
+
+	/**
+	 * 获取用户密码
+	 * 
+	 * @return
+	 */
 	public String getPassword() {
 		return password;
 	}
+
+	/**
+	 * 设置用户密码
+	 * 
+	 * @param password
+	 * @return
+	 */
 	public SdDatabaseOptions setPassword(String password) {
 		this.password = password;
 		return this;
 	}
+
 	@Override
 	public String toString() {
-		return "DatabaseConfig [loginTimeout=" + loginTimeout + ", driverClass=" + driverClass + ", url=" + url + ", user=" + user
-				+ ", password=" + password + "]";
+		return "DatabaseConfig [loginTimeout=" + loginTimeout + ", driverClass=" + driverClass + ", url=" + url + ", user=" + user + ", password=" + password + "]";
 	}
 
 }

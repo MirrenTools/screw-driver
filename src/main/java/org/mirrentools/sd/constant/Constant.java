@@ -10,10 +10,10 @@ public interface Constant {
 
 	/** UTF-8 */
 	public static final String UTF_8 = "UTF-8";
-	/** src/main/java */
-	public static final String MAVEN_SRC = "src/main/java";
-	/** src/test/java */
-	public static final String MAVEN_TEST = "src/test/java";
+	/** src/main/java/ */
+	public static final String MAVEN_SRC = "src/main/java/";
+	/** src/test/java/ */
+	public static final String MAVEN_TEST = "src/test/java/";
 	/** java的文件后缀名 */
 	public static final String JAVA_SUFFIX = ".java";
 

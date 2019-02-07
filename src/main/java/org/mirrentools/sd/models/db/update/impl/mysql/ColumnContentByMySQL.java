@@ -1,4 +1,4 @@
-package org.mirrentools.sd.models.db.update.impl;
+package org.mirrentools.sd.models.db.update.impl.mysql;
 
 import org.mirrentools.sd.models.db.update.AbstractColumnContent;
 

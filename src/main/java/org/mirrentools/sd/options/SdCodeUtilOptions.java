@@ -7,7 +7,7 @@ import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
 import org.mirrentools.sd.converter.impl.mysql.SdBeanConverterToClassImplByMySQL;
 import org.mirrentools.sd.util.SdTemplateUtil;
-import org.mirrentools.sd.util.impl.SdTemplateUtilImplMyFreeMarker;
+import org.mirrentools.sd.util.impl.SdTemplateUtilImplFreeMarker;
 
 /**
  * 代码创建工具的配置
@@ -20,12 +20,31 @@ public class SdCodeUtilOptions {
 	private String projectPath = SdUtil.getUserDir();
 	/** 生成使用编码格式,默认UTF-8 */
 	private String codeFormat = Constant.UTF_8;
+	/** 数据库连接属性 */
+	private SdDatabaseOptions databaseOptions;
 	/** SdBean转换器,默认MySQL实现 */
 	private SdBeanConverterToClass beanConverter = new SdBeanConverterToClassImplByMySQL();
-	/** 模板转换器,默认FreeMarker实现 */
-	private SdTemplateContentConverter contentConverter = new SdTemplateContentConverterDefaultImpl();
+	/** 模板转换器,默认实现 */
+	private SdTemplateContentConverter templateContentConverter = new SdTemplateContentConverterDefaultImpl();
 	/** 模板生成工具,默认FreeMarker实现 */
-	private SdTemplateUtil templateUtil = new SdTemplateUtilImplMyFreeMarker();
+	private SdTemplateUtil templateUtil = new SdTemplateUtilImplFreeMarker();
+
+	/**
+	 * 初始化一个默认值的配置
+	 */
+	public SdCodeUtilOptions() {
+		super();
+	}
+
+	/**
+	 * 初始化一个指定数据库属性的配置
+	 * 
+	 * @param databaseOptions
+	 */
+	public SdCodeUtilOptions(SdDatabaseOptions databaseOptions) {
+		super();
+		this.databaseOptions = databaseOptions;
+	}
 
 	/**
 	 * 获取项目所在路径
@@ -68,6 +87,26 @@ public class SdCodeUtilOptions {
 	}
 
 	/**
+	 * 获取数据库连接属性
+	 * 
+	 * @return
+	 */
+	public SdDatabaseOptions getDatabaseOptions() {
+		return databaseOptions;
+	}
+
+	/**
+	 * 设置数据库连接属性
+	 * 
+	 * @param databaseOptions
+	 * @return
+	 */
+	public SdCodeUtilOptions setDatabaseOptions(SdDatabaseOptions databaseOptions) {
+		this.databaseOptions = databaseOptions;
+		return this;
+	}
+
+	/**
 	 * 获取属性转换器
 	 * 
 	 * @return
@@ -92,18 +131,18 @@ public class SdCodeUtilOptions {
 	 * 
 	 * @return
 	 */
-	public SdTemplateContentConverter getContentConverter() {
-		return contentConverter;
+	public SdTemplateContentConverter getTemplateContentConverter() {
+		return templateContentConverter;
 	}
 
 	/**
-	 * 设置模板需要的内容属性转换器,默认FreeMarker版实现
+	 * 设置模板需要的内容属性转换器,默认使用默认的实现实现
 	 * 
-	 * @param contentConverter
+	 * @param templateContentConverter
 	 * @return
 	 */
-	public SdCodeUtilOptions setContentConverter(SdTemplateContentConverter contentConverter) {
-		this.contentConverter = contentConverter;
+	public SdCodeUtilOptions setTemplateContentConverter(SdTemplateContentConverter templateContentConverter) {
+		this.templateContentConverter = templateContentConverter;
 		return this;
 	}
 
