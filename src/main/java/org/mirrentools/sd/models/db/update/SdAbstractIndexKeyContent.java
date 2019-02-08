@@ -11,6 +11,10 @@ import java.util.Map;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
+/**
+ * @author <a href="http://mirrentools.org">Mirren</a>
+ *
+ */
 public abstract class SdAbstractIndexKeyContent {
 	/** 索引的类型 */
 	private String type;
