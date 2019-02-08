@@ -2,10 +2,10 @@ package org.mirrentools.sd.options;
 
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
-import org.mirrentools.sd.converter.SdBeanConverterToClass;
+import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
-import org.mirrentools.sd.converter.impl.mysql.SdBeanConverterToClassImplByMySQL;
+import org.mirrentools.sd.converter.impl.mysql.SdClassConverterImplByMySQL;
 import org.mirrentools.sd.util.SdTemplateUtil;
 import org.mirrentools.sd.util.impl.SdTemplateUtilImplFreeMarker;
 
@@ -23,7 +23,7 @@ public class SdCodeUtilOptions {
 	/** 数据库连接属性 */
 	private SdDatabaseOptions databaseOptions;
 	/** SdBean转换器,默认MySQL实现 */
-	private SdBeanConverterToClass beanConverter = new SdBeanConverterToClassImplByMySQL();
+	private SdClassConverter beanConverter = new SdClassConverterImplByMySQL();
 	/** 模板转换器,默认实现 */
 	private SdTemplateContentConverter templateContentConverter = new SdTemplateContentConverterDefaultImpl();
 	/** 模板生成工具,默认FreeMarker实现 */
@@ -111,7 +111,7 @@ public class SdCodeUtilOptions {
 	 * 
 	 * @return
 	 */
-	public SdBeanConverterToClass getBeanConverter() {
+	public SdClassConverter getBeanConverter() {
 		return beanConverter;
 	}
 
@@ -121,7 +121,7 @@ public class SdCodeUtilOptions {
 	 * @param beanConverter
 	 * @return
 	 */
-	public SdCodeUtilOptions setBeanConverter(SdBeanConverterToClass beanConverter) {
+	public SdCodeUtilOptions setBeanConverter(SdClassConverter beanConverter) {
 		this.beanConverter = beanConverter;
 		return this;
 	}
@@ -164,6 +164,12 @@ public class SdCodeUtilOptions {
 	public SdCodeUtilOptions setTemplateUtil(SdTemplateUtil templateUtil) {
 		this.templateUtil = templateUtil;
 		return this;
+	}
+
+	@Override
+	public String toString() {
+		return "SdCodeUtilOptions [projectPath=" + projectPath + ", codeFormat=" + codeFormat + ", databaseOptions=" + databaseOptions + ", beanConverter=" + beanConverter + ", templateContentConverter="
+				+ templateContentConverter + ", templateUtil=" + templateUtil + "]";
 	}
 
 }

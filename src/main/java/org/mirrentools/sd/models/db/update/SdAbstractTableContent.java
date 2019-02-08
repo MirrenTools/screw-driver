@@ -1,10 +1,9 @@
 package org.mirrentools.sd.models.db.update;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.mirrentools.sd.common.SdUtil;
 
 /**
  * 抽象的数据库表操作类,用于做表的新建与修改
@@ -12,19 +11,19 @@ import org.mirrentools.sd.common.SdUtil;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public abstract class AbstractTableContent {
+public abstract class SdAbstractTableContent {
 	/** 表名 */
 	private String tableName;
 	/** 表的注释 */
 	private String remark;
-	/** 表主键列属性 */
-	private AbstractPrimaryKeyContent primaryKeys;
-	/** 表索引列属性 */
-	private List<AbstractIndexKeyContent> indexKeys;
 	/** 表列的属性 */
-	private List<AbstractColumnContent> colums;
+	private List<SdAbstractColumnContent> colums;
+	/** 表主键列属性 */
+	private SdAbstractPrimaryKeyContent primaryKeys;
+	/** 表索引列属性 */
+	private List<SdAbstractIndexKeyContent> indexKeys;
 	/** 表外键列的属性 */
-	private List<AbstractForeignKeyContent> foreignKeys;
+	private List<SdAbstractForeignKeyContent> foreignKeys;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -57,7 +56,7 @@ public abstract class AbstractTableContent {
 	 * @param tableName
 	 * @return
 	 */
-	public AbstractTableContent setTableName(String tableName) {
+	public SdAbstractTableContent setTableName(String tableName) {
 		this.tableName = tableName;
 		return this;
 	}
@@ -77,7 +76,7 @@ public abstract class AbstractTableContent {
 	 * @param comment
 	 * @return
 	 */
-	public AbstractTableContent setRemark(String remark) {
+	public SdAbstractTableContent setRemark(String remark) {
 		this.remark = remark;
 		return this;
 	}
@@ -87,8 +86,22 @@ public abstract class AbstractTableContent {
 	 * 
 	 * @return
 	 */
-	public List<AbstractColumnContent> getColums() {
+	public List<SdAbstractColumnContent> getColums() {
 		return colums;
+	}
+
+	/**
+	 * 添加列属性
+	 * 
+	 * @param colum
+	 * @return
+	 */
+	public SdAbstractTableContent addColum(SdAbstractColumnContent colum) {
+		if (getColums() == null) {
+			setColums(new ArrayList<SdAbstractColumnContent>());
+		}
+		getColums().add(colum);
+		return this;
 	}
 
 	/**
@@ -97,7 +110,7 @@ public abstract class AbstractTableContent {
 	 * @param colums
 	 * @return
 	 */
-	public AbstractTableContent setColums(List<AbstractColumnContent> colums) {
+	public SdAbstractTableContent setColums(List<SdAbstractColumnContent> colums) {
 		this.colums = colums;
 		return this;
 	}
@@ -107,7 +120,7 @@ public abstract class AbstractTableContent {
 	 * 
 	 * @return
 	 */
-	public AbstractPrimaryKeyContent getPrimaryKeys() {
+	public SdAbstractPrimaryKeyContent getPrimaryKeys() {
 		return primaryKeys;
 	}
 
@@ -116,7 +129,7 @@ public abstract class AbstractTableContent {
 	 * 
 	 * @param primaryKeys
 	 */
-	public AbstractTableContent setPrimaryKeys(AbstractPrimaryKeyContent primaryKeys) {
+	public SdAbstractTableContent setPrimaryKeys(SdAbstractPrimaryKeyContent primaryKeys) {
 		this.primaryKeys = primaryKeys;
 		return this;
 	}
@@ -126,8 +139,21 @@ public abstract class AbstractTableContent {
 	 * 
 	 * @return
 	 */
-	public List<AbstractIndexKeyContent> getIndexKeys() {
+	public List<SdAbstractIndexKeyContent> getIndexKeys() {
 		return indexKeys;
+	}
+
+	/**
+	 * 添加索引属性
+	 * 
+	 * @param indexKey
+	 */
+	public SdAbstractTableContent addIndexKey(SdAbstractIndexKeyContent indexKey) {
+		if (getIndexKeys() == null) {
+			setIndexKeys(new ArrayList<SdAbstractIndexKeyContent>());
+		}
+		getIndexKeys().add(indexKey);
+		return this;
 	}
 
 	/**
@@ -135,7 +161,7 @@ public abstract class AbstractTableContent {
 	 * 
 	 * @param indexKeys
 	 */
-	public AbstractTableContent setIndexKeys(List<AbstractIndexKeyContent> indexKeys) {
+	public SdAbstractTableContent setIndexKeys(List<SdAbstractIndexKeyContent> indexKeys) {
 		this.indexKeys = indexKeys;
 		return this;
 	}
@@ -145,8 +171,21 @@ public abstract class AbstractTableContent {
 	 * 
 	 * @return
 	 */
-	public List<AbstractForeignKeyContent> getForeignKeys() {
+	public List<SdAbstractForeignKeyContent> getForeignKeys() {
 		return foreignKeys;
+	}
+
+	/**
+	 * 添加外键属性
+	 * 
+	 * @param foreignKey
+	 */
+	public SdAbstractTableContent addForeignKey(SdAbstractForeignKeyContent foreignKey) {
+		if (getForeignKeys() == null) {
+			setForeignKeys(new ArrayList<SdAbstractForeignKeyContent>());
+		}
+		getForeignKeys().add(foreignKey);
+		return this;
 	}
 
 	/**
@@ -154,7 +193,7 @@ public abstract class AbstractTableContent {
 	 * 
 	 * @param foreignKeys
 	 */
-	public AbstractTableContent setForeignKeys(List<AbstractForeignKeyContent> foreignKeys) {
+	public SdAbstractTableContent setForeignKeys(List<SdAbstractForeignKeyContent> foreignKeys) {
 		this.foreignKeys = foreignKeys;
 		return this;
 	}
@@ -174,9 +213,6 @@ public abstract class AbstractTableContent {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
-			return null;
-		}
 		return getExtensions().get(key);
 	}
 
@@ -187,14 +223,11 @@ public abstract class AbstractTableContent {
 	 * @param value
 	 * @return
 	 */
-	public AbstractTableContent addExtension(String key, Object value) {
-		if (SdUtil.isNullOrEmpty(key)) {
-			return this;
+	public SdAbstractTableContent addExtension(String key, Object value) {
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
 		}
-		if (this.extensions == null) {
-			this.extensions = new LinkedHashMap<String, Object>();
-		}
-		this.extensions.put(key, value);
+		getExtensions().put(key, value);
 		return this;
 	}
 
@@ -204,14 +237,14 @@ public abstract class AbstractTableContent {
 	 * @param extensions
 	 * @return
 	 */
-	public AbstractTableContent setExtensions(Map<String, Object> extensions) {
+	public SdAbstractTableContent setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "AbstractTableContent [tableName=" + tableName + ", remark=" + remark + ", primaryKeys=" + primaryKeys + ", indexKeys=" + indexKeys + ", colums=" + colums + ", foreignKeys=" + foreignKeys
+		return "SdAbstractTableContent [tableName=" + tableName + ", remark=" + remark + ", colums=" + colums + ", primaryKeys=" + primaryKeys + ", indexKeys=" + indexKeys + ", foreignKeys=" + foreignKeys
 				+ ", extensions=" + extensions + "]";
 	}
 

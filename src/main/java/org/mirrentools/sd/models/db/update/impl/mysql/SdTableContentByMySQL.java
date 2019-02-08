@@ -1,6 +1,6 @@
 package org.mirrentools.sd.models.db.update.impl.mysql;
 
-import org.mirrentools.sd.models.db.update.AbstractTableContent;
+import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 
 /**
  * 数据库表属性创建或者修改SQL语句的MySQL实现
@@ -8,7 +8,7 @@ import org.mirrentools.sd.models.db.update.AbstractTableContent;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class TableContentByMySQL extends AbstractTableContent {
+public class SdTableContentByMySQL extends SdAbstractTableContent {
 	/** 字符集 */
 	private String charset;
 	/** 核对 */

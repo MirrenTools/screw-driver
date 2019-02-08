@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import org.mirrentools.sd.common.SdException;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
-import org.mirrentools.sd.converter.SdBeanConverterToClass;
+import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
@@ -42,7 +42,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	/** 生成使用编码格式,默认UTF-8 */
 	private String codeFormat;
 	/** SdBean转换器 */
-	private SdBeanConverterToClass beanConverter;
+	private SdClassConverter beanConverter;
 	/** 模板内容转换器 */
 	private SdTemplateContentConverter templateConverter;
 	/** 模板生成工具 */
@@ -182,12 +182,12 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdBeanConverterToClass getBeanConverter() {
+	public SdClassConverter getBeanConverter() {
 		return beanConverter;
 	}
 
 	@Override
-	public SdCodeUtilImpl setBeanConverter(SdBeanConverterToClass beanConverter) {
+	public SdCodeUtilImpl setBeanConverter(SdClassConverter beanConverter) {
 		this.beanConverter = beanConverter;
 		return this;
 	}

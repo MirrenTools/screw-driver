@@ -3,11 +3,11 @@ package org.mirrentools.sd.dbutil;
 import java.sql.Connection;
 import java.util.List;
 
-import org.mirrentools.sd.models.db.query.TableAttribute;
-import org.mirrentools.sd.models.db.query.TableColumnAttribute;
-import org.mirrentools.sd.models.db.query.TablePrimaryKeyAttribute;
-import org.mirrentools.sd.models.db.update.AbstractDatabaseContent;
-import org.mirrentools.sd.models.db.update.AbstractTableContent;
+import org.mirrentools.sd.models.db.query.SdTableAttribute;
+import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
+import org.mirrentools.sd.models.db.query.SdTablePrimaryKeyAttribute;
+import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
+import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -56,7 +56,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean createDatabase(AbstractDatabaseContent content) throws Exception;
+	boolean createDatabase(SdAbstractDatabaseContent content) throws Exception;
 
 	/**
 	 * 修改数据库
@@ -65,7 +65,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean updateDatabase(AbstractDatabaseContent content) throws Exception;
+	boolean updateDatabase(SdAbstractDatabaseContent content) throws Exception;
 
 	/**
 	 * 创建一张表
@@ -74,7 +74,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean createTable(AbstractTableContent content) throws Exception;
+	boolean createTable(SdAbstractTableContent content) throws Exception;
 
 	/**
 	 * 修改一张表
@@ -83,7 +83,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean updateTable(AbstractTableContent content) throws Exception;
+	boolean updateTable(SdAbstractTableContent content) throws Exception;
 
 	/**
 	 * 获取当前数据库所有数据库表名
@@ -101,7 +101,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	TableAttribute getTableAttribute(String tableName) throws Exception;
+	SdTableAttribute getTableAttribute(String tableName) throws Exception;
 
 	/**
 	 * 获取当前数据库中指定表的所有属性
@@ -110,7 +110,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	List<TableColumnAttribute> getTableColumnsAttribute(String tableName) throws Exception;
+	List<SdTableColumnAttribute> getTableColumnsAttribute(String tableName) throws Exception;
 
 	/**
 	 * 获取指定表的主键属性
@@ -119,6 +119,6 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	TablePrimaryKeyAttribute getTablePrimaryKeyAttribute(String tableName) throws Exception;
+	SdTablePrimaryKeyAttribute getTablePrimaryKeyAttribute(String tableName) throws Exception;
 
 }

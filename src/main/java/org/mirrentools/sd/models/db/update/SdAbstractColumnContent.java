@@ -3,15 +3,13 @@ package org.mirrentools.sd.models.db.update;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.mirrentools.sd.common.SdUtil;
-
 /**
  * 抽象的数据库表操作类,用于做表的新建与修改
  * 
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public abstract class AbstractColumnContent {
+public abstract class SdAbstractColumnContent {
 	/** 列的名字 */
 	private String name;
 	/** 列的数据类型 */
@@ -62,7 +60,7 @@ public abstract class AbstractColumnContent {
 	 * @param name
 	 * @return
 	 */
-	public AbstractColumnContent setName(String name) {
+	public SdAbstractColumnContent setName(String name) {
 		this.name = name;
 		return this;
 	}
@@ -82,7 +80,7 @@ public abstract class AbstractColumnContent {
 	 * @param type
 	 * @return
 	 */
-	public AbstractColumnContent setType(String type) {
+	public SdAbstractColumnContent setType(String type) {
 		this.type = type;
 		return this;
 	}
@@ -102,7 +100,7 @@ public abstract class AbstractColumnContent {
 	 * @param length
 	 * @return
 	 */
-	public AbstractColumnContent setLength(long length) {
+	public SdAbstractColumnContent setLength(long length) {
 		this.length = length;
 		return this;
 	}
@@ -122,7 +120,7 @@ public abstract class AbstractColumnContent {
 	 * @param _default
 	 * @return
 	 */
-	public AbstractColumnContent setDefault(String _default) {
+	public SdAbstractColumnContent setDefault(String _default) {
 		this._default = _default;
 		return this;
 	}
@@ -142,7 +140,7 @@ public abstract class AbstractColumnContent {
 	 * @param primary
 	 * @return
 	 */
-	public AbstractColumnContent setPrimary(boolean primary) {
+	public SdAbstractColumnContent setPrimary(boolean primary) {
 		this.primary = primary;
 		return this;
 	}
@@ -162,7 +160,7 @@ public abstract class AbstractColumnContent {
 	 * @param notNull
 	 * @return
 	 */
-	public AbstractColumnContent setNotNull(boolean notNull) {
+	public SdAbstractColumnContent setNotNull(boolean notNull) {
 		this.notNull = notNull;
 		return this;
 	}
@@ -182,7 +180,7 @@ public abstract class AbstractColumnContent {
 	 * @param comment
 	 * @return
 	 */
-	public AbstractColumnContent setRemark(String remark) {
+	public SdAbstractColumnContent setRemark(String remark) {
 		this.remark = remark;
 		return this;
 	}
@@ -202,7 +200,7 @@ public abstract class AbstractColumnContent {
 	 * @param unsigned
 	 * @return
 	 */
-	public AbstractColumnContent setUnsigned(boolean unsigned) {
+	public SdAbstractColumnContent setUnsigned(boolean unsigned) {
 		this.unsigned = unsigned;
 		return this;
 	}
@@ -222,7 +220,7 @@ public abstract class AbstractColumnContent {
 	 * @param autoIncrement
 	 * @return
 	 */
-	public AbstractColumnContent setAutoIncrement(boolean autoIncrement) {
+	public SdAbstractColumnContent setAutoIncrement(boolean autoIncrement) {
 		this.autoIncrement = autoIncrement;
 		return this;
 	}
@@ -242,9 +240,6 @@ public abstract class AbstractColumnContent {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
-			return null;
-		}
 		return getExtensions().get(key);
 	}
 
@@ -255,14 +250,11 @@ public abstract class AbstractColumnContent {
 	 * @param value
 	 * @return
 	 */
-	public AbstractColumnContent addExtension(String key, Object value) {
-		if (SdUtil.isNullOrEmpty(key)) {
-			return this;
+	public SdAbstractColumnContent addExtension(String key, Object value) {
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
 		}
-		if (this.extensions == null) {
-			this.extensions = new LinkedHashMap<String, Object>();
-		}
-		this.extensions.put(key, value);
+		getExtensions().put(key, value);
 		return this;
 	}
 
@@ -272,7 +264,7 @@ public abstract class AbstractColumnContent {
 	 * @param extensions
 	 * @return
 	 */
-	public AbstractColumnContent setExtensions(Map<String, Object> extensions) {
+	public SdAbstractColumnContent setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
 	}
