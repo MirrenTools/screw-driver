@@ -1,6 +1,6 @@
 package org.mirrentools.sd.models.db.update.impl.mysql;
 
-import org.mirrentools.sd.models.db.update.AbstractDatabaseContent;
+import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 
 /**
  * MySQL数据库的数据库属性
@@ -8,7 +8,7 @@ import org.mirrentools.sd.models.db.update.AbstractDatabaseContent;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class DatabaseContentByMySQL extends AbstractDatabaseContent {
+public class SdDatabaseContentByMySQL extends SdAbstractDatabaseContent {
 	/** 字符集 */
 	private String characterSet;
 	/** 数据库排序规则 */
@@ -20,7 +20,7 @@ public class DatabaseContentByMySQL extends AbstractDatabaseContent {
 	 * @param databaseName
 	 *          数据库的名字
 	 */
-	public DatabaseContentByMySQL(String databaseName) {
+	public SdDatabaseContentByMySQL(String databaseName) {
 		super(databaseName);
 	}
 
@@ -34,7 +34,7 @@ public class DatabaseContentByMySQL extends AbstractDatabaseContent {
 	 * @param collate
 	 *          数据库的排序规则
 	 */
-	public DatabaseContentByMySQL(String databaseName, String characterSet, String collate) {
+	public SdDatabaseContentByMySQL(String databaseName, String characterSet, String collate) {
 		super(databaseName);
 		this.characterSet = characterSet;
 		this.collate = collate;
@@ -78,8 +78,9 @@ public class DatabaseContentByMySQL extends AbstractDatabaseContent {
 	 * 
 	 * @param characterSet
 	 */
-	public void setCharacterSet(String characterSet) {
+	public SdDatabaseContentByMySQL setCharacterSet(String characterSet) {
 		this.characterSet = characterSet;
+		return this;
 	}
 
 	/**
@@ -96,8 +97,9 @@ public class DatabaseContentByMySQL extends AbstractDatabaseContent {
 	 * 
 	 * @param collate
 	 */
-	public void setCollate(String collate) {
+	public SdDatabaseContentByMySQL setCollate(String collate) {
 		this.collate = collate;
+		return this;
 	}
 
 }

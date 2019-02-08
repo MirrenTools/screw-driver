@@ -16,7 +16,7 @@ import org.mirrentools.sd.models.SdRelationalContent;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public abstract class SdAbstractBeanConverterToClass implements SdBeanConverterToClass {
+public abstract class SdAbstractClassConverter implements SdClassConverter {
 	/** 关系中的SdBean转SdClassContent最多转换到第几级的默认值,如果要修改最大限制子类可以重写set方法 */
 	private int defaltRelationalCount = 3;
 
@@ -239,7 +239,7 @@ public abstract class SdAbstractBeanConverterToClass implements SdBeanConverterT
 	 * @param defaltRelationalCount
 	 * @return
 	 */
-	public SdAbstractBeanConverterToClass setDefaltRelationalCount(int defaltRelationalCount) {
+	public SdAbstractClassConverter setDefaltRelationalCount(int defaltRelationalCount) {
 		this.defaltRelationalCount = defaltRelationalCount;
 		return this;
 	}

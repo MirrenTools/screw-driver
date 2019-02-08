@@ -49,7 +49,7 @@ public class SdColumn {
 	/** 列的注释 */
 	private String remark;
 	/** 列的长度 */
-	private String length;
+	private int length;
 	/** 列的默认值 */
 	private String _default;
 	/** 列是否为主键 */
@@ -59,8 +59,10 @@ public class SdColumn {
 	/** 列是否为外键 */
 	private boolean foreignKey;
 	/** 外键引用那个表 */
-	private String foreignReferences;
-	/** 外键的名字 */
+	private String foreignReferencesDB;
+	/** 外键引用那个表 */
+	private String foreignReferencesTable;
+	/** 外键的名字, */
 	private String foreignConstraint;
 	/** 是否为索引 */
 	private boolean index;
@@ -68,12 +70,16 @@ public class SdColumn {
 	private String indexType;
 	/** 索引的名字 */
 	private String indexName;
+	/** 索引的名字 */
+	private String indexRemark;
 	/** 列是否允许为空 */
 	private boolean nullable = true;
 	/** 列是否为无符号 */
 	private boolean unsigned;
 	/** 列是否自增量 */
 	private boolean autoIncrement;
+	/** 字符排序 */
+	private String collate;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -144,6 +150,7 @@ public class SdColumn {
 		this.annotations = annotations;
 		return this;
 	}
+
 	/**
 	 * 获取属性的关系属性内容
 	 * 
@@ -152,6 +159,7 @@ public class SdColumn {
 	public SdRelationalContent getRelationalContent() {
 		return relationalContent;
 	}
+
 	/**
 	 * 设置属性的关系属性内容
 	 * 
@@ -202,6 +210,7 @@ public class SdColumn {
 		this.fieldName = fieldName;
 		return this;
 	}
+
 	/**
 	 * 获取类的属性名字按帕斯卡命名
 	 * 
@@ -210,6 +219,7 @@ public class SdColumn {
 	public String getFieldNamePascal() {
 		return fieldNamePascal;
 	}
+
 	/**
 	 * 设置类的属性名字按帕斯卡命名
 	 * 
@@ -220,6 +230,7 @@ public class SdColumn {
 		this.fieldNamePascal = fieldNamePascal;
 		return this;
 	}
+
 	/**
 	 * 获取类的属性名字按连字符命名
 	 * 
@@ -228,6 +239,7 @@ public class SdColumn {
 	public String getFieldNameHyphen() {
 		return fieldNameHyphen;
 	}
+
 	/**
 	 * 设置类的属性名字按连字符命名
 	 * 
@@ -238,6 +250,7 @@ public class SdColumn {
 		this.fieldNameHyphen = fieldNameHyphen;
 		return this;
 	}
+
 	/**
 	 * 获取类的属性名字按下划线命名
 	 * 
@@ -246,6 +259,7 @@ public class SdColumn {
 	public String getFieldNameUnderScore() {
 		return fieldNameUnderScore;
 	}
+
 	/**
 	 * 设置类的属性名字按下划线命名
 	 * 
@@ -322,7 +336,7 @@ public class SdColumn {
 	 * 
 	 * @return
 	 */
-	public String getLength() {
+	public int getLength() {
 		return length;
 	}
 
@@ -333,16 +347,6 @@ public class SdColumn {
 	 * @return
 	 */
 	public SdColumn setLength(int length) {
-		this.length = Integer.toString(length);
-		return this;
-	}
-	/**
-	 * 设置列的长度
-	 * 
-	 * @param length
-	 * @return
-	 */
-	public SdColumn setLength(String length) {
 		this.length = length;
 		return this;
 	}
@@ -389,6 +393,7 @@ public class SdColumn {
 		}
 		return this;
 	}
+
 	/**
 	 * 获取是否为外键
 	 * 
@@ -397,34 +402,49 @@ public class SdColumn {
 	public boolean isForeignKey() {
 		return foreignKey;
 	}
+
 	/**
-	 * 是指是否为外键
+	 * 获取外键引用那个数据库
 	 * 
-	 * @param foreignKey
 	 * @return
 	 */
-	public SdColumn setForeignKey(boolean foreignKey) {
-		this.foreignKey = foreignKey;
+	public String getForeignReferencesDB() {
+		return foreignReferencesDB;
+	}
+
+	/**
+	 * 设置外键的引用那个数据库
+	 * 
+	 * @param foreignReferencesDB
+	 * @return
+	 */
+	public SdColumn setForeignReferencesDB(String foreignReferencesDB) {
+		this.foreignReferencesDB = foreignReferencesDB;
+		this.foreignKey = true;
 		return this;
 	}
+
 	/**
-	 * 获取外键引用
+	 * 获取外键引用那个表
 	 * 
 	 * @return
 	 */
-	public String getForeignReferences() {
-		return foreignReferences;
+	public String getForeignReferencesTable() {
+		return foreignReferencesTable;
 	}
+
 	/**
-	 * 设置外键的引用
+	 * 设置外键的引用那个表
 	 * 
-	 * @param foreignReferences
+	 * @param foreignReferencesTable
 	 * @return
 	 */
-	public SdColumn setForeignReferences(String foreignReferences) {
-		this.foreignReferences = foreignReferences;
+	public SdColumn setForeignReferencesTable(String foreignReferencesTable) {
+		this.foreignReferencesTable = foreignReferencesTable;
+		this.foreignKey = true;
 		return this;
 	}
+
 	/**
 	 * 获取外键的名字
 	 * 
@@ -433,14 +453,16 @@ public class SdColumn {
 	public String getForeignConstraint() {
 		return foreignConstraint;
 	}
+
 	/**
-	 * 设置外键的名字
+	 * 设置外键的名字,如果外键的名字相同则视为多列引用
 	 * 
 	 * @param foreignConstraint
 	 * @return
 	 */
 	public SdColumn setForeignConstraint(String foreignConstraint) {
 		this.foreignConstraint = foreignConstraint;
+		this.foreignKey = true;
 		return this;
 	}
 
@@ -474,17 +496,6 @@ public class SdColumn {
 	}
 
 	/**
-	 * 设置是否为索引
-	 * 
-	 * @param index
-	 * @return
-	 */
-	public SdColumn setIndex(boolean index) {
-		this.index = index;
-		return this;
-	}
-
-	/**
 	 * 获取索引类型
 	 * 
 	 * @return
@@ -501,6 +512,7 @@ public class SdColumn {
 	 */
 	public SdColumn setIndexType(String indexType) {
 		this.indexType = indexType;
+		this.index = true;
 		return this;
 	}
 
@@ -521,6 +533,27 @@ public class SdColumn {
 	 */
 	public SdColumn setIndexName(String indexName) {
 		this.indexName = indexName;
+		this.index = true;
+		return this;
+	}
+
+	/**
+	 * 获取索引的注释
+	 * 
+	 * @return
+	 */
+	public String getIndexRemark() {
+		return indexRemark;
+	}
+
+	/**
+	 * 设置索引的注释
+	 * 
+	 * @param indexRemark
+	 * @return
+	 */
+	public SdColumn setIndexRemark(String indexRemark) {
+		this.indexRemark = indexRemark;
 		return this;
 	}
 
@@ -605,6 +638,26 @@ public class SdColumn {
 	}
 
 	/**
+	 * 获取字符排序规则
+	 * 
+	 * @return
+	 */
+	public String getCollate() {
+		return collate;
+	}
+
+	/**
+	 * 设置字符排序规则
+	 * 
+	 * @param collate
+	 * @return
+	 */
+	public SdColumn setCollate(String collate) {
+		this.collate = collate;
+		return this;
+	}
+
+	/**
 	 * 获得拓展属性值
 	 * 
 	 * @return
@@ -675,14 +728,16 @@ public class SdColumn {
 		sb.append("  ┣━primary = " + primary + "\n");
 		sb.append("  ┣━primaryName = " + primaryName + "\n");
 		sb.append("  ┣━foreignKey = " + foreignKey + "\n");
-		sb.append("  ┣━foreignReferences = " + foreignReferences + "\n");
 		sb.append("  ┣━foreignConstraint = " + foreignConstraint + "\n");
+		sb.append("  ┣━foreignReferencesDB = " + foreignReferencesDB + "\n");
+		sb.append("  ┣━foreignReferencesTable = " + foreignReferencesTable + "\n");
 		sb.append("  ┣━index = " + index + "\n");
 		sb.append("  ┣━indexType = " + indexType + "\n");
 		sb.append("  ┣━indexName = " + indexName + "\n");
 		sb.append("  ┣━nullable = " + nullable + "\n");
 		sb.append("  ┣━unsigned = " + unsigned + "\n");
 		sb.append("  ┣━autoIncrement = " + autoIncrement + "\n");
+		sb.append("  ┣━collate = " + collate + "\n");
 		sb.append("  ┗━extensions = " + extensions + "\n");
 		return sb.toString();
 

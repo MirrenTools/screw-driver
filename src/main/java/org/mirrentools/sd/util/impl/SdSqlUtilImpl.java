@@ -3,11 +3,12 @@ package org.mirrentools.sd.util.impl;
 import java.util.Map;
 
 import org.mirrentools.sd.common.SdException;
-import org.mirrentools.sd.converter.SdBeanConverterToTableContent;
+import org.mirrentools.sd.converter.SdTableContentConverter;
 import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
-import org.mirrentools.sd.models.db.update.AbstractTableContent;
+import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 import org.mirrentools.sd.options.SdDatabaseOptions;
+import org.mirrentools.sd.options.SdSqlUtilOptions;
 import org.mirrentools.sd.util.SdCodeUtil;
 import org.mirrentools.sd.util.SdSqlUtil;
 
@@ -22,28 +23,60 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	private SdBean bean;
 	/** 数据库连接属性 */
 	private SdDatabaseOptions databaseOptions;
+
+	/** 如果数据库不存在是否创建, 如果支持默认创建 */
+	private boolean createDatabase = true;
+	/** 如果表已经存在是否修改表,默认不修改表 */
+	private boolean alterTable;
 	/** 数据库执行工具 */
 	private SdDbUtil dbUtil;
 	/** SdBean转换器 */
-	private SdBeanConverterToTableContent converter;
+	private SdTableContentConverter converter;
 
 	/**
-	 * 初始化一个数据库代码默认实现
+	 * 初始化一个数据库相关执行器
 	 * 
 	 * @param bean
-	 * @param dbUtil
-	 * @param converter
+	 *          生成所需要的实体属性
+	 * @param databaseOptions
+	 *          数据库连接属性
 	 */
-	public SdSqlUtilImpl(SdBean bean, SdDbUtil dbUtil, SdBeanConverterToTableContent converter) {
+	public SdSqlUtilImpl(SdBean bean, SdDatabaseOptions databaseOptions) {
 		super();
 		this.bean = bean;
-		this.dbUtil = dbUtil;
-		this.converter = converter;
+		this.init(new SdSqlUtilOptions(databaseOptions));
+	}
+
+	/**
+	 * 初始化一个数据库相关执行器
+	 * 
+	 * @param bean
+	 *          生成所需要的实体属性
+	 * @param options
+	 *          执行器配置
+	 */
+	public SdSqlUtilImpl(SdBean bean, SdSqlUtilOptions options) {
+		super();
+		this.bean = bean;
+		init(options);
+	}
+
+	/**
+	 * 初始化工具
+	 * 
+	 * @param options
+	 */
+	private void init(SdSqlUtilOptions options) {
+		setDatabaseOptions(options.getDatabaseOptions());
+		setCreateDatabase(options.isCreateDatabase());
+		setAlterTable(options.isAlterTable());
+		setDbUtil(options.getDbUtil());
+		setConverter(options.getConverter());
 	}
 
 	@Override
 	public boolean execute() {
-		AbstractTableContent content = converter.converter(bean);
+		SdAbstractTableContent content = converter.converter(bean);
 		try {
 			return dbUtil.createTable(content);
 		} catch (Exception e) {
@@ -61,6 +94,7 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 		this.bean = bean;
 		return this;
 	}
+
 	@Override
 	public SdDatabaseOptions getDatabaseOptions() {
 		return databaseOptions;
@@ -71,6 +105,29 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 		this.databaseOptions = dbOptions;
 		return this;
 	}
+
+	@Override
+	public boolean isCreateDatabase() {
+		return createDatabase;
+	}
+
+	@Override
+	public SdSqlUtilImpl setCreateDatabase(boolean createDatabase) {
+		this.createDatabase = createDatabase;
+		return this;
+	}
+
+	@Override
+	public boolean isAlterTable() {
+		return alterTable;
+	}
+
+	@Override
+	public SdSqlUtilImpl setAlterTable(boolean alterTable) {
+		this.alterTable = alterTable;
+		return this;
+	}
+
 	@Override
 	public SdDbUtil getDbUtil() {
 		return dbUtil;
@@ -83,12 +140,12 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	}
 
 	@Override
-	public SdBeanConverterToTableContent getConverter() {
+	public SdTableContentConverter getConverter() {
 		return converter;
 	}
 
 	@Override
-	public SdSqlUtilImpl setConverter(SdBeanConverterToTableContent converter) {
+	public SdSqlUtilImpl setConverter(SdTableContentConverter converter) {
 		this.converter = converter;
 		return this;
 	}

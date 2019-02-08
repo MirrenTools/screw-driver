@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import org.mirrentools.sd.dbutil.AbstractSdDbUtil;
-import org.mirrentools.sd.models.db.query.TableAttribute;
-import org.mirrentools.sd.models.db.query.TableColumnAttribute;
-import org.mirrentools.sd.models.db.query.TablePrimaryKeyAttribute;
-import org.mirrentools.sd.models.db.update.AbstractTableContent;
+import org.mirrentools.sd.models.db.query.SdTableAttribute;
+import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
+import org.mirrentools.sd.models.db.query.SdTablePrimaryKeyAttribute;
+import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -71,13 +71,13 @@ public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
 	}
 
 	@Override
-	public boolean createTable(AbstractTableContent content) throws Exception {
+	public boolean createTable(SdAbstractTableContent content) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean updateTable(AbstractTableContent content) throws Exception {
+	public boolean updateTable(SdAbstractTableContent content) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -89,19 +89,19 @@ public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
 	}
 
 	@Override
-	public TableAttribute getTableAttribute(String tableName) throws Exception {
+	public SdTableAttribute getTableAttribute(String tableName) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<TableColumnAttribute> getTableColumnsAttribute(String tableName) throws Exception {
+	public List<SdTableColumnAttribute> getTableColumnsAttribute(String tableName) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public TablePrimaryKeyAttribute getTablePrimaryKeyAttribute(String tableName) throws Exception {
+	public SdTablePrimaryKeyAttribute getTablePrimaryKeyAttribute(String tableName) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

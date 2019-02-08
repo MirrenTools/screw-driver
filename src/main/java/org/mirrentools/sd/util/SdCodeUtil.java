@@ -2,7 +2,7 @@ package org.mirrentools.sd.util;
 
 import java.util.Map;
 
-import org.mirrentools.sd.converter.SdBeanConverterToClass;
+import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdTemplate;
@@ -111,7 +111,7 @@ public interface SdCodeUtil {
 	 * 
 	 * @return
 	 */
-	SdBeanConverterToClass getBeanConverter();
+	SdClassConverter getBeanConverter();
 
 	/**
 	 * 设置实体类属性转换器
@@ -119,7 +119,7 @@ public interface SdCodeUtil {
 	 * @param converter
 	 * @return
 	 */
-	SdCodeUtil setBeanConverter(SdBeanConverterToClass converter);
+	SdCodeUtil setBeanConverter(SdClassConverter converter);
 
 	/**
 	 * 获取模板工具所需要的内容转换器

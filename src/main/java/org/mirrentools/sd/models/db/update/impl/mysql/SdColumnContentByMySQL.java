@@ -1,6 +1,6 @@
 package org.mirrentools.sd.models.db.update.impl.mysql;
 
-import org.mirrentools.sd.models.db.update.AbstractColumnContent;
+import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
 
 /**
  * 数据列属性的MySQL实现
@@ -8,7 +8,7 @@ import org.mirrentools.sd.models.db.update.AbstractColumnContent;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class ColumnContentByMySQL extends AbstractColumnContent {
+public class SdColumnContentByMySQL extends SdAbstractColumnContent {
 	/** 字符排序 */
 	private String collate;
 
@@ -27,7 +27,7 @@ public class ColumnContentByMySQL extends AbstractColumnContent {
 	public String getCollate() {
 		return collate;
 	}
-	public ColumnContentByMySQL setCollate(String collate) {
+	public SdColumnContentByMySQL setCollate(String collate) {
 		this.collate = collate;
 		return this;
 	}

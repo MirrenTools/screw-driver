@@ -1,6 +1,6 @@
 package org.mirrentools.sd.converter.impl.mysql;
 
-import org.mirrentools.sd.converter.SdAbstractBeanConverterToClass;
+import org.mirrentools.sd.converter.SdAbstractClassConverter;
 import org.mirrentools.sd.converter.SdTypeConverter;
 
 /**
@@ -9,14 +9,14 @@ import org.mirrentools.sd.converter.SdTypeConverter;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdBeanConverterToClassImplByMySQL extends SdAbstractBeanConverterToClass {
+public class SdClassConverterImplByMySQL extends SdAbstractClassConverter {
 	/** 将数据库数据类型转换为Java类型 */
 	private SdTypeConverter typeConverter;
 
 	/**
 	 * 使用默认的SQL数据类型转换器初始化
 	 */
-	public SdBeanConverterToClassImplByMySQL() {
+	public SdClassConverterImplByMySQL() {
 		super();
 		this.typeConverter = new SdTypeConverterImplByMySqlToJava();
 	}
@@ -25,7 +25,7 @@ public class SdBeanConverterToClassImplByMySQL extends SdAbstractBeanConverterTo
 	 * 
 	 * @param typeConverter
 	 */
-	public SdBeanConverterToClassImplByMySQL(SdTypeConverter typeConverter) {
+	public SdClassConverterImplByMySQL(SdTypeConverter typeConverter) {
 		super();
 		this.typeConverter = typeConverter;
 	}
@@ -35,7 +35,7 @@ public class SdBeanConverterToClassImplByMySQL extends SdAbstractBeanConverterTo
 		return typeConverter;
 	}
 	@Override
-	public SdBeanConverterToClassImplByMySQL setTypeConverter(SdTypeConverter typeConverter) {
+	public SdClassConverterImplByMySQL setTypeConverter(SdTypeConverter typeConverter) {
 		this.typeConverter = typeConverter;
 		return this;
 	}

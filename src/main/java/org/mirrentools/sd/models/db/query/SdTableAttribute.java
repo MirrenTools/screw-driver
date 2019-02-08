@@ -6,7 +6,7 @@ package org.mirrentools.sd.models.db.query;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class TableAttribute {
+public class SdTableAttribute {
 	/** 表类别（可为 null） */
 	private String tableCat;
 	/** 表模式（可为 null） */
@@ -34,11 +34,11 @@ public class TableAttribute {
 	 */
 	private String refGeneration;
 
-	public TableAttribute() {
+	public SdTableAttribute() {
 		super();
 	}
 
-	public TableAttribute(String tableCat, String tableSchem, String tableName, String tableType, String remarks, String typeCat, String typeSchem, String typeName, String selfReferencingColName,
+	public SdTableAttribute(String tableCat, String tableSchem, String tableName, String tableType, String remarks, String typeCat, String typeSchem, String typeName, String selfReferencingColName,
 			String refGeneration) {
 		super();
 		this.tableCat = tableCat;

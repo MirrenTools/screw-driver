@@ -3,7 +3,7 @@ package org.mirrentools.sd.dbutil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import org.mirrentools.sd.models.db.update.AbstractDatabaseContent;
+import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -38,7 +38,7 @@ public abstract class AbstractSdDbUtil implements SdDbUtil {
 	}
 
 	@Override
-	public boolean createDatabase(AbstractDatabaseContent content) throws Exception {
+	public boolean createDatabase(SdAbstractDatabaseContent content) throws Exception {
 		int result = 0;
 		Connection connection = getConnection();
 		try {
@@ -55,7 +55,7 @@ public abstract class AbstractSdDbUtil implements SdDbUtil {
 	}
 
 	@Override
-	public boolean updateDatabase(AbstractDatabaseContent content) throws Exception {
+	public boolean updateDatabase(SdAbstractDatabaseContent content) throws Exception {
 		int result = 0;
 		Connection connection = getConnection();
 		try {

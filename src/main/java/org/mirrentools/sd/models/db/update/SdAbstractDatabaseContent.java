@@ -3,21 +3,19 @@ package org.mirrentools.sd.models.db.update;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.mirrentools.sd.common.SdUtil;
-
 /**
  * 抽象数据库属性用于做为数据库的创建与修改使用,需要继承该类后重写sql方法
  * 
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public abstract class AbstractDatabaseContent {
+public abstract class SdAbstractDatabaseContent {
 	/** 数据库的名字 */
 	private String databaseName;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
-	public AbstractDatabaseContent(String databaseName) {
+	public SdAbstractDatabaseContent(String databaseName) {
 		super();
 		this.databaseName = databaseName;
 	}
@@ -52,7 +50,7 @@ public abstract class AbstractDatabaseContent {
 	 * 
 	 * @param databaseName
 	 */
-	public AbstractDatabaseContent setDatabaseName(String databaseName) {
+	public SdAbstractDatabaseContent setDatabaseName(String databaseName) {
 		this.databaseName = databaseName;
 		return this;
 	}
@@ -72,9 +70,6 @@ public abstract class AbstractDatabaseContent {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
-			return null;
-		}
 		return getExtensions().get(key);
 	}
 
@@ -85,14 +80,11 @@ public abstract class AbstractDatabaseContent {
 	 * @param value
 	 * @return
 	 */
-	public AbstractDatabaseContent addExtension(String key, Object value) {
-		if (SdUtil.isNullOrEmpty(key)) {
-			return this;
+	public SdAbstractDatabaseContent addExtension(String key, Object value) {
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
 		}
-		if (this.extensions == null) {
-			this.extensions = new LinkedHashMap<String, Object>();
-		}
-		this.extensions.put(key, value);
+		getExtensions().put(key, value);
 		return this;
 	}
 
@@ -102,7 +94,7 @@ public abstract class AbstractDatabaseContent {
 	 * @param extensions
 	 * @return
 	 */
-	public AbstractDatabaseContent setExtensions(Map<String, Object> extensions) {
+	public SdAbstractDatabaseContent setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
 	}

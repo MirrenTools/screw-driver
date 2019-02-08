@@ -9,7 +9,7 @@ import org.mirrentools.sd.models.SdClassContent;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public interface SdBeanConverterToClass {
+public interface SdClassConverter {
 	/**
 	 * 转换属性
 	 * 
@@ -29,5 +29,5 @@ public interface SdBeanConverterToClass {
 	 * @param typeConverter
 	 * @return
 	 */
-	SdBeanConverterToClass setTypeConverter(SdTypeConverter typeConverter);
+	SdClassConverter setTypeConverter(SdTypeConverter typeConverter);
 }

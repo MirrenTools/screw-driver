@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mirrentools.sd.converter.impl.mysql.SdBeanConverterToClassImplByMySQL;
+import org.mirrentools.sd.converter.impl.mysql.SdClassConverterImplByMySQL;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdColumn;
@@ -16,16 +16,16 @@ import org.mirrentools.sd.models.SdRelationalContent;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdConverterToClassMySQLTest {
+public class SdClassConverterMySQLTest {
 	/** 转换接口 */
-	private SdBeanConverterToClass converter;
+	private SdClassConverter converter;
 	/** 用于班级的SDBean */
 	private SdBean classesBean;
 	/** 用于学生的SDBean */
 	private SdBean studentBean;
 	@Before
 	public void setUp() {
-		converter = new SdBeanConverterToClassImplByMySQL();
+		converter = new SdClassConverterImplByMySQL();
 		classesBean = TestConstant.classesBean;
 		studentBean = TestConstant.studentBean;
 	}

@@ -1,10 +1,9 @@
 package org.mirrentools.sd.models.db.update;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.mirrentools.sd.common.SdUtil;
 
 /**
  * 抽象主键属性,用于新建与修改
@@ -12,7 +11,7 @@ import org.mirrentools.sd.common.SdUtil;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public abstract class AbstractPrimaryKeyContent {
+public abstract class SdAbstractPrimaryKeyContent {
 	/** 主键的名字 */
 	private String name;
 	/** 主键的列名 */
@@ -48,7 +47,7 @@ public abstract class AbstractPrimaryKeyContent {
 	 * 
 	 * @param name
 	 */
-	public AbstractPrimaryKeyContent setName(String name) {
+	public SdAbstractPrimaryKeyContent setName(String name) {
 		this.name = name;
 		return this;
 	}
@@ -63,11 +62,23 @@ public abstract class AbstractPrimaryKeyContent {
 	}
 
 	/**
+	 * 添加主键列
+	 * 
+	 * @param column
+	 */
+	public SdAbstractPrimaryKeyContent addColumn(String column) {
+		if (getColumns()==null) {
+			setColumns(new ArrayList<String>());
+		}
+		getColumns().add(column);
+		return this;
+	}
+	/**
 	 * 设置主键列
 	 * 
 	 * @param columns
 	 */
-	public AbstractPrimaryKeyContent setColumns(List<String> columns) {
+	public SdAbstractPrimaryKeyContent setColumns(List<String> columns) {
 		this.columns = columns;
 		return this;
 	}
@@ -87,9 +98,6 @@ public abstract class AbstractPrimaryKeyContent {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
-			return null;
-		}
 		return getExtensions().get(key);
 	}
 
@@ -100,14 +108,11 @@ public abstract class AbstractPrimaryKeyContent {
 	 * @param value
 	 * @return
 	 */
-	public AbstractPrimaryKeyContent addExtension(String key, Object value) {
-		if (SdUtil.isNullOrEmpty(key)) {
-			return this;
+	public SdAbstractPrimaryKeyContent addExtension(String key, Object value) {
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
 		}
-		if (this.extensions == null) {
-			this.extensions = new LinkedHashMap<String, Object>();
-		}
-		this.extensions.put(key, value);
+		getExtensions().put(key, value);
 		return this;
 	}
 
@@ -117,7 +122,7 @@ public abstract class AbstractPrimaryKeyContent {
 	 * @param extensions
 	 * @return
 	 */
-	public AbstractPrimaryKeyContent setExtensions(Map<String, Object> extensions) {
+	public SdAbstractPrimaryKeyContent setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
 	}

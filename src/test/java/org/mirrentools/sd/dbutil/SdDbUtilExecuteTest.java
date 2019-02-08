@@ -8,8 +8,8 @@ import java.sql.Connection;
 
 import org.mirrentools.sd.constant.MySQL;
 import org.mirrentools.sd.dbutil.impl.SdDbUtilImplByMySQL;
-import org.mirrentools.sd.models.db.update.AbstractDatabaseContent;
-import org.mirrentools.sd.models.db.update.impl.mysql.DatabaseContentByMySQL;
+import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
+import org.mirrentools.sd.models.db.update.impl.mysql.SdDatabaseContentByMySQL;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -64,7 +64,7 @@ public class SdDbUtilExecuteTest {
 	}
 
 	public void testCreateDatabase() {
-		AbstractDatabaseContent content = new DatabaseContentByMySQL("item");
+		SdAbstractDatabaseContent content = new SdDatabaseContentByMySQL("item");
 		try {
 			boolean result = jgUtil.createDatabase(content);
 			assertTrue(result);
@@ -75,7 +75,7 @@ public class SdDbUtilExecuteTest {
 	}
 
 	public void testUpdateDatabase() {
-		AbstractDatabaseContent content = new DatabaseContentByMySQL("item");
+		SdAbstractDatabaseContent content = new SdDatabaseContentByMySQL("item");
 		try {
 			boolean result = jgUtil.updateDatabase(content);
 			assertTrue(result);

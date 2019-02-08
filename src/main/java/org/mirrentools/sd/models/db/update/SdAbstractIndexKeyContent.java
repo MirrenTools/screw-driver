@@ -1,10 +1,9 @@
 package org.mirrentools.sd.models.db.update;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.mirrentools.sd.common.SdUtil;
 
 /**
  * 抽象索引属性,用于新建与修改
@@ -12,11 +11,13 @@ import org.mirrentools.sd.common.SdUtil;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public abstract class AbstractIndexKeyContent {
+public abstract class SdAbstractIndexKeyContent {
 	/** 索引的类型 */
 	private String type;
 	/** 索引的名字 */
 	private String name;
+	/** 索引的注释 */
+	private String remark;
 	/** 索引的列名 */
 	private List<String> columns;
 	/** 拓展属性 */
@@ -50,7 +51,7 @@ public abstract class AbstractIndexKeyContent {
 	 * 
 	 * @param type
 	 */
-	public AbstractIndexKeyContent setType(String type) {
+	public SdAbstractIndexKeyContent setType(String type) {
 		this.type = type;
 		return this;
 	}
@@ -69,8 +70,28 @@ public abstract class AbstractIndexKeyContent {
 	 * 
 	 * @param name
 	 */
-	public AbstractIndexKeyContent setName(String name) {
+	public SdAbstractIndexKeyContent setName(String name) {
 		this.name = name;
+		return this;
+	}
+
+	/**
+	 * 获取索引的注释
+	 * 
+	 * @return
+	 */
+	public String getRemark() {
+		return remark;
+	}
+
+	/**
+	 * 设置索引的注释
+	 * 
+	 * @param remark
+	 * @return
+	 */
+	public SdAbstractIndexKeyContent setRemark(String remark) {
+		this.remark = remark;
 		return this;
 	}
 
@@ -84,11 +105,24 @@ public abstract class AbstractIndexKeyContent {
 	}
 
 	/**
+	 * 添加索引列名
+	 * 
+	 * @param column
+	 */
+	public SdAbstractIndexKeyContent addColumn(String column) {
+		if (getColumns() == null) {
+			setColumns(new ArrayList<String>());
+		}
+		getColumns().add(column);
+		return this;
+	}
+
+	/**
 	 * 设置索引列名
 	 * 
 	 * @param columns
 	 */
-	public AbstractIndexKeyContent setColumns(List<String> columns) {
+	public SdAbstractIndexKeyContent setColumns(List<String> columns) {
 		this.columns = columns;
 		return this;
 	}
@@ -108,9 +142,6 @@ public abstract class AbstractIndexKeyContent {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
-			return null;
-		}
 		return getExtensions().get(key);
 	}
 
@@ -121,14 +152,11 @@ public abstract class AbstractIndexKeyContent {
 	 * @param value
 	 * @return
 	 */
-	public AbstractIndexKeyContent addExtension(String key, Object value) {
-		if (SdUtil.isNullOrEmpty(key)) {
-			return this;
+	public SdAbstractIndexKeyContent addExtension(String key, Object value) {
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
 		}
-		if (this.extensions == null) {
-			this.extensions = new LinkedHashMap<String, Object>();
-		}
-		this.extensions.put(key, value);
+		getExtensions().put(key, value);
 		return this;
 	}
 
@@ -138,7 +166,7 @@ public abstract class AbstractIndexKeyContent {
 	 * @param extensions
 	 * @return
 	 */
-	public AbstractIndexKeyContent setExtensions(Map<String, Object> extensions) {
+	public SdAbstractIndexKeyContent setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
 	}
