@@ -27,6 +27,7 @@ public class SdTableContentConverterImplByMySQL extends SdAbstractTableContentCo
 		SdTableContentByMySQL result = new SdTableContentByMySQL();
 		result.setTableName(bean.getName());
 		result.setRemark(bean.getRemark());
+		result.setEngine(super.getEngine());
 		result.setCharset(super.getCharacterSet());
 		result.setCollate(super.getCollate());
 		return result;

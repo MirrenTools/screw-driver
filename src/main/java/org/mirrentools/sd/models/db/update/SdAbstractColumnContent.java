@@ -15,9 +15,9 @@ public abstract class SdAbstractColumnContent {
 	/** 列的数据类型 */
 	private String type;
 	/** 列的长度 */
-	private long length;
+	private Integer length;
 	/** 列的默认值 */
-	private String _default;
+	private Object _default;
 	/** 列是否主键 */
 	private boolean primary;
 	/** 列是否允许为空 */
@@ -44,7 +44,20 @@ public abstract class SdAbstractColumnContent {
 	 * @return
 	 */
 	public abstract String updateSQL();
-
+	/**
+	 * 删除表的SQL语句
+	 * 
+	 * @return
+	 */
+	public abstract String deleteSQL();
+	/**
+	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
+	 * 
+	 * @return
+	 */
+	public String converterExtensions() {
+		return null;
+	}
 	/**
 	 * 获取列的名字
 	 * 
@@ -90,7 +103,7 @@ public abstract class SdAbstractColumnContent {
 	 * 
 	 * @return
 	 */
-	public long getLength() {
+	public Integer getLength() {
 		return length;
 	}
 
@@ -100,7 +113,7 @@ public abstract class SdAbstractColumnContent {
 	 * @param length
 	 * @return
 	 */
-	public SdAbstractColumnContent setLength(long length) {
+	public SdAbstractColumnContent setLength(Integer length) {
 		this.length = length;
 		return this;
 	}
@@ -110,7 +123,7 @@ public abstract class SdAbstractColumnContent {
 	 * 
 	 * @return
 	 */
-	public String getDefault() {
+	public Object getDefault() {
 		return _default;
 	}
 
@@ -120,7 +133,7 @@ public abstract class SdAbstractColumnContent {
 	 * @param _default
 	 * @return
 	 */
-	public SdAbstractColumnContent setDefault(String _default) {
+	public SdAbstractColumnContent setDefault(Object _default) {
 		this._default = _default;
 		return this;
 	}
@@ -271,8 +284,9 @@ public abstract class SdAbstractColumnContent {
 
 	@Override
 	public String toString() {
-		return "AbstractColumnContent [name=" + name + ", type=" + type + ", length=" + length + ", default=" + _default + ", primary=" + primary + ", notNull=" + notNull + ", remark=" + remark
-				+ ", unsigned=" + unsigned + ", autoIncrement=" + autoIncrement + ", extensions=" + extensions + "]";
+		return "AbstractColumnContent [name=" + name + ", type=" + type + ", length=" + length + ", default=" + _default + ", primary="
+				+ primary + ", notNull=" + notNull + ", remark=" + remark + ", unsigned=" + unsigned + ", autoIncrement=" + autoIncrement
+				+ ", extensions=" + extensions + "]";
 	}
 
 }

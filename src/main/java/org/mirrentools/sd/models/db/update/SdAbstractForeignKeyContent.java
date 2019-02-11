@@ -14,6 +14,8 @@ import java.util.Map;
 public abstract class SdAbstractForeignKeyContent {
 	/** 约束名 */
 	private String constraint;
+	/** 要删除的约束名 */
+	private String removeConstraint;
 	/** 外键列名 */
 	private List<String> foreignKeys;
 	/** 引用库 */
@@ -40,6 +42,21 @@ public abstract class SdAbstractForeignKeyContent {
 	public abstract String updateSQL();
 
 	/**
+	 * 删除的SQL语句,如果getRemoveConstraint==null返回null
+	 * 
+	 * @return
+	 */
+	public abstract String deleteSQL();
+
+	/**
+	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
+	 * 
+	 * @return
+	 */
+	public String converterExtensions() {
+		return null;
+	}
+	/**
 	 * 获取约束名
 	 * 
 	 * @return
@@ -55,6 +72,24 @@ public abstract class SdAbstractForeignKeyContent {
 	 */
 	public SdAbstractForeignKeyContent setConstraint(String constraint) {
 		this.constraint = constraint;
+		return this;
+	}
+	/**
+	 * 获取要删除的约束名
+	 * 
+	 * @return
+	 */
+	public String getRemoveConstraint() {
+		return removeConstraint;
+	}
+	/**
+	 * 设置要删除的要删除的约束名
+	 * 
+	 * @param removeConstraint
+	 * @return
+	 */
+	public SdAbstractForeignKeyContent setRemoveConstraint(String removeConstraint) {
+		this.removeConstraint = removeConstraint;
 		return this;
 	}
 

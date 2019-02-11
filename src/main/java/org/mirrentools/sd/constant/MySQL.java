@@ -14,12 +14,12 @@ public interface MySQL {
 	/** MySQL数据库驱动包常量=com.mysql.cj.jdbc.Driver */
 	public final static String MYSQL_8_DERVER = "com.mysql.cj.jdbc.Driver";
 
-	/** MySQL索引类型=fulltext */
-	public final static String INDEX_FULLTEXT = "fulltext";
+	/** MySQL索引类型=fulltext index */
+	public final static String INDEX_FULLTEXT = "FULLTEXT INDEX";
 	/** MySQL索引类型=key */
-	public final static String INDEX_KEY = "key";
-	/** MySQL索引类型=unique */
-	public final static String INDEX_UNIQUE = "unique";
+	public final static String INDEX_KEY = "KEY";
+	/** MySQL索引类型=unique index */
+	public final static String INDEX_UNIQUE = "UNIQUE INDEX";
 
 	/** MySQL数据类型char */
 	public final static String CHAR = "char";

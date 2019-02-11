@@ -12,13 +12,37 @@ public class SdIndexKeyContentByMySQL extends SdAbstractIndexKeyContent {
 
 	@Override
 	public String createSQL() {
-		return null;
+		StringBuilder sb = new StringBuilder();
+		sb.append(" " + getType());
+		sb.append(" `" + getName() + "`");
+		sb.append(" (");
+		for (int i = 0; i < getColumns().size(); i++) {
+			sb.append("`" + getColumns().get(i) + "`");
+			if (i != getColumns().size() - 1) {
+				sb.append(",");
+			}
+		}
+		sb.append(")");
+		if (converterExtensions() != null) {
+			sb.append(" " + converterExtensions());
+		}
+		return sb.toString();
 	}
 
 	@Override
 	public String updateSQL() {
-		// TODO Auto-generated method stub
-		return null;
+		return 
+				deleteSQL() == null 
+				? " ADD " + createSQL() 
+				: deleteSQL() + " , ADD " + createSQL();
+	}
+
+	@Override
+	public String deleteSQL() {
+		if (getRemoveIndexName() == null) {
+			return null;
+		}
+		return " DROP INDEX " + getRemoveIndexName();
 	}
 
 }

@@ -32,7 +32,21 @@ public abstract class SdAbstractPrimaryKeyContent {
 	 * @return
 	 */
 	public abstract String updateSQL();
+	/**
+	 * 删除的SQL语句
+	 * 
+	 * @return
+	 */
+	public abstract String deleteSQL();
 
+	/**
+	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
+	 * 
+	 * @return
+	 */
+	public String converterExtensions() {
+		return null;
+	}
 	/**
 	 * 获取主键的名字
 	 * 
@@ -67,7 +81,7 @@ public abstract class SdAbstractPrimaryKeyContent {
 	 * @param column
 	 */
 	public SdAbstractPrimaryKeyContent addColumn(String column) {
-		if (getColumns()==null) {
+		if (getColumns() == null) {
 			setColumns(new ArrayList<String>());
 		}
 		getColumns().add(column);

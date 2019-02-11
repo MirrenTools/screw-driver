@@ -64,6 +64,11 @@ public class SdDatabaseContentByMySQL extends SdAbstractDatabaseContent {
 		throw new UnsupportedOperationException("该方法未实现");
 	}
 
+	@Override
+	public String deleteSQL() {
+		return "DROP DATABASE " + getDatabaseName();
+	}
+
 	/**
 	 * 获取字符集
 	 * 

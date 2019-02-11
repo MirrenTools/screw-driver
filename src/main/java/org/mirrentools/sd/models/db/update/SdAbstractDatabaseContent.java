@@ -35,7 +35,20 @@ public abstract class SdAbstractDatabaseContent {
 	 *           如果数据库不支持或者没有实现则抛出该异常
 	 */
 	public abstract String updateSQL() throws UnsupportedOperationException;
-
+	/**
+	 * 删除数据库的语句
+	 * 
+	 * @return
+	 */
+	public abstract String deleteSQL();
+	/**
+	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
+	 * 
+	 * @return
+	 */
+	public String converterExtensions() {
+		return null;
+	}
 	/**
 	 * 获取数据库的名字
 	 * 

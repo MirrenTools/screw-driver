@@ -84,6 +84,14 @@ public interface SdDbUtil {
 	 * @throws Exception
 	 */
 	boolean updateTable(SdAbstractTableContent content) throws Exception;
+	/**
+	 * 删除一张表
+	 * 
+	 * @param content
+	 * @return
+	 * @throws Exception
+	 */
+	boolean deleteTable(SdAbstractTableContent content) throws Exception;
 
 	/**
 	 * 获取当前数据库所有数据库表名

@@ -20,6 +20,8 @@ public abstract class SdAbstractIndexKeyContent {
 	private String type;
 	/** 索引的名字 */
 	private String name;
+	/** 要删除索引的名字 */
+	private String removeIndexName;
 	/** 索引的注释 */
 	private String remark;
 	/** 索引的列名 */
@@ -41,6 +43,20 @@ public abstract class SdAbstractIndexKeyContent {
 	 */
 	public abstract String updateSQL();
 
+	/**
+	 * 删除的SQL语句,如果getRemoveIndexName==null返回null
+	 * 
+	 * @return
+	 */
+	public abstract String deleteSQL();
+	/**
+	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
+	 * 
+	 * @return
+	 */
+	public String converterExtensions() {
+		return null;
+	}
 	/**
 	 * 获取索引类型
 	 * 
@@ -76,6 +92,24 @@ public abstract class SdAbstractIndexKeyContent {
 	 */
 	public SdAbstractIndexKeyContent setName(String name) {
 		this.name = name;
+		return this;
+	}
+	/**
+	 * 设置要删除索引的名字
+	 * 
+	 * @return
+	 */
+	public String getRemoveIndexName() {
+		return removeIndexName;
+	}
+	/**
+	 * 设置删除索引的名字
+	 * 
+	 * @param removeIndexName
+	 * @return
+	 */
+	public SdAbstractIndexKeyContent setRemoveIndexName(String removeIndexName) {
+		this.removeIndexName = removeIndexName;
 		return this;
 	}
 

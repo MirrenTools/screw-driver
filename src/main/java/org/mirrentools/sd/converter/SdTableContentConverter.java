@@ -22,6 +22,20 @@ public interface SdTableContentConverter {
 	SdAbstractTableContent converter(SdBean bean);
 
 	/**
+	 * 获取数据库引擎
+	 * 
+	 * @return
+	 */
+	String getEngine();
+	/**
+	 * 设置数据库引擎
+	 * 
+	 * @param characterSet
+	 * @return
+	 */
+	SdTableContentConverter setEngine(String engine);
+
+	/**
 	 * 获取字符集
 	 * 
 	 * @return

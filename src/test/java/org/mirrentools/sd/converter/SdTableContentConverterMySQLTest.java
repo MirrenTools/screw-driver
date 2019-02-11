@@ -32,9 +32,9 @@ public class SdTableContentConverterMySQLTest {
 	public void testConverter() {
 		SdAbstractTableContent content = converter.converter(multireferenceBean);
 		assertEquals("multi_reference", content.getTableName());
-		assertNull(content.getPrimaryKeys().getName());
+		assertNull(content.getPrimaryKey().getName());
 		assertEquals(8, content.getColums().size());
-		assertEquals(2, content.getPrimaryKeys().getColumns().size());
+		assertEquals(2, content.getPrimaryKey().getColumns().size());
 		assertEquals(2, content.getIndexKeys().size());
 		assertEquals(MySQL.INDEX_KEY, content.getIndexKeys().get(0).getType());
 		assertEquals("UK_index_key_1_2", content.getIndexKeys().get(0).getName());

@@ -19,7 +19,7 @@ public abstract class SdAbstractTableContent {
 	/** 表列的属性 */
 	private List<SdAbstractColumnContent> colums;
 	/** 表主键列属性 */
-	private SdAbstractPrimaryKeyContent primaryKeys;
+	private SdAbstractPrimaryKeyContent primaryKey;
 	/** 表索引列属性 */
 	private List<SdAbstractIndexKeyContent> indexKeys;
 	/** 表外键列的属性 */
@@ -40,7 +40,20 @@ public abstract class SdAbstractTableContent {
 	 * @return
 	 */
 	public abstract String updateSQL();
-
+	/**
+	 * 删除的SQL语句
+	 * 
+	 * @return
+	 */
+	public abstract String deleteSQL();
+	/**
+	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
+	 * 
+	 * @return
+	 */
+	public String converterExtensions() {
+		return null;
+	}
 	/**
 	 * 获取表名字
 	 * 
@@ -120,17 +133,17 @@ public abstract class SdAbstractTableContent {
 	 * 
 	 * @return
 	 */
-	public SdAbstractPrimaryKeyContent getPrimaryKeys() {
-		return primaryKeys;
+	public SdAbstractPrimaryKeyContent getPrimaryKey() {
+		return primaryKey;
 	}
 
 	/**
 	 * 设置主键属性
 	 * 
-	 * @param primaryKeys
+	 * @param primaryKey
 	 */
-	public SdAbstractTableContent setPrimaryKeys(SdAbstractPrimaryKeyContent primaryKeys) {
-		this.primaryKeys = primaryKeys;
+	public SdAbstractTableContent setPrimaryKey(SdAbstractPrimaryKeyContent primaryKey) {
+		this.primaryKey = primaryKey;
 		return this;
 	}
 
@@ -244,8 +257,8 @@ public abstract class SdAbstractTableContent {
 
 	@Override
 	public String toString() {
-		return "SdAbstractTableContent [tableName=" + tableName + ", remark=" + remark + ", colums=" + colums + ", primaryKeys=" + primaryKeys + ", indexKeys=" + indexKeys + ", foreignKeys=" + foreignKeys
-				+ ", extensions=" + extensions + "]";
+		return "SdAbstractTableContent [tableName=" + tableName + ", remark=" + remark + ", colums=" + colums + ", primaryKey=" + primaryKey
+				+ ", indexKeys=" + indexKeys + ", foreignKeys=" + foreignKeys + ", extensions=" + extensions + "]";
 	}
 
 }

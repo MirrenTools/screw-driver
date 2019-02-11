@@ -49,7 +49,7 @@ public class SdColumn {
 	/** 列的注释 */
 	private String remark;
 	/** 列的长度 */
-	private int length;
+	private Integer length;
 	/** 列的默认值 */
 	private String _default;
 	/** 列是否为主键 */
@@ -58,12 +58,14 @@ public class SdColumn {
 	private String primaryName;
 	/** 列是否为外键 */
 	private boolean foreignKey;
+	/** 外键的名字 */
+	private String foreignConstraint;
 	/** 外键引用那个表 */
 	private String foreignReferencesDB;
 	/** 外键引用那个表 */
 	private String foreignReferencesTable;
-	/** 外键的名字, */
-	private String foreignConstraint;
+	/** 外键引用那个表的列 */
+	private String foreignReferencesColumn;
 	/** 是否为索引 */
 	private boolean index;
 	/** 索引的类型 */
@@ -336,7 +338,7 @@ public class SdColumn {
 	 * 
 	 * @return
 	 */
-	public int getLength() {
+	public Integer getLength() {
 		return length;
 	}
 
@@ -346,7 +348,7 @@ public class SdColumn {
 	 * @param length
 	 * @return
 	 */
-	public SdColumn setLength(int length) {
+	public SdColumn setLength(Integer length) {
 		this.length = length;
 		return this;
 	}
@@ -404,6 +406,26 @@ public class SdColumn {
 	}
 
 	/**
+	 * 获取外键的名字
+	 * 
+	 * @return
+	 */
+	public String getForeignConstraint() {
+		return foreignConstraint;
+	}
+
+	/**
+	 * 设置外键的名字,如果外键的名字相同则视为多列引用
+	 * 
+	 * @param foreignConstraint
+	 * @return
+	 */
+	public SdColumn setForeignConstraint(String foreignConstraint) {
+		this.foreignConstraint = foreignConstraint;
+		this.foreignKey = true;
+		return this;
+	}
+	/**
 	 * 获取外键引用那个数据库
 	 * 
 	 * @return
@@ -444,25 +466,22 @@ public class SdColumn {
 		this.foreignKey = true;
 		return this;
 	}
-
 	/**
-	 * 获取外键的名字
+	 * 获取外键的引用那个
 	 * 
 	 * @return
 	 */
-	public String getForeignConstraint() {
-		return foreignConstraint;
+	public String getForeignReferencesColumn() {
+		return foreignReferencesColumn;
 	}
-
 	/**
-	 * 设置外键的名字,如果外键的名字相同则视为多列引用
+	 * 设置外键的引用那个列
 	 * 
-	 * @param foreignConstraint
+	 * @param foreignReferencesColumn
 	 * @return
 	 */
-	public SdColumn setForeignConstraint(String foreignConstraint) {
-		this.foreignConstraint = foreignConstraint;
-		this.foreignKey = true;
+	public SdColumn setForeignReferencesColumn(String foreignReferencesColumn) {
+		this.foreignReferencesColumn = foreignReferencesColumn;
 		return this;
 	}
 
@@ -731,6 +750,7 @@ public class SdColumn {
 		sb.append("  ┣━foreignConstraint = " + foreignConstraint + "\n");
 		sb.append("  ┣━foreignReferencesDB = " + foreignReferencesDB + "\n");
 		sb.append("  ┣━foreignReferencesTable = " + foreignReferencesTable + "\n");
+		sb.append("  ┣━foreignReferencesColumn = " + foreignReferencesColumn + "\n");
 		sb.append("  ┣━index = " + index + "\n");
 		sb.append("  ┣━indexType = " + indexType + "\n");
 		sb.append("  ┣━indexName = " + indexName + "\n");
@@ -740,7 +760,6 @@ public class SdColumn {
 		sb.append("  ┣━collate = " + collate + "\n");
 		sb.append("  ┗━extensions = " + extensions + "\n");
 		return sb.toString();
-
 	}
 
 }

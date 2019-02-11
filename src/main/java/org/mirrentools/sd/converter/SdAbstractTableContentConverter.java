@@ -22,6 +22,9 @@ import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
  *
  */
 public abstract class SdAbstractTableContentConverter implements SdTableContentConverter {
+
+	/** 数据库引擎 */
+	private String engine;
 	/** 字符集 */
 	private String characterSet;
 	/** 数据库排序规则 */
@@ -150,7 +153,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 					}
 				}
 			}
-			result.setPrimaryKeys(primary);
+			result.setPrimaryKey(primary);
 		}
 	}
 
@@ -220,7 +223,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 					foreign.setConstraint(col.getForeignConstraint());
 					foreign.setReferencesDB(col.getForeignReferencesDB());
 					foreign.setReferencesTable(col.getForeignReferencesTable());
-					foreign.addReferencesColumn(col.getName());
+					foreign.addReferencesColumn(col.getForeignReferencesColumn());
 					foreign.addForeignKey(col.getName());
 					foreigns.put(col.getForeignConstraint(), foreign);
 				} else {
@@ -254,8 +257,19 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	}
 
 	@Override
+	public String getEngine() {
+		return engine;
+	}
+
+	@Override
+	public SdTableContentConverter setEngine(String engine) {
+		this.engine = engine;
+		return this;
+	}
+
+	@Override
 	public String getCharacterSet() {
-		return characterSet == null ? "" : characterSet;
+		return characterSet;
 	}
 
 	@Override
@@ -266,7 +280,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 
 	@Override
 	public String getCollate() {
-		return collate == null ? "" : collate;
+		return collate;
 	}
 
 	@Override

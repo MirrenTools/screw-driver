@@ -9,7 +9,6 @@ import org.mirrentools.sd.dbutil.AbstractSdDbUtil;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
 import org.mirrentools.sd.models.db.query.SdTablePrimaryKeyAttribute;
-import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -19,12 +18,9 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  *
  */
 public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
-	/** 数据库配置文件 */
-	private SdDatabaseOptions config;
 
 	public SdDbUtilImplByMySQL(SdDatabaseOptions config) {
 		super(config);
-		this.config = config;
 	}
 
 	@Override
@@ -33,7 +29,8 @@ public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
 		Connection connection = getConnection();
 		ResultSet query = null;
 		try {
-			query = connection.createStatement().executeQuery(String.format("SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name='%s'", dbName));
+			query = connection.createStatement()
+					.executeQuery(String.format("SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name='%s'", dbName));
 			if (query.next()) {
 				result = query.getInt(1);
 			}
@@ -56,7 +53,7 @@ public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
 		ResultSet query = null;
 		try {
 			DatabaseMetaData md = connection.getMetaData();
-			query = md.getTables(connection.getCatalog(), config.getUser(), tableName, new String[] { "TABLE" });
+			query = md.getTables(connection.getCatalog(), getConfig().getUser(), tableName, new String[]{"TABLE"});
 			return query.next();
 		} catch (Exception e) {
 			throw e;
@@ -68,18 +65,6 @@ public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
 				connection.close();
 			}
 		}
-	}
-
-	@Override
-	public boolean createTable(SdAbstractTableContent content) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean updateTable(SdAbstractTableContent content) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
@@ -106,29 +91,10 @@ public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
 		return null;
 	}
 
-	/**
-	 * 获取数据库配置文件
-	 * 
-	 * @return
-	 */
-	public SdDatabaseOptions getConfig() {
-		return config;
-	}
-
-	/**
-	 * 设置数据库配置文件
-	 * 
-	 * @param config
-	 * @return
-	 */
-	public SdDbUtilImplByMySQL setConfig(SdDatabaseOptions config) {
-		this.config = config;
-		return this;
-	}
-
 	@Override
-	public String toString() {
-		return "JsgDbExecuteImplByMySQL [config=" + config + "]";
+	public SdDbUtilImplByMySQL setConfig(SdDatabaseOptions config) {
+		super.setConfig(config);
+		return this;
 	}
 
 }

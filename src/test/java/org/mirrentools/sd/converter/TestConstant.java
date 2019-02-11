@@ -60,12 +60,13 @@ public class TestConstant {
 		studentBean = new SdBean();
 		SdColumn column = new SdColumn().setName("id").setType(MySQL.BIGINT).setPrimary(true).setAutoIncrement(true).setRemark("学生的id");
 		SdColumn column2 = new SdColumn().setName("name").setType(MySQL.VARCHAR).setNullable(false).setLength(30).setRemark("学生的名字");
-		SdColumn column3 = new SdColumn().setName("age").setType(MySQL.INT).setNullable(false).setRemark("学生的年龄");
-		SdColumn column4 = new SdColumn().setName("age").setType(MySQL.INT).setRemark("学生的年龄");
-		SdColumn column5 = new SdColumn().setName("mobile_phone").setType(MySQL.VARCHAR).setNullable(false).setLength(30).setRemark("学生的手机号码");
+		SdColumn column3 = new SdColumn().setName("age").setUnsigned(true).setType(MySQL.INT).setNullable(false).setRemark("学生的年龄");
+		SdColumn column4 = new SdColumn().setName("email").setType(MySQL.INT).setRemark("学生的邮箱");
+		SdColumn column5 = new SdColumn().setName("mobile_phone").setType(MySQL.VARCHAR).setDefault("0086").setNullable(false).setLength(30).setRemark("学生的手机号码");
 		column5.setIndexType(MySQL.INDEX_KEY).setIndexName("idx_user_mobile_phone");
 		SdColumn column6 = new SdColumn().setName("classes_id").setType(MySQL.INT).setNullable(false).setRemark("班级的id");
-		column6.setForeignReferencesTable(classesBean.getName()).setForeignConstraint("FK_classes_student_id");
+		column6.setForeignReferencesTable(classesBean.getName()).setForeignReferencesColumn(cc1.getName())
+				.setForeignConstraint("FK_classes_student_id");
 		studentBean.setName("classes_student").setRemark("班级里面的学生").addColumn(column, column2, column3, column4, column5, column6);
 
 		// 添加学生与班级的关系
@@ -92,12 +93,18 @@ public class TestConstant {
 		multireferenceBean = new SdBean();
 		SdColumn mc1 = new SdColumn().setName("primary_key_1").setType(MySQL.INT).setRemark("复合主键").setPrimary(true).setAutoIncrement(true);
 		SdColumn mc2 = new SdColumn().setName("primary_key_2").setType(MySQL.INT).setRemark("复合主键").setPrimary(true).setAutoIncrement(true);
-		SdColumn mc3 = new SdColumn().setName("index_key_1").setType(MySQL.INT).setRemark("复合索引").setIndexName("UK_index_key_1_2").setIndexType(MySQL.INDEX_KEY);
-		SdColumn mc4 = new SdColumn().setName("index_key_2").setType(MySQL.INT).setRemark("复合索引").setIndexName("UK_index_key_1_2").setIndexType(MySQL.INDEX_KEY);
-		SdColumn mc5 = new SdColumn().setName("index_key_single").setType(MySQL.INT).setRemark("单独的索引").setIndexName("index_key_single").setIndexRemark("testIndexKeyRemark").setIndexType(MySQL.INDEX_KEY);
-		SdColumn mc6 = new SdColumn().setName("foreign_key_1").setType(MySQL.INT).setRemark("复合外键").setForeignConstraint("FK_foreig_key_1_2").setForeignReferencesTable("test");
-		SdColumn mc7 = new SdColumn().setName("foreign_key_2").setType(MySQL.INT).setRemark("复合外键").setForeignConstraint("FK_foreig_key_1_2").setForeignReferencesTable("test");
-		SdColumn mc8 = new SdColumn().setName("foreign_key_single").setType(MySQL.INT).setRemark("单独的外键").setForeignConstraint("FK_foreig_key_single").setForeignReferencesTable("test");
+		SdColumn mc3 = new SdColumn().setName("index_key_1").setType(MySQL.INT).setRemark("复合索引").setIndexName("UK_index_key_1_2")
+				.setIndexType(MySQL.INDEX_KEY);
+		SdColumn mc4 = new SdColumn().setName("index_key_2").setType(MySQL.INT).setRemark("复合索引").setIndexName("UK_index_key_1_2")
+				.setIndexType(MySQL.INDEX_KEY);
+		SdColumn mc5 = new SdColumn().setName("index_key_single").setType(MySQL.INT).setRemark("单独的索引").setIndexName("index_key_single")
+				.setIndexRemark("testIndexKeyRemark").setIndexType(MySQL.INDEX_KEY);
+		SdColumn mc6 = new SdColumn().setName("foreign_key_1").setType(MySQL.INT).setRemark("复合外键").setForeignConstraint("FK_foreig_key_1_2")
+				.setForeignReferencesTable("test");
+		SdColumn mc7 = new SdColumn().setName("foreign_key_2").setType(MySQL.INT).setRemark("复合外键").setForeignConstraint("FK_foreig_key_1_2")
+				.setForeignReferencesTable("test");
+		SdColumn mc8 = new SdColumn().setName("foreign_key_single").setType(MySQL.INT).setRemark("单独的外键")
+				.setForeignConstraint("FK_foreig_key_single").setForeignReferencesTable("test");
 		multireferenceBean.setName("multi_reference");
 		multireferenceBean.addColumn(mc1, mc2, mc3, mc4, mc5, mc6, mc7, mc8);
 	}
@@ -116,15 +123,18 @@ public class TestConstant {
 	 */
 	private static void initTemplates() {
 		templates = new HashMap<String, SdTemplate>();
-		SdTemplate entity = new SdTemplate().setFile("entity.ftl").setSourceFolder(Constant.MAVEN_TEST).setPackageName("com.entity").setClassName("User");
+		SdTemplate entity = new SdTemplate().setFile("entity.ftl").setSourceFolder(Constant.MAVEN_TEST).setPackageName("com.entity")
+				.setClassName("User");
 		templates.put("entity", entity);
-		SdTemplate dao = new SdTemplate().setFile("dao.ftl").setSourceFolder(Constant.MAVEN_TEST).setPackageName("com.dao").setClassName("UserDao");
+		SdTemplate dao = new SdTemplate().setFile("dao.ftl").setSourceFolder(Constant.MAVEN_TEST).setPackageName("com.dao")
+				.setClassName("UserDao");
 		dao.addAttribute(new SdTemplateAttribute("test", "{c}{p}", "测试驼峰与帕斯卡还有下划线{u},连字符{h}"));
 		templates.put("dao", dao);
 	}
 
 	private static void initDatabaseOptions() {
-		databaseOptions = new SdDatabaseOptions(MySQL.MYSQL_8_DERVER, "jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
+		databaseOptions = new SdDatabaseOptions(MySQL.MYSQL_8_DERVER,
+				"jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
 		databaseOptions.setUser("root");
 		databaseOptions.setPassword("root");
 		databaseOptions.setLoginTimeout(10);

@@ -32,7 +32,7 @@ public class SdDbUtilExecuteTest {
 	}
 
 	public void setUp() throws Exception {
-		SdDatabaseOptions config = new SdDatabaseOptions(MySQL.MYSQL_8_DERVER,
+		SdDatabaseOptions config = new SdDatabaseOptions(MySQL.MYSQL_DERVER,
 				"jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
 		config.setUser("root");
 		config.setPassword("root");
