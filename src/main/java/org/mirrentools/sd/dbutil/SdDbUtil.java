@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
+import org.mirrentools.sd.models.db.query.SdTableIndexKeyAttribute;
+import org.mirrentools.sd.models.db.query.SdTablePortedKeysAttribute;
 import org.mirrentools.sd.models.db.query.SdTablePrimaryKeyAttribute;
 import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
@@ -94,7 +96,7 @@ public interface SdDbUtil {
 	boolean deleteTable(SdAbstractTableContent content) throws Exception;
 
 	/**
-	 * 获取当前数据库所有数据库表名
+	 * 获取当前数据库所有数据库表名,如果不存在返回长度为0的集合
 	 * 
 	 * @return
 	 * @throws Exception
@@ -102,7 +104,7 @@ public interface SdDbUtil {
 	List<String> getTableNames() throws Exception;
 
 	/**
-	 * 获取指定数据库,指定表的属性
+	 * 获取指定数据库,指定表的属性,如果不存在返回null
 	 * 
 	 * @param config
 	 * @param tableName
@@ -112,7 +114,7 @@ public interface SdDbUtil {
 	SdTableAttribute getTableAttribute(String tableName) throws Exception;
 
 	/**
-	 * 获取当前数据库中指定表的所有属性
+	 * 获取当前数据库中指定表的所有属性,如果不存在抛出异常
 	 * 
 	 * @param tableName
 	 * @return
@@ -121,12 +123,39 @@ public interface SdDbUtil {
 	List<SdTableColumnAttribute> getTableColumnsAttribute(String tableName) throws Exception;
 
 	/**
-	 * 获取指定表的主键属性
+	 * 获取指定表的主键属性,如果不存在返回null
 	 * 
 	 * @param tableName
 	 * @return
 	 * @throws Exception
 	 */
 	SdTablePrimaryKeyAttribute getTablePrimaryKeyAttribute(String tableName) throws Exception;
+
+	/**
+	 * 获取指定表的索引属性,如果不存在返回长度为0的集合
+	 * 
+	 * @param tableName
+	 * @return
+	 * @throws Exception
+	 */
+	List<SdTableIndexKeyAttribute> getTableIndexKeysAttribute(String tableName, boolean unique, boolean approximate) throws Exception;
+
+	/**
+	 * 获取指定表的外键索引属性,如果不存在返回长度为0的集合
+	 * 
+	 * @param tableName
+	 * @return
+	 * @throws Exception
+	 */
+	List<SdTablePortedKeysAttribute> getTableExportedKeysAttribute(String tableName) throws Exception;
+
+	/**
+	 * 获取指定表的主键索引属性,如果不存在返回长度为0的集合
+	 * 
+	 * @param tableName
+	 * @return
+	 * @throws Exception
+	 */
+	List<SdTablePortedKeysAttribute> getTableImportedKeysAttribute(String tableName) throws Exception;
 
 }

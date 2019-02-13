@@ -34,108 +34,206 @@ public class SdTableAttribute {
 	 */
 	private String refGeneration;
 
-	public SdTableAttribute() {
-		super();
-	}
-
-	public SdTableAttribute(String tableCat, String tableSchem, String tableName, String tableType, String remarks, String typeCat, String typeSchem, String typeName, String selfReferencingColName,
-			String refGeneration) {
-		super();
-		this.tableCat = tableCat;
-		this.tableSchem = tableSchem;
-		this.tableName = tableName;
-		this.tableType = tableType;
-		this.remarks = remarks;
-		this.typeCat = typeCat;
-		this.typeSchem = typeSchem;
-		this.typeName = typeName;
-		this.selfReferencingColName = selfReferencingColName;
-		this.refGeneration = refGeneration;
-	}
-
+	/**
+	 * table catalog (may be null)
+	 * 
+	 * @return
+	 */
 	public String getTableCat() {
 		return tableCat;
 	}
-
-	public void setTableCat(String tableCat) {
+	/**
+	 * table catalog (may be null)
+	 * 
+	 * @param tableCat
+	 * @return
+	 */
+	public SdTableAttribute setTableCat(String tableCat) {
 		this.tableCat = tableCat;
+		return this;
 	}
-
+	/**
+	 * table schema (may be null)
+	 * 
+	 * @return
+	 */
 	public String getTableSchem() {
 		return tableSchem;
 	}
-
-	public void setTableSchem(String tableSchem) {
+	/**
+	 * table schema (may be null)
+	 * 
+	 * @param tableSchem
+	 * @return
+	 */
+	public SdTableAttribute setTableSchem(String tableSchem) {
 		this.tableSchem = tableSchem;
+		return this;
 	}
-
+	/**
+	 * table name
+	 * 
+	 * @return
+	 */
 	public String getTableName() {
 		return tableName;
 	}
-
-	public void setTableName(String tableName) {
+	/**
+	 * table name
+	 * 
+	 * @param tableName
+	 * @return
+	 */
+	public SdTableAttribute setTableName(String tableName) {
 		this.tableName = tableName;
+		return this;
 	}
-
+	/**
+	 * table type. Typical types are "TABLE","VIEW", "SYSTEM TABLE", "GLOBAL
+	 * TEMPORARY","LOCAL TEMPORARY", "ALIAS", "SYNONYM".
+	 * 
+	 * @return
+	 */
 	public String getTableType() {
 		return tableType;
 	}
-
-	public void setTableType(String tableType) {
+	/**
+	 * table type. Typical types are "TABLE","VIEW", "SYSTEM TABLE", "GLOBAL
+	 * TEMPORARY","LOCAL TEMPORARY", "ALIAS", "SYNONYM".
+	 * 
+	 * @param tableType
+	 * @return
+	 */
+	public SdTableAttribute setTableType(String tableType) {
 		this.tableType = tableType;
+		return this;
 	}
-
+	/**
+	 * explanatory comment on the table
+	 * 
+	 * @return
+	 */
 	public String getRemarks() {
 		return remarks;
 	}
-
-	public void setRemarks(String remarks) {
+	/**
+	 * explanatory comment on the table
+	 * 
+	 * @param remarks
+	 * @return
+	 */
+	public SdTableAttribute setRemarks(String remarks) {
 		this.remarks = remarks;
+		return this;
 	}
-
+	/**
+	 * the types catalog (may be null)
+	 * 
+	 * @return
+	 */
 	public String getTypeCat() {
 		return typeCat;
 	}
-
-	public void setTypeCat(String typeCat) {
+	/**
+	 * the types catalog (may be null)
+	 * 
+	 * @param typeCat
+	 * @return
+	 */
+	public SdTableAttribute setTypeCat(String typeCat) {
 		this.typeCat = typeCat;
+		return this;
 	}
-
+	/**
+	 * the types schema (may be null)
+	 * 
+	 * @return
+	 */
 	public String getTypeSchem() {
 		return typeSchem;
 	}
-
-	public void setTypeSchem(String typeSchem) {
+	/**
+	 * the types schema (may be null)
+	 * 
+	 * @param typeSchem
+	 * @return
+	 */
+	public SdTableAttribute setTypeSchem(String typeSchem) {
 		this.typeSchem = typeSchem;
+		return this;
 	}
-
+	/**
+	 * type name (may be null)
+	 * 
+	 * @return
+	 */
 	public String getTypeName() {
 		return typeName;
 	}
-
-	public void setTypeName(String typeName) {
+	/**
+	 * type name (may be null)
+	 * 
+	 * @param typeName
+	 * @return
+	 */
+	public SdTableAttribute setTypeName(String typeName) {
 		this.typeName = typeName;
+		return this;
 	}
-
+	/**
+	 * name of the designated"identifier" column of a typed table (may be null)
+	 * 
+	 * @return
+	 */
 	public String getSelfReferencingColName() {
 		return selfReferencingColName;
 	}
-
-	public void setSelfReferencingColName(String selfReferencingColName) {
+	/**
+	 * name of the designated"identifier" column of a typed table (may be null)
+	 * 
+	 * @param selfReferencingColName
+	 * @return
+	 */
+	public SdTableAttribute setSelfReferencingColName(String selfReferencingColName) {
 		this.selfReferencingColName = selfReferencingColName;
+		return this;
 	}
-
+	/**
+	 * specifies how values inSELF_REFERENCING_COL_NAME are created. Values
+	 * are"SYSTEM", "USER", "DERIVED". (may be null)
+	 * 
+	 * @return
+	 */
 	public String getRefGeneration() {
 		return refGeneration;
 	}
-
-	public void setRefGeneration(String refGeneration) {
+	/**
+	 * specifies how values inSELF_REFERENCING_COL_NAME are created. Values
+	 * are"SYSTEM", "USER", "DERIVED". (may be null)
+	 * 
+	 * @param refGeneration
+	 * @return
+	 */
+	public SdTableAttribute setRefGeneration(String refGeneration) {
 		this.refGeneration = refGeneration;
+		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "TableContent [tableCat=" + tableCat + ", tableSchem=" + tableSchem + ", tableName=" + tableName + ", tableType=" + tableType + ", remarks=" + remarks + ", typeCat=" + typeCat
-				+ ", typeSchem=" + typeSchem + ", typeName=" + typeName + ", selfReferencingColName=" + selfReferencingColName + ", refGeneration=" + refGeneration + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("SdTableAttribute: \n");
+		sb.append("  ┣━tableCat = " + tableCat + "\n");
+		sb.append("  ┣━tableSchem = " + tableSchem + "\n");
+		sb.append("  ┣━tableName = " + tableName + "\n");
+		sb.append("  ┣━tableType = " + tableType + "\n");
+		sb.append("  ┣━remarks = " + remarks + "\n");
+		sb.append("  ┣━typeCat = " + typeCat + "\n");
+		sb.append("  ┣━typeSchem = " + typeSchem + "\n");
+		sb.append("  ┣━typeName = " + typeName + "\n");
+		sb.append("  ┣━selfReferencingColName = " + selfReferencingColName + "\n");
+		sb.append("  ┗━refGeneration = " + refGeneration + "\n");
+		return sb.toString();
+
 	}
 }
