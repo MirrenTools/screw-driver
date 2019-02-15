@@ -218,7 +218,7 @@ public class SdBean {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
+		if (SdUtil.isNullOrEmpty(getExtensions())) {
 			return null;
 		}
 		return getExtensions().get(key);
@@ -232,11 +232,8 @@ public class SdBean {
 	 * @return
 	 */
 	public SdBean addExtension(String key, Object value) {
-		if (SdUtil.isNullOrEmpty(key)) {
-			return this;
-		}
-		if (this.extensions == null) {
-			this.extensions = new LinkedHashMap<String, Object>();
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
 		}
 		this.extensions.put(key, value);
 		return this;
@@ -262,8 +259,15 @@ public class SdBean {
 
 	@Override
 	public String toString() {
-		return "JsgBean [name=" + name + ", remark=" + remark + ", columns=" + columns + ", relationals=" + relationals + ", extensions="
-				+ extensions + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("SdBean: \n");
+		sb.append("  ┣━name = " + name + "\n");
+		sb.append("  ┣━remark = " + remark + "\n");
+		sb.append("  ┣━columns = " + columns + "\n");
+		sb.append("  ┣━relationals = " + relationals + "\n");
+		sb.append("  ┗━extensions = " + extensions + "\n");
+		return sb.toString();
+
 	}
 
 }

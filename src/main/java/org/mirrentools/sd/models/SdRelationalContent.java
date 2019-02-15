@@ -273,7 +273,7 @@ public class SdRelationalContent {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
+		if (SdUtil.isNullOrEmpty(getExtensions())) {
 			return null;
 		}
 		return getExtensions().get(key);
@@ -287,13 +287,10 @@ public class SdRelationalContent {
 	 * @return
 	 */
 	public SdRelationalContent addExtension(String key, Object value) {
-		if (SdUtil.isNullOrEmpty(key)) {
-			return this;
+		if (getExtensions()==null) {
+			setExtensions(new LinkedHashMap<String, Object>());
 		}
-		if (this.extensions == null) {
-			this.extensions = new LinkedHashMap<String, Object>();
-		}
-		this.extensions.put(key, value);
+		getExtensions().put(key, value);
 		return this;
 	}
 

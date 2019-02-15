@@ -91,7 +91,8 @@ public class SdTemplate {
 	 * 2. user.dir/SdTemplates/path/file<br>
 	 * 3. 复制screw-driver-X.jar/SdTemplates/path/file 到
 	 * user.dir/SdTemplates/path/file<br>
-	 * 4. 复制screw-driver-X.jar/SdTemplates/file 到 user.dir/SdTemplates/path/file<br>
+	 * 4. 复制screw-driver-X.jar/SdTemplates/file 到
+	 * user.dir/SdTemplates/path/file<br>
 	 * 
 	 * 
 	 * @return
@@ -269,7 +270,7 @@ public class SdTemplate {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
+		if (SdUtil.isNullOrEmpty(getExtensions())) {
 			return null;
 		}
 		return getExtensions().get(key);
@@ -283,13 +284,10 @@ public class SdTemplate {
 	 * @return
 	 */
 	public SdTemplate putExtension(String key, Object value) {
-		if (SdUtil.isNullOrEmpty(key)) {
-			return this;
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
 		}
-		if (this.extensions == null) {
-			this.extensions = new LinkedHashMap<String, Object>();
-		}
-		this.extensions.put(key, value);
+		getExtensions().put(key, value);
 		return this;
 	}
 
@@ -310,8 +308,18 @@ public class SdTemplate {
 
 	@Override
 	public String toString() {
-		return "JsgTemplate [path=" + path + ", file=" + file + ", override=" + override + ", sourceFolder=" + sourceFolder + ", packageName=" + packageName + ", className=" + className + ", extensions="
-				+ extensions + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("SdTemplate: \n");
+		sb.append("┣━path = " + path + "\n");
+		sb.append("┣━file = " + file + "\n");
+		sb.append("┣━override = " + override + "\n");
+		sb.append("┣━sourceFolder = " + sourceFolder + "\n");
+		sb.append("┣━packageName = " + packageName + "\n");
+		sb.append("┣━className = " + className + "\n");
+		sb.append("┣━suffix = " + suffix + "\n");
+		sb.append("┗━extensions = " + extensions + "\n");
+		return sb.toString();
+
 	}
 
 }

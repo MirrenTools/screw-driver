@@ -3,6 +3,7 @@ package org.mirrentools.sd.models;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -18,7 +19,8 @@ public class SdRenderContent {
 	private SdDatabaseOptions dbOptions;
 	/** 模板渲染中需要用到哪些模板内容 */
 	private Map<String, SdTemplateContent> items;
-
+	/** 拓展属性 */
+	private Map<String, Object> extensions;
 	/**
 	 * 模板渲染需要的上下文
 	 */
@@ -114,6 +116,50 @@ public class SdRenderContent {
 	 */
 	public SdRenderContent setItems(Map<String, SdTemplateContent> items) {
 		this.items = items;
+		return this;
+	}
+	/**
+	 * 获得拓展属性值
+	 * 
+	 * @return
+	 */
+	public Object getExtension(String key) {
+		if (SdUtil.isNullOrEmpty(getExtensions())) {
+			return null;
+		}
+		return getExtensions().get(key);
+	}
+
+	/**
+	 * 添加附加属性
+	 * 
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public SdRenderContent addExtension(String key, Object value) {
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
+		}
+		getExtensions().put(key, value);
+		return this;
+	}
+	/**
+	 * 获取拓展属性
+	 * 
+	 * @return
+	 */
+	public Map<String, Object> getExtensions() {
+		return extensions;
+	}
+	/**
+	 * 设置拓展属性
+	 * 
+	 * @param extensions
+	 * @return
+	 */
+	public SdRenderContent setExtensions(Map<String, Object> extensions) {
+		this.extensions = extensions;
 		return this;
 	}
 

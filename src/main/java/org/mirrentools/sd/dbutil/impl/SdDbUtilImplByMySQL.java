@@ -5,7 +5,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.util.logging.Logger;
 
-import org.mirrentools.sd.dbutil.AbstractSdDbUtil;
+import org.mirrentools.sd.dbutil.SdAbstractDbUtil;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
@@ -15,7 +15,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdDbUtilImplByMySQL extends AbstractSdDbUtil {
+public class SdDbUtilImplByMySQL extends SdAbstractDbUtil {
 
 	/** JUL日志 */
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());

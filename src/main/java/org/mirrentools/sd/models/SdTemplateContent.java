@@ -194,7 +194,7 @@ public class SdTemplateContent {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
+		if (SdUtil.isNullOrEmpty(getExtensions())) {
 			return null;
 		}
 		return getExtensions().get(key);
@@ -208,10 +208,7 @@ public class SdTemplateContent {
 	 * @return
 	 */
 	public SdTemplateContent putExtension(String key, Object value) {
-		if (SdUtil.isNullOrEmpty(key)) {
-			return this;
-		}
-		if (getExtensions() == null) {
+		if (getExtensions()==null) {
 			setExtensions(new LinkedHashMap<String, Object>());
 		}
 		getExtensions().put(key, value);

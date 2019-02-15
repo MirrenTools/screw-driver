@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import org.mirrentools.sd.models.db.query.SdTable;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
 import org.mirrentools.sd.models.db.query.SdTableIndexKeyAttribute;
@@ -29,7 +30,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public abstract class AbstractSdDbUtil implements SdDbUtil {
+public abstract class SdAbstractDbUtil implements SdDbUtil {
 	/** JUL日志 */
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());
 
@@ -39,7 +40,7 @@ public abstract class AbstractSdDbUtil implements SdDbUtil {
 	/**
 	 * 初始化一个默认的数据库管理实现类
 	 */
-	public AbstractSdDbUtil(SdDatabaseOptions config) {
+	public SdAbstractDbUtil(SdDatabaseOptions config) {
 		super();
 		this.config = config;
 	}
@@ -172,6 +173,22 @@ public abstract class AbstractSdDbUtil implements SdDbUtil {
 				connection.close();
 			}
 		}
+	}
+
+	@Override
+	public SdTable getSdTable(String tableName) throws Exception {
+		return getSdTable(tableName, true, true);
+	}
+
+	@Override
+	public SdTable getSdTable(String tableName, boolean unique, boolean approximate) throws Exception {
+		SdTable result = new SdTable();
+		result.setInfo(getTableAttribute(tableName));
+		result.setColumns(getTableColumnsAttribute(tableName));
+		result.setPrimaryKey(getTablePrimaryKeyAttribute(tableName));
+		result.setIndexKeys(getTableIndexKeysAttribute(tableName, unique, approximate));
+		result.setForeignKeys(getTableImportedKeysAttribute(tableName));
+		return result;
 	}
 
 	@Override
@@ -541,25 +558,38 @@ public abstract class AbstractSdDbUtil implements SdDbUtil {
 		// represents the first column of the foreign key, a value of 2
 		// wouldrepresent the second column within the foreign key).
 		result.setKeySeq(rs.getShort(9));
-		// 10.UPDATE_RULE short => What happens to aforeign key when the primary key is updated: 
-		// ◦ importedNoAction - do not allow update of primarykey if it has been imported
-		// ◦ importedKeyCascade - change imported key to agreewith primary key update
-		// ◦ importedKeySetNull - change imported key to NULLif its primary key has been updated
-		// ◦ importedKeySetDefault - change imported key to default valuesif its primary key has been updated
-		// ◦ importedKeyRestrict - same as importedKeyNoAction(for ODBC 2.x compatibility)
+		// 10.UPDATE_RULE short => What happens to aforeign key when the primary key
+		// is updated:
+		// ◦ importedNoAction - do not allow update of primarykey if it has been
+		// imported
+		// ◦ importedKeyCascade - change imported key to agreewith primary key
+		// update
+		// ◦ importedKeySetNull - change imported key to NULLif its primary key has
+		// been updated
+		// ◦ importedKeySetDefault - change imported key to default valuesif its
+		// primary key has been updated
+		// ◦ importedKeyRestrict - same as importedKeyNoAction(for ODBC 2.x
+		// compatibility)
 		result.setUpdateRule(rs.getShort(10));
-		// 11.DELETE_RULE short => What happens tothe foreign key when primary is deleted. 
-		// ◦ importedKeyNoAction - do not allow delete of primarykey if it has been imported
+		// 11.DELETE_RULE short => What happens tothe foreign key when primary is
+		// deleted.
+		// ◦ importedKeyNoAction - do not allow delete of primarykey if it has been
+		// imported
 		// ◦ importedKeyCascade - delete rows that import a deleted key
-		// ◦ importedKeySetNull - change imported key to NULL ifits primary key has been deleted
-		// ◦ importedKeyRestrict - same as importedKeyNoAction(for ODBC 2.x compatibility)
-		// ◦ importedKeySetDefault - change imported key to default ifits primary key has been deleted
+		// ◦ importedKeySetNull - change imported key to NULL ifits primary key has
+		// been deleted
+		// ◦ importedKeyRestrict - same as importedKeyNoAction(for ODBC 2.x
+		// compatibility)
+		// ◦ importedKeySetDefault - change imported key to default ifits primary
+		// key has been deleted
 		result.setDeleteRule(rs.getShort(11));
 		// 12.FK_NAME String => foreign key name (may be null)
 		result.setFkName(rs.getString(12));
 		// 13.PK_NAME String => primary key name (may be null)
 		result.setPkName(rs.getString(13));
-		// 14.DEFERRABILITY short => can the evaluation of foreign keyconstraints be deferred until commit ◦ importedKeyInitiallyDeferred - see SQL92 for definition
+		// 14.DEFERRABILITY short => can the evaluation of foreign keyconstraints be
+		// deferred until commit ◦ importedKeyInitiallyDeferred - see SQL92 for
+		// definition
 		// ◦ importedKeyInitiallyImmediate - see SQL92 for definition
 		// ◦ importedKeyNotDeferrable - see SQL92 for definition
 		result.setDeferrability(rs.getShort(14));
@@ -579,7 +609,7 @@ public abstract class AbstractSdDbUtil implements SdDbUtil {
 	 * @param config
 	 * @return
 	 */
-	public AbstractSdDbUtil setConfig(SdDatabaseOptions config) {
+	public SdAbstractDbUtil setConfig(SdDatabaseOptions config) {
 		this.config = config;
 		return this;
 	}

@@ -191,7 +191,7 @@ public class SdRelational {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions(), key)) {
+		if (SdUtil.isNullOrEmpty(getExtensions())) {
 			return null;
 		}
 		return getExtensions().get(key);
@@ -205,13 +205,10 @@ public class SdRelational {
 	 * @return
 	 */
 	public SdRelational addExtension(String key, Object value) {
-		if (SdUtil.isNullOrEmpty(key)) {
-			return this;
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
 		}
-		if (this.extensions == null) {
-			this.extensions = new LinkedHashMap<String, Object>();
-		}
-		this.extensions.put(key, value);
+		getExtensions().put(key, value);
 		return this;
 	}
 
@@ -225,8 +222,18 @@ public class SdRelational {
 	}
 	@Override
 	public String toString() {
-		return "SdRelational [imports=" + imports + ", annotations=" + annotations + ", relationalType=" + relationalType + ", fieldRemark="
-				+ fieldRemark + ", fieldType=" + fieldType + ", fieldName=" + fieldName + ", bean=" + bean + ", extensions=" + extensions + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("SdRelational: \n");
+		sb.append("  ┣━imports = " + imports + "\n");
+		sb.append("  ┣━annotations = " + annotations + "\n");
+		sb.append("  ┣━relationalType = " + relationalType + "\n");
+		sb.append("  ┣━fieldRemark = " + fieldRemark + "\n");
+		sb.append("  ┣━fieldType = " + fieldType + "\n");
+		sb.append("  ┣━fieldName = " + fieldName + "\n");
+		sb.append("  ┣━bean = " + bean + "\n");
+		sb.append("  ┗━extensions = " + extensions + "\n");
+		return sb.toString();
+
 	}
 
 }

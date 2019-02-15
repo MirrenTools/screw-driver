@@ -3,6 +3,7 @@ package org.mirrentools.sd.dbutil;
 import java.sql.Connection;
 import java.util.List;
 
+import org.mirrentools.sd.models.db.query.SdTable;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
 import org.mirrentools.sd.models.db.query.SdTableIndexKeyAttribute;
@@ -96,6 +97,27 @@ public interface SdDbUtil {
 	boolean deleteTable(SdAbstractTableContent content) throws Exception;
 
 	/**
+	 * 获取数据库中指定表的描述
+	 * 
+	 * @param tableName
+	 * @return
+	 * @throws Exception
+	 */
+	SdTable getSdTable(String tableName) throws Exception;
+
+	/**
+	 * 获取数据库中指定表的描述
+	 * 
+	 * @param tableName
+	 *          表的名字
+	 * @param unique
+	 * @param approximate
+	 * @return
+	 * @throws Exception
+	 */
+	SdTable getSdTable(String tableName, boolean unique, boolean approximate) throws Exception;
+
+	/**
 	 * 获取当前数据库所有数据库表名,如果不存在返回长度为0的集合
 	 * 
 	 * @return
@@ -135,6 +157,12 @@ public interface SdDbUtil {
 	 * 获取指定表的索引属性,如果不存在返回长度为0的集合
 	 * 
 	 * @param tableName
+	 * @param unique
+	 *          when true, return only indices for unique values;when false,
+	 *          return indices regardless of whether unique or not
+	 * @param approximate
+	 *          when true, result is allowed to reflect approximateor out of data
+	 *          values; when false, results are requested to beaccurate
 	 * @return
 	 * @throws Exception
 	 */

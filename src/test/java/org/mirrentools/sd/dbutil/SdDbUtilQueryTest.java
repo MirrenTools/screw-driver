@@ -68,10 +68,12 @@ public class SdDbUtilQueryTest {
 	}
 	public void getTableExportedKeysAttributeTest(String tableName) throws Exception {
 		List<SdTablePortedKeysAttribute> list = sdDbUtil.getTableExportedKeysAttribute(tableName);
+		System.out.println("getTableExportedKeysAttributeTest");
 		System.out.println(list);
 	}
 	public void getTableImportedKeysAttributeTest(String tableName) throws Exception {
 		List<SdTablePortedKeysAttribute> list = sdDbUtil.getTableImportedKeysAttribute(tableName);
+		System.out.println("getTableImportedKeysAttributeTest");
 		System.out.println(list);
 	}
 
