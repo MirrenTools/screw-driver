@@ -19,6 +19,8 @@ public class SdTableIndexKeyAttribute {
 	private String indexQualifier;
 	/** index name; null when TYPE istableIndexStatistic */
 	private String indexName;
+	/** 索引的注解 */
+	private String indexRemarks;
 	/**
 	 * index type:<br>
 	 * tableIndexStatistic - this identifies table statistics that arereturned in
@@ -158,6 +160,24 @@ public class SdTableIndexKeyAttribute {
 	 */
 	public SdTableIndexKeyAttribute setIndexName(String indexName) {
 		this.indexName = indexName;
+		return this;
+	}
+	/**
+	 * 获取索引注释
+	 * 
+	 * @return
+	 */
+	public String getIndexRemarks() {
+		return indexRemarks;
+	}
+	/**
+	 * 设置索引注释
+	 * 
+	 * @param indexRemarks
+	 * @return
+	 */
+	public SdTableIndexKeyAttribute setIndexRemarks(String indexRemarks) {
+		this.indexRemarks = indexRemarks;
 		return this;
 	}
 	/**
@@ -312,6 +332,7 @@ public class SdTableIndexKeyAttribute {
 		sb.append("  ┣━nonUnique = " + nonUnique + "\n");
 		sb.append("  ┣━indexQualifier = " + indexQualifier + "\n");
 		sb.append("  ┣━indexName = " + indexName + "\n");
+		sb.append("  ┣━indexRemarks = " + indexRemarks + "\n");
 		sb.append("  ┣━type = " + type + "\n");
 		sb.append("  ┣━ordinalPosition = " + ordinalPosition + "\n");
 		sb.append("  ┣━columnName = " + columnName + "\n");

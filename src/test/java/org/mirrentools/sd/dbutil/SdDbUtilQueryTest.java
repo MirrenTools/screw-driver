@@ -63,7 +63,7 @@ public class SdDbUtilQueryTest {
 	public void getTableIndexKeysAttributeTest(String tableName) throws Exception {
 		List<SdTableIndexKeyAttribute> list = sdDbUtil.getTableIndexKeysAttribute(tableName, true, true);
 		System.out.println(list);
-		assertEquals(2, list.size());
+		assertEquals(4, list.size());
 		assertEquals("UK_name_test", list.get(1).getIndexName());
 	}
 	public void getTableExportedKeysAttributeTest(String tableName) throws Exception {

@@ -3,10 +3,13 @@ package org.mirrentools.sd.dbutil.impl;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.mirrentools.sd.dbutil.SdAbstractDbUtil;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
+import org.mirrentools.sd.models.db.query.SdTableIndexKeyAttribute;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -89,7 +92,36 @@ public class SdDbUtilImplByMySQL extends SdAbstractDbUtil {
 				connection.close();
 			}
 		}
+	}
 
+	@Override
+	public List<SdTableIndexKeyAttribute> getTableIndexKeysAttribute(String tableName, boolean unique, boolean approximate) throws Exception {
+		Connection connection = null;
+		ResultSet rs = null;
+		try {
+			connection = getConnection();
+			rs = connection.createStatement().executeQuery("SHOW INDEX FROM " + tableName);
+			List<SdTableIndexKeyAttribute> result = new ArrayList<SdTableIndexKeyAttribute>();
+			while (rs.next()) {
+				SdTableIndexKeyAttribute attr = new SdTableIndexKeyAttribute();
+				attr.setTableName(rs.getString("Table"));
+				attr.setColumnName(rs.getString("Column_name"));
+				attr.setNonUnique(rs.getInt("Non_unique") == 1);
+				attr.setIndexName(rs.getString("Key_name"));
+				attr.setAscOrDesc(rs.getString("Collation"));
+				attr.setCardinality(rs.getInt("Cardinality"));
+				attr.setIndexRemarks(rs.getString("Index_comment"));
+				result.add(attr);
+			}
+			return result;
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+		}
 	}
 
 	@Override

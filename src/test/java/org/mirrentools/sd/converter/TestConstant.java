@@ -13,6 +13,12 @@ import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.SdRelational;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.models.SdTemplateAttribute;
+import org.mirrentools.sd.models.db.query.SdTable;
+import org.mirrentools.sd.models.db.query.SdTableAttribute;
+import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
+import org.mirrentools.sd.models.db.query.SdTableIndexKeyAttribute;
+import org.mirrentools.sd.models.db.query.SdTablePortedKeysAttribute;
+import org.mirrentools.sd.models.db.query.SdTablePrimaryKeyAttribute;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -36,12 +42,15 @@ public class TestConstant {
 	public static Map<String, SdTemplate> templates;
 	// 数据库配置文件
 	public static SdDatabaseOptions databaseOptions;
+	// 数据库配置文件
+	public static SdTable studentTable;
 
 	static {
 		initBean();
 		initClassContent();
 		initTemplates();
 		initDatabaseOptions();
+		initTable();
 	}
 
 	/**
@@ -62,7 +71,8 @@ public class TestConstant {
 		SdColumn column2 = new SdColumn().setName("name").setType(MySQL.VARCHAR).setNullable(false).setLength(30).setRemark("学生的名字");
 		SdColumn column3 = new SdColumn().setName("age").setUnsigned(true).setType(MySQL.INT).setNullable(false).setRemark("学生的年龄");
 		SdColumn column4 = new SdColumn().setName("email").setType(MySQL.INT).setRemark("学生的邮箱");
-		SdColumn column5 = new SdColumn().setName("mobile_phone").setType(MySQL.VARCHAR).setDefault("0086").setNullable(false).setLength(30).setRemark("学生的手机号码");
+		SdColumn column5 = new SdColumn().setName("mobile_phone").setType(MySQL.VARCHAR).setDefault("0086").setNullable(false).setLength(30)
+				.setRemark("学生的手机号码");
 		column5.setIndexType(MySQL.INDEX_KEY).setIndexName("idx_user_mobile_phone");
 		SdColumn column6 = new SdColumn().setName("classes_id").setType(MySQL.INT).setNullable(false).setRemark("班级的id");
 		column6.setForeignReferencesTable(classesBean.getName()).setForeignReferencesColumn(cc1.getName())
@@ -131,7 +141,9 @@ public class TestConstant {
 		dao.addAttribute(new SdTemplateAttribute("test", "{c}{p}", "测试驼峰与帕斯卡还有下划线{u},连字符{h}"));
 		templates.put("dao", dao);
 	}
-
+	/**
+	 * 初始化数据库配置
+	 */
 	private static void initDatabaseOptions() {
 		databaseOptions = new SdDatabaseOptions(MySQL.MYSQL_8_DERVER,
 				"jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
@@ -139,5 +151,27 @@ public class TestConstant {
 		databaseOptions.setPassword("root");
 		databaseOptions.setLoginTimeout(10);
 	}
+	/**
+	 * 初始化表
+	 */
+	private static void initTable() {
+		studentTable = new SdTable();
+		String tableName = "classes_student";
 
+		studentTable.setInfo(new SdTableAttribute().setTableName(tableName).setRemarks("学生表"));
+		SdTableColumnAttribute c1 = new SdTableColumnAttribute().setColumnName("id").setTypeName(MySQL.BIGINT).setAutoincrement("YES")
+				.setRemarks("学生的id");
+		SdTableColumnAttribute c2 = new SdTableColumnAttribute().setColumnName("name").setTypeName(MySQL.VARCHAR).setColumnSize(30)
+				.setNullable(1).setRemarks("学生的id");
+		SdTableColumnAttribute c3 = new SdTableColumnAttribute().setColumnName("mobile_phone").setTypeName(MySQL.VARCHAR).setColumnDef("0086")
+				.setColumnSize(30).setNullable(1).setRemarks("学生的手机号码");
+		SdTableColumnAttribute c4 = new SdTableColumnAttribute().setColumnName("classes_id").setTypeName(MySQL.INT)
+				.setRemarks("班级的id");
+		studentTable.addColumn(c1).addColumn(c2).addColumn(c3).addColumn(c4);
+		studentTable.setPrimaryKey(new SdTablePrimaryKeyAttribute().setColumnName("id").setPkName("Primary").setTableName(tableName));
+		studentTable.addIndexKey(
+				new SdTableIndexKeyAttribute().setTableName(tableName).setColumnName("mobile_phone").setIndexName("idx_user_mobile_phone"));
+		studentTable.addForeignKey(new SdTablePortedKeysAttribute().setFktableCat("root").setFktableName("classes").setFkName("classes_id")
+				.setFkName("FK_classes_student_id").setFkcolumnName("classes_id"));
+	}
 }

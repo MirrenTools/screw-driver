@@ -16,7 +16,7 @@ import org.mirrentools.sd.common.SdUtil;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdColumn {
+public class SdColumn implements Comparable<SdColumn> {
 	/*
 	 * 类属性, 如果类属性不为空就取类属性, 如果类属性为空就将表属性转换为类属性
 	 */
@@ -72,7 +72,7 @@ public class SdColumn {
 	private String indexType;
 	/** 索引的名字 */
 	private String indexName;
-	/** 索引的名字 */
+	/** 索引的备注信息 */
 	private String indexRemark;
 	/** 列是否允许为空 */
 	private boolean nullable = true;
@@ -82,6 +82,9 @@ public class SdColumn {
 	private boolean autoIncrement;
 	/** 字符排序 */
 	private String collate;
+	/** 在表中的顺序 */
+	private int ordinalPosition;
+
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -675,7 +678,24 @@ public class SdColumn {
 		this.collate = collate;
 		return this;
 	}
-
+	/**
+	 * 获取列的顺序
+	 * 
+	 * @return
+	 */
+	public int getOrdinalPosition() {
+		return ordinalPosition;
+	}
+	/**
+	 * 设置列的顺序
+	 * 
+	 * @param ordinalPosition
+	 * @return
+	 */
+	public SdColumn setOrdinalPosition(int ordinalPosition) {
+		this.ordinalPosition = ordinalPosition;
+		return this;
+	}
 
 	/**
 	 * 获得拓展属性值
@@ -697,7 +717,7 @@ public class SdColumn {
 	 * @return
 	 */
 	public SdColumn addExtension(String key, Object value) {
-		if (getExtensions()==null) {
+		if (getExtensions() == null) {
 			setExtensions(new LinkedHashMap<String, Object>());
 		}
 		getExtensions().put(key, value);
@@ -756,8 +776,14 @@ public class SdColumn {
 		sb.append("  ┣━unsigned = " + unsigned + "\n");
 		sb.append("  ┣━autoIncrement = " + autoIncrement + "\n");
 		sb.append("  ┣━collate = " + collate + "\n");
+		sb.append("  ┣━ordinalPosition = " + ordinalPosition + "\n");
 		sb.append("  ┗━extensions = " + extensions + "\n");
 		return sb.toString();
+	}
+
+	@Override
+	public int compareTo(SdColumn obj) {
+		return ordinalPosition > obj.getOrdinalPosition() ? 1 : (ordinalPosition == obj.getOrdinalPosition() ? 0 : -1);
 	}
 
 }
