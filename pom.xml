@@ -27,12 +27,6 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc8</artifactId>
-            <version>18.3.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>2.3.28</version>
