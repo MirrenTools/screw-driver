@@ -8,6 +8,7 @@ import org.mirrentools.sd.converter.impl.mysql.SdTableToClassConverterImplByMySQ
 import org.mirrentools.sd.models.SdClassContent;
 
 /**
+ * 将表属性类转为类属性的测试
  * 
  * @author <a href="http://szmirren.com">Mirren</a>
  *
@@ -22,7 +23,6 @@ public class SdTableToClassConverterTest {
 	@Test
 	public void testConverter() {
 		SdClassContent content = converter.converter(TestConstant.studentTable);
-		System.out.println(content);
 		assertEquals("classes_student", content.getTableName());
 		assertEquals("classes_student", content.getUnderScoreName());
 		assertEquals("classes-student", content.getHyphenName());

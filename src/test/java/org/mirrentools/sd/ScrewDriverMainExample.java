@@ -37,7 +37,7 @@ public class ScrewDriverMainExample {
 		SdSqlUtil sqlUtil = new SdSqlUtilImpl(bean, databaseOptions);
 		// 执行代码
 		ScrewDriver sd = new ScrewDriverImpl(codeUtil, sqlUtil);
-		sd.createSQL();
+//		sd.createSQL();
 		sd.createCode();
 	}
 }
