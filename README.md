@@ -7,7 +7,7 @@ ScrewDriverCode 用于生成代码 create code
 ScrewDriverSQL 用于生成SQL create SQL
 ScrewDriverProject 用于生成项目 create Project
 
-```html
+```java
 public static void main(String[] args) throws Exception {
   // 创建一个实体描述  Create an entity description
   SdBean bean = new SdBean().setName("user").setRemark("用户");
@@ -54,6 +54,6 @@ public static void main(String[] args) throws Exception {
 ``` 
 
 # build
-```html
+```java
 mvn clean package -DskipTests
 ```
