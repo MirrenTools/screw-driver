@@ -11,7 +11,7 @@ ScrewDriverProject 用于生成项目 create Project
 public static void main(String[] args) throws Exception {
   // 创建一个实体描述  Create an entity description
   SdBean bean = new SdBean().setName("user").setRemark("用户");
-    SdColumn id = new SdColumn()
+  SdColumn id = new SdColumn()
     .setName("id")
     .setType(MySQL.BIGINT)
     .setPrimary(true)
