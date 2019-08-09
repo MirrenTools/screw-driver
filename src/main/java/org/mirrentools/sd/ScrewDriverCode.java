@@ -1,4 +1,4 @@
-package org.mirrentools.sd.util;
+package org.mirrentools.sd;
 
 import java.util.Map;
 
@@ -14,7 +14,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public interface SdCodeUtil {
+public interface ScrewDriverCode {
 
 	/**
 	 * 执行生成
@@ -36,7 +36,7 @@ public interface SdCodeUtil {
 	 * @param projectPath
 	 * @return
 	 */
-	SdCodeUtil setProjectPath(String projectPath);
+	ScrewDriverCode setProjectPath(String projectPath);
 
 	/**
 	 * 获取生成编码格式
@@ -51,7 +51,7 @@ public interface SdCodeUtil {
 	 * @param codeFormat
 	 * @return
 	 */
-	SdCodeUtil setCodeFormat(String codeFormat);
+	ScrewDriverCode setCodeFormat(String codeFormat);
 
 	/**
 	 * 获取创建所需要的属性
@@ -65,7 +65,7 @@ public interface SdCodeUtil {
 	 * 
 	 * @param bean
 	 */
-	SdCodeUtil setBean(SdBean bean);
+	ScrewDriverCode setBean(SdBean bean);
 
 	/**
 	 * 获取数据库连接属性
@@ -80,7 +80,7 @@ public interface SdCodeUtil {
 	 * @param dbOptions
 	 * @return
 	 */
-	SdCodeUtil setDatabaseOptions(SdDatabaseOptions dbOptions);
+	ScrewDriverCode setDatabaseOptions(SdDatabaseOptions dbOptions);
 
 	/**
 	 * 获取生成模板
@@ -96,7 +96,7 @@ public interface SdCodeUtil {
 	 * @param template
 	 * @return
 	 */
-	SdCodeUtil addTemplate(String key, SdTemplate template);
+	ScrewDriverCode addTemplate(String key, SdTemplate template);
 
 	/**
 	 * 设置模板集
@@ -104,7 +104,7 @@ public interface SdCodeUtil {
 	 * @param templates
 	 * @return
 	 */
-	SdCodeUtil setTemplateMaps(Map<String, SdTemplate> templates);
+	ScrewDriverCode setTemplateMaps(Map<String, SdTemplate> templates);
 
 	/**
 	 * 获取实体类属性转换器
@@ -119,7 +119,7 @@ public interface SdCodeUtil {
 	 * @param converter
 	 * @return
 	 */
-	SdCodeUtil setBeanConverter(SdClassConverter converter);
+	ScrewDriverCode setBeanConverter(SdClassConverter converter);
 
 	/**
 	 * 获取模板工具所需要的内容转换器
@@ -134,14 +134,14 @@ public interface SdCodeUtil {
 	 * @param templateConverter
 	 * @return
 	 */
-	SdCodeUtil setTemplateConverter(SdTemplateContentConverter templateConverter);
+	ScrewDriverCode setTemplateConverter(SdTemplateContentConverter templateConverter);
 
 	/**
 	 * 设置模板工具
 	 * 
 	 * @return
 	 */
-	SdTemplateUtil getTemplateUtil();
+	ScrewDriverTemplate getTemplateUtil();
 
 	/**
 	 * 设置模板工具
@@ -149,7 +149,7 @@ public interface SdCodeUtil {
 	 * @param templateUtil
 	 * @return
 	 */
-	SdCodeUtil setTemplateUtil(SdTemplateUtil templateUtil);
+	ScrewDriverCode setTemplateUtil(ScrewDriverTemplate templateUtil);
 
 	/**
 	 * 添加附加属性
@@ -158,7 +158,7 @@ public interface SdCodeUtil {
 	 * @param value
 	 * @return
 	 */
-	SdCodeUtil addExtension(String key, Object value);
+	ScrewDriverCode addExtension(String key, Object value);
 
 	/**
 	 * 获取附加属性集合
@@ -173,6 +173,6 @@ public interface SdCodeUtil {
 	 * @param extensions
 	 * @return
 	 */
-	SdCodeUtil setExtensions(Map<String, Object> extensions);
+	ScrewDriverCode setExtensions(Map<String, Object> extensions);
 
 }

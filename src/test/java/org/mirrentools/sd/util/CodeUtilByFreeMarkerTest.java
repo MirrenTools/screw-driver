@@ -2,14 +2,13 @@ package org.mirrentools.sd.util;
 
 import java.util.Map;
 
-import org.mirrentools.sd.ScrewDriver;
-import org.mirrentools.sd.ScrewDriverImpl;
+import org.mirrentools.sd.ScrewDriverCode;
 import org.mirrentools.sd.constant.MySQL;
 import org.mirrentools.sd.converter.TestConstant;
+import org.mirrentools.sd.impl.ScrewDriverCodeImpl;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.SdDatabaseOptions;
-import org.mirrentools.sd.util.impl.SdCodeUtilImpl;
 
 /**
  * FreeMarker模板生成文件的测试
@@ -24,13 +23,12 @@ public class CodeUtilByFreeMarkerTest {
 		// 设置实体生成模板
 		Map<String, SdTemplate> templates = TestConstant.templates;
 		// 初始化代码执行生成工具
-		SdCodeUtil codeUtil = new SdCodeUtilImpl(bean, templates);
+		ScrewDriverCode codeUtil = new ScrewDriverCodeImpl(bean, templates);
 		// 初始化SQL执行生成工具
 		SdDatabaseOptions config = new SdDatabaseOptions(MySQL.MYSQL_8_DERVER, "jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
 		config.setUser("root");
 		config.setPassword("root");
 		// 执行代码
-		ScrewDriver sd = new ScrewDriverImpl(codeUtil);
-		sd.createCode();
+		codeUtil.execute();
 	}
 }

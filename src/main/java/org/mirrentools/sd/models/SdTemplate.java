@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mirrentools.sd.common.SdTemplatePathUtil;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 
@@ -16,27 +15,10 @@ import org.mirrentools.sd.constant.Constant;
  *
  */
 public class SdTemplate {
-	/**
-	 * 模板的所在路径,获取顺序获取,如果到最后还获取不到则抛出异常<br>
-	 * 如果path为空则获取 <br>
-	 * 1. classPath/SdTemplates<br>
-	 * 2. user.dir/SdTemplates<br>
-	 * 3. 创建user.dir/SdTemplates<br>
-	 * 如果path不为空则获取<br>
-	 * 1. path<br>
-	 * 2. user.dir/path<br>
-	 * 3. user.dir/SdTemplates/path<br>
-	 * 4. 创建user.dir/SdTemplates/path<<br>
-	 */
+
+	/** 模板所在的路径,获取完整的path可以通过SdTemplatePathUtil */
 	private String path;
-	/**
-	 * 模板的名字<br>
-	 * 获取模板的规则,获取顺序获取,如果到最后还获取不到则抛出异常<br>
-	 * 1. path/file<br>
-	 * 2. user.dir/SdTemplates/path/file<br>
-	 * 3. 复制screw-driver-X.jar/SdTemplates/path/file 到
-	 * user.dir/SdTemplates/path/file<br>
-	 */
+	/** 模板的名称 */
 	private String file;
 	/** 如果文件已经存在是否覆盖,默认覆盖 */
 	private boolean override = true;
@@ -54,21 +36,12 @@ public class SdTemplate {
 	private Map<String, Object> extensions;
 
 	/**
-	 * 获取模板所在路径,获取顺序<br>
-	 * 如果path为空则获取 <br>
-	 * 1. classPath/SdTemplates<br>
-	 * 2. user.dir/SdTemplates<br>
-	 * 4. 创建user.dir/SdTemplates<br>
-	 * 如果path不为空则获取<br>
-	 * 1. path<br>
-	 * 2. user.dir/path<br>
-	 * 3. user.dir/SdTemplates/path<br>
-	 * 4. 创建user.dir/SdTemplates/path
+	 * 获取模板文件夹所在路径
 	 * 
 	 * @return
 	 */
 	public String getPath() {
-		return SdTemplatePathUtil.getPath(path);
+		return path;
 	}
 
 	/**
@@ -83,22 +56,11 @@ public class SdTemplate {
 	}
 
 	/**
-	 * 获取模板的名字, 获取模板的规则,获取顺序获取,如果到最后还获取不到则抛出异常<br>
-	 * path为空 1. SdTemplates/file<br>
-	 * 2. user.dir/SdTemplates/file<br>
-	 * 3. 复制screw-driver-X.jar/SdTemplates/file 到 user.dir/SdTemplates/file<br>
-	 * path不为空 1. SdTemplates/path/file<br>
-	 * 2. user.dir/SdTemplates/path/file<br>
-	 * 3. 复制screw-driver-X.jar/SdTemplates/path/file 到
-	 * user.dir/SdTemplates/path/file<br>
-	 * 4. 复制screw-driver-X.jar/SdTemplates/file 到
-	 * user.dir/SdTemplates/path/file<br>
-	 * 
+	 * 获取模板文件的路径
 	 * 
 	 * @return
 	 */
 	public String getFile() {
-		SdTemplatePathUtil.getFile(getPath(), file);
 		return file;
 	}
 

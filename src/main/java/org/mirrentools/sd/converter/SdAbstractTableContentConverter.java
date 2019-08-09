@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.mirrentools.sd.common.SdException;
+import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
@@ -97,7 +97,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			converterIndexKey(indexs, result);
 			converterForeignKey(foreigns, result);
 		} else {
-			throw new SdException("SdBean 中 getColumns() 为 null 如果创建表没有列属性没有任何意义");
+			throw new ScrewDriverException("SdBean 中 getColumns() 为 null 如果创建表没有列属性没有任何意义");
 		}
 		converterExtensions(bean, result);
 		return result;
@@ -142,7 +142,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 				}
 				if (primary.getName() != null && col.getPrimaryName() != null) {
 					if (!col.getPrimaryName().equals(primary.getName())) {
-						throw new SdException("一张表只能有一个主键属性");
+						throw new ScrewDriverException("一张表只能有一个主键属性");
 					}
 					primary.setName(col.getPrimaryName());
 				}
@@ -170,7 +170,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 				SdColumn col = columns.get(i);
 				if (col.getIndexType() == null) {
 					System.out.println(col);
-					throw new SdException("索引的类型不能为空");
+					throw new ScrewDriverException("索引的类型不能为空");
 				}
 				SdAbstractIndexKeyContent indexContent = indexs.get(col.getIndexName());
 				if (indexContent == null) {
@@ -183,7 +183,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 				} else {
 					if (indexContent.getType() != null && col.getIndexType() != null) {
 						if (!indexContent.getType().equals(col.getIndexType())) {
-							throw new SdException("存在了两个相同索引名字,不同索引类型的属性");
+							throw new ScrewDriverException("存在了两个相同索引名字,不同索引类型的属性");
 						}
 					} else {
 						indexContent.setType(col.getIndexType());
@@ -215,7 +215,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			for (int i = 0; i < columns.size(); i++) {
 				SdColumn col = columns.get(i);
 				if (col.getForeignReferencesTable() == null) {
-					throw new SdException("外键引用那个表的属性不能为空");
+					throw new ScrewDriverException("外键引用那个表的属性不能为空");
 				}
 				SdAbstractForeignKeyContent foreign = foreigns.get(col.getForeignConstraint());
 				if (foreign == null) {
@@ -229,7 +229,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 				} else {
 					if (col.getForeignConstraint().equals(foreign.getConstraint())) {
 						if (!col.getForeignReferencesTable().equals(foreign.getReferencesTable())) {
-							throw new SdException("存在了两个相同的外键约束名,但是引用的表名不想同");
+							throw new ScrewDriverException("存在了两个相同的外键约束名,但是引用的表名不想同");
 						}
 					}
 					foreign.addForeignKey(col.getName());

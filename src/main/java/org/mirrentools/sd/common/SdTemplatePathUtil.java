@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.logging.Logger;
 
+import org.mirrentools.sd.ScrewDriverException;
+
 /**
  * 获取路径的目录
  * 
@@ -94,13 +96,14 @@ public class SdTemplatePathUtil {
 	}
 
 	/**
-	 * 获取文件,也可以用于做为检查文件是否存在,不存在就复制架包的文件<br>
+	 * 获取文件,也可以用于做为检查文件是否存在,不存在就复制jar包中的文件<br>
 	 * 获取模板的规则,获取顺序获取,如果到最后还获取不到则抛出异常<br>
 	 * 1. path/file<br>
 	 * 2. user.dir/SdTemplates/path/file<br>
 	 * 3. 复制screw-driver-X.jar/SdTemplates/path/file 到
 	 * user.dir/SdTemplates/path/file<br>
-	 * 4. 复制screw-driver-X.jar/SdTemplates/file 到 user.dir/SdTemplates/path/file<br>
+	 * 4. 复制screw-driver-X.jar/SdTemplates/file 到
+	 * user.dir/SdTemplates/path/file<br>
 	 * 
 	 * @param path
 	 *          所在路径
@@ -124,30 +127,31 @@ public class SdTemplatePathUtil {
 		} else if (!path.endsWith("/")) {
 			path += "/";
 		}
-
 		try {
 			String jarPath = SdTemplatePathUtil.class.getProtectionDomain().getCodeSource().getLocation().getFile();
 			URL url = new URL("jar:file:" + jarPath + "!/" + path + fileName);
+			LOG.info(String.format("Find template from %s", url));
 			inputStream = url.openStream();
-			LOG.info(String.format("copy template \nfrom: %s \nto: %s", url.toString(), file.toString()));
+			LOG.info(String.format("Copy template \nfrom: %s \nto: %s", url.toString(), file.toString()));
 		} catch (IOException e) {
 			try {
 				String jarPath = SdTemplatePathUtil.class.getProtectionDomain().getCodeSource().getLocation().getFile();
 				URL url = new URL("jar:file:" + jarPath + "!/" + DEFAULT_PATH + path + fileName);
+				LOG.info(String.format("Find template from %s", url));
 				inputStream = url.openStream();
-				LOG.info(String.format("copy template \nfrom: %s \nto: %s", url.toString(), file.toString()));
+				LOG.info(String.format("Copy template \nfrom: %s \nto: %s", url.toString(), file.toString()));
 			} catch (IOException e1) {
 				try {
 					String jarPath = SdTemplatePathUtil.class.getProtectionDomain().getCodeSource().getLocation().getFile();
 					URL url = new URL("jar:file:" + jarPath + "!/" + DEFAULT_PATH + fileName);
+					LOG.info(String.format("Find template from %s", url));
 					inputStream = url.openStream();
-					LOG.info(String.format("copy template \nfrom: %s \nto: %s", url.toString(), file.toString()));
+					LOG.info(String.format("Copy template \nfrom: %s \nto: %s", url.toString(), file.toString()));
 				} catch (IOException e2) {
-					throw new SdException("没有找到file查找规则中的文件");
+					throw new ScrewDriverException(String.format("Template %s was not found", fileName));
 				}
 			}
 		}
-
 		OutputStream outputStream = null;
 		try {
 			boolean newFile = file.createNewFile();
@@ -158,7 +162,7 @@ public class SdTemplatePathUtil {
 			SdIoUtil.writeAndClose(inputStream, outputStream);
 			return file;
 		} catch (Exception e) {
-			throw new SdException(e);
+			throw new ScrewDriverException(e);
 		}
 	}
 

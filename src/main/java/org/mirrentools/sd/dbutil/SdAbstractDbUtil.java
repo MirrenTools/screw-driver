@@ -62,9 +62,9 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		int result = 0;
 		Connection connection = getConnection();
 		try {
+			LOG.info("执行SQL语句:\n" + content.createSQL());
 			result = connection.createStatement().executeUpdate(content.createSQL());
 		} catch (Exception e) {
-			LOG.info("执行SQL语句:\n" + content.createSQL());
 			throw e;
 		} finally {
 			if (connection != null) {
@@ -79,9 +79,9 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		int result = 0;
 		Connection connection = getConnection();
 		try {
+			LOG.info("执行SQL语句:\n" + content.updateSQL());
 			result = connection.createStatement().executeUpdate(content.updateSQL());
 		} catch (Exception e) {
-			LOG.info("执行SQL语句:\n" + content.updateSQL());
 			throw e;
 		} finally {
 			if (connection != null) {
@@ -96,11 +96,12 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		Connection connection = getConnection();
 		Statement statement = null;
 		try {
+			LOG.info("执行SQL语句:\n" + content.createSQL());
 			statement = connection.createStatement();
 			statement.execute(content.createSQL());
+			LOG.info(String.format("Create table-->%s Successful", content.getTableName()));
 			return true;
 		} catch (Exception e) {
-			LOG.info("执行SQL语句:\n" + content.createSQL());
 			throw e;
 		} finally {
 			if (statement != null) {
@@ -117,11 +118,12 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		Connection connection = getConnection();
 		Statement statement = null;
 		try {
+			LOG.info("执行SQL语句:\n" + content.updateSQL());
 			statement = connection.createStatement();
 			statement.execute(content.updateSQL());
+			LOG.info(String.format("Update table-->%s Successful", content.getTableName()));
 			return true;
 		} catch (Exception e) {
-			LOG.info("执行SQL语句:\n" + content.updateSQL());
 			throw e;
 		} finally {
 			if (statement != null) {
@@ -138,11 +140,12 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		Connection connection = getConnection();
 		Statement statement = null;
 		try {
+			LOG.info("执行SQL语句:\n" + content.deleteSQL());
 			statement = connection.createStatement();
 			statement.execute(content.deleteSQL());
+			LOG.info(String.format("Delete table-->%s Successful", content.getTableName()));
 			return true;
 		} catch (Exception e) {
-			LOG.info("执行SQL语句:\n" + content.deleteSQL());
 			throw e;
 		} finally {
 			if (statement != null) {

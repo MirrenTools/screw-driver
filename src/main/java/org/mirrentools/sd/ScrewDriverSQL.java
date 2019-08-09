@@ -1,4 +1,4 @@
-package org.mirrentools.sd.util;
+package org.mirrentools.sd;
 
 import java.util.Map;
 
@@ -13,7 +13,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public interface SdSqlUtil {
+public interface ScrewDriverSQL {
 	/**
 	 * 执行生成
 	 * 
@@ -34,7 +34,7 @@ public interface SdSqlUtil {
 	 * @param bean
 	 * @return
 	 */
-	SdSqlUtil setBean(SdBean bean);
+	ScrewDriverSQL setBean(SdBean bean);
 
 	/**
 	 * 获取数据库连接属性
@@ -49,7 +49,7 @@ public interface SdSqlUtil {
 	 * @param dbOptions
 	 * @return
 	 */
-	SdSqlUtil setDatabaseOptions(SdDatabaseOptions dbOptions);
+	ScrewDriverSQL setDatabaseOptions(SdDatabaseOptions dbOptions);
 
 	/**
 	 * 获取如果数据库不存在,是否创建数据库(如果支持创建)
@@ -64,7 +64,7 @@ public interface SdSqlUtil {
 	 * @param createDatabase
 	 * @return
 	 */
-	SdSqlUtil setCreateDatabase(boolean createDatabase);
+	ScrewDriverSQL setCreateDatabase(boolean createDatabase);
 
 	/**
 	 * 获取如果数据库中已经存在该表是否修改
@@ -79,7 +79,7 @@ public interface SdSqlUtil {
 	 * @param alterTable
 	 * @return
 	 */
-	SdSqlUtil setAlterTable(boolean alterTable);
+	ScrewDriverSQL setAlterTable(boolean alterTable);
 
 	/**
 	 * 获取数据库操作工具
@@ -94,7 +94,7 @@ public interface SdSqlUtil {
 	 * @param dbUtil
 	 * @return
 	 */
-	SdSqlUtil setDbUtil(SdDbUtil dbUtil);
+	ScrewDriverSQL setDbUtil(SdDbUtil dbUtil);
 
 	/**
 	 * 获取转换器
@@ -109,7 +109,7 @@ public interface SdSqlUtil {
 	 * @param converter
 	 * @return
 	 */
-	SdSqlUtil setConverter(SdTableContentConverter converter);
+	ScrewDriverSQL setConverter(SdTableContentConverter converter);
 
 	/**
 	 * 添加附加属性
@@ -118,7 +118,7 @@ public interface SdSqlUtil {
 	 * @param value
 	 * @return
 	 */
-	SdCodeUtil addExtension(String key, Object value);
+	ScrewDriverCode addExtension(String key, Object value);
 
 	/**
 	 * 获取附加属性集合
@@ -133,6 +133,6 @@ public interface SdSqlUtil {
 	 * @param extensions
 	 * @return
 	 */
-	SdCodeUtil setExtensions(Map<String, Object> extensions);
+	ScrewDriverCode setExtensions(Map<String, Object> extensions);
 
 }
