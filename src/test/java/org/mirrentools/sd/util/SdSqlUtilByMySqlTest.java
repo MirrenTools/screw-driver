@@ -2,8 +2,8 @@ package org.mirrentools.sd.util;
 
 import org.mirrentools.sd.constant.MySQL;
 import org.mirrentools.sd.converter.TestConstant;
+import org.mirrentools.sd.impl.ScrewDriverSqlImpl;
 import org.mirrentools.sd.options.SdDatabaseOptions;
-import org.mirrentools.sd.util.impl.SdSqlUtilImpl;
 
 public class SdSqlUtilByMySqlTest {
 	/** 数据库配置文件 */
@@ -22,11 +22,11 @@ public class SdSqlUtilByMySqlTest {
 	}
 
 	public void testCreateClasses() {
-		boolean execute = new SdSqlUtilImpl(TestConstant.classesBean, config).execute();
+		boolean execute = new ScrewDriverSqlImpl(TestConstant.classesBean, config).execute();
 		System.out.println("SQL执行结果:" + execute);
 	}
 	public void testCreateStudent() {
-		boolean execute = new SdSqlUtilImpl(TestConstant.studentBean, config).execute();
+		boolean execute = new ScrewDriverSqlImpl(TestConstant.studentBean, config).execute();
 		System.out.println("SQL执行结果:" + execute);
 	}
 

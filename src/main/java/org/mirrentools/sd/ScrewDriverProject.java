@@ -1,4 +1,4 @@
-package org.mirrentools.sd.util;
+package org.mirrentools.sd;
 
 /**
  * 项目生成工具
@@ -6,7 +6,7 @@ package org.mirrentools.sd.util;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public interface SdProjectUtil {
+public interface ScrewDriverProject {
 	/**
 	 * 执行生成
 	 * 

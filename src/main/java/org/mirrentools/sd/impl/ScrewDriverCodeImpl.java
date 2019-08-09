@@ -1,11 +1,13 @@
-package org.mirrentools.sd.util.impl;
+package org.mirrentools.sd.impl;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
 
-import org.mirrentools.sd.common.SdException;
+import org.mirrentools.sd.ScrewDriverCode;
+import org.mirrentools.sd.ScrewDriverException;
+import org.mirrentools.sd.ScrewDriverTemplate;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.converter.SdClassConverter;
@@ -15,10 +17,8 @@ import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdRenderContent;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.models.SdTemplateContent;
-import org.mirrentools.sd.options.SdCodeUtilOptions;
+import org.mirrentools.sd.options.ScrewDriverCodeOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
-import org.mirrentools.sd.util.SdCodeUtil;
-import org.mirrentools.sd.util.SdTemplateUtil;
 
 /**
  * 代码生成器的默认实现
@@ -26,7 +26,7 @@ import org.mirrentools.sd.util.SdTemplateUtil;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdCodeUtilImpl implements SdCodeUtil {
+public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	/** JUL日志 */
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());
 
@@ -46,7 +46,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	/** 模板内容转换器 */
 	private SdTemplateContentConverter templateConverter;
 	/** 模板生成工具 */
-	private SdTemplateUtil templateUtil;
+	private ScrewDriverTemplate templateUtil;
 
 	/**
 	 * 使用默认配置初始化工具
@@ -56,11 +56,11 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	 * @param templateMap
 	 *          生成代码所需要的模板数据属性
 	 */
-	public SdCodeUtilImpl(SdBean bean, Map<String, SdTemplate> templateMaps) {
+	public ScrewDriverCodeImpl(SdBean bean, Map<String, SdTemplate> templateMaps) {
 		super();
 		this.bean = bean;
 		this.templateMaps = templateMaps;
-		init(new SdCodeUtilOptions());
+		init(new ScrewDriverCodeOptions());
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	 * @param options
 	 *          生成代码所需要的数据库配置文件
 	 */
-	public SdCodeUtilImpl(SdBean bean, Map<String, SdTemplate> templateMaps, SdCodeUtilOptions options) {
+	public ScrewDriverCodeImpl(SdBean bean, Map<String, SdTemplate> templateMaps, ScrewDriverCodeOptions options) {
 		super();
 		this.bean = bean;
 		this.templateMaps = templateMaps;
@@ -85,7 +85,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	 * 
 	 * @param options
 	 */
-	private void init(SdCodeUtilOptions options) {
+	private void init(ScrewDriverCodeOptions options) {
 		this.projectPath = options.getProjectPath();
 		this.codeFormat = options.getCodeFormat();
 		this.beanConverter = options.getBeanConverter();
@@ -96,7 +96,8 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	@Override
 	public boolean execute() {
 		if (SdUtil.isNullOrEmpty(templateMaps)) {
-			throw new NullPointerException("SdTemplate 集合不能为空,你需要先创建一个SdTemplate,因为需要它来生成");
+			throw new NullPointerException(
+					"SdTemplate cannot be null ,You need to create a SdTemplate first, because you need it to generate it.");
 		}
 		String path = getProjectPath();
 		String format = getCodeFormat();
@@ -106,12 +107,12 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 		SdRenderContent content = new SdRenderContent(clzContent, databaseOptions, templates);
 
 		for (Entry<String, SdTemplate> temp : templateMaps.entrySet()) {
-			LOG.info(String.format("执行生成%s...", temp.getKey()));
+			LOG.info(String.format("Generating %s...", temp.getKey()));
 			boolean render = templateUtil.render(path, format, content, temp.getValue());
 			if (render) {
-				LOG.info(String.format("执行生成%s-->成功!", temp.getKey()));
+				LOG.info(String.format("Generated %s--> Successful!", temp.getKey()));
 			} else {
-				LOG.warning(String.format("执行生成%s-->异常,模板工具返回false!", temp.getKey()));
+				LOG.warning(String.format("Generated %s--> Failed,render result false!", temp.getKey()));
 			}
 		}
 		return true;
@@ -123,7 +124,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdCodeUtilImpl setProjectPath(String projectPath) {
+	public ScrewDriverCodeImpl setProjectPath(String projectPath) {
 		this.projectPath = projectPath;
 		return this;
 	}
@@ -134,7 +135,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdCodeUtilImpl setCodeFormat(String codeFormat) {
+	public ScrewDriverCodeImpl setCodeFormat(String codeFormat) {
 		this.codeFormat = codeFormat;
 		return this;
 	}
@@ -145,7 +146,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdCodeUtilImpl setBean(SdBean bean) {
+	public ScrewDriverCodeImpl setBean(SdBean bean) {
 		this.bean = bean;
 		return this;
 	}
@@ -156,7 +157,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdCodeUtilImpl setDatabaseOptions(SdDatabaseOptions dbOptions) {
+	public ScrewDriverCodeImpl setDatabaseOptions(SdDatabaseOptions dbOptions) {
 		this.databaseOptions = dbOptions;
 		return this;
 	}
@@ -167,7 +168,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdCodeUtilImpl addTemplate(String key, SdTemplate template) {
+	public ScrewDriverCodeImpl addTemplate(String key, SdTemplate template) {
 		if (getTemplateMaps() == null) {
 			this.templateMaps = new LinkedHashMap<String, SdTemplate>();
 		}
@@ -176,7 +177,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdCodeUtilImpl setTemplateMaps(Map<String, SdTemplate> templateMaps) {
+	public ScrewDriverCodeImpl setTemplateMaps(Map<String, SdTemplate> templateMaps) {
 		this.templateMaps = templateMaps;
 		return this;
 	}
@@ -187,7 +188,7 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdCodeUtilImpl setBeanConverter(SdClassConverter beanConverter) {
+	public ScrewDriverCodeImpl setBeanConverter(SdClassConverter beanConverter) {
 		this.beanConverter = beanConverter;
 		return this;
 	}
@@ -198,35 +199,35 @@ public class SdCodeUtilImpl implements SdCodeUtil {
 	}
 
 	@Override
-	public SdCodeUtilImpl setTemplateConverter(SdTemplateContentConverter templateConverter) {
+	public ScrewDriverCodeImpl setTemplateConverter(SdTemplateContentConverter templateConverter) {
 		this.templateConverter = templateConverter;
 		return this;
 	}
 
 	@Override
-	public SdTemplateUtil getTemplateUtil() {
+	public ScrewDriverTemplate getTemplateUtil() {
 		return templateUtil;
 	}
 
 	@Override
-	public SdCodeUtilImpl setTemplateUtil(SdTemplateUtil templateUtil) {
+	public ScrewDriverCodeImpl setTemplateUtil(ScrewDriverTemplate templateUtil) {
 		this.templateUtil = templateUtil;
 		return this;
 	}
 
 	@Override
-	public SdCodeUtil addExtension(String key, Object value) {
-		throw new SdException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
+	public ScrewDriverCode addExtension(String key, Object value) {
+		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
 	}
 
 	@Override
 	public Map<String, Object> getExtensions() {
-		throw new SdException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
+		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
 	}
 
 	@Override
-	public SdCodeUtil setExtensions(Map<String, Object> extensions) {
-		throw new SdException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
+	public ScrewDriverCode setExtensions(Map<String, Object> extensions) {
+		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
 	}
 
 }

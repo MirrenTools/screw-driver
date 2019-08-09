@@ -1,4 +1,4 @@
-package org.mirrentools.sd.util;
+package org.mirrentools.sd;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ import org.mirrentools.sd.models.SdTemplate;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public interface SdTemplateUtil {
+public interface ScrewDriverTemplate {
 	/**
 	 * 
 	 * @param projectPath
@@ -33,7 +33,7 @@ public interface SdTemplateUtil {
 	 * @param value
 	 * @return
 	 */
-	SdCodeUtil addExtension(String key, Object value);
+	ScrewDriverCode addExtension(String key, Object value);
 
 	/**
 	 * 获取附加属性集合
@@ -48,5 +48,5 @@ public interface SdTemplateUtil {
 	 * @param extensions
 	 * @return
 	 */
-	SdCodeUtil setExtensions(Map<String, Object> extensions);
+	ScrewDriverCode setExtensions(Map<String, Object> extensions);
 }

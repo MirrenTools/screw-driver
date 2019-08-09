@@ -1,13 +1,13 @@
 package org.mirrentools.sd.options;
 
+import org.mirrentools.sd.ScrewDriverTemplate;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
 import org.mirrentools.sd.converter.impl.mysql.SdClassConverterImplByMySQL;
-import org.mirrentools.sd.util.SdTemplateUtil;
-import org.mirrentools.sd.util.impl.SdTemplateUtilImplFreeMarker;
+import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 
 /**
  * 代码创建工具的配置
@@ -15,7 +15,7 @@ import org.mirrentools.sd.util.impl.SdTemplateUtilImplFreeMarker;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdCodeUtilOptions {
+public class ScrewDriverCodeOptions {
 	/** 项目所在路径,默认当前项目 */
 	private String projectPath = SdUtil.getUserDir();
 	/** 生成使用编码格式,默认UTF-8 */
@@ -27,12 +27,12 @@ public class SdCodeUtilOptions {
 	/** 模板转换器,默认实现 */
 	private SdTemplateContentConverter templateContentConverter = new SdTemplateContentConverterDefaultImpl();
 	/** 模板生成工具,默认FreeMarker实现 */
-	private SdTemplateUtil templateUtil = new SdTemplateUtilImplFreeMarker();
+	private ScrewDriverTemplate templateUtil = new ScrewDriverTemplateFreeMarkerImpl();
 
 	/**
 	 * 初始化一个默认值的配置
 	 */
-	public SdCodeUtilOptions() {
+	public ScrewDriverCodeOptions() {
 		super();
 	}
 
@@ -41,7 +41,7 @@ public class SdCodeUtilOptions {
 	 * 
 	 * @param databaseOptions
 	 */
-	public SdCodeUtilOptions(SdDatabaseOptions databaseOptions) {
+	public ScrewDriverCodeOptions(SdDatabaseOptions databaseOptions) {
 		super();
 		this.databaseOptions = databaseOptions;
 	}
@@ -61,7 +61,7 @@ public class SdCodeUtilOptions {
 	 * @param projectPath
 	 * @return
 	 */
-	public SdCodeUtilOptions setProjectPath(String projectPath) {
+	public ScrewDriverCodeOptions setProjectPath(String projectPath) {
 		this.projectPath = projectPath;
 		return this;
 	}
@@ -81,7 +81,7 @@ public class SdCodeUtilOptions {
 	 * @param codeFormat
 	 * @return
 	 */
-	public SdCodeUtilOptions setCodeFormat(String codeFormat) {
+	public ScrewDriverCodeOptions setCodeFormat(String codeFormat) {
 		this.codeFormat = codeFormat;
 		return this;
 	}
@@ -101,7 +101,7 @@ public class SdCodeUtilOptions {
 	 * @param databaseOptions
 	 * @return
 	 */
-	public SdCodeUtilOptions setDatabaseOptions(SdDatabaseOptions databaseOptions) {
+	public ScrewDriverCodeOptions setDatabaseOptions(SdDatabaseOptions databaseOptions) {
 		this.databaseOptions = databaseOptions;
 		return this;
 	}
@@ -121,7 +121,7 @@ public class SdCodeUtilOptions {
 	 * @param beanConverter
 	 * @return
 	 */
-	public SdCodeUtilOptions setBeanConverter(SdClassConverter beanConverter) {
+	public ScrewDriverCodeOptions setBeanConverter(SdClassConverter beanConverter) {
 		this.beanConverter = beanConverter;
 		return this;
 	}
@@ -141,7 +141,7 @@ public class SdCodeUtilOptions {
 	 * @param templateContentConverter
 	 * @return
 	 */
-	public SdCodeUtilOptions setTemplateContentConverter(SdTemplateContentConverter templateContentConverter) {
+	public ScrewDriverCodeOptions setTemplateContentConverter(SdTemplateContentConverter templateContentConverter) {
 		this.templateContentConverter = templateContentConverter;
 		return this;
 	}
@@ -151,7 +151,7 @@ public class SdCodeUtilOptions {
 	 * 
 	 * @return
 	 */
-	public SdTemplateUtil getTemplateUtil() {
+	public ScrewDriverTemplate getTemplateUtil() {
 		return templateUtil;
 	}
 
@@ -161,14 +161,14 @@ public class SdCodeUtilOptions {
 	 * @param templateUtil
 	 * @return
 	 */
-	public SdCodeUtilOptions setTemplateUtil(SdTemplateUtil templateUtil) {
+	public ScrewDriverCodeOptions setTemplateUtil(ScrewDriverTemplate templateUtil) {
 		this.templateUtil = templateUtil;
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "SdCodeUtilOptions [projectPath=" + projectPath + ", codeFormat=" + codeFormat + ", databaseOptions=" + databaseOptions + ", beanConverter=" + beanConverter + ", templateContentConverter="
+		return "ScrewDriverCodeOptions [projectPath=" + projectPath + ", codeFormat=" + codeFormat + ", databaseOptions=" + databaseOptions + ", beanConverter=" + beanConverter + ", templateContentConverter="
 				+ templateContentConverter + ", templateUtil=" + templateUtil + "]";
 	}
 

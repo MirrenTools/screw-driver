@@ -11,7 +11,7 @@ import org.mirrentools.sd.dbutil.impl.SdDbUtilImplByMySQL;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdSqlUtilOptions {
+public class ScrewDriverSqlOptions {
 	/** 如果数据库不存在是否创建, 如果支持默认创建 */
 	private boolean createDatabase = true;
 	/** 如果表已经存在是否修改表,默认不修改表 */
@@ -29,7 +29,7 @@ public class SdSqlUtilOptions {
 	 * @param databaseOptions
 	 *          数据库配置文件
 	 */
-	public SdSqlUtilOptions(SdDatabaseOptions databaseOptions) {
+	public ScrewDriverSqlOptions(SdDatabaseOptions databaseOptions) {
 		super();
 		this.databaseOptions = databaseOptions;
 		setDbUtil(new SdDbUtilImplByMySQL(databaseOptions));
@@ -50,7 +50,7 @@ public class SdSqlUtilOptions {
 	 * @param createDatabase
 	 * @return
 	 */
-	public SdSqlUtilOptions setCreateDatabase(boolean createDatabase) {
+	public ScrewDriverSqlOptions setCreateDatabase(boolean createDatabase) {
 		this.createDatabase = createDatabase;
 		return this;
 	}
@@ -70,7 +70,7 @@ public class SdSqlUtilOptions {
 	 * @param alterTable
 	 * @return
 	 */
-	public SdSqlUtilOptions setAlterTable(boolean alterTable) {
+	public ScrewDriverSqlOptions setAlterTable(boolean alterTable) {
 		this.alterTable = alterTable;
 		return this;
 	}
@@ -90,7 +90,7 @@ public class SdSqlUtilOptions {
 	 * @param databaseOptions
 	 * @return
 	 */
-	public SdSqlUtilOptions setDatabaseOptions(SdDatabaseOptions databaseOptions) {
+	public ScrewDriverSqlOptions setDatabaseOptions(SdDatabaseOptions databaseOptions) {
 		this.databaseOptions = databaseOptions;
 		return this;
 	}
@@ -110,7 +110,7 @@ public class SdSqlUtilOptions {
 	 * @param dbUtil
 	 * @return
 	 */
-	public SdSqlUtilOptions setDbUtil(SdDbUtil dbUtil) {
+	public ScrewDriverSqlOptions setDbUtil(SdDbUtil dbUtil) {
 		this.dbUtil = dbUtil;
 		return this;
 	}
@@ -130,14 +130,14 @@ public class SdSqlUtilOptions {
 	 * @param converter
 	 * @return
 	 */
-	public SdSqlUtilOptions setConverter(SdTableContentConverter converter) {
+	public ScrewDriverSqlOptions setConverter(SdTableContentConverter converter) {
 		this.converter = converter;
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "SdSqlUtilOptions [createDatabase=" + createDatabase + ", alterTable=" + alterTable + ", databaseOptions=" + databaseOptions + ", dbUtil=" + dbUtil + ", converter=" + converter + "]";
+		return "ScrewDriverSqlOptions [createDatabase=" + createDatabase + ", alterTable=" + alterTable + ", databaseOptions=" + databaseOptions + ", dbUtil=" + dbUtil + ", converter=" + converter + "]";
 	}
 
 }

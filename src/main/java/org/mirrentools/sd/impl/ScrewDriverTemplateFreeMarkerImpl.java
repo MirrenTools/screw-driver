@@ -1,4 +1,4 @@
-package org.mirrentools.sd.util.impl;
+package org.mirrentools.sd.impl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,12 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.mirrentools.sd.common.SdException;
+import org.mirrentools.sd.ScrewDriverCode;
+import org.mirrentools.sd.ScrewDriverException;
+import org.mirrentools.sd.ScrewDriverTemplate;
+import org.mirrentools.sd.common.SdTemplatePathUtil;
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.models.SdRenderContent;
 import org.mirrentools.sd.models.SdTemplate;
-import org.mirrentools.sd.util.SdCodeUtil;
-import org.mirrentools.sd.util.SdTemplateUtil;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
@@ -26,7 +27,7 @@ import freemarker.template.Template;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdTemplateUtilImplFreeMarker implements SdTemplateUtil {
+public class ScrewDriverTemplateFreeMarkerImpl implements ScrewDriverTemplate {
 	/** JUL日志 */
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());
 
@@ -58,12 +59,11 @@ public class SdTemplateUtilImplFreeMarker implements SdTemplateUtil {
 		Writer writer = null;
 		try {
 			Configuration config = new Configuration(Configuration.VERSION_2_3_23);
-			config.setDirectoryForTemplateLoading(new File(template.getPath()));
+			config.setDirectoryForTemplateLoading(new File(SdTemplatePathUtil.getPath(template.getPath())));
 			config.setObjectWrapper(new DefaultObjectWrapper(Configuration.VERSION_2_3_23));
 			config.setDefaultEncoding(Constant.UTF_8);
 			Map<String, Object> dataModel = new HashMap<String, Object>();
 			dataModel.put("content", content);
-
 			File outDir = new File(outputDirPath);
 			if (!outDir.exists()) {
 				boolean mkdirs = outDir.mkdirs();
@@ -72,11 +72,13 @@ public class SdTemplateUtilImplFreeMarker implements SdTemplateUtil {
 				}
 			}
 			writer = new OutputStreamWriter(new FileOutputStream(outputFilePath), format);
+			// 按规则检查匹配文件
+			SdTemplatePathUtil.getFile(template.getPath(), template.getFile());
 			Template freeTemplate = config.getTemplate(template.getFile());
 			freeTemplate.process(dataModel, writer);
 			return true;
 		} catch (Exception e) {
-			throw new SdException(e);
+			throw new ScrewDriverException(e);
 		} finally {
 			if (writer != null) {
 				try {
@@ -90,18 +92,18 @@ public class SdTemplateUtilImplFreeMarker implements SdTemplateUtil {
 	}
 
 	@Override
-	public SdCodeUtil addExtension(String key, Object value) {
-		throw new SdException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
+	public ScrewDriverCode addExtension(String key, Object value) {
+		throw new ScrewDriverException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
 	}
 
 	@Override
 	public Map<String, Object> getExtensions() {
-		throw new SdException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
+		throw new ScrewDriverException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
 	}
 
 	@Override
-	public SdCodeUtil setExtensions(Map<String, Object> extensions) {
-		throw new SdException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
+	public ScrewDriverCode setExtensions(Map<String, Object> extensions) {
+		throw new ScrewDriverException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
 	}
 
 }

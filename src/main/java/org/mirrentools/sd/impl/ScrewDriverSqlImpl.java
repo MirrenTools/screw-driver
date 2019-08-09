@@ -1,16 +1,16 @@
-package org.mirrentools.sd.util.impl;
+package org.mirrentools.sd.impl;
 
 import java.util.Map;
 
-import org.mirrentools.sd.common.SdException;
+import org.mirrentools.sd.ScrewDriverCode;
+import org.mirrentools.sd.ScrewDriverException;
+import org.mirrentools.sd.ScrewDriverSQL;
 import org.mirrentools.sd.converter.SdTableContentConverter;
 import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
+import org.mirrentools.sd.options.ScrewDriverSqlOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
-import org.mirrentools.sd.options.SdSqlUtilOptions;
-import org.mirrentools.sd.util.SdCodeUtil;
-import org.mirrentools.sd.util.SdSqlUtil;
 
 /**
  * SQL生成器的默认实现
@@ -18,7 +18,7 @@ import org.mirrentools.sd.util.SdSqlUtil;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdSqlUtilImpl implements SdSqlUtil {
+public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	/** 创建类需要的属性 */
 	private SdBean bean;
 	/** 数据库连接属性 */
@@ -41,10 +41,10 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	 * @param databaseOptions
 	 *          数据库连接属性
 	 */
-	public SdSqlUtilImpl(SdBean bean, SdDatabaseOptions databaseOptions) {
+	public ScrewDriverSqlImpl(SdBean bean, SdDatabaseOptions databaseOptions) {
 		super();
 		this.bean = bean;
-		this.init(new SdSqlUtilOptions(databaseOptions));
+		this.init(new ScrewDriverSqlOptions(databaseOptions));
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	 * @param options
 	 *          执行器配置
 	 */
-	public SdSqlUtilImpl(SdBean bean, SdSqlUtilOptions options) {
+	public ScrewDriverSqlImpl(SdBean bean, ScrewDriverSqlOptions options) {
 		super();
 		this.bean = bean;
 		init(options);
@@ -66,7 +66,7 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	 * 
 	 * @param options
 	 */
-	private void init(SdSqlUtilOptions options) {
+	private void init(ScrewDriverSqlOptions options) {
 		setDatabaseOptions(options.getDatabaseOptions());
 		setCreateDatabase(options.isCreateDatabase());
 		setAlterTable(options.isAlterTable());
@@ -80,7 +80,7 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 		try {
 			return dbUtil.createTable(content);
 		} catch (Exception e) {
-			throw new SdException(e);
+			throw new ScrewDriverException(e);
 		}
 	}
 
@@ -90,7 +90,7 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	}
 
 	@Override
-	public SdSqlUtilImpl setBean(SdBean bean) {
+	public ScrewDriverSqlImpl setBean(SdBean bean) {
 		this.bean = bean;
 		return this;
 	}
@@ -101,7 +101,7 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	}
 
 	@Override
-	public SdSqlUtilImpl setDatabaseOptions(SdDatabaseOptions dbOptions) {
+	public ScrewDriverSqlImpl setDatabaseOptions(SdDatabaseOptions dbOptions) {
 		this.databaseOptions = dbOptions;
 		return this;
 	}
@@ -112,7 +112,7 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	}
 
 	@Override
-	public SdSqlUtilImpl setCreateDatabase(boolean createDatabase) {
+	public ScrewDriverSqlImpl setCreateDatabase(boolean createDatabase) {
 		this.createDatabase = createDatabase;
 		return this;
 	}
@@ -123,7 +123,7 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	}
 
 	@Override
-	public SdSqlUtilImpl setAlterTable(boolean alterTable) {
+	public ScrewDriverSqlImpl setAlterTable(boolean alterTable) {
 		this.alterTable = alterTable;
 		return this;
 	}
@@ -134,7 +134,7 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	}
 
 	@Override
-	public SdSqlUtilImpl setDbUtil(SdDbUtil dbUtil) {
+	public ScrewDriverSqlImpl setDbUtil(SdDbUtil dbUtil) {
 		this.dbUtil = dbUtil;
 		return this;
 	}
@@ -145,24 +145,24 @@ public class SdSqlUtilImpl implements SdSqlUtil {
 	}
 
 	@Override
-	public SdSqlUtilImpl setConverter(SdTableContentConverter converter) {
+	public ScrewDriverSqlImpl setConverter(SdTableContentConverter converter) {
 		this.converter = converter;
 		return this;
 	}
 
 	@Override
-	public SdCodeUtil addExtension(String key, Object value) {
-		throw new SdException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
+	public ScrewDriverCode addExtension(String key, Object value) {
+		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
 	}
 
 	@Override
 	public Map<String, Object> getExtensions() {
-		throw new SdException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
+		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
 	}
 
 	@Override
-	public SdCodeUtil setExtensions(Map<String, Object> extensions) {
-		throw new SdException("该方法为备用拓展字段,如果需要使用到该字段可以继承后重写");
+	public ScrewDriverCode setExtensions(Map<String, Object> extensions) {
+		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
 	}
 
 	@Override
