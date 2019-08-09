@@ -2,7 +2,8 @@
 ScrewDriver是一款可以在支持java运行环境中生成数据库表并生成代码的工具  
 ScrewDriver is a tool that generates database tables and code in a Java-enabled runtime environment  
 # 使用教程 	Manual
-SdBean 是一个表或类的描述  A description of a table or class  
+SdBean 一个表或类的描述  A description of a table or class  
+SdColumn 列的描述  A description of column  
 ScrewDriverCode 用于生成代码 create code  
 ScrewDriverSQL 用于生成SQL create SQL  
 ScrewDriverProject 用于生成项目 create Project
