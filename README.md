@@ -38,7 +38,7 @@ public static void main(String[] args) throws Exception {
     .setPackageName("entity")
     .setClassName("User"));
   // 初始化代码执行生成工具  Initialization Code Execution Generation Tool
-  SdCodeUtil codeUtil = new SdCodeUtilImpl(bean, templates);
+  ScrewDriverCode codeUtil = new ScrewDriverCodeImpl(bean, templates);
   // 创建代码   Generate class
   codeUtil.execute();
   // 初始化SQL执行生成工具   Initialize the SQL Execution Generation Tool

@@ -29,6 +29,7 @@ public class ScrewDriverMainExample {
 				.setPackageName("entity").setClassName("User"));
 		// 初始化代码执行生成工具
 		ScrewDriverCode codeUtil = new ScrewDriverCodeImpl(bean, templates);
+		codeUtil.execute();
 		// 初始化SQL执行生成工具
 		SdDatabaseOptions databaseOptions = new SdDatabaseOptions(MySQL.MYSQL_8_DERVER,
 				"jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
