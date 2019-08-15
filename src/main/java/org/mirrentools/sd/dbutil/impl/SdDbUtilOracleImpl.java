@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Logger;
 
 import org.mirrentools.sd.dbutil.SdAbstractDbUtil;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
@@ -17,7 +16,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  */
 public class SdDbUtilOracleImpl extends SdAbstractDbUtil{
 	
-	private final Logger LOG = Logger.getLogger(this.getClass().getName());
+//	private final Logger LOG = Logger.getLogger(this.getClass().getName());
 
 	/**
 	 * 初始化
