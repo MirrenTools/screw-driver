@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mirrentools.sd.converter.impl.mysql.SdTableToClassConverterImplByMySQL;
+import org.mirrentools.sd.converter.impl.mysql.SdTableToClassConverterMySqlImpl;
 import org.mirrentools.sd.models.SdClassContent;
 
 /**
@@ -18,7 +18,7 @@ public class SdTableToClassConverterTest {
 	private SdTableToClassConverter converter;
 	@Before
 	public void setUp() {
-		converter = new SdTableToClassConverterImplByMySQL();
+		converter = new SdTableToClassConverterMySqlImpl();
 	}
 	@Test
 	public void testConverter() {

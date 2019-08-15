@@ -20,7 +20,7 @@ import org.mirrentools.sd.models.db.update.impl.mysql.SdTableContentByMySQL;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdTableContentConverterImplByMySQL extends SdAbstractTableContentConverter {
+public class SdTableContentConverterMySqlImpl extends SdAbstractTableContentConverter {
 
 	@Override
 	public SdAbstractTableContent newTableContent(SdBean bean) {

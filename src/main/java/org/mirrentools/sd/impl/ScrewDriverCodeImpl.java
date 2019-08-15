@@ -30,8 +30,13 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	/** JUL日志 */
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());
 
-	/** 创建类需要的属性 */
+	/**
+	 * 实体描述,该属性与classContent二选一,如果classContent为null则由beanConverter
+	 * 将该属性转换问classContent
+	 */
 	private SdBean bean;
+	/** 创建实体类需要的属性 */
+	private SdClassContent classContent;
 	/** 数据库连接属性 */
 	private SdDatabaseOptions databaseOptions;
 	/** 模板集合key为模板的名字,value为模板属性 */
@@ -52,7 +57,7 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	 * 使用默认配置初始化工具
 	 * 
 	 * @param bean
-	 *          生成代码所需要的实体属性
+	 *          生成代码所需要的实体描述
 	 * @param templateMap
 	 *          生成代码所需要的模板数据属性
 	 */
@@ -61,6 +66,38 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 		this.bean = bean;
 		this.templateMaps = templateMaps;
 		init(new ScrewDriverCodeOptions());
+	}
+
+	/**
+	 * 使用默认配置初始化工具
+	 * 
+	 * @param classContent
+	 *          生成代码所需要的实体属性
+	 * @param templateMap
+	 *          生成代码所需要的模板数据属性
+	 */
+	public ScrewDriverCodeImpl(SdClassContent classContent, Map<String, SdTemplate> templateMaps) {
+		super();
+		this.classContent = classContent;
+		this.templateMaps = templateMaps;
+		init(new ScrewDriverCodeOptions());
+	}
+
+	/**
+	 * 使用自定义配置初始化工具
+	 * 
+	 * @param bean
+	 *          生成代码所需要的实体描述
+	 * @param templateMap
+	 *          生成代码所需要的模板
+	 * @param options
+	 *          生成代码所需要的数据库配置文件
+	 */
+	public ScrewDriverCodeImpl(SdBean bean, Map<String, SdTemplate> templateMaps, ScrewDriverCodeOptions options) {
+		super();
+		this.bean = bean;
+		this.templateMaps = templateMaps;
+		init(options);
 	}
 
 	/**
@@ -73,9 +110,9 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	 * @param options
 	 *          生成代码所需要的数据库配置文件
 	 */
-	public ScrewDriverCodeImpl(SdBean bean, Map<String, SdTemplate> templateMaps, ScrewDriverCodeOptions options) {
+	public ScrewDriverCodeImpl(SdClassContent classContent, Map<String, SdTemplate> templateMaps, ScrewDriverCodeOptions options) {
 		super();
-		this.bean = bean;
+		this.classContent = classContent;
 		this.templateMaps = templateMaps;
 		init(options);
 	}
@@ -96,15 +133,18 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	@Override
 	public boolean execute() {
 		if (SdUtil.isNullOrEmpty(templateMaps)) {
-			throw new NullPointerException(
-					"SdTemplate cannot be null ,You need to create a SdTemplate first, because you need it to generate it.");
+			throw new NullPointerException("SdTemplate cannot be null ,You need to create a SdTemplate first, because you need it to generate it.");
+		}
+		if (bean == null && classContent == null) {
+			throw new NullPointerException("SdBean or SdClassContent must choose one");
 		}
 		String path = getProjectPath();
 		String format = getCodeFormat();
-
-		SdClassContent clzContent = beanConverter.converter(getBean());
-		Map<String, SdTemplateContent> templates = templateConverter.converter(clzContent, databaseOptions, templateMaps);
-		SdRenderContent content = new SdRenderContent(clzContent, databaseOptions, templates);
+		if (classContent == null) {
+			classContent = beanConverter.converter(bean);
+		}
+		Map<String, SdTemplateContent> templates = templateConverter.converter(classContent, databaseOptions, templateMaps);
+		SdRenderContent content = new SdRenderContent(classContent, databaseOptions, templates);
 
 		for (Entry<String, SdTemplate> temp : templateMaps.entrySet()) {
 			LOG.info(String.format("Generating %s...", temp.getKey()));
@@ -137,17 +177,6 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	@Override
 	public ScrewDriverCodeImpl setCodeFormat(String codeFormat) {
 		this.codeFormat = codeFormat;
-		return this;
-	}
-
-	@Override
-	public SdBean getBean() {
-		return bean;
-	}
-
-	@Override
-	public ScrewDriverCodeImpl setBean(SdBean bean) {
-		this.bean = bean;
 		return this;
 	}
 

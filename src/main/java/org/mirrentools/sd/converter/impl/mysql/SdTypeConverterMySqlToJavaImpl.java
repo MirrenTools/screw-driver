@@ -13,13 +13,13 @@ import org.mirrentools.sd.converter.SdAbstractTypeConverter;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdTypeConverterImplByMySqlToJava extends SdAbstractTypeConverter {
+public class SdTypeConverterMySqlToJavaImpl extends SdAbstractTypeConverter {
 	/** 数据类型 */
 	private Map<String, String> dict;
 	/**
 	 * 使用默认的类型转换初始化一个实例
 	 */
-	public SdTypeConverterImplByMySqlToJava() {
+	public SdTypeConverterMySqlToJavaImpl() {
 		super(Java.OBJECT);
 		dict = MySqlAndJavaTypeDictionary.MYSQL_JAVA;
 	}
@@ -29,7 +29,7 @@ public class SdTypeConverterImplByMySqlToJava extends SdAbstractTypeConverter {
 	 * @param dict
 	 *          key=SQL类型,value=java数据类型
 	 */
-	public SdTypeConverterImplByMySqlToJava(Map<String, String> dict) {
+	public SdTypeConverterMySqlToJavaImpl(Map<String, String> dict) {
 		super(Java.OBJECT);
 		SdUtil.requireNonNull(dict);
 		this.dict = dict;
@@ -41,7 +41,7 @@ public class SdTypeConverterImplByMySqlToJava extends SdAbstractTypeConverter {
 	}
 
 	@Override
-	public SdTypeConverterImplByMySqlToJava setDict(Map<String, String> dict) {
+	public SdTypeConverterMySqlToJavaImpl setDict(Map<String, String> dict) {
 		this.dict = dict;
 		return this;
 	}

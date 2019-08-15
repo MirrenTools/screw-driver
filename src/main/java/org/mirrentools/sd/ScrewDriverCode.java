@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
-import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
@@ -53,19 +52,6 @@ public interface ScrewDriverCode {
 	 */
 	ScrewDriverCode setCodeFormat(String codeFormat);
 
-	/**
-	 * 获取创建所需要的属性
-	 * 
-	 * @return
-	 */
-	SdBean getBean();
-
-	/**
-	 * 设置创建所需要的属性
-	 * 
-	 * @param bean
-	 */
-	ScrewDriverCode setBean(SdBean bean);
 
 	/**
 	 * 获取数据库连接属性

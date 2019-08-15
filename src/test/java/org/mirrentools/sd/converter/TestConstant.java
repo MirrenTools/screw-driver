@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.constant.MySQL;
-import org.mirrentools.sd.converter.impl.mysql.SdClassConverterImplByMySQL;
+import org.mirrentools.sd.converter.impl.mysql.SdClassConverterMySqlImpl;
 import org.mirrentools.sd.enums.Relational;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
@@ -123,7 +123,7 @@ public class TestConstant {
 	 * 初始化内容
 	 */
 	private static void initClassContent() {
-		SdClassConverter converter = new SdClassConverterImplByMySQL();
+		SdClassConverter converter = new SdClassConverterMySqlImpl();
 		classesBeanContent = converter.converter(classesBean);
 		studentBeanContent = converter.converter(studentBean);
 	}

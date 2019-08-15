@@ -6,7 +6,7 @@ import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
-import org.mirrentools.sd.converter.impl.mysql.SdClassConverterImplByMySQL;
+import org.mirrentools.sd.converter.impl.mysql.SdClassConverterMySqlImpl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 
 /**
@@ -23,7 +23,7 @@ public class ScrewDriverCodeOptions {
 	/** 数据库连接属性 */
 	private SdDatabaseOptions databaseOptions;
 	/** SdBean转换器,默认MySQL实现 */
-	private SdClassConverter beanConverter = new SdClassConverterImplByMySQL();
+	private SdClassConverter beanConverter = new SdClassConverterMySqlImpl();
 	/** 模板转换器,默认实现 */
 	private SdTemplateContentConverter templateContentConverter = new SdTemplateContentConverterDefaultImpl();
 	/** 模板生成工具,默认FreeMarker实现 */

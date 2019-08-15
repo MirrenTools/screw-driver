@@ -7,7 +7,7 @@ package org.mirrentools.sd.enums;
  *
  */
 public enum Relational {
-	OneToOne("OneToOne"), OneToMany("OneToMany"), ManyToOne("OneToMany"), ManyToMany("OneToMany");
+	OneToOne("OneToOne"), OneToMany("OneToMany"), ManyToOne("ManyToOne"), ManyToMany("ManyToMany");
 	/** 关系的值 */
 	public String val;
 

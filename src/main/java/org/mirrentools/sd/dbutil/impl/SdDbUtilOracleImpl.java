@@ -15,7 +15,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdDbUtilImplByOracle extends SdAbstractDbUtil{
+public class SdDbUtilOracleImpl extends SdAbstractDbUtil{
 	
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());
 
@@ -23,7 +23,7 @@ public class SdDbUtilImplByOracle extends SdAbstractDbUtil{
 	 * 初始化
 	 * @param options
 	 */
-	public SdDbUtilImplByOracle(SdDatabaseOptions options) {
+	public SdDbUtilOracleImpl(SdDatabaseOptions options) {
 		super(options);
 	}
 

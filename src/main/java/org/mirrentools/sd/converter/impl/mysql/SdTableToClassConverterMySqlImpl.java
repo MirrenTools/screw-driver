@@ -9,23 +9,23 @@ import org.mirrentools.sd.converter.SdClassConverter;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdTableToClassConverterImplByMySQL extends SdAbstractTableToClassConverter {
+public class SdTableToClassConverterMySqlImpl extends SdAbstractTableToClassConverter {
 
 	/** 将Bean转换为内容的类转换器 */
 	private SdClassConverter classConverter;
 	/**
 	 * 实例化一个默认的类型转换
 	 */
-	public SdTableToClassConverterImplByMySQL() {
+	public SdTableToClassConverterMySqlImpl() {
 		super();
-		this.classConverter = new SdClassConverterImplByMySQL();
+		this.classConverter = new SdClassConverterMySqlImpl();
 	}
 	/**
 	 * 实例化一个指定类转换器
 	 * 
 	 * @param classConverter
 	 */
-	public SdTableToClassConverterImplByMySQL(SdClassConverter classConverter) {
+	public SdTableToClassConverterMySqlImpl(SdClassConverter classConverter) {
 		super();
 		this.classConverter = classConverter;
 	}
@@ -36,7 +36,7 @@ public class SdTableToClassConverterImplByMySQL extends SdAbstractTableToClassCo
 	}
 
 	@Override
-	public SdTableToClassConverterImplByMySQL setClassConverter(SdClassConverter classConverter) {
+	public SdTableToClassConverterMySqlImpl setClassConverter(SdClassConverter classConverter) {
 		this.classConverter = classConverter;
 		return this;
 	}

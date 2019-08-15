@@ -1,11 +1,12 @@
-package org.mirrentools.sd.dbutil;
+package org.mirrentools.sd.dbutil.mysql;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 import org.mirrentools.sd.constant.MySQL;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilImplByMySQL;
+import org.mirrentools.sd.dbutil.SdDbUtil;
+import org.mirrentools.sd.dbutil.impl.SdDbUtilMySqlImpl;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
 import org.mirrentools.sd.models.db.query.SdTableIndexKeyAttribute;
@@ -40,7 +41,7 @@ public class SdDbUtilQueryTest {
 				"jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
 		config.setUser("root");
 		config.setPassword("root");
-		sdDbUtil = new SdDbUtilImplByMySQL(config);
+		sdDbUtil = new SdDbUtilMySqlImpl(config);
 	}
 
 	public void getTableAttributeTest(String tableName) throws Exception {

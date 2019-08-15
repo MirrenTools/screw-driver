@@ -18,7 +18,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdDbUtilImplByMySQL extends SdAbstractDbUtil {
+public class SdDbUtilMySqlImpl extends SdAbstractDbUtil {
 
 	/** JUL日志 */
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());
@@ -28,7 +28,7 @@ public class SdDbUtilImplByMySQL extends SdAbstractDbUtil {
 	 * 
 	 * @param config
 	 */
-	public SdDbUtilImplByMySQL(SdDatabaseOptions options) {
+	public SdDbUtilMySqlImpl(SdDatabaseOptions options) {
 		super(options);
 	}
 
@@ -125,7 +125,7 @@ public class SdDbUtilImplByMySQL extends SdAbstractDbUtil {
 	}
 
 	@Override
-	public SdDbUtilImplByMySQL setConfig(SdDatabaseOptions config) {
+	public SdDbUtilMySqlImpl setConfig(SdDatabaseOptions config) {
 		super.setConfig(config);
 		return this;
 	}

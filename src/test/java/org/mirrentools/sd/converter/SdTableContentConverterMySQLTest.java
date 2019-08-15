@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.mirrentools.sd.constant.MySQL;
-import org.mirrentools.sd.converter.impl.mysql.SdTableContentConverterImplByMySQL;
+import org.mirrentools.sd.converter.impl.mysql.SdTableContentConverterMySqlImpl;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 
@@ -24,7 +24,7 @@ public class SdTableContentConverterMySQLTest {
 
 	@Before
 	public void setUp() {
-		converter = new SdTableContentConverterImplByMySQL();
+		converter = new SdTableContentConverterMySqlImpl();
 		multireferenceBean = TestConstant.multireferenceBean;
 	}
 

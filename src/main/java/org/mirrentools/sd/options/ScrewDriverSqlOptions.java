@@ -1,9 +1,9 @@
 package org.mirrentools.sd.options;
 
 import org.mirrentools.sd.converter.SdTableContentConverter;
-import org.mirrentools.sd.converter.impl.mysql.SdTableContentConverterImplByMySQL;
+import org.mirrentools.sd.converter.impl.mysql.SdTableContentConverterMySqlImpl;
 import org.mirrentools.sd.dbutil.SdDbUtil;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilImplByMySQL;
+import org.mirrentools.sd.dbutil.impl.SdDbUtilMySqlImpl;
 
 /**
  * 代码SQL相关工具的配置
@@ -21,7 +21,7 @@ public class ScrewDriverSqlOptions {
 	/** 数据库执行工具, 默认MySQL版实现 */
 	private SdDbUtil dbUtil;
 	/** SdBean转换器, 默认MySQL版实现 */
-	private SdTableContentConverter converter = new SdTableContentConverterImplByMySQL();
+	private SdTableContentConverter converter = new SdTableContentConverterMySqlImpl();
 
 	/**
 	 * 初始化一个配置
@@ -32,7 +32,7 @@ public class ScrewDriverSqlOptions {
 	public ScrewDriverSqlOptions(SdDatabaseOptions databaseOptions) {
 		super();
 		this.databaseOptions = databaseOptions;
-		setDbUtil(new SdDbUtilImplByMySQL(databaseOptions));
+		setDbUtil(new SdDbUtilMySqlImpl(databaseOptions));
 	}
 
 	/**
