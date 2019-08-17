@@ -29,6 +29,7 @@ public class SdBean {
 	private List<SdRelational> relationals;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
+
 	/**
 	 * 获取表或者类的名字
 	 * 
@@ -37,6 +38,7 @@ public class SdBean {
 	public String getName() {
 		return name;
 	}
+
 	/**
 	 * 设置表或者类的名字,默认一般是设置表名,因为类名一般根据表名生成
 	 * 
@@ -47,6 +49,7 @@ public class SdBean {
 		this.name = name;
 		return this;
 	}
+
 	/**
 	 * 获取表或者类的别名
 	 * 
@@ -55,6 +58,7 @@ public class SdBean {
 	public String getAlias() {
 		return alias;
 	}
+
 	/**
 	 * 设置表或者类的别名
 	 * 
@@ -74,6 +78,7 @@ public class SdBean {
 	public String getRemark() {
 		return remark;
 	}
+
 	/**
 	 * 设置注释信息
 	 * 
@@ -93,6 +98,7 @@ public class SdBean {
 	public List<SdColumn> getColumns() {
 		return columns;
 	}
+
 	/**
 	 * 添加属性列
 	 * 
@@ -107,6 +113,7 @@ public class SdBean {
 		getColumns().add(column);
 		return this;
 	}
+
 	/**
 	 * 添加属性列
 	 * 
@@ -121,6 +128,7 @@ public class SdBean {
 		getColumns().addAll(Arrays.asList(columns));
 		return this;
 	}
+
 	/**
 	 * 设置属性列
 	 * 
@@ -140,6 +148,7 @@ public class SdBean {
 	public List<SdColumn> getAdditionalColumns() {
 		return additionalColumns;
 	}
+
 	/**
 	 * 添加附加属性,该属性一般用在类需要该属性,表不需要该属性的地方
 	 * 
@@ -153,6 +162,7 @@ public class SdBean {
 		getAdditionalColumns().add(additionalColumn);
 		return this;
 	}
+
 	/**
 	 * 添加附加属性,该属性一般用在类需要该属性,表不需要该属性的地方
 	 * 
@@ -167,6 +177,7 @@ public class SdBean {
 		getAdditionalColumns().addAll(Arrays.asList(additionalColumn));
 		return this;
 	}
+
 	/**
 	 * 设置附加属性,该属性一般用在类需要该属性,表不需要该属性的地方
 	 * 
@@ -177,6 +188,7 @@ public class SdBean {
 		this.additionalColumns = additionalColumns;
 		return this;
 	}
+
 	/**
 	 * 添加关联关系
 	 * 
@@ -193,6 +205,7 @@ public class SdBean {
 		this.relationals.add(relational);
 		return this;
 	}
+
 	/**
 	 * 获取关系属性
 	 * 
@@ -201,6 +214,7 @@ public class SdBean {
 	public List<SdRelational> getRelationals() {
 		return relationals;
 	}
+
 	/**
 	 * 设置关系属性
 	 * 
@@ -238,6 +252,7 @@ public class SdBean {
 		this.extensions.put(key, value);
 		return this;
 	}
+
 	/**
 	 * 获取拓展属性
 	 * 
@@ -246,6 +261,7 @@ public class SdBean {
 	public Map<String, Object> getExtensions() {
 		return extensions;
 	}
+
 	/**
 	 * 设置拓展属性
 	 * 

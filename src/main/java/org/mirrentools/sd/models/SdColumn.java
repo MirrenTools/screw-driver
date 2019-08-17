@@ -84,7 +84,8 @@ public class SdColumn implements Comparable<SdColumn> {
 	private String collate;
 	/** 在表中的顺序 */
 	private int ordinalPosition;
-
+	/** 表需要使用的序列 */
+	private SdSequence sequence;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -428,6 +429,7 @@ public class SdColumn implements Comparable<SdColumn> {
 		this.foreignKey = true;
 		return this;
 	}
+
 	/**
 	 * 获取外键引用那个数据库
 	 * 
@@ -469,6 +471,7 @@ public class SdColumn implements Comparable<SdColumn> {
 		this.foreignKey = true;
 		return this;
 	}
+
 	/**
 	 * 获取外键的引用那个
 	 * 
@@ -477,6 +480,7 @@ public class SdColumn implements Comparable<SdColumn> {
 	public String getForeignReferencesColumn() {
 		return foreignReferencesColumn;
 	}
+
 	/**
 	 * 设置外键的引用那个列
 	 * 
@@ -678,6 +682,7 @@ public class SdColumn implements Comparable<SdColumn> {
 		this.collate = collate;
 		return this;
 	}
+
 	/**
 	 * 获取列的顺序
 	 * 
@@ -686,6 +691,7 @@ public class SdColumn implements Comparable<SdColumn> {
 	public int getOrdinalPosition() {
 		return ordinalPosition;
 	}
+
 	/**
 	 * 设置列的顺序
 	 * 
@@ -694,6 +700,26 @@ public class SdColumn implements Comparable<SdColumn> {
 	 */
 	public SdColumn setOrdinalPosition(int ordinalPosition) {
 		this.ordinalPosition = ordinalPosition;
+		return this;
+	}
+
+	/**
+	 * 获取列需要使用的序列
+	 * 
+	 * @return
+	 */
+	public SdSequence getSequence() {
+		return sequence;
+	}
+
+	/**
+	 * 设置列需要使用的序列
+	 * 
+	 * @param sequence
+	 * @return
+	 */
+	public SdColumn setSequence(SdSequence sequence) {
+		this.sequence = sequence;
 		return this;
 	}
 
@@ -777,6 +803,7 @@ public class SdColumn implements Comparable<SdColumn> {
 		sb.append("  ┣━autoIncrement = " + autoIncrement + "\n");
 		sb.append("  ┣━collate = " + collate + "\n");
 		sb.append("  ┣━ordinalPosition = " + ordinalPosition + "\n");
+		sb.append("  ┣━sequence = " + sequence + "\n");
 		sb.append("  ┗━extensions = " + extensions + "\n");
 		return sb.toString();
 	}

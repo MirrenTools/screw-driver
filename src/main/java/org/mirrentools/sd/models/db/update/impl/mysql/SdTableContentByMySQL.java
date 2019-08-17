@@ -66,6 +66,7 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 		if (getRemark() != null) {
 			sb.append(" COMMENT='" + getRemark() + "'");
 		}
+		sb.append(";");
 		return sb.toString();
 	}
 
@@ -116,12 +117,13 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 		if (getRemark() != null) {
 			sb.append(", COMMENT='" + getRemark() + "'");
 		}
+		sb.append(";");
 		return sb.toString();
 	}
 
 	@Override
 	public String deleteSQL() {
-		return " DROP TABLE `" + getTableName() + "`";
+		return " DROP TABLE `" + getTableName() + "`;";
 	}
 
 	/**
