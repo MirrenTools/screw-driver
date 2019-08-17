@@ -91,6 +91,9 @@ public interface Java {
 	/** Boolean数据类型 */
 	public final static String BOOLEAN_OBJ = "Boolean";
 
+	/** java.util.uuid数据类型 */
+	public final static String UUID = "java.util.uuid";
+	
 	/** java.util.Calendar数据类型 */
 	public final static String CALENDAR = "java.util.Calendar";
 	/** java.util.Date数据类型 */

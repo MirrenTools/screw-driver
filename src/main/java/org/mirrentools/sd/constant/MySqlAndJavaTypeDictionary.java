@@ -1,4 +1,5 @@
 package org.mirrentools.sd.constant;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class MySqlAndJavaTypeDictionary {
 		MYSQL_JAVA.put(MySQL.LONGTEXT, Java.STRING);
 		MYSQL_JAVA.put(MySQL.LONGTEXT, Java.STRING);
 
-		MYSQL_JAVA.put(MySQL.JSON, Java.JSON_JSON_FASTJSON);
+		MYSQL_JAVA.put(MySQL.JSON, Java.STRING);
 		MYSQL_JAVA.put(MySQL.SET, Java.SET);
 		MYSQL_JAVA.put(MySQL.ENUM, Java.ENUM);
 
