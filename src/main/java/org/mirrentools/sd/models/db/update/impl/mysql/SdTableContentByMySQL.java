@@ -21,7 +21,7 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 	@Override
 	public String createSQL() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("CREATE TABLE `" + getTableName() + "`(");
+		sb.append("CREATE TABLE " + (isIfNotExist() ? " if not exist " : "") + " `" + getTableName() + "`(");
 		for (int i = 0; i < getColums().size(); i++) {
 			sb.append(getColums().get(i).createSQL());
 			if (i != getColums().size() - 1) {
@@ -134,6 +134,7 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 	public String getEngine() {
 		return engine;
 	}
+
 	/**
 	 * 设置数据库引擎
 	 * 
@@ -182,6 +183,7 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 		this.collate = collate;
 		return this;
 	}
+
 	/**
 	 * 获取自增量
 	 * 
@@ -190,6 +192,7 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 	public Integer getIncrement() {
 		return increment;
 	}
+
 	/**
 	 * 设置自增量
 	 * 

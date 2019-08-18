@@ -16,6 +16,8 @@ public abstract class SdAbstractTableContent {
 	private String tableName;
 	/** 表的注释 */
 	private String remark;
+	/** 如果不存在就创建 */
+	private boolean ifNotExist;
 	/** 表列的属性 */
 	private List<SdAbstractColumnContent> colums;
 	/** 表主键列属性 */
@@ -40,12 +42,14 @@ public abstract class SdAbstractTableContent {
 	 * @return
 	 */
 	public abstract String updateSQL();
+
 	/**
 	 * 删除的SQL语句
 	 * 
 	 * @return
 	 */
 	public abstract String deleteSQL();
+
 	/**
 	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
 	 * 
@@ -54,6 +58,7 @@ public abstract class SdAbstractTableContent {
 	public String converterExtensions() {
 		return null;
 	}
+
 	/**
 	 * 获取表名字
 	 * 
@@ -91,6 +96,26 @@ public abstract class SdAbstractTableContent {
 	 */
 	public SdAbstractTableContent setRemark(String remark) {
 		this.remark = remark;
+		return this;
+	}
+
+	/**
+	 * 获取是否添加 if not exist
+	 * 
+	 * @return
+	 */
+	public boolean isIfNotExist() {
+		return ifNotExist;
+	}
+
+	/**
+	 * 设置是否添加 if not exist(如果表存在就不创建)
+	 * 
+	 * @param ifNotExist
+	 * @return
+	 */
+	public SdAbstractTableContent setIfNotExist(boolean ifNotExist) {
+		this.ifNotExist = ifNotExist;
 		return this;
 	}
 
@@ -257,8 +282,8 @@ public abstract class SdAbstractTableContent {
 
 	@Override
 	public String toString() {
-		return "SdAbstractTableContent [tableName=" + tableName + ", remark=" + remark + ", colums=" + colums + ", primaryKey=" + primaryKey
-				+ ", indexKeys=" + indexKeys + ", foreignKeys=" + foreignKeys + ", extensions=" + extensions + "]";
+		return "SdAbstractTableContent [tableName=" + tableName + ", remark=" + remark + ", colums=" + colums + ", primaryKey=" + primaryKey + ", indexKeys=" + indexKeys + ", foreignKeys=" + foreignKeys
+				+ ", extensions=" + extensions + "]";
 	}
 
 }
