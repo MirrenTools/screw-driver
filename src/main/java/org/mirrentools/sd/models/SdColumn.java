@@ -80,12 +80,14 @@ public class SdColumn implements Comparable<SdColumn> {
 	private boolean unsigned;
 	/** 列是否自增量 */
 	private boolean autoIncrement;
+	/** 自增采用的序列名称 */
+	private String sequenceName;
+	/** 约束条件,比如PostgreSql中的 CHECK (name <> ''); */
+	private String constraint;
 	/** 字符排序 */
 	private String collate;
 	/** 在表中的顺序 */
 	private int ordinalPosition;
-	/** 表需要使用的序列 */
-	private SdSequence sequence;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -644,6 +646,46 @@ public class SdColumn implements Comparable<SdColumn> {
 	}
 
 	/**
+	 * 获取自增使用的序列名称
+	 * 
+	 * @return
+	 */
+	public String getSequenceName() {
+		return sequenceName;
+	}
+
+	/**
+	 * 设置自增使用的序列名称
+	 * 
+	 * @param sequenceName
+	 * @return
+	 */
+	public SdColumn setSequenceName(String sequenceName) {
+		this.sequenceName = sequenceName;
+		return this;
+	}
+
+	/**
+	 * 获取约束条件,比如PostgreSql中的 CHECK (name <> '');
+	 * 
+	 * @return
+	 */
+	public String getConstraint() {
+		return constraint;
+	}
+
+	/**
+	 * 设置约束条件,比如PostgreSql中的 CHECK (name <> '');
+	 * 
+	 * @param constraint
+	 * @return
+	 */
+	public SdColumn setConstraint(String constraint) {
+		this.constraint = constraint;
+		return this;
+	}
+
+	/**
 	 * 获取注释
 	 * 
 	 * @return
@@ -700,26 +742,6 @@ public class SdColumn implements Comparable<SdColumn> {
 	 */
 	public SdColumn setOrdinalPosition(int ordinalPosition) {
 		this.ordinalPosition = ordinalPosition;
-		return this;
-	}
-
-	/**
-	 * 获取列需要使用的序列
-	 * 
-	 * @return
-	 */
-	public SdSequence getSequence() {
-		return sequence;
-	}
-
-	/**
-	 * 设置列需要使用的序列
-	 * 
-	 * @param sequence
-	 * @return
-	 */
-	public SdColumn setSequence(SdSequence sequence) {
-		this.sequence = sequence;
 		return this;
 	}
 
@@ -801,9 +823,10 @@ public class SdColumn implements Comparable<SdColumn> {
 		sb.append("  ┣━nullable = " + nullable + "\n");
 		sb.append("  ┣━unsigned = " + unsigned + "\n");
 		sb.append("  ┣━autoIncrement = " + autoIncrement + "\n");
+		sb.append("  ┣━sequenceName = " + sequenceName + "\n");
+		sb.append("  ┣━constraint = " + constraint + "\n");
 		sb.append("  ┣━collate = " + collate + "\n");
 		sb.append("  ┣━ordinalPosition = " + ordinalPosition + "\n");
-		sb.append("  ┣━sequence = " + sequence + "\n");
 		sb.append("  ┗━extensions = " + extensions + "\n");
 		return sb.toString();
 	}

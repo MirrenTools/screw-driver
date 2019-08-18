@@ -1,4 +1,4 @@
-package org.mirrentools.sd.dbutil.mysql;
+package org.mirrentools.sd.dbutil.postgresql;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -6,9 +6,9 @@ import static org.junit.Assert.fail;
 
 import java.sql.Connection;
 
-import org.mirrentools.sd.constant.MySQL;
+import org.mirrentools.sd.constant.PostgreSQL;
 import org.mirrentools.sd.dbutil.SdDbUtil;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilMySqlImpl;
+import org.mirrentools.sd.dbutil.impl.SdDbUtilPostgreSqlImpl;
 import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.models.db.update.impl.mysql.SdDatabaseContentByMySQL;
 import org.mirrentools.sd.options.SdDatabaseOptions;
@@ -19,12 +19,12 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdDbUtilExecuteTest {
+public class SdDbUtilPostgreSqlExecuteTest {
 	/** 操作工具 */
-	private SdDbUtil jgUtil;
+	private SdDbUtil sdDbUtil;
 
 	public static void main(String[] args) throws Exception {
-		SdDbUtilExecuteTest test = new SdDbUtilExecuteTest();
+		SdDbUtilPostgreSqlExecuteTest test = new SdDbUtilPostgreSqlExecuteTest();
 		test.setUp();
 		test.testGetConnection();
 		test.testGetConnectionDatabaseConfig();
@@ -33,16 +33,15 @@ public class SdDbUtilExecuteTest {
 	}
 
 	public void setUp() throws Exception {
-		SdDatabaseOptions config = new SdDatabaseOptions(MySQL.MYSQL_DERVER,
-				"jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
-		config.setUser("root");
+		SdDatabaseOptions config = new SdDatabaseOptions(PostgreSQL.POSTGRE_SQL_DERVER, "jdbc:postgresql://localhost:5432/root");
+		config.setUser("postgres");
 		config.setPassword("root");
-		jgUtil = new SdDbUtilMySqlImpl(config);
+		sdDbUtil = new SdDbUtilPostgreSqlImpl(config);
 	}
 
 	public void testGetConnection() {
 		try {
-			Connection connection = jgUtil.getConnection();
+			Connection connection = sdDbUtil.getConnection();
 			assertNotNull(connection);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,12 +50,11 @@ public class SdDbUtilExecuteTest {
 	}
 
 	public void testGetConnectionDatabaseConfig() {
-		SdDatabaseOptions config = new SdDatabaseOptions(MySQL.MYSQL_8_DERVER,
-				"jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
-		config.setUser("root");
+		SdDatabaseOptions config = new SdDatabaseOptions(PostgreSQL.POSTGRE_SQL_DERVER, "jdbc:postgresql://localhost:5432/root");
+		config.setUser("postgres");
 		config.setPassword("root");
 		try {
-			Connection connection = jgUtil.getConnection(config);
+			Connection connection = sdDbUtil.getConnection(config);
 			assertNotNull(connection);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,7 +65,7 @@ public class SdDbUtilExecuteTest {
 	public void testCreateDatabase() {
 		SdAbstractDatabaseContent content = new SdDatabaseContentByMySQL("item");
 		try {
-			boolean result = jgUtil.createDatabase(content);
+			boolean result = sdDbUtil.createDatabase(content);
 			assertTrue(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,7 +76,7 @@ public class SdDbUtilExecuteTest {
 	public void testUpdateDatabase() {
 		SdAbstractDatabaseContent content = new SdDatabaseContentByMySQL("item");
 		try {
-			boolean result = jgUtil.updateDatabase(content);
+			boolean result = sdDbUtil.updateDatabase(content);
 			assertTrue(result);
 		} catch (UnsupportedOperationException e) {
 			e.printStackTrace();

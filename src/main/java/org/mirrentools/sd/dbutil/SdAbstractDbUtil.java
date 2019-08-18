@@ -63,6 +63,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		Connection connection = getConnection();
 		try {
 			LOG.info("执行SQL语句:\n" + content.createSQL());
+			LOG.info(String.format("正在创建数据库: %s...", content.getDatabaseName()));
 			result = connection.createStatement().executeUpdate(content.createSQL());
 		} catch (Exception e) {
 			throw e;
@@ -164,7 +165,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		try {
 			DatabaseMetaData md = connection.getMetaData();
 			String catalog = connection.getCatalog() == null ? null : connection.getCatalog();
-			query = md.getTables(catalog, null, tableName, new String[]{"TABLE"});
+			query = md.getTables(catalog, null, tableName, new String[] { "TABLE" });
 			return query.next();
 		} catch (Exception e) {
 			throw e;
@@ -201,7 +202,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		ResultSet rs = null;
 		try {
 			DatabaseMetaData md = connection.getMetaData();
-			String[] types = {"TABLE", "VIEW"};
+			String[] types = { "TABLE", "VIEW" };
 			rs = md.getTables(null, null, null, types);
 			while (rs.next()) {
 				result.add(rs.getString(3));
@@ -227,7 +228,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 			connection = getConnection();
 			DatabaseMetaData md = connection.getMetaData();
 			String catalog = connection.getCatalog() == null ? null : connection.getCatalog();
-			String[] types = {"TABLE", "VIEW"};
+			String[] types = { "TABLE", "VIEW" };
 			rs = md.getTables(catalog, null, tableName, types);
 			SdTableAttribute result = null;
 			if (rs.next()) {
@@ -352,6 +353,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 			}
 		}
 	}
+
 	@Override
 	public List<SdTablePortedKeysAttribute> getTableImportedKeysAttribute(String tableName) throws Exception {
 		Connection connection = null;
@@ -407,6 +409,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		// REF_GENERATION
 		result.setRefGeneration(rs.getString(10));
 	}
+
 	/**
 	 * 将DatabaseMetaData.getColumns转换为SdTableColumnAttribute属性
 	 * 
@@ -458,6 +461,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		// IS_GENERATEDCOLUMN
 		result.setGeneratedcolumn(rs.getString(24));
 	}
+
 	/**
 	 * 转换主键属性
 	 * 
@@ -481,6 +485,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		// 6.PK_NAME String => primary key name (may be null)
 		result.setPkName(rs.getString(6));
 	}
+
 	/**
 	 * 将DatabaseMetaData.getColumns转换为SdTableIndexKeyAttribute属性
 	 * 
@@ -597,6 +602,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		// ◦ importedKeyNotDeferrable - see SQL92 for definition
 		result.setDeferrability(rs.getShort(14));
 	}
+
 	/**
 	 * 获取数据库配置文件
 	 * 

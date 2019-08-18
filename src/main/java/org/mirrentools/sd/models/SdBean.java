@@ -27,6 +27,8 @@ public class SdBean {
 	private List<SdColumn> additionalColumns;
 	/** 表或类的关系属性 */
 	private List<SdRelational> relationals;
+	/** 序列属性 */
+	private List<SdSequence> sequences;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -227,6 +229,38 @@ public class SdBean {
 	}
 
 	/**
+	 * 获取序列
+	 * 
+	 * @return
+	 */
+	public List<SdSequence> getSequences() {
+		return sequences;
+	}
+	/**
+	 * 设置序列
+	 * 
+	 * @param sequences
+	 * @return
+	 */
+	public SdBean addSequence(SdSequence sequence) {
+		if (getSequences()==null) {
+			setSequences(new ArrayList<SdSequence>());
+		}
+		getSequences().add(sequence);
+		return this;
+	}
+	/**
+	 * 设置序列
+	 * 
+	 * @param sequences
+	 * @return
+	 */
+	public SdBean setSequences(List<SdSequence> sequences) {
+		this.sequences = sequences;
+		return this;
+	}
+
+	/**
 	 * 获得拓展属性值
 	 * 
 	 * @return
@@ -281,6 +315,7 @@ public class SdBean {
 		sb.append("  ┣━remark = " + remark + "\n");
 		sb.append("  ┣━columns = " + columns + "\n");
 		sb.append("  ┣━relationals = " + relationals + "\n");
+		sb.append("  ┣━sequences = " + sequences + "\n");
 		sb.append("  ┗━extensions = " + extensions + "\n");
 		return sb.toString();
 

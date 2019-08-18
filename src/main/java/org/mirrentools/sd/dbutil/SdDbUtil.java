@@ -87,6 +87,7 @@ public interface SdDbUtil {
 	 * @throws Exception
 	 */
 	boolean updateTable(SdAbstractTableContent content) throws Exception;
+
 	/**
 	 * 删除一张表
 	 * 
@@ -111,7 +112,13 @@ public interface SdDbUtil {
 	 * @param tableName
 	 *          表的名字
 	 * @param unique
+	 *          when true, return only indices for unique values;when false,
+	 *          return indices regardless of whether unique or not (get index info
+	 *          )
 	 * @param approximate
+	 *          when true, result is allowed to reflect approximateor out of data
+	 *          values; when false, results are requested to beaccurate (get index
+	 *          info )
 	 * @return
 	 * @throws Exception
 	 */

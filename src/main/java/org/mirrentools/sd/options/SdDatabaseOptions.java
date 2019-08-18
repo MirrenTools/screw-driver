@@ -8,7 +8,7 @@ package org.mirrentools.sd.options;
  */
 public class SdDatabaseOptions {
 	/** 模式的连接超时时间 */
-	public static final int DEFAULT_LOGIN_TIMEOUTS_SECONDS = 3;
+	public static final int DEFAULT_LOGIN_TIMEOUTS_SECONDS = 60;
 
 	/** 连接超时时间 单位秒 */
 	private int loginTimeout = DEFAULT_LOGIN_TIMEOUTS_SECONDS;
