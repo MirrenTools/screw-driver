@@ -36,10 +36,12 @@ public abstract class SdAbstractTableContent {
 	private List<SdAbstractIndexKeyContent> indexKeys;
 	/** 表外键列的属性 */
 	private List<SdAbstractForeignKeyContent> foreignKeys;
+	/** 约束属性 */
+	private List<SdAbstractConstraintContent> constraints;
+	/** create 或 alter table ...(...);后面要执行的语句; */
+	private List<String> appends;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
-	/** create 或 alter table ...(...);后面要执行的语句;*/
-	private List<String> appends;
 
 	/**
 	 * 创建表的SQL语句
@@ -249,6 +251,40 @@ public abstract class SdAbstractTableContent {
 	}
 
 	/**
+	 * 获取约束属性
+	 * 
+	 * @return
+	 */
+	public List<SdAbstractConstraintContent> getConstraints() {
+		return constraints;
+	}
+
+	/**
+	 * 设置约束属性
+	 * 
+	 * @param constraints
+	 * @return
+	 */
+	public SdAbstractTableContent addConstraint(SdAbstractConstraintContent constraint) {
+		if (getConstraints() == null) {
+			setConstraints(new ArrayList<SdAbstractConstraintContent>());
+		}
+		getConstraints().add(constraint);
+		return this;
+	}
+
+	/**
+	 * 设置约束属性
+	 * 
+	 * @param constraints
+	 * @return
+	 */
+	public SdAbstractTableContent setConstraints(List<SdAbstractConstraintContent> constraints) {
+		this.constraints = constraints;
+		return this;
+	}
+
+	/**
 	 * 获得拓展属性
 	 * 
 	 * @return
@@ -291,16 +327,19 @@ public abstract class SdAbstractTableContent {
 		this.extensions = extensions;
 		return this;
 	}
-	
+
 	/**
 	 * 获得模式
+	 * 
 	 * @return
 	 */
 	public String getSchema() {
 		return schema;
 	}
+
 	/**
 	 * 设置模式
+	 * 
 	 * @param tablespace
 	 * @return
 	 */
@@ -308,16 +347,19 @@ public abstract class SdAbstractTableContent {
 		this.schema = schema;
 		return this;
 	}
-	
+
 	/**
 	 * 获得拥有者
+	 * 
 	 * @return
 	 */
 	public String getOwner() {
 		return owner;
 	}
+
 	/**
 	 * 设置拥有者
+	 * 
 	 * @param tablespace
 	 * @return
 	 */
@@ -325,16 +367,19 @@ public abstract class SdAbstractTableContent {
 		this.owner = owner;
 		return this;
 	}
-	
+
 	/**
 	 * 获得表空间
+	 * 
 	 * @return
 	 */
 	public String getTablespace() {
 		return tablespace;
 	}
+
 	/**
 	 * 设置表空间
+	 * 
 	 * @param tablespace
 	 * @return
 	 */
@@ -342,17 +387,19 @@ public abstract class SdAbstractTableContent {
 		this.tablespace = tablespace;
 		return this;
 	}
-	
+
 	/**
 	 * 获得索引表空间
+	 * 
 	 * @return
 	 */
 	public String getIndexspace() {
 		return indexspace;
 	}
-	
+
 	/**
 	 * 设置索引表空间
+	 * 
 	 * @param tablespace
 	 * @return
 	 */
@@ -360,16 +407,19 @@ public abstract class SdAbstractTableContent {
 		this.indexspace = indexspace;
 		return this;
 	}
+
 	/**
 	 * 获得是否可压缩
+	 * 
 	 * @return
 	 */
 	public boolean isCompressable() {
 		return compressable;
 	}
-	
+
 	/**
 	 * 设置是否可压缩
+	 * 
 	 * @param tablespace
 	 * @return
 	 */
@@ -377,16 +427,19 @@ public abstract class SdAbstractTableContent {
 		this.compressable = compressable;
 		return this;
 	}
-	
+
 	/**
 	 * 获得create 或 alter table ...(...);后面要执行的语句
+	 * 
 	 * @return
 	 */
 	public List<String> getAppends() {
 		return appends;
 	}
+
 	/**
 	 * 设置create 或 alter table ...(...);后面要执行的语句
+	 * 
 	 * @param tablespace
 	 * @return
 	 */
@@ -410,9 +463,8 @@ public abstract class SdAbstractTableContent {
 
 	@Override
 	public String toString() {
-		return "SdAbstractTableContent [tableName=" + tableName + ", remark=" + remark + ", colums=" + colums
-				+ ", primaryKey=" + primaryKey + ", indexKeys=" + indexKeys + ", foreignKeys=" + foreignKeys + ", extensions="
-				+ extensions + "]";
+		return "SdAbstractTableContent [tableName=" + tableName + ", remark=" + remark + ", colums=" + colums + ", primaryKey=" + primaryKey + ", indexKeys=" + indexKeys + ", foreignKeys=" + foreignKeys
+				+ ", extensions=" + extensions + "]";
 	}
 
 }

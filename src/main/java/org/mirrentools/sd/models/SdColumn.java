@@ -82,8 +82,12 @@ public class SdColumn implements Comparable<SdColumn> {
 	private boolean autoIncrement;
 	/** 自增采用的序列名称 */
 	private String sequenceName;
-	/** 约束条件,比如PostgreSql中的 CHECK (name <> ''); */
-	private String constraint;
+	/** 约束条件的类型 */
+	private String constraintType;
+	/** 约束条件的名称 */
+	private String constraintName;
+	/** 约束条件的条件,比如: id > 10 */
+	private String constraintExp;
 	/** 字符排序 */
 	private String collate;
 	/** 在表中的顺序 */
@@ -666,22 +670,62 @@ public class SdColumn implements Comparable<SdColumn> {
 	}
 
 	/**
-	 * 获取约束条件,比如PostgreSql中的 CHECK (name <> '');
+	 * 获取约束的类型比如check
 	 * 
 	 * @return
 	 */
-	public String getConstraint() {
-		return constraint;
+	public String getConstraintType() {
+		return constraintType;
 	}
 
 	/**
-	 * 设置约束条件,比如PostgreSql中的 CHECK (name <> '');
+	 * 设置约束的类型比如 check
 	 * 
-	 * @param constraint
+	 * @param constraintType
 	 * @return
 	 */
-	public SdColumn setConstraint(String constraint) {
-		this.constraint = constraint;
+	public SdColumn setConstraintType(String constraintType) {
+		this.constraintType = constraintType;
+		return this;
+	}
+
+	/**
+	 * 获取约束的名称, 比如index_name
+	 * 
+	 * @return
+	 */
+	public String getConstraintName() {
+		return constraintName;
+	}
+
+	/**
+	 * 设置约束的名称, 比如index_name
+	 * 
+	 * @param constraintName
+	 * @return
+	 */
+	public SdColumn setConstraintName(String constraintName) {
+		this.constraintName = constraintName;
+		return this;
+	}
+
+	/**
+	 * 获取约束条件
+	 * 
+	 * @return
+	 */
+	public String getConstraintExp() {
+		return constraintExp;
+	}
+
+	/**
+	 * 设置约束条件,比如: id > 10
+	 * 
+	 * @param constraintExp
+	 * @return
+	 */
+	public SdColumn setConstraintExp(String constraintExp) {
+		this.constraintExp = constraintExp;
 		return this;
 	}
 
@@ -824,7 +868,9 @@ public class SdColumn implements Comparable<SdColumn> {
 		sb.append("  ┣━unsigned = " + unsigned + "\n");
 		sb.append("  ┣━autoIncrement = " + autoIncrement + "\n");
 		sb.append("  ┣━sequenceName = " + sequenceName + "\n");
-		sb.append("  ┣━constraint = " + constraint + "\n");
+		sb.append("  ┣━constraintType = " + constraintType + "\n");
+		sb.append("  ┣━constraintName = " + constraintName + "\n");
+		sb.append("  ┣━constraintExp = " + constraintExp + "\n");
 		sb.append("  ┣━collate = " + collate + "\n");
 		sb.append("  ┣━ordinalPosition = " + ordinalPosition + "\n");
 		sb.append("  ┗━extensions = " + extensions + "\n");

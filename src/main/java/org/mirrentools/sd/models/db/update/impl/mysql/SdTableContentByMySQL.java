@@ -50,6 +50,15 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 				}
 			}
 		}
+		if (getConstraints() != null && !getConstraints().isEmpty()) {
+			sb.append(",");
+			for (int i = 0; i < getConstraints().size(); i++) {
+				sb.append(getConstraints().get(i).createSQL());
+				if (i != getConstraints().size() - 1) {
+					sb.append(",");
+				}
+			}
+		}
 		sb.append(")");
 		if (getEngine() != null) {
 			sb.append(" ENGINE=" + getEngine());
@@ -98,6 +107,15 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 			for (int i = 0; i < getForeignKeys().size(); i++) {
 				sb.append(getForeignKeys().get(i).updateSQL());
 				if (i != getForeignKeys().size() - 1) {
+					sb.append(",");
+				}
+			}
+		}
+		if (getConstraints() != null && !getConstraints().isEmpty()) {
+			sb.append(",");
+			for (int i = 0; i < getConstraints().size(); i++) {
+				sb.append(getConstraints().get(i).updateSQL());
+				if (i != getConstraints().size() - 1) {
 					sb.append(",");
 				}
 			}

@@ -10,6 +10,7 @@ import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
+import org.mirrentools.sd.models.db.update.SdAbstractConstraintContent;
 import org.mirrentools.sd.models.db.update.SdAbstractForeignKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractIndexKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractPrimaryKeyContent;
@@ -71,6 +72,14 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	 * @return
 	 */
 	public abstract SdAbstractForeignKeyContent newForeignKeyContent(SdColumn col);
+
+	/**
+	 * 初始化约束内容,子类需要实现它并初始化子类相应的内容
+	 * 
+	 * @param col
+	 * @return
+	 */
+	public abstract SdAbstractConstraintContent newConstraintContent(SdColumn col);
 
 	@Override
 	public SdAbstractTableContent converter(SdBean bean) {
@@ -242,6 +251,33 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			}
 			for (Entry<String, SdAbstractForeignKeyContent> entry : foreigns.entrySet()) {
 				result.addForeignKey(entry.getValue());
+			}
+		}
+	}
+
+	/**
+	 * 转换约束内容
+	 * 
+	 * @param columns
+	 * @param result
+	 */
+	public void converterConstraintContent(List<SdColumn> columns, SdAbstractTableContent result) {
+		if (!columns.isEmpty()) {
+			for (int i = 0; i < columns.size(); i++) {
+				SdAbstractConstraintContent constraint = null;
+				SdColumn col = columns.get(i);
+				if (constraint == null) {
+					constraint = newConstraintContent(col);
+				}
+				constraint.setType(col.getConstraintType());
+				constraint.setName(col.getConstraintName());
+				constraint.setExp(col.getConstraintExp());
+				if (col.getExtensions() != null) {
+					for (Entry<String, Object> ext : col.getExtensions().entrySet()) {
+						constraint.addExtension(ext.getKey(), ext.getValue());
+					}
+				}
+				result.addConstraint(constraint);
 			}
 		}
 	}

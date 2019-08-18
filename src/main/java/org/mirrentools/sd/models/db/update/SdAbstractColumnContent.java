@@ -28,6 +28,9 @@ public abstract class SdAbstractColumnContent {
 	private boolean unsigned;
 	/** 是否自增 */
 	private boolean autoIncrement;
+	/** 约束条件,比如PostgreSql中的 CHECK (name <> ''); */
+	private String constraint;
+
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -44,12 +47,14 @@ public abstract class SdAbstractColumnContent {
 	 * @return
 	 */
 	public abstract String updateSQL();
+
 	/**
 	 * 删除表的SQL语句
 	 * 
 	 * @return
 	 */
 	public abstract String deleteSQL();
+
 	/**
 	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
 	 * 
@@ -58,6 +63,7 @@ public abstract class SdAbstractColumnContent {
 	public String converterExtensions() {
 		return null;
 	}
+
 	/**
 	 * 获取列的名字
 	 * 
@@ -248,6 +254,26 @@ public abstract class SdAbstractColumnContent {
 	}
 
 	/**
+	 * 获取约束
+	 * 
+	 * @return
+	 */
+	public String getConstraint() {
+		return constraint;
+	}
+
+	/**
+	 * 添加约束
+	 * 
+	 * @param constraint
+	 * @return
+	 */
+	public SdAbstractColumnContent setConstraint(String constraint) {
+		this.constraint = constraint;
+		return this;
+	}
+
+	/**
 	 * 获得拓展属性值
 	 * 
 	 * @return
@@ -284,9 +310,8 @@ public abstract class SdAbstractColumnContent {
 
 	@Override
 	public String toString() {
-		return "AbstractColumnContent [name=" + name + ", type=" + type + ", length=" + length + ", default=" + _default + ", primary="
-				+ primary + ", notNull=" + notNull + ", remark=" + remark + ", unsigned=" + unsigned + ", autoIncrement=" + autoIncrement
-				+ ", extensions=" + extensions + "]";
+		return "AbstractColumnContent [name=" + name + ", type=" + type + ", length=" + length + ", default=" + _default + ", primary=" + primary + ", notNull=" + notNull + ", remark=" + remark
+				+ ", unsigned=" + unsigned + ", autoIncrement=" + autoIncrement + ", extensions=" + extensions + "]";
 	}
 
 }

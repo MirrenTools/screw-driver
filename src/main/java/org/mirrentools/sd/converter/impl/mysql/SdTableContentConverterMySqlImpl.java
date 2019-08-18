@@ -4,11 +4,13 @@ import org.mirrentools.sd.converter.SdAbstractTableContentConverter;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
+import org.mirrentools.sd.models.db.update.SdAbstractConstraintContent;
 import org.mirrentools.sd.models.db.update.SdAbstractForeignKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractIndexKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractPrimaryKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 import org.mirrentools.sd.models.db.update.impl.mysql.SdColumnContentByMySQL;
+import org.mirrentools.sd.models.db.update.impl.mysql.SdConstraintContentByMySQL;
 import org.mirrentools.sd.models.db.update.impl.mysql.SdForeignKeyContentByMySQL;
 import org.mirrentools.sd.models.db.update.impl.mysql.SdIndexKeyContentByMySQL;
 import org.mirrentools.sd.models.db.update.impl.mysql.SdPrimaryKeyContentByMySQL;
@@ -53,6 +55,11 @@ public class SdTableContentConverterMySqlImpl extends SdAbstractTableContentConv
 	@Override
 	public SdAbstractForeignKeyContent newForeignKeyContent(SdColumn col) {
 		return new SdForeignKeyContentByMySQL();
+	}
+
+	@Override
+	public SdAbstractConstraintContent newConstraintContent(SdColumn col) {
+		return new SdConstraintContentByMySQL();
 	}
 
 }
