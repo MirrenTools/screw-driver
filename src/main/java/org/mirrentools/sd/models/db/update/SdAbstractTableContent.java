@@ -16,14 +16,16 @@ public abstract class SdAbstractTableContent {
 	private String tableName;
 	/** 表的注释 */
 	private String remark;
-	/** 模式名*/
-	 private String schema;
-	 /** 拥有者 */
-	 private String owner;
-	 /** 索引表空间*/
-	 private String indexspace;
-	 /** 是否压缩*/
-	 private boolean compressable;
+	/** 模式名 */
+	private String schema;
+	/** 拥有者 */
+	private String owner;
+	/** 表空间 */
+	private String tablespace;
+	/** 索引表空间 */
+	private String indexspace;
+	/** 是否压缩 */
+	private boolean compressable;
 	/** 如果不存在就创建 */
 	private boolean ifNotExist;
 	/** 表列的属性 */
@@ -36,8 +38,8 @@ public abstract class SdAbstractTableContent {
 	private List<SdAbstractForeignKeyContent> foreignKeys;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
+	/** create 或 alter table ...(...);后面要执行的语句;*/
 	private List<String> appends;
-	
 
 	/**
 	 * 创建表的SQL语句
@@ -289,53 +291,112 @@ public abstract class SdAbstractTableContent {
 		this.extensions = extensions;
 		return this;
 	}
-	public  String getSchema() {
+	
+	/**
+	 * 获得模式
+	 * @return
+	 */
+	public String getSchema() {
 		return schema;
 	}
-
-	public SdAbstractTableContent  setSchema(String schema) {
+	/**
+	 * 设置模式
+	 * @param tablespace
+	 * @return
+	 */
+	public SdAbstractTableContent setSchema(String schema) {
 		this.schema = schema;
-		return this;
-	}
-
-	public String getOwner() {
-		return owner;
-	}
-
-	public SdAbstractTableContent  setOwner(String owner) {
-		this.owner = owner;
-		return this;
-	}
-
-	public String getIndexspace() {
-		return indexspace;
-	}
-
-	public SdAbstractTableContent  setIndexspace(String indexspace) {
-		this.indexspace = indexspace;
-		return this;
-	}
-
-	public boolean isCompressable() {
-		return compressable;
-	}
-
-	public SdAbstractTableContent  setCompressable(boolean compressable) {
-		this.compressable = compressable;
-		return this;
-	}
-
-	public List<String> getAppends() {
-		return appends;
-	}
-
-	public SdAbstractTableContent setAppends(List<String> appends) {
-		this.appends = appends;
 		return this;
 	}
 	
 	/**
-	 * 添加外键属性
+	 * 获得拥有者
+	 * @return
+	 */
+	public String getOwner() {
+		return owner;
+	}
+	/**
+	 * 设置拥有者
+	 * @param tablespace
+	 * @return
+	 */
+	public SdAbstractTableContent setOwner(String owner) {
+		this.owner = owner;
+		return this;
+	}
+	
+	/**
+	 * 获得表空间
+	 * @return
+	 */
+	public String getTablespace() {
+		return tablespace;
+	}
+	/**
+	 * 设置表空间
+	 * @param tablespace
+	 * @return
+	 */
+	public SdAbstractTableContent setTablespace(String tablespace) {
+		this.tablespace = tablespace;
+		return this;
+	}
+	
+	/**
+	 * 获得索引表空间
+	 * @return
+	 */
+	public String getIndexspace() {
+		return indexspace;
+	}
+	
+	/**
+	 * 设置索引表空间
+	 * @param tablespace
+	 * @return
+	 */
+	public SdAbstractTableContent setIndexspace(String indexspace) {
+		this.indexspace = indexspace;
+		return this;
+	}
+	/**
+	 * 获得是否可压缩
+	 * @return
+	 */
+	public boolean isCompressable() {
+		return compressable;
+	}
+	
+	/**
+	 * 设置是否可压缩
+	 * @param tablespace
+	 * @return
+	 */
+	public SdAbstractTableContent setCompressable(boolean compressable) {
+		this.compressable = compressable;
+		return this;
+	}
+	
+	/**
+	 * 获得create 或 alter table ...(...);后面要执行的语句
+	 * @return
+	 */
+	public List<String> getAppends() {
+		return appends;
+	}
+	/**
+	 * 设置create 或 alter table ...(...);后面要执行的语句
+	 * @param tablespace
+	 * @return
+	 */
+	public SdAbstractTableContent setAppends(List<String> appends) {
+		this.appends = appends;
+		return this;
+	}
+
+	/**
+	 * 添加create 或 alter table ...(...);后面要执行的语句
 	 * 
 	 * @param foreignKey
 	 */
@@ -346,11 +407,12 @@ public abstract class SdAbstractTableContent {
 		getAppends().add(append);
 		return this;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "SdAbstractTableContent [tableName=" + tableName + ", remark=" + remark + ", colums=" + colums + ", primaryKey=" + primaryKey + ", indexKeys=" + indexKeys + ", foreignKeys=" + foreignKeys
-				+ ", extensions=" + extensions + "]";
+		return "SdAbstractTableContent [tableName=" + tableName + ", remark=" + remark + ", colums=" + colums
+				+ ", primaryKey=" + primaryKey + ", indexKeys=" + indexKeys + ", foreignKeys=" + foreignKeys + ", extensions="
+				+ extensions + "]";
 	}
 
 }
