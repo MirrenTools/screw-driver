@@ -11,21 +11,20 @@ import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 public class SdTableContentByPostgreSQL extends SdAbstractTableContent {
 	/** 默认的模式 */
 	public final static String DEFAULT_SCHEMAS = "public";
-
 	/** 模式 */
 	private String schemas = DEFAULT_SCHEMAS;
 
 	@Override
 	public String createSQL() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("CREATE TABLE \"%s\".\"%s\"(", schemas, getTableName()));
+		sb.append(String.format("CREATE TABLE %s \"%s\".\"%s\"(", (isIfNotExist() ? " if not exist " : ""), schemas, getTableName()));
 		for (int i = 0; i < getColums().size(); i++) {
 			sb.append(getColums().get(i).createSQL());
 			if (i != getColums().size() - 1) {
 				sb.append(",");
 			}
 		}
-		
+
 		return null;
 	}
 

@@ -20,6 +20,8 @@ public class SdDatabaseOptions {
 	private String user;
 	/** 数据库连接密码 */
 	private String password;
+	/** 模式 */
+	private String schema;
 
 	/**
 	 * 初始化一个数据库配置
@@ -178,9 +180,29 @@ public class SdDatabaseOptions {
 		return this;
 	}
 
+	/**
+	 * 获取模式
+	 * 
+	 * @return
+	 */
+	public String getSchema() {
+		return schema;
+	}
+
+	/**
+	 * 设置模式
+	 * 
+	 * @param schema
+	 * @return
+	 */
+	public SdDatabaseOptions setSchema(String schema) {
+		this.schema = schema;
+		return this;
+	}
+
 	@Override
 	public String toString() {
-		return "DatabaseConfig [loginTimeout=" + loginTimeout + ", driverClass=" + driverClass + ", url=" + url + ", user=" + user + ", password=" + password + "]";
+		return "SdDatabaseOptions [loginTimeout=" + loginTimeout + ", driverClass=" + driverClass + ", url=" + url + ", user=" + user + ", password=" + password + ", schema=" + schema + "]";
 	}
 
 }
