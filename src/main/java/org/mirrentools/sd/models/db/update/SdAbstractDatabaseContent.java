@@ -3,6 +3,8 @@ package org.mirrentools.sd.models.db.update;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.mirrentools.sd.common.SdUtil;
+
 /**
  * 抽象数据库属性用于做为数据库的创建与修改使用,需要继承该类后重写sql方法
  * 
@@ -17,6 +19,7 @@ public abstract class SdAbstractDatabaseContent {
 
 	public SdAbstractDatabaseContent(String databaseName) {
 		super();
+		SdUtil.requireNonEmpty(databaseName, "数据库的名称不能为空");
 		this.databaseName = databaseName;
 	}
 
@@ -35,12 +38,14 @@ public abstract class SdAbstractDatabaseContent {
 	 *           如果数据库不支持或者没有实现则抛出该异常
 	 */
 	public abstract String updateSQL() throws UnsupportedOperationException;
+
 	/**
 	 * 删除数据库的语句
 	 * 
 	 * @return
 	 */
 	public abstract String deleteSQL();
+
 	/**
 	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
 	 * 
@@ -49,6 +54,7 @@ public abstract class SdAbstractDatabaseContent {
 	public String converterExtensions() {
 		return null;
 	}
+
 	/**
 	 * 获取数据库的名字
 	 * 
