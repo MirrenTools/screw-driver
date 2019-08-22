@@ -1,6 +1,6 @@
 package org.mirrentools.sd.models.db.update.impl.mysql;
 
-import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
+import org.mirrentools.sd.models.db.update.SdBasicTableContent;
 
 /**
  * 数据库表属性创建或者修改SQL语句的MySQL实现
@@ -8,13 +8,11 @@ import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdTableContentByMySQL extends SdAbstractTableContent {
+public class SdTableContentByMySQL extends SdBasicTableContent {
 	/** 数据库引擎 */
 	private String engine;
 	/** 字符集 */
 	private String charset;
-	/** 核对 */
-	private String collate;
 	/** 自增量 */
 	private Integer increment;
 
@@ -139,10 +137,6 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 		return sb.toString();
 	}
 
-	@Override
-	public String deleteSQL() {
-		return " DROP TABLE `" + getTableName() + "`;";
-	}
 
 	/**
 	 * 获取数据库引擎
@@ -184,25 +178,6 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 	}
 
 	/**
-	 * 获取字符集核对
-	 * 
-	 * @return
-	 */
-	public String getCollate() {
-		return collate;
-	}
-
-	/**
-	 * 设置字符集核对
-	 * 
-	 * @param collate
-	 */
-	public SdTableContentByMySQL setCollate(String collate) {
-		this.collate = collate;
-		return this;
-	}
-
-	/**
 	 * 获取自增量
 	 * 
 	 * @return
@@ -224,7 +199,7 @@ public class SdTableContentByMySQL extends SdAbstractTableContent {
 
 	@Override
 	public String toString() {
-		return "SdTableContentByMySQL [engine=" + engine + ", charset=" + charset + ", collate=" + collate + "]";
+		return "SdTableContentByMySQL [engine=" + engine + ", charset=" + charset + "]";
 	}
 
 }

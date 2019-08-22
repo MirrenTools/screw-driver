@@ -26,6 +26,8 @@ public abstract class SdAbstractTableContent {
 	private String indexspace;
 	/** 是否压缩 */
 	private Boolean compressable;
+	/** 字符排序 */
+	private String collate;
 	/** 如果不存在就创建 */
 	private boolean ifNotExist;
 	/** 表列的属性 */
@@ -110,6 +112,26 @@ public abstract class SdAbstractTableContent {
 	 */
 	public SdAbstractTableContent setRemark(String remark) {
 		this.remark = remark;
+		return this;
+	}
+
+	/**
+	 * 获取排序
+	 * 
+	 * @return
+	 */
+	public String getCollate() {
+		return collate;
+	}
+
+	/**
+	 * 设置排序
+	 * 
+	 * @param collate
+	 * @return
+	 */
+	public SdAbstractTableContent setCollate(String collate) {
+		this.collate = collate;
 		return this;
 	}
 

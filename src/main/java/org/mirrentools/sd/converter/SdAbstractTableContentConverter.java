@@ -31,6 +31,9 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	private String characterSet;
 	/** 数据库排序规则 */
 	private String collate;
+	/** 模式 */
+	private String schemas;
+
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -344,6 +347,17 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	@Override
 	public SdTableContentConverter setCollate(String collate) {
 		this.collate = collate;
+		return this;
+	}
+
+	@Override
+	public String getSchemas() {
+		return schemas;
+	}
+
+	@Override
+	public SdTableContentConverter setSchemas(String schemas) {
+		this.schemas = schemas;
 		return this;
 	}
 

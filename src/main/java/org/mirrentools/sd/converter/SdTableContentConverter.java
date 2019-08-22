@@ -27,6 +27,7 @@ public interface SdTableContentConverter {
 	 * @return
 	 */
 	String getEngine();
+
 	/**
 	 * 设置数据库引擎
 	 * 
@@ -64,6 +65,21 @@ public interface SdTableContentConverter {
 	 * @return
 	 */
 	SdTableContentConverter setCollate(String collate);
+
+	/**
+	 * 获取模式
+	 * 
+	 * @return
+	 */
+	String getSchemas();
+
+	/**
+	 * 设置模式
+	 * 
+	 * @param schemas
+	 * @return
+	 */
+	SdTableContentConverter setSchemas(String schemas);
 
 	/**
 	 * 获取拓展属性

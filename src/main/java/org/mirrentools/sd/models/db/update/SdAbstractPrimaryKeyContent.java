@@ -14,6 +14,8 @@ import java.util.Map;
 public abstract class SdAbstractPrimaryKeyContent {
 	/** 主键的名字 */
 	private String name;
+	/** 索引的注释 */
+	private String remark;
 	/** 主键的列名 */
 	private List<String> columns;
 	/** 拓展属性 */
@@ -32,6 +34,7 @@ public abstract class SdAbstractPrimaryKeyContent {
 	 * @return
 	 */
 	public abstract String updateSQL();
+
 	/**
 	 * 删除的SQL语句
 	 * 
@@ -47,6 +50,7 @@ public abstract class SdAbstractPrimaryKeyContent {
 	public String converterExtensions() {
 		return null;
 	}
+
 	/**
 	 * 获取主键的名字
 	 * 
@@ -63,6 +67,26 @@ public abstract class SdAbstractPrimaryKeyContent {
 	 */
 	public SdAbstractPrimaryKeyContent setName(String name) {
 		this.name = name;
+		return this;
+	}
+
+	/**
+	 * 获取主键的注释
+	 * 
+	 * @return
+	 */
+	public String getRemark() {
+		return remark;
+	}
+
+	/**
+	 * 设置主键的注释
+	 * 
+	 * @param remark
+	 * @return
+	 */
+	public SdAbstractPrimaryKeyContent setRemark(String remark) {
+		this.remark = remark;
 		return this;
 	}
 
@@ -87,6 +111,7 @@ public abstract class SdAbstractPrimaryKeyContent {
 		getColumns().add(column);
 		return this;
 	}
+
 	/**
 	 * 设置主键列
 	 * 

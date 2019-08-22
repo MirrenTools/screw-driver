@@ -13,6 +13,8 @@ public class SdTableContentByPostgreSQL extends SdAbstractTableContent {
 	public final static String DEFAULT_SCHEMAS = "public";
 	/** 模式 */
 	private String schemas = DEFAULT_SCHEMAS;
+	/** 字符排序 */
+	private String collate;
 
 	@Override
 	public String createSQL() {
@@ -56,6 +58,26 @@ public class SdTableContentByPostgreSQL extends SdAbstractTableContent {
 	 */
 	public SdTableContentByPostgreSQL setSchemas(String schemas) {
 		this.schemas = schemas;
+		return this;
+	}
+
+	/**
+	 * 获取排序
+	 * 
+	 * @return
+	 */
+	public String getCollate() {
+		return collate;
+	}
+
+	/**
+	 * 设置排序
+	 * 
+	 * @param collate
+	 * @return
+	 */
+	public SdTableContentByPostgreSQL setCollate(String collate) {
+		this.collate = collate;
 		return this;
 	}
 

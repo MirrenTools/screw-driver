@@ -1,21 +1,23 @@
-package org.mirrentools.sd.models.db.update.impl.mysql;
-
-import org.mirrentools.sd.models.db.update.SdBasicPrimaryKeyContent;
+package org.mirrentools.sd.models.db.update;
 
 /**
- * 主键属性的MySQL版实现
+ * 主键属性的基本实现版实现,实际数据库如果操作相同可以继承该类,不同可以选择重写
  * 
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdPrimaryKeyContentByMySQL extends SdBasicPrimaryKeyContent {
+public class SdBasicPrimaryKeyContent extends SdAbstractPrimaryKeyContent {
 
 	@Override
 	public String createSQL() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(" PRIMARY KEY (");
+		if (getName() != null) {
+			sb.append(" CONSTRAINT " + getName() + " PRIMARY KEY (");
+		} else {
+			sb.append(" PRIMARY KEY (");
+		}
 		for (int i = 0; i < getColumns().size(); i++) {
-			sb.append("`" + getColumns().get(i) + "`");
+			sb.append(getColumns().get(i));
 			if (i != getColumns().size() - 1) {
 				sb.append(",");
 			}
@@ -29,12 +31,12 @@ public class SdPrimaryKeyContentByMySQL extends SdBasicPrimaryKeyContent {
 
 	@Override
 	public String updateSQL() {
-		return deleteSQL() + " , ADD " + createSQL();
+		return " ADD "+ createSQL();
 	}
 
 	@Override
 	public String deleteSQL() {
-		return " DROP PRIMARY KEY" + (getName() == null ? "" : getName());
+		return " DROP CONSTRAINT " + (getName() == null ? "" : getName());
 	}
 
 }
