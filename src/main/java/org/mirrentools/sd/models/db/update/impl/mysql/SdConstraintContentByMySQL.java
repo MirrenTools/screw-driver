@@ -17,11 +17,17 @@ public class SdConstraintContentByMySQL extends SdAbstractConstraintContent {
 
 	@Override
 	public String updateSQL() {
-		return String.format(" ADD CONSTRAINT %s %s (%s) ", getName(), getType(), getExp());
+		return 
+				deleteSQL() == null 
+				? " ADD " + createSQL() 
+				: deleteSQL() + ", ADD " + createSQL() ;
 	}
 
 	@Override
 	public String deleteSQL() {
+		if (getRemoveConstraint() == null) {
+			return null;
+		}
 		return String.format(" DROP %s %s", getType(), getName());
 	}
 

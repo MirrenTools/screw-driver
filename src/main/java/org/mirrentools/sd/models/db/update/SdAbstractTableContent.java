@@ -25,7 +25,7 @@ public abstract class SdAbstractTableContent {
 	/** 索引表空间 */
 	private String indexspace;
 	/** 是否压缩 */
-	private boolean compressable;
+	private Boolean compressable;
 	/** 如果不存在就创建 */
 	private boolean ifNotExist;
 	/** 表列的属性 */
@@ -413,7 +413,7 @@ public abstract class SdAbstractTableContent {
 	 * 
 	 * @return
 	 */
-	public boolean isCompressable() {
+	public Boolean isCompressable() {
 		return compressable;
 	}
 
@@ -423,7 +423,7 @@ public abstract class SdAbstractTableContent {
 	 * @param tablespace
 	 * @return
 	 */
-	public SdAbstractTableContent setCompressable(boolean compressable) {
+	public SdAbstractTableContent setCompressable(Boolean compressable) {
 		this.compressable = compressable;
 		return this;
 	}

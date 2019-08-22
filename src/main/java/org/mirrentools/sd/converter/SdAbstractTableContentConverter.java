@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.mirrentools.sd.ScrewDriverException;
+import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
@@ -84,6 +85,27 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	@Override
 	public SdAbstractTableContent converter(SdBean bean) {
 		SdAbstractTableContent result = newTableContent(bean);
+		if (result.getTableName() == null) {
+			result.setTableName(SdUtil.toUnderScoreCase(bean.getName()));
+		}
+		if (result.getRemark() == null) {
+			result.setRemark(bean.getRemark());
+		}
+		if (result.getSchema() == null) {
+			result.setSchema(bean.getSchema());
+		}
+		if (result.getOwner() == null) {
+			result.setOwner(bean.getOwner());
+		}
+		if (result.getTablespace() == null) {
+			result.setTablespace(bean.getTablespace());
+		}
+		if (result.getIndexspace() == null) {
+			result.setIndexspace(bean.getIndexspace());
+		}
+		if (result.isCompressable() == null) {
+			result.setCompressable(bean.isCompressable());
+		}
 		if (bean.getColumns() != null) {
 			List<SdColumn> columns = new ArrayList<SdColumn>();
 			List<SdColumn> primarys = new ArrayList<SdColumn>();

@@ -17,6 +17,8 @@ public abstract class SdAbstractConstraintContent {
 	private String name;
 	/** 约束的表达式,比如: id > 10 */
 	private String exp;
+	/** 要删除的约束名 */
+	private String removeConstraint;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -105,6 +107,26 @@ public abstract class SdAbstractConstraintContent {
 	 */
 	public SdAbstractConstraintContent setExp(String exp) {
 		this.exp = exp;
+		return this;
+	}
+
+	/**
+	 * 获取要删除的约束名
+	 * 
+	 * @return
+	 */
+	public String getRemoveConstraint() {
+		return removeConstraint;
+	}
+
+	/**
+	 * 设置要删除的要删除的约束名
+	 * 
+	 * @param removeConstraint
+	 * @return
+	 */
+	public SdAbstractConstraintContent setRemoveConstraint(String removeConstraint) {
+		this.removeConstraint = removeConstraint;
 		return this;
 	}
 

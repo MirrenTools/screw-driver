@@ -21,6 +21,16 @@ public class SdBean {
 	private String alias;
 	/** 表或类的注释 */
 	private String remark;
+	/** 模式名 */
+	private String schema;
+	/** 拥有者 */
+	private String owner;
+	/** 表空间 */
+	private String tablespace;
+	/** 索引表空间 */
+	private String indexspace;
+	/** 是否压缩 */
+	private Boolean compressable;
 	/** 表或类的属性 */
 	private List<SdColumn> columns;
 	/** 附加的属性,该属性一般用于只需要创建类属性而不需要创建表属性时使用,可以直接定义Field属性 */
@@ -89,6 +99,106 @@ public class SdBean {
 	 */
 	public SdBean setRemark(String remark) {
 		this.remark = remark;
+		return this;
+	}
+
+	/**
+	 * 获取模式名
+	 * 
+	 * @return
+	 */
+	public String getSchema() {
+		return schema;
+	}
+
+	/**
+	 * 设置模式名
+	 * 
+	 * @param schema
+	 * @return
+	 */
+	public SdBean setSchema(String schema) {
+		this.schema = schema;
+		return this;
+	}
+
+	/**
+	 * 获取拥有者
+	 * 
+	 * @return
+	 */
+	public String getOwner() {
+		return owner;
+	}
+
+	/**
+	 * 设置拥有者
+	 * 
+	 * @param owner
+	 * @return
+	 */
+	public SdBean setOwner(String owner) {
+		this.owner = owner;
+		return this;
+	}
+
+	/**
+	 * 获取表空间
+	 * 
+	 * @return
+	 */
+	public String getTablespace() {
+		return tablespace;
+	}
+
+	/**
+	 * 设置表空间
+	 * 
+	 * @param tablespace
+	 * @return
+	 */
+	public SdBean setTablespace(String tablespace) {
+		this.tablespace = tablespace;
+		return this;
+	}
+
+	/**
+	 * 获取索引空间
+	 * 
+	 * @return
+	 */
+	public String getIndexspace() {
+		return indexspace;
+	}
+
+	/**
+	 * 设置索引空间
+	 * 
+	 * @param indexspace
+	 * @return
+	 */
+	public SdBean setIndexspace(String indexspace) {
+		this.indexspace = indexspace;
+		return this;
+	}
+
+	/**
+	 * 是否压缩
+	 * 
+	 * @return
+	 */
+	public Boolean isCompressable() {
+		return compressable;
+	}
+
+	/**
+	 * 设置是否压缩
+	 * 
+	 * @param compressable
+	 * @return
+	 */
+	public SdBean setCompressable(Boolean compressable) {
+		this.compressable = compressable;
 		return this;
 	}
 
@@ -236,6 +346,7 @@ public class SdBean {
 	public List<SdSequence> getSequences() {
 		return sequences;
 	}
+
 	/**
 	 * 设置序列
 	 * 
@@ -243,12 +354,13 @@ public class SdBean {
 	 * @return
 	 */
 	public SdBean addSequence(SdSequence sequence) {
-		if (getSequences()==null) {
+		if (getSequences() == null) {
 			setSequences(new ArrayList<SdSequence>());
 		}
 		getSequences().add(sequence);
 		return this;
 	}
+
 	/**
 	 * 设置序列
 	 * 
