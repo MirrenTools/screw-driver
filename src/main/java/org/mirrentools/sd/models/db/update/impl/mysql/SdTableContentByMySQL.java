@@ -19,7 +19,7 @@ public class SdTableContentByMySQL extends SdBasicTableContent {
 	@Override
 	public String createSQL() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("CREATE TABLE " + (isIfNotExist() ? " if not exist " : "") + " `" + getTableName() + "`(");
+		sb.append("CREATE TABLE " + (isIfNotExist() ? " if not exist " : "") + " " + getTableName() + "(");
 		for (int i = 0; i < getColums().size(); i++) {
 			sb.append(getColums().get(i).createSQL());
 			if (i != getColums().size() - 1) {
@@ -80,7 +80,7 @@ public class SdTableContentByMySQL extends SdBasicTableContent {
 	@Override
 	public String updateSQL() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("ALTER TABLE `" + getTableName() + "`");
+		sb.append("ALTER TABLE " + getTableName() + " ");
 		for (int i = 0; i < getColums().size(); i++) {
 			sb.append(getColums().get(i).updateSQL());
 			if (i != getColums().size() - 1) {

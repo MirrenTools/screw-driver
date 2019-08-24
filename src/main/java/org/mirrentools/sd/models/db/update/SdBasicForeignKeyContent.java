@@ -14,7 +14,6 @@ public class SdBasicForeignKeyContent extends SdAbstractForeignKeyContent {
 	public String createSQL() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" CONSTRAINT " + getConstraint());
-
 		sb.append(" FOREIGN KEY (");
 		for (int i = 0; i < getForeignKeys().size(); i++) {
 			sb.append(getForeignKeys().get(i));

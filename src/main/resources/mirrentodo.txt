@@ -1,2 +1,2 @@
 //Mirren代办事项
-完成SdColumnContentByPostgreSQL与SdTableContentByPostgreSQL的实现并编写测试用例
+编写PostgreSQL测试用例

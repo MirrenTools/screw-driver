@@ -18,7 +18,7 @@ public abstract class SdAbstractForeignKeyContent {
 	private String removeConstraint;
 	/** 外键列名 */
 	private List<String> foreignKeys;
-	/** 引用库 */
+	/** 引用库或模式 */
 	private String referencesDB;
 	/** 引用表 */
 	private String referencesTable;
@@ -35,7 +35,7 @@ public abstract class SdAbstractForeignKeyContent {
 	public abstract String createSQL();
 
 	/**
-	 * 修改的SQL语句
+	 * 修改的SQL语句,仅可以添加或删除
 	 * 
 	 * @return
 	 */
@@ -56,6 +56,7 @@ public abstract class SdAbstractForeignKeyContent {
 	public String converterExtensions() {
 		return null;
 	}
+
 	/**
 	 * 获取约束名
 	 * 
@@ -74,6 +75,7 @@ public abstract class SdAbstractForeignKeyContent {
 		this.constraint = constraint;
 		return this;
 	}
+
 	/**
 	 * 获取要删除的约束名
 	 * 
@@ -82,6 +84,7 @@ public abstract class SdAbstractForeignKeyContent {
 	public String getRemoveConstraint() {
 		return removeConstraint;
 	}
+
 	/**
 	 * 设置要删除的要删除的约束名
 	 * 
@@ -94,7 +97,7 @@ public abstract class SdAbstractForeignKeyContent {
 	}
 
 	/**
-	 * 获取引用那个数据库
+	 * 获取引用那个数据库或模式
 	 * 
 	 * @return
 	 */
@@ -103,7 +106,7 @@ public abstract class SdAbstractForeignKeyContent {
 	}
 
 	/**
-	 * 设置应用那个数据库
+	 * 设置应用那个数据库或模式
 	 * 
 	 * @param referencesDB
 	 * @return

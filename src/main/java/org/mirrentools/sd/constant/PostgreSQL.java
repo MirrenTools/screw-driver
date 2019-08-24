@@ -11,6 +11,18 @@ public interface PostgreSQL {
 	public final static String POSTGRE_SQL = "PostgreSQL";
 	/** PostgreSQL数据库驱动包常量=org.postgresql.Driver */
 	public final static String POSTGRE_SQL_DERVER = "org.postgresql.Driver";
+	/** PostgreSQL索引类型 btree */
+	public final static String INDEX_BTREE = "btree";
+	/** PostgreSQL索引类型 hash */
+	public final static String INDEX_HASH = "hash";
+	/** PostgreSQL索引类型 gist */
+	public final static String INDEX_GIST = "gist";
+	/** PostgreSQL索引类型 gin */
+	public final static String INDEX_GIN = "gin";
+	/** PostgreSQL索引类型 spgist */
+	public final static String INDEX_SPGIST = "spgist";
+	/** PostgreSQL索引类型 brin */
+	public final static String INDEX_BRIN = "brin";
 
 	/** PostgreSQL数据类型character 定长字符串 */
 	public final static String CHARACTER = "character";
@@ -50,7 +62,7 @@ public interface PostgreSQL {
 	public final static String BIGSERIAL = "bigserial";
 	/** PostgreSQL数据类型serial8 自动增长的8字节整数 */
 	public final static String SERIAL8 = "serial8";
-	
+
 	/** PostgreSQL数据类型real 单精度浮点数（4字节） */
 	public final static String REAL = "real";
 	/** PostgreSQL数据类型float4 单精度浮点数（4字节） */

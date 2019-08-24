@@ -28,7 +28,7 @@ public class SdTableContentConverterPostgreImpl extends SdAbstractTableContentCo
 	public SdAbstractTableContent newTableContent(SdBean bean) {
 		SdTableContentByPostgreSQL result = new SdTableContentByPostgreSQL();
 		if (super.getSchemas() != null) {
-			result.setSchemas(super.getSchemas());
+			result.setSchema(super.getSchemas());
 		}
 		return result;
 	}
@@ -57,5 +57,4 @@ public class SdTableContentConverterPostgreImpl extends SdAbstractTableContentCo
 	public SdAbstractConstraintContent newConstraintContent(SdColumn col) {
 		return new SdConstraintContentByPostgreSQL();
 	}
-
 }

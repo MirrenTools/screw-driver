@@ -40,8 +40,6 @@ public abstract class SdAbstractTableContent {
 	private List<SdAbstractForeignKeyContent> foreignKeys;
 	/** 约束属性 */
 	private List<SdAbstractConstraintContent> constraints;
-	/** create 或 alter table ...(...);后面要执行的语句; */
-	private List<String> appends;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -53,7 +51,7 @@ public abstract class SdAbstractTableContent {
 	public abstract String createSQL();
 
 	/**
-	 * 修改表的SQL语句
+	 * 修改表的SQL语句,仅可以添加或删除
 	 * 
 	 * @return
 	 */
@@ -447,39 +445,6 @@ public abstract class SdAbstractTableContent {
 	 */
 	public SdAbstractTableContent setCompressable(Boolean compressable) {
 		this.compressable = compressable;
-		return this;
-	}
-
-	/**
-	 * 获得create 或 alter table ...(...);后面要执行的语句
-	 * 
-	 * @return
-	 */
-	public List<String> getAppends() {
-		return appends;
-	}
-
-	/**
-	 * 设置create 或 alter table ...(...);后面要执行的语句
-	 * 
-	 * @param tablespace
-	 * @return
-	 */
-	public SdAbstractTableContent setAppends(List<String> appends) {
-		this.appends = appends;
-		return this;
-	}
-
-	/**
-	 * 添加create 或 alter table ...(...);后面要执行的语句
-	 * 
-	 * @param foreignKey
-	 */
-	public SdAbstractTableContent addAppends(String append) {
-		if (getAppends() == null) {
-			setAppends(new ArrayList<String>());
-		}
-		getAppends().add(append);
 		return this;
 	}
 

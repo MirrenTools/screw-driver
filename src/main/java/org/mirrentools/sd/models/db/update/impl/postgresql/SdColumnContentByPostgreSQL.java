@@ -10,9 +10,4 @@ import org.mirrentools.sd.models.db.update.SdBasicColumnContent;
  */
 public class SdColumnContentByPostgreSQL extends SdBasicColumnContent {
 
-	@Override
-	public String createSQL() {
-		return null;
-	}
-
 }

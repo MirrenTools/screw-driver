@@ -10,4 +10,9 @@ import org.mirrentools.sd.models.db.update.SdBasicIndexKeyContent;
  */
 public class SdIndexKeyContentByPostgreSQL extends SdBasicIndexKeyContent {
 
+	@Override
+	public String createSQL() {
+		return null;
+	}
+
 }

@@ -60,7 +60,7 @@ public class SdColumn implements Comparable<SdColumn> {
 	private boolean foreignKey;
 	/** 外键的名字 */
 	private String foreignConstraint;
-	/** 外键引用那个表 */
+	/** 外键引用那个库或模式 */
 	private String foreignReferencesDB;
 	/** 外键引用那个表 */
 	private String foreignReferencesTable;
@@ -68,6 +68,10 @@ public class SdColumn implements Comparable<SdColumn> {
 	private String foreignReferencesColumn;
 	/** 是否为索引 */
 	private boolean index;
+	/** 索引是否为唯一 */
+	private boolean unique;
+	/** 索引是否并发 */
+	private boolean concurrently;
 	/** 索引的类型 */
 	private String indexType;
 	/** 索引的名字 */
@@ -437,7 +441,7 @@ public class SdColumn implements Comparable<SdColumn> {
 	}
 
 	/**
-	 * 获取外键引用那个数据库
+	 * 获取外键引用那个数据库或模式
 	 * 
 	 * @return
 	 */
@@ -446,7 +450,7 @@ public class SdColumn implements Comparable<SdColumn> {
 	}
 
 	/**
-	 * 设置外键的引用那个数据库
+	 * 设置外键的引用那个数据库或模式
 	 * 
 	 * @param foreignReferencesDB
 	 * @return
@@ -525,6 +529,46 @@ public class SdColumn implements Comparable<SdColumn> {
 	 */
 	public boolean isIndex() {
 		return index;
+	}
+
+	/**
+	 * 获取是否为唯一索引
+	 * 
+	 * @return
+	 */
+	public boolean isUnique() {
+		return unique;
+	}
+
+	/**
+	 * 设置是否为唯一索引
+	 * 
+	 * @param unique
+	 * @return
+	 */
+	public SdColumn setUnique(boolean unique) {
+		this.unique = unique;
+		return this;
+	}
+
+	/**
+	 * 获取索引是否为并发
+	 * 
+	 * @return
+	 */
+	public boolean isConcurrently() {
+		return concurrently;
+	}
+
+	/**
+	 * 设置索引是否为并发
+	 * 
+	 * @param concurrently
+	 * @return
+	 */
+	public SdColumn setConcurrently(boolean concurrently) {
+		this.concurrently = concurrently;
+		return this;
 	}
 
 	/**

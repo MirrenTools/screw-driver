@@ -16,6 +16,10 @@ import java.util.Map;
  *
  */
 public abstract class SdAbstractIndexKeyContent {
+	/** 索引是否为唯一 */
+	private boolean unique;
+	/** 索引是否并发 */
+	private boolean concurrently;
 	/** 索引的类型 */
 	private String type;
 	/** 索引的名字 */
@@ -37,7 +41,7 @@ public abstract class SdAbstractIndexKeyContent {
 	public abstract String createSQL();
 
 	/**
-	 * 修改的SQL语句
+	 * 修改的SQL语句,仅可以添加或删除
 	 * 
 	 * @return
 	 */
@@ -49,6 +53,7 @@ public abstract class SdAbstractIndexKeyContent {
 	 * @return
 	 */
 	public abstract String deleteSQL();
+
 	/**
 	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
 	 * 
@@ -57,6 +62,47 @@ public abstract class SdAbstractIndexKeyContent {
 	public String converterExtensions() {
 		return null;
 	}
+
+	/**
+	 * 获取索引是否为唯一索引
+	 * 
+	 * @return
+	 */
+	public boolean isUnique() {
+		return unique;
+	}
+
+	/**
+	 * 设置索引是否为唯一索引
+	 * 
+	 * @param unique
+	 * @return
+	 */
+	public SdAbstractIndexKeyContent setUnique(boolean unique) {
+		this.unique = unique;
+		return this;
+	}
+
+	/**
+	 * 获取索引是否并发
+	 * 
+	 * @return
+	 */
+	public boolean isConcurrently() {
+		return concurrently;
+	}
+
+	/**
+	 * 设置索引是否并发
+	 * 
+	 * @param concurrently
+	 * @return
+	 */
+	public SdAbstractIndexKeyContent setConcurrently(boolean concurrently) {
+		this.concurrently = concurrently;
+		return this;
+	}
+
 	/**
 	 * 获取索引类型
 	 * 
@@ -94,6 +140,7 @@ public abstract class SdAbstractIndexKeyContent {
 		this.name = name;
 		return this;
 	}
+
 	/**
 	 * 设置要删除索引的名字
 	 * 
@@ -102,6 +149,7 @@ public abstract class SdAbstractIndexKeyContent {
 	public String getRemoveIndexName() {
 		return removeIndexName;
 	}
+
 	/**
 	 * 设置删除索引的名字
 	 * 

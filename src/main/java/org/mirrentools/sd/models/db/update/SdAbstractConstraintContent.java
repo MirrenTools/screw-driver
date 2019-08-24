@@ -30,7 +30,7 @@ public abstract class SdAbstractConstraintContent {
 	public abstract String createSQL();
 
 	/**
-	 * 修改的SQL语句
+	 * 修改的SQL语句,仅可以添加或删除
 	 * 
 	 * @return
 	 */

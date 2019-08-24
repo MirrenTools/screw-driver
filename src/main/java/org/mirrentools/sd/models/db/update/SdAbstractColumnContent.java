@@ -28,8 +28,6 @@ public abstract class SdAbstractColumnContent {
 	private boolean unsigned;
 	/** 是否自增 */
 	private boolean autoIncrement;
-	/** 约束条件,比如PostgreSql中的 CHECK (name <> ''); */
-	private String constraint;
 
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
@@ -42,7 +40,7 @@ public abstract class SdAbstractColumnContent {
 	public abstract String createSQL();
 
 	/**
-	 * 修改表的SQL语句
+	 * 修改表的SQL语句,仅可以添加或删除列
 	 * 
 	 * @return
 	 */
@@ -251,26 +249,6 @@ public abstract class SdAbstractColumnContent {
 	 */
 	public Map<String, Object> getExtensions() {
 		return extensions;
-	}
-
-	/**
-	 * 获取约束
-	 * 
-	 * @return
-	 */
-	public String getConstraint() {
-		return constraint;
-	}
-
-	/**
-	 * 添加约束
-	 * 
-	 * @param constraint
-	 * @return
-	 */
-	public SdAbstractColumnContent setConstraint(String constraint) {
-		this.constraint = constraint;
-		return this;
 	}
 
 	/**

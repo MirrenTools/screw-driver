@@ -11,6 +11,78 @@ import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 public abstract class SdBasicTableContent extends SdAbstractTableContent {
 
 	@Override
+	public String createSQL() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("CREATE TABLE %s %s%s(", (isIfNotExist() ? " IF NOT EXIST " : ""), (getSchema() == null ? "" : getSchema() + "."), getTableName()));
+		for (int i = 0; i < getColums().size(); i++) {
+			sb.append(getColums().get(i).createSQL());
+			if (i != getColums().size() - 1) {
+				sb.append(",");
+			}
+		}
+		if (getPrimaryKey() != null && getPrimaryKey().getColumns() != null && !getPrimaryKey().getColumns().isEmpty()) {
+			sb.append(",");
+			sb.append(getPrimaryKey().createSQL());
+		}
+		if (getForeignKeys() != null && !getForeignKeys().isEmpty()) {
+			sb.append(",");
+			for (int i = 0; i < getForeignKeys().size(); i++) {
+				sb.append(getForeignKeys().get(i).createSQL());
+				if (i != getForeignKeys().size() - 1) {
+					sb.append(",");
+				}
+			}
+		}
+		if (getConstraints() != null && !getConstraints().isEmpty()) {
+			sb.append(",");
+			for (int i = 0; i < getConstraints().size(); i++) {
+				sb.append(getConstraints().get(i).createSQL());
+				if (i != getConstraints().size() - 1) {
+					sb.append(",");
+				}
+			}
+		}
+		sb.append(");\n");
+		return sb.toString();
+	}
+
+	@Override
+	public String updateSQL() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("ALTER TABLE %s%s ", (getSchema() == null ? "" : getSchema() + "."), getTableName()));
+		for (int i = 0; i < getColums().size(); i++) {
+			sb.append(getColums().get(i).updateSQL());
+			if (i != getColums().size() - 1) {
+				sb.append(",");
+			}
+		}
+		if (getPrimaryKey() != null && getPrimaryKey().getColumns() != null && !getPrimaryKey().getColumns().isEmpty()) {
+			sb.append(",");
+			sb.append(getPrimaryKey().updateSQL());
+		}
+		if (getForeignKeys() != null && !getForeignKeys().isEmpty()) {
+			sb.append(",");
+			for (int i = 0; i < getForeignKeys().size(); i++) {
+				sb.append(getForeignKeys().get(i).updateSQL());
+				if (i != getForeignKeys().size() - 1) {
+					sb.append(",");
+				}
+			}
+		}
+		if (getConstraints() != null && !getConstraints().isEmpty()) {
+			sb.append(",");
+			for (int i = 0; i < getConstraints().size(); i++) {
+				sb.append(getConstraints().get(i).updateSQL());
+				if (i != getConstraints().size() - 1) {
+					sb.append(",");
+				}
+			}
+		}
+		sb.append(";\n");
+		return sb.toString();
+	}
+
+	@Override
 	public String deleteSQL() {
 		return " DROP TABLE " + getTableName() + ";";
 	}

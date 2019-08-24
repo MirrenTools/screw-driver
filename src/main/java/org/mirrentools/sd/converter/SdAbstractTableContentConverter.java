@@ -130,6 +130,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			converterPrimaryKey(primarys, result);
 			converterIndexKey(indexs, result);
 			converterForeignKey(foreigns, result);
+			converterConstraintContent(columns, result);
 		} else {
 			throw new ScrewDriverException("SdBean 中 getColumns() 为 null 如果创建表没有列属性没有任何意义");
 		}
@@ -209,6 +210,8 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 				SdAbstractIndexKeyContent indexContent = indexs.get(col.getIndexName());
 				if (indexContent == null) {
 					indexContent = newIndexKeyContent(col);
+					indexContent.setUnique(col.isUnique());
+					indexContent.setConcurrently(col.isConcurrently());
 					indexContent.setName(col.getIndexName());
 					indexContent.setType(col.getIndexType());
 					indexContent.setRemark(col.getIndexRemark());

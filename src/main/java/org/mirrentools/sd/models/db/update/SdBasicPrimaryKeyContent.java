@@ -31,12 +31,12 @@ public class SdBasicPrimaryKeyContent extends SdAbstractPrimaryKeyContent {
 
 	@Override
 	public String updateSQL() {
-		return " ADD "+ createSQL();
+		return updateSQL() + ", ADD " + createSQL();
 	}
 
 	@Override
 	public String deleteSQL() {
-		return " DROP CONSTRAINT " + (getName() == null ? "" : getName());
+		return " DROP CONSTRAINT IF EXISTS " + (getName() == null ? "" : getName());
 	}
 
 }
