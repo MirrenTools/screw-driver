@@ -30,16 +30,21 @@ public class SdDbUtilPostgreSqlImpl extends SdAbstractDbUtil {
 
 	@Override
 	public boolean createDatabase(SdAbstractDatabaseContent content) throws Exception {
-		super.createDatabase(content);
+		super.createDatabase(getBaseUrlConfig(), content);
 		return true;
 	}
 
 	@Override
 	public boolean existDatabase(String dbName) throws Exception {
+		return existDatabase(getBaseUrlConfig(), dbName);
+	}
+
+	@Override
+	public boolean existDatabase(SdDatabaseOptions config, String dbName) throws Exception {
 		Connection connection = null;
 		ResultSet rs = null;
 		try {
-			connection = getConnection();
+			connection = getConnection(config);
 			String sql = String.format("select count(*) from pg_database where datname='%s'", dbName);
 			LOG.info("执行SQL语句:\n" + sql);
 			ResultSet res = connection.createStatement().executeQuery(sql);

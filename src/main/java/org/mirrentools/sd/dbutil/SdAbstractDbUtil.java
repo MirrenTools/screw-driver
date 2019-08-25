@@ -45,6 +45,26 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		this.config = config;
 	}
 
+	/**
+	 * 获取根连接的配置文件
+	 * 
+	 * @return
+	 */
+	public SdDatabaseOptions getBaseUrlConfig() {
+		String[] split = getConfig().getUrl().split("\\?");
+		String prefix = split[0].substring(0, split[0].lastIndexOf("/") + 1);
+		StringBuilder url = new StringBuilder();
+		url.append(prefix);
+		if (split.length > 1) {
+			url.append("?");
+			url.append(split[1]);
+		}
+		SdDatabaseOptions options = new SdDatabaseOptions(getConfig().getDriverClass(), url.toString());
+		options.setUser(getConfig().getUser());
+		options.setPassword(getConfig().getPassword());
+		return options;
+	}
+
 	@Override
 	public Connection getConnection() throws Exception {
 		return getConnection(config);
@@ -59,8 +79,13 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 
 	@Override
 	public boolean createDatabase(SdAbstractDatabaseContent content) throws Exception {
+		return createDatabase(getConfig(), content);
+	}
+
+	@Override
+	public boolean createDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception {
 		int result = 0;
-		Connection connection = getConnection();
+		Connection connection = getConnection(config);
 		try {
 			LOG.info("执行SQL语句:\n" + content.createSQL());
 			LOG.info(String.format("正在创建数据库: %s...", content.getDatabaseName()));
@@ -77,8 +102,13 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 
 	@Override
 	public boolean updateDatabase(SdAbstractDatabaseContent content) throws Exception {
+		return updateDatabase(getConfig(), content);
+	}
+
+	@Override
+	public boolean updateDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception {
 		int result = 0;
-		Connection connection = getConnection();
+		Connection connection = getConnection(config);
 		try {
 			LOG.info("执行SQL语句:\n" + content.updateSQL());
 			result = connection.createStatement().executeUpdate(content.updateSQL());
@@ -156,6 +186,11 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 				connection.close();
 			}
 		}
+	}
+
+	@Override
+	public boolean existDatabase(String dbName) throws Exception {
+		return existDatabase(getConfig(), dbName);
 	}
 
 	@Override

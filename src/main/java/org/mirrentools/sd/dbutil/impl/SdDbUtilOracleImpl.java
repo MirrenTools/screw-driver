@@ -11,15 +11,17 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
  * 数据库操作相关的工具接口,Oracle的抽象实现,其他数据库或者不兼容可以重写该类
+ * 
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdDbUtilOracleImpl extends SdAbstractDbUtil{
-	
-//	private final Logger LOG = Logger.getLogger(this.getClass().getName());
+public class SdDbUtilOracleImpl extends SdAbstractDbUtil {
+
+	// private final Logger LOG = Logger.getLogger(this.getClass().getName());
 
 	/**
 	 * 初始化
+	 * 
 	 * @param options
 	 */
 	public SdDbUtilOracleImpl(SdDatabaseOptions options) {
@@ -27,20 +29,20 @@ public class SdDbUtilOracleImpl extends SdAbstractDbUtil{
 	}
 
 	@Override
-	public boolean existDatabase(String dbName) throws Exception {
+	public boolean existDatabase(SdDatabaseOptions config, String dbName) throws Exception {
 		return false;
 	}
-	
+
 	@Override
 	public SdTableAttribute getTableAttribute(String tableName) throws Exception {
-		
+
 		Connection connection = null;
 		ResultSet rs = null;
 		try {
 			connection = getConnection();
 			DatabaseMetaData md = connection.getMetaData();
 			String catalog = connection.getCatalog() == null ? null : connection.getCatalog();
-			String[] types = {"TABLE", "VIEW"};
+			String[] types = { "TABLE", "VIEW" };
 			rs = md.getTables(catalog, null, tableName.toUpperCase(), types);
 			SdTableAttribute result = null;
 			if (rs.next()) {
@@ -57,7 +59,7 @@ public class SdDbUtilOracleImpl extends SdAbstractDbUtil{
 			}
 		}
 	}
-	
+
 	@Override
 	public void converterTableAttribute(ResultSet rs, SdTableAttribute result) throws SQLException {
 		result.setTableCat(rs.getString("TABLE_CAT"));
@@ -67,5 +69,5 @@ public class SdDbUtilOracleImpl extends SdAbstractDbUtil{
 		result.setRemarks(rs.getString("REMARKS"));
 		result.setTypeCat("TYPE_CAT");
 	}
-	
+
 }

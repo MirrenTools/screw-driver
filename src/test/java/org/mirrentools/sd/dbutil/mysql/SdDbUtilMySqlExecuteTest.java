@@ -44,7 +44,7 @@ public class SdDbUtilMySqlExecuteTest {
 	}
 
 	public void testGetConnectionDatabaseConfig() throws Exception {
-		SdDatabaseOptions config = new SdDatabaseOptions(MySQL.MYSQL_8_DERVER, "jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
+		SdDatabaseOptions config = new SdDatabaseOptions(MySQL.MYSQL_DERVER, "jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
 		config.setUser("root");
 		config.setPassword("root");
 		Connection connection = sdDbUtil.getConnection(config);

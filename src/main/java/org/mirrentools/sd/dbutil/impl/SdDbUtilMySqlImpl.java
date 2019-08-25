@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import org.mirrentools.sd.dbutil.SdAbstractDbUtil;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableIndexKeyAttribute;
+import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -34,8 +35,13 @@ public class SdDbUtilMySqlImpl extends SdAbstractDbUtil {
 
 	@Override
 	public boolean existDatabase(String dbName) throws Exception {
+		return existDatabase(getBaseUrlConfig(), dbName);
+	}
+
+	@Override
+	public boolean existDatabase(SdDatabaseOptions config, String dbName) throws Exception {
 		int result = 0;
-		Connection connection = getConnection();
+		Connection connection = getConnection(config);
 		ResultSet query = null;
 		String sql = String.format("SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name='%s'", dbName);
 		try {
@@ -58,6 +64,11 @@ public class SdDbUtilMySqlImpl extends SdAbstractDbUtil {
 	}
 
 	@Override
+	public boolean createDatabase(SdAbstractDatabaseContent content) throws Exception {
+		return super.createDatabase(getBaseUrlConfig(), content);
+	}
+
+	@Override
 	public SdTableAttribute getTableAttribute(String tableName) throws Exception {
 		Connection connection = null;
 		ResultSet rs = null;
@@ -65,15 +76,14 @@ public class SdDbUtilMySqlImpl extends SdAbstractDbUtil {
 			connection = getConnection();
 			DatabaseMetaData md = connection.getMetaData();
 			String catalog = connection.getCatalog() == null ? null : connection.getCatalog();
-			String[] types = {"TABLE", "VIEW"};
+			String[] types = { "TABLE", "VIEW" };
 			rs = md.getTables(catalog, null, tableName, types);
 			SdTableAttribute result = null;
 			if (rs.next()) {
 				result = new SdTableAttribute();
 				converterTableAttribute(rs, result);
 				// 查询表的注释
-				ResultSet comment = connection.createStatement()
-						.executeQuery(String.format("SELECT TABLE_NAME,TABLE_COMMENT FROM information_schema.TABLES WHERE TABLE_NAME='%s'", tableName));
+				ResultSet comment = connection.createStatement().executeQuery(String.format("SELECT TABLE_NAME,TABLE_COMMENT FROM information_schema.TABLES WHERE TABLE_NAME='%s'", tableName));
 				if (comment.next()) {
 					result.setRemarks(comment.getString(2));
 					try {

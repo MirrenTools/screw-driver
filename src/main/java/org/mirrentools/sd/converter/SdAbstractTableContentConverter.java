@@ -292,8 +292,11 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	public void converterConstraintContent(List<SdColumn> columns, SdAbstractTableContent result) {
 		if (!columns.isEmpty()) {
 			for (int i = 0; i < columns.size(); i++) {
-				SdAbstractConstraintContent constraint = null;
 				SdColumn col = columns.get(i);
+				if (col.getConstraintType() == null || col.getConstraintType() == null) {
+					continue;
+				}
+				SdAbstractConstraintContent constraint = null;
 				if (constraint == null) {
 					constraint = newConstraintContent(col);
 				}

@@ -14,6 +14,8 @@ public class SdDatabaseOptions {
 	private int loginTimeout = DEFAULT_LOGIN_TIMEOUTS_SECONDS;
 	/** 数据库驱动 */
 	private String driverClass;
+	/** 要连接的数据,该数据属性通常用户需要创建数据库时使用 */
+	private String database;
 	/** 数据库连接地址 */
 	private String url;
 	/** 数据库连接用户 */
@@ -121,6 +123,26 @@ public class SdDatabaseOptions {
 	}
 
 	/**
+	 * 获取要连接的数据,该数据属性通常用户需要创建数据库时使用
+	 * 
+	 * @return
+	 */
+	public String getDatabase() {
+		return database;
+	}
+
+	/**
+	 * 设置要连接的数据,该数据属性通常用户需要创建数据库时使用
+	 * 
+	 * @param database
+	 * @return
+	 */
+	public SdDatabaseOptions setDatabase(String database) {
+		this.database = database;
+		return this;
+	}
+
+	/**
 	 * 获取数据库连接语句
 	 * 
 	 * @return
@@ -202,7 +224,8 @@ public class SdDatabaseOptions {
 
 	@Override
 	public String toString() {
-		return "SdDatabaseOptions [loginTimeout=" + loginTimeout + ", driverClass=" + driverClass + ", url=" + url + ", user=" + user + ", password=" + password + ", schema=" + schema + "]";
+		return "SdDatabaseOptions [loginTimeout=" + loginTimeout + ", driverClass=" + driverClass + ", database=" + database + ", url=" + url + ", user=" + user + ", password=" + password + ", schema="
+				+ schema + "]";
 	}
 
 }

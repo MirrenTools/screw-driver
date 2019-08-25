@@ -39,10 +39,24 @@ public interface SdDbUtil {
 	/**
 	 * 数据库是否存在
 	 * 
+	 * @param dbName
+	 *          数据库名称
 	 * @return
 	 * @throws Exception
 	 */
 	boolean existDatabase(String dbName) throws Exception;
+
+	/**
+	 * 数据库是否存在
+	 * 
+	 * @param config
+	 *          数据库连接信息
+	 * @param dbName
+	 *          数据库名称
+	 * @return
+	 * @throws Exception
+	 */
+	boolean existDatabase(SdDatabaseOptions config, String dbName) throws Exception;
 
 	/**
 	 * 数据库表是否存在
@@ -56,19 +70,45 @@ public interface SdDbUtil {
 	 * 创建数据库
 	 * 
 	 * @param content
+	 *          数据库创建的内容
 	 * @return
 	 * @throws Exception
 	 */
 	boolean createDatabase(SdAbstractDatabaseContent content) throws Exception;
 
 	/**
+	 * 创建数据库
+	 * 
+	 * @param config
+	 *          数据库连接信息
+	 * @param content
+	 *          数据库创建的内容
+	 * @return
+	 * @throws Exception
+	 */
+	boolean createDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception;
+
+	/**
 	 * 修改数据库
 	 * 
 	 * @param content
+	 *          数据库修改的内容
 	 * @return
 	 * @throws Exception
 	 */
 	boolean updateDatabase(SdAbstractDatabaseContent content) throws Exception;
+
+	/**
+	 * 修改数据库
+	 * 
+	 * @param config
+	 *          数据库连接信息
+	 * @param content
+	 *          数据库修改的内容
+	 * @return
+	 * @throws Exception
+	 */
+	boolean updateDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception;
 
 	/**
 	 * 创建一张表

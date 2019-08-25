@@ -9,7 +9,10 @@ import org.mirrentools.sd.ScrewDriverSQL;
 import org.mirrentools.sd.converter.SdTableContentConverter;
 import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
+import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
+import org.mirrentools.sd.models.db.update.impl.mysql.SdDatabaseContentByMySQL;
+import org.mirrentools.sd.models.db.update.impl.postgresql.SdDatabaseContentByPostgreSql;
 import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
@@ -59,6 +62,23 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	public boolean execute() {
 		SdAbstractTableContent content = converter.converter(bean);
 		try {
+			if (databaseOptions.getDatabase() != null && isCreateDatabase()) {
+				boolean existDatabase = dbUtil.existDatabase(databaseOptions.getDatabase());
+				if (!existDatabase) {
+					String groupId = databaseOptions.getDriverClass();
+					SdAbstractDatabaseContent dbContent = null;
+					if (groupId.contains("mysql")) {
+						dbContent = new SdDatabaseContentByMySQL(databaseOptions.getDatabase());
+					} else if (groupId.contains("postgresql")) {
+						dbContent = new SdDatabaseContentByPostgreSql(databaseOptions.getDatabase());
+					}
+					// 其他数据库创建可以在这里写实现
+
+					if (dbContent != null) {
+						dbUtil.createDatabase(dbContent);
+					}
+				}
+			}
 			return dbUtil.createTable(content);
 		} catch (Exception e) {
 			throw new ScrewDriverException(e);
