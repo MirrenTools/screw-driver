@@ -129,7 +129,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		try {
 			LOG.info("执行SQL语句:\n" + content.createSQL());
 			statement = connection.createStatement();
-			statement.execute(content.createSQL());
+			statement.execute(content.createSQL().get(0));
 			LOG.info(String.format("Create table-->%s Successful", content.getTableName()));
 			return true;
 		} catch (Exception e) {
