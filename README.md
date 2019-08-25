@@ -16,7 +16,6 @@ public static void main(String[] args) throws Exception {
     .setName("id")
     .setType(MySQL.BIGINT)
     .setPrimary(true)
-    .setNullable(false)
     .setAutoIncrement(true)
     .setRemark("用户的id");
   SdColumn name = new SdColumn()
@@ -38,19 +37,18 @@ public static void main(String[] args) throws Exception {
     .setSourceFolder(Constant.MAVEN_SRC)
     .setPackageName("entity")
     .setClassName("User"));
-  // 初始化代码执行生成工具  Initialization Code Execution Generation Tool
-  ScrewDriverCode codeUtil = new ScrewDriverCodeImpl(bean, templates);
-  // 创建代码   Generate class
-  codeUtil.execute();
-  // 初始化SQL执行生成工具   Initialize the SQL Execution Generation Tool
+  // 初始化数据库连接信息   Initialize database connection information
   SdDatabaseOptions databaseOptions = new SdDatabaseOptions(
     MySQL.MYSQL_8_DERVER,
     "jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC")
     .setUser("root")
     .setPassword("root");
-  ScrewDriverSQL sqlUtil = new ScrewDriverSqlImpl(bean, databaseOptions);
-  // 创建表  Create table
-  sqlUtil.execute();
+  // 初始化执行工具   Initialization Execution Generation Tool
+  ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(bean, templates, databaseOptions));
+  // 创建代码   Generate class
+  screwDriver.createCode();
+  // 生成表  Create table
+  screwDriver.createSQL();
 }
 ``` 
 

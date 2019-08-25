@@ -9,8 +9,8 @@ import org.mirrentools.sd.constant.MySQL;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.SdTemplate;
+import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
-import org.mirrentools.sd.options.def.ScrewDriverMySqlOptions;
 
 public class ScrewDriverMainExample {
 
@@ -30,7 +30,7 @@ public class ScrewDriverMainExample {
 		databaseOptions.setUser("root");
 		databaseOptions.setPassword("root");
 		// 初始化执行工具
-		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverMySqlOptions(bean, templates, databaseOptions));
+		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(bean, templates, databaseOptions));
 		// 创建代码
 		screwDriver.createCode();
 		// 生成表

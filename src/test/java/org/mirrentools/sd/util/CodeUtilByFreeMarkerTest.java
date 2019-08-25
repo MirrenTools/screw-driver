@@ -8,8 +8,8 @@ import org.mirrentools.sd.converter.TestConstant;
 import org.mirrentools.sd.impl.ScrewDriverCodeImpl;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdTemplate;
+import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
-import org.mirrentools.sd.options.def.ScrewDriverMySqlOptions;
 
 /**
  * FreeMarker模板生成文件的测试
@@ -29,7 +29,7 @@ public class CodeUtilByFreeMarkerTest {
 		config.setPassword("root");
 
 		// 初始化代码执行生成工具
-		ScrewDriverCode codeUtil = new ScrewDriverCodeImpl(new ScrewDriverMySqlOptions(bean, templates, config));
+		ScrewDriverCode codeUtil = new ScrewDriverCodeImpl(new ScrewDriverOptions(bean, templates, config));
 		codeUtil.execute();
 	}
 }

@@ -57,6 +57,23 @@ public class ScrewDriverDB2Options extends ScrewDriverOptions {
 	}
 
 	/**
+	 * 初始化一个DB2版的ScrewDriver配置,用于生成代码与SQL
+	 * 
+	 * @param bean
+	 *          实体描述
+	 * @param classContent
+	 *          实体类属性
+	 * @param templateMaps
+	 *          模板集合
+	 * @param databaseOptions
+	 *          数据库连接信息
+	 */
+	public ScrewDriverDB2Options(SdBean bean, SdClassContent classContent, Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
+		super();
+		init(bean, classContent, templateMaps, databaseOptions);
+	}
+
+	/**
 	 * 初始化
 	 * 
 	 * @param bean
@@ -76,10 +93,11 @@ public class ScrewDriverDB2Options extends ScrewDriverOptions {
 		super.setTemplateContentConverter(new SdTemplateContentConverterDefaultImpl());
 		super.setTemplateUtil(new ScrewDriverTemplateFreeMarkerImpl());
 
-//		super.setBeanConverter(new SdClassConverterDB2Impl());
+		// TODO 创建响应的实现并取消注释
+		// super.setBeanConverter(new SdClassConverterDB2Impl());
 
 		super.setTableConverter(new SdTableContentConverterDB2Impl());
-//		super.setDbUtil(new SdDbUtilDB2Impl(databaseOptions));
+		// super.setDbUtil(new SdDbUtilDB2Impl(databaseOptions));
 	}
 
 }

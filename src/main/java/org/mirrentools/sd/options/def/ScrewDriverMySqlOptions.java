@@ -60,6 +60,25 @@ public class ScrewDriverMySqlOptions extends ScrewDriverOptions {
 	}
 
 	/**
+<<<<<<< HEAD
+	 * 初始化一个MySQL版的ScrewDriver配置,用于生成代码与SQL
+	 * 
+	 * @param bean
+	 *          实体描述
+	 * @param classContent
+	 *          实体类属性
+	 * @param templateMaps
+	 *          模板集合
+	 * @param databaseOptions
+	 *          数据库连接信息
+	 */
+	public ScrewDriverMySqlOptions(SdBean bean, SdClassContent classContent, Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
+		super();
+		init(bean, classContent, templateMaps, databaseOptions);
+	}
+	/**
+=======
+>>>>>>> branch 'master' of https://github.com/MirrenTools/screw-driver.git
 	 * 初始化
 	 * 
 	 * @param bean
