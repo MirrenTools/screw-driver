@@ -26,7 +26,7 @@ public class ScrewDriver {
 	 * @return
 	 */
 	public static ScrewDriver instance(ScrewDriverOptions options) {
-		SdUtil.requireNonNull(options, "The ScrewDriverOptions cannot be null ,you can new ScrewDriver(db name)Options");
+		SdUtil.requireNonNull(options, "The ScrewDriverOptions cannot be null ,you can new ScrewDriverOptions");
 		return new ScrewDriver(options);
 	}
 
