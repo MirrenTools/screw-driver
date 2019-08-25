@@ -55,7 +55,7 @@ public abstract class SdAbstractTableContent {
 	 * 
 	 * @return
 	 */
-	public abstract String updateSQL();
+	public abstract List<String> updateSQL();
 
 	/**
 	 * 删除的SQL语句

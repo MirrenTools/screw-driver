@@ -129,7 +129,11 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		try {
 			LOG.info("执行SQL语句:\n" + content.createSQL());
 			statement = connection.createStatement();
-			statement.execute(content.createSQL().get(0));
+			List<String> list = content.createSQL();
+			for(int i = 0;i<list.size();i++) {
+				statement.execute(list.get(i));
+			}
+			
 			LOG.info(String.format("Create table-->%s Successful", content.getTableName()));
 			return true;
 		} catch (Exception e) {
@@ -151,7 +155,10 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		try {
 			LOG.info("执行SQL语句:\n" + content.updateSQL());
 			statement = connection.createStatement();
-			statement.execute(content.updateSQL());
+			List<String> list = content.updateSQL();
+			for(int i = 0;i<list.size();i++) {
+				statement.execute(list.get(i));
+			}
 			LOG.info(String.format("Update table-->%s Successful", content.getTableName()));
 			return true;
 		} catch (Exception e) {

@@ -42,7 +42,8 @@ public class SdTableContentByDB2 extends SdAbstractTableContent{
 	}
 
 	@Override
-	public String updateSQL() {
+	public List<String>  updateSQL() {
+		List<String> result = new ArrayList<String>();
 		StringBuilder sb = new StringBuilder();
 		sb.append("ALTER TABLE `" + getTableName() + "`");
 		for (int i = 0; i < getColums().size(); i++) {
@@ -78,7 +79,7 @@ public class SdTableContentByDB2 extends SdAbstractTableContent{
 			sb.append(", COMMENT='" + getRemark() + "'");
 		}
 		sb.append(";");
-		return sb.toString();
+		return result;
 	}
 
 	@Override

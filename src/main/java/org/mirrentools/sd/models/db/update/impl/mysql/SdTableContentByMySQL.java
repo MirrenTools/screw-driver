@@ -83,7 +83,7 @@ public class SdTableContentByMySQL extends SdBasicTableContent {
 	}
 
 	@Override
-	public String updateSQL() {
+	public List<String> updateSQL() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("ALTER TABLE " + getTableName() + " ");
 		for (int i = 0; i < getColums().size(); i++) {
@@ -139,7 +139,9 @@ public class SdTableContentByMySQL extends SdBasicTableContent {
 			sb.append(", COMMENT='" + getRemark() + "'");
 		}
 		sb.append(";");
-		return sb.toString();
+		List<String> result = new ArrayList<String>();
+		result.add(sb.toString());
+		return result;
 	}
 
 

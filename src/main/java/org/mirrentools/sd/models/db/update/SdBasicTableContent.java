@@ -50,7 +50,7 @@ public abstract class SdBasicTableContent extends SdAbstractTableContent {
 	}
 
 	@Override
-	public String updateSQL() {
+	public List<String> updateSQL() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(String.format("ALTER TABLE %s%s ", (getSchema() == null ? "" : getSchema() + "."), getTableName()));
 		for (int i = 0; i < getColums().size(); i++) {
@@ -82,7 +82,9 @@ public abstract class SdBasicTableContent extends SdAbstractTableContent {
 			}
 		}
 		sb.append(";\n");
-		return sb.toString();
+		List<String> result = new ArrayList<String>();
+		result.add(sb.toString());
+		return result;
 	}
 
 	@Override

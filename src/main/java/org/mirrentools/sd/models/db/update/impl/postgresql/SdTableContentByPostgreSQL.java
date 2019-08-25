@@ -61,9 +61,9 @@ public class SdTableContentByPostgreSQL extends SdBasicTableContent {
 	}
 
 	@Override
-	public String updateSQL() {
+	public List<String> updateSQL() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(super.updateSQL().replace("UNSIGNED", ""));
+		sb.append(super.updateSQL().get(0).replace("UNSIGNED", ""));
 		// 添加表的注释
 		if (!SdUtil.isNullOrEmpty(getRemark())) {
 			sb.append(createTableComment());
@@ -81,7 +81,9 @@ public class SdTableContentByPostgreSQL extends SdBasicTableContent {
 				sb.append(createIndex(getIndexKeys().get(i)));
 			}
 		}
-		return sb.toString();
+		List<String> result = new ArrayList<String>();
+		result.add(sb.toString());
+		return result;
 	}
 
 	@Override
