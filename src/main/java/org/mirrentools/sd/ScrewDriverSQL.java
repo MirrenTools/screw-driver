@@ -118,7 +118,7 @@ public interface ScrewDriverSQL {
 	 * @param value
 	 * @return
 	 */
-	ScrewDriverCode addExtension(String key, Object value);
+	ScrewDriverSQL addExtension(String key, Object value);
 
 	/**
 	 * 获取附加属性集合
@@ -133,6 +133,6 @@ public interface ScrewDriverSQL {
 	 * @param extensions
 	 * @return
 	 */
-	ScrewDriverCode setExtensions(Map<String, Object> extensions);
+	ScrewDriverSQL setExtensions(Map<String, Object> extensions);
 
 }

@@ -6,7 +6,6 @@ import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import org.mirrentools.sd.ScrewDriverCode;
-import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.ScrewDriverTemplate;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
@@ -17,7 +16,7 @@ import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdRenderContent;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.models.SdTemplateContent;
-import org.mirrentools.sd.options.ScrewDriverCodeOptions;
+import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -52,82 +51,21 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	private SdTemplateContentConverter templateConverter;
 	/** 模板生成工具 */
 	private ScrewDriverTemplate templateUtil;
+	/** 拓展属性 */
+	private Map<String, Object> extensions;
 
-	/**
-	 * 使用默认配置初始化工具
-	 * 
-	 * @param bean
-	 *          生成代码所需要的实体描述
-	 * @param templateMap
-	 *          生成代码所需要的模板数据属性
-	 */
-	public ScrewDriverCodeImpl(SdBean bean, Map<String, SdTemplate> templateMaps) {
+	public ScrewDriverCodeImpl(ScrewDriverOptions options) {
 		super();
-		this.bean = bean;
-		this.templateMaps = templateMaps;
-		init(new ScrewDriverCodeOptions());
-	}
-
-	/**
-	 * 使用默认配置初始化工具
-	 * 
-	 * @param classContent
-	 *          生成代码所需要的实体属性
-	 * @param templateMap
-	 *          生成代码所需要的模板数据属性
-	 */
-	public ScrewDriverCodeImpl(SdClassContent classContent, Map<String, SdTemplate> templateMaps) {
-		super();
-		this.classContent = classContent;
-		this.templateMaps = templateMaps;
-		init(new ScrewDriverCodeOptions());
-	}
-
-	/**
-	 * 使用自定义配置初始化工具
-	 * 
-	 * @param bean
-	 *          生成代码所需要的实体描述
-	 * @param templateMap
-	 *          生成代码所需要的模板
-	 * @param options
-	 *          生成代码所需要的数据库配置文件
-	 */
-	public ScrewDriverCodeImpl(SdBean bean, Map<String, SdTemplate> templateMaps, ScrewDriverCodeOptions options) {
-		super();
-		this.bean = bean;
-		this.templateMaps = templateMaps;
-		init(options);
-	}
-
-	/**
-	 * 使用自定义配置初始化工具
-	 * 
-	 * @param bean
-	 *          生成代码所需要的实体属性
-	 * @param templateMap
-	 *          生成代码所需要的模板
-	 * @param options
-	 *          生成代码所需要的数据库配置文件
-	 */
-	public ScrewDriverCodeImpl(SdClassContent classContent, Map<String, SdTemplate> templateMaps, ScrewDriverCodeOptions options) {
-		super();
-		this.classContent = classContent;
-		this.templateMaps = templateMaps;
-		init(options);
-	}
-
-	/**
-	 * 初始化配置
-	 * 
-	 * @param options
-	 */
-	private void init(ScrewDriverCodeOptions options) {
+		SdUtil.requireNonNull(options, "The ScrewDriverOptions cannot be null ,you can new ScrewDriver(db name)Options");
+		this.bean = options.getBean();
+		this.classContent = options.getClassContent();
+		this.databaseOptions = options.getDatabaseOptions();
+		this.templateMaps = options.getTemplateMaps();
 		this.projectPath = options.getProjectPath();
-		this.codeFormat = options.getCodeFormat();
 		this.beanConverter = options.getBeanConverter();
 		this.templateConverter = options.getTemplateContentConverter();
 		this.templateUtil = options.getTemplateUtil();
+		this.extensions = options.getExtensions();
 	}
 
 	@Override
@@ -246,17 +184,25 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 
 	@Override
 	public ScrewDriverCode addExtension(String key, Object value) {
-		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+		LOG.warning("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
+		}
+		getExtensions().put(key, value);
+		return this;
 	}
 
 	@Override
 	public Map<String, Object> getExtensions() {
-		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+		LOG.warning("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+		return extensions;
 	}
 
 	@Override
 	public ScrewDriverCode setExtensions(Map<String, Object> extensions) {
-		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+		LOG.warning("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+		this.extensions = extensions;
+		return this;
 	}
 
 }

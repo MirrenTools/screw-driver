@@ -22,7 +22,7 @@ import org.mirrentools.sd.models.db.update.impl.postgresql.SdTableContentByPostg
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class SdTableContentConverterPostgreImpl extends SdAbstractTableContentConverter {
+public class SdTableContentConverterPostgreSqlImpl extends SdAbstractTableContentConverter {
 
 	@Override
 	public SdAbstractTableContent newTableContent(SdBean bean) {

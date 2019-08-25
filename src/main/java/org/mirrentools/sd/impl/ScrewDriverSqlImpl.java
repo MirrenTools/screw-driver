@@ -1,15 +1,16 @@
 package org.mirrentools.sd.impl;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
-import org.mirrentools.sd.ScrewDriverCode;
 import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.ScrewDriverSQL;
 import org.mirrentools.sd.converter.SdTableContentConverter;
 import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
-import org.mirrentools.sd.options.ScrewDriverSqlOptions;
+import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -19,6 +20,9 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  *
  */
 public class ScrewDriverSqlImpl implements ScrewDriverSQL {
+	/** JUL日志 */
+	private final Logger LOG = Logger.getLogger(this.getClass().getName());
+
 	/** 创建类需要的属性 */
 	private SdBean bean;
 	/** 数据库连接属性 */
@@ -32,46 +36,23 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	private SdDbUtil dbUtil;
 	/** SdBean转换器 */
 	private SdTableContentConverter converter;
+	/** 拓展属性 */
+	private Map<String, Object> extensions;
 
 	/**
-	 * 初始化一个数据库相关执行器
-	 * 
-	 * @param bean
-	 *          生成所需要的实体属性
-	 * @param databaseOptions
-	 *          数据库连接属性
-	 */
-	public ScrewDriverSqlImpl(SdBean bean, SdDatabaseOptions databaseOptions) {
-		super();
-		this.bean = bean;
-		this.init(new ScrewDriverSqlOptions(databaseOptions));
-	}
-
-	/**
-	 * 初始化一个数据库相关执行器
-	 * 
-	 * @param bean
-	 *          生成所需要的实体属性
-	 * @param options
-	 *          执行器配置
-	 */
-	public ScrewDriverSqlImpl(SdBean bean, ScrewDriverSqlOptions options) {
-		super();
-		this.bean = bean;
-		init(options);
-	}
-
-	/**
-	 * 初始化工具
+	 * 初始化
 	 * 
 	 * @param options
 	 */
-	private void init(ScrewDriverSqlOptions options) {
-		setDatabaseOptions(options.getDatabaseOptions());
-		setCreateDatabase(options.isCreateDatabase());
-		setAlterTable(options.isAlterTable());
-		setDbUtil(options.getDbUtil());
-		setConverter(options.getConverter());
+	public ScrewDriverSqlImpl(ScrewDriverOptions options) {
+		super();
+		this.bean = options.getBean();
+		this.databaseOptions = options.getDatabaseOptions();
+		this.createDatabase = options.isCreateDatabase();
+		this.alterTable = options.isAlterTable();
+		this.dbUtil = options.getDbUtil();
+		this.converter = options.getTableConverter();
+		this.extensions = options.getExtensions();
 	}
 
 	@Override
@@ -151,23 +132,32 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	}
 
 	@Override
-	public ScrewDriverCode addExtension(String key, Object value) {
-		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+	public ScrewDriverSqlImpl addExtension(String key, Object value) {
+		LOG.warning("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
+		}
+		getExtensions().put(key, value);
+		return this;
 	}
 
 	@Override
 	public Map<String, Object> getExtensions() {
-		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+		LOG.warning("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+		return extensions;
 	}
 
 	@Override
-	public ScrewDriverCode setExtensions(Map<String, Object> extensions) {
-		throw new ScrewDriverException("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+	public ScrewDriverSqlImpl setExtensions(Map<String, Object> extensions) {
+		LOG.warning("This method expands the field as an alternate field, which can be inherited and rewritten if needed.");
+		this.extensions = extensions;
+		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "SdSqlUtillImpl [bean=" + bean + ", dbUtil=" + dbUtil + ", converter=" + converter + "]";
+		return "ScrewDriverSqlImpl [bean=" + bean + ", databaseOptions=" + databaseOptions + ", createDatabase=" + createDatabase + ", alterTable=" + alterTable + ", dbUtil=" + dbUtil + ", converter="
+				+ converter + ", extensions=" + extensions + "]";
 	}
 
 }
