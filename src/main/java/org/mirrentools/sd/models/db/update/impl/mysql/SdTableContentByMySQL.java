@@ -1,5 +1,8 @@
 package org.mirrentools.sd.models.db.update.impl.mysql;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mirrentools.sd.models.db.update.SdBasicTableContent;
 
 /**
@@ -17,7 +20,7 @@ public class SdTableContentByMySQL extends SdBasicTableContent {
 	private Integer increment;
 
 	@Override
-	public String createSQL() {
+	public List<String> createSQL() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("CREATE TABLE " + (isIfNotExist() ? " if not exist " : "") + " " + getTableName() + "(");
 		for (int i = 0; i < getColums().size(); i++) {
@@ -74,7 +77,9 @@ public class SdTableContentByMySQL extends SdBasicTableContent {
 			sb.append(" COMMENT='" + getRemark() + "'");
 		}
 		sb.append(";");
-		return sb.toString();
+		List<String> result = new ArrayList<String>();
+		result.add(sb.toString());
+		return result;
 	}
 
 	@Override

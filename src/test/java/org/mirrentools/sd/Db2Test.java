@@ -4,8 +4,8 @@ import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.DB2;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
-import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
+import org.mirrentools.sd.options.def.ScrewDriverDB2Options;
 
 public class Db2Test {
 	public static void main(String[] args) throws Exception {
@@ -19,17 +19,16 @@ public class Db2Test {
 		/*
 		 * Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 		 * templates.put("entity", new
-		 * SdTemplate().setPath("mybatis").setFile("JavaEntity.ftl").
-		 * setSourceFolder( Constant.MAVEN_SRC)
-		 * .setPackageName("entity").setClassName("User")); // 初始化代码执行生成工具
-		 * ScrewDriverCode codeUtil = new ScrewDriverCodeImpl(bean, templates);
-		 * codeUtil.execute();
+		 * SdTemplate().setPath("mybatis").setFile("JavaEntity.ftl").setSourceFolder(
+		 * Constant.MAVEN_SRC) .setPackageName("entity").setClassName("User")); //
+		 * 初始化代码执行生成工具 ScrewDriverCode codeUtil = new ScrewDriverCodeImpl(bean,
+		 * templates); codeUtil.execute();
 		 */
 		// 初始化SQL执行生成工具
-		SdDatabaseOptions databaseOptions = new SdDatabaseOptions(DB2.DB2_DERVER, "jdbc:db2://127.0.0.1:50000/sample");
+		SdDatabaseOptions databaseOptions = new SdDatabaseOptions(DB2.DB2_DERVER,"jdbc:db2://127.0.0.1:50000/sample");
 		databaseOptions.setUser("db2admin");
 		databaseOptions.setPassword("000000");
-		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(bean, databaseOptions));
+		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverDB2Options(bean, databaseOptions));
 		screwDriver.createSQL();
 	}
 
