@@ -5,7 +5,7 @@
 
 	<groupId>org.mirrentools</groupId>
 	<artifactId>screw-driver</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 	<name>screw-driver</name>
 	<url>https://mirrentools.org</url>
@@ -30,8 +30,21 @@
 			<groupId>com.ibm.db2.jcc</groupId>
 			<artifactId>db2jcc</artifactId>
 			<version>db2jcc4</version>
+			<scope>provided</scope>
 		</dependency>
-
+		<!--oracle的jdbc本地添加依赖 mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc -Dversion=local -Dpackaging=jar -Dfile=your ojdbc path -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc</artifactId>
+			<version>local</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>6.1.0.jre7</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
