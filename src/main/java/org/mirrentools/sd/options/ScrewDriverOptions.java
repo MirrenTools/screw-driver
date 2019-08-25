@@ -3,6 +3,7 @@ package org.mirrentools.sd.options;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.ScrewDriverTemplate;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
@@ -13,9 +14,15 @@ import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdTemplate;
+import org.mirrentools.sd.options.def.ScrewDriverDB2Options;
+import org.mirrentools.sd.options.def.ScrewDriverMySqlOptions;
+import org.mirrentools.sd.options.def.ScrewDriverOracleOptions;
+import org.mirrentools.sd.options.def.ScrewDriverPostgreSqlOptions;
+import org.mirrentools.sd.options.def.ScrewDriverSqlServerOptions;
+import org.mirrentools.sd.options.def.ScrewDriverSqliteOptions;
 
 /**
- * ScrewDriver配置
+ * ScrewDriver配置类
  * 
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
@@ -57,6 +64,110 @@ public class ScrewDriverOptions {
 	// ***************拓展配置*******************
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
+
+	/**
+	 * 实例化一个空的配置,后续添加自定义配置
+	 */
+	public ScrewDriverOptions() {
+		super();
+	}
+
+	/**
+	 * 实例化仅生成SQL的配置
+	 * 
+	 * @param bean
+	 *          实体描述
+	 * @param databaseOptions
+	 *          数据库连接信息
+	 */
+	public ScrewDriverOptions(SdBean bean, SdDatabaseOptions databaseOptions) {
+		super();
+		init(bean, null, null, databaseOptions);
+	}
+
+	/**
+	 * 实例化仅生成代码的配置
+	 * 
+	 * @param classContent
+	 *          实体类属性
+	 * @param templateMaps
+	 *          模板
+	 * @param databaseOptions
+	 *          数据库连接信息
+	 */
+	public ScrewDriverOptions(SdClassContent classContent, Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
+		super();
+		init(null, classContent, templateMaps, databaseOptions);
+	}
+
+	/**
+	 * 实例化生成代码与SQL的配置
+	 * 
+	 * @param bean
+	 *          实体描述
+	 * @param templateMaps
+	 *          模板
+	 * @param databaseOptions
+	 *          数据库连接信息
+	 */
+	public ScrewDriverOptions(SdBean bean, Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
+		super();
+		init(bean, null, templateMaps, databaseOptions);
+	}
+
+	/**
+	 * 初始化
+	 * 
+	 * @param bean
+	 *          实体描述
+	 * @param classContent
+	 *          实体类属性
+	 * @param templateMaps
+	 *          模板
+	 * @param databaseOptions
+	 *          数据库连接信息
+	 */
+	private void init(SdBean bean, SdClassContent classContent, Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
+		SdUtil.requireNonNull(databaseOptions, "数据库连接信息不能为空!");
+		String groupId = databaseOptions.getDriverClass();
+		if (groupId.contains("mysql")) {
+			wrap(new ScrewDriverMySqlOptions(bean, classContent, templateMaps, databaseOptions));
+		} else if (groupId.contains("postgresql")) {
+			wrap(new ScrewDriverPostgreSqlOptions(bean, classContent, templateMaps, databaseOptions));
+		} else if (groupId.contains("db2")) {
+			wrap(new ScrewDriverDB2Options(bean, classContent, templateMaps, databaseOptions));
+		} else if (groupId.contains("oracle")) {
+			wrap(new ScrewDriverOracleOptions(bean, classContent, templateMaps, databaseOptions));
+		} else if (groupId.contains("sqlserver")) {
+			wrap(new ScrewDriverSqlServerOptions(bean, classContent, templateMaps, databaseOptions));
+		} else if (groupId.contains("sqlite")) {
+			wrap(new ScrewDriverSqliteOptions(bean, classContent, templateMaps, databaseOptions));
+		} else {
+			throw new ScrewDriverException("Unable to recognize database types through DriverClass,You can try new ScrewDriver(DB name)Options and complete the initialization");
+		}
+	}
+
+	/**
+	 * 通过别的配置初始化该配置
+	 * 
+	 * @param options
+	 */
+	public void wrap(ScrewDriverOptions options) {
+		setBean(options.getBean());
+		setClassContent(options.getClassContent());
+		setDatabaseOptions(options.getDatabaseOptions());
+		setTemplateMaps(options.getTemplateMaps());
+		setProjectPath(options.getProjectPath());
+		setCodeFormat(options.getCodeFormat());
+		setCreateDatabase(options.isCreateDatabase());
+		setAlterTable(options.isAlterTable());
+		setExtensions(options.getExtensions());
+		setBeanConverter(options.getBeanConverter());
+		setTableConverter(options.getTableConverter());
+		setTemplateContentConverter(options.getTemplateContentConverter());
+		setTemplateUtil(options.getTemplateUtil());
+		setDbUtil(options.getDbUtil());
+	}
 
 	/**
 	 * 获取实体描述
