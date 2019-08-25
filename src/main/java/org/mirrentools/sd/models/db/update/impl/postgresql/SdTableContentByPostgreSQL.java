@@ -1,5 +1,8 @@
 package org.mirrentools.sd.models.db.update.impl.postgresql;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
 import org.mirrentools.sd.models.db.update.SdAbstractIndexKeyContent;
@@ -33,9 +36,9 @@ public class SdTableContentByPostgreSQL extends SdBasicTableContent {
 	}
 
 	@Override
-	public String createSQL() {
+	public List<String> createSQL() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(super.createSQL().replace("UNSIGNED", ""));
+		sb.append(super.createSQL().get(0).replace("UNSIGNED", ""));
 		// 添加表的注释
 		if (!SdUtil.isNullOrEmpty(getRemark())) {
 			sb.append(createTableComment());
@@ -52,7 +55,9 @@ public class SdTableContentByPostgreSQL extends SdBasicTableContent {
 				sb.append(createIndex(getIndexKeys().get(i)));
 			}
 		}
-		return sb.toString();
+		List<String> result = new ArrayList<String>();
+		result.add(sb.toString());
+		return result;
 	}
 
 	@Override

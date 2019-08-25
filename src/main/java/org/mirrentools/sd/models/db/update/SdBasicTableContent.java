@@ -1,6 +1,7 @@
 package org.mirrentools.sd.models.db.update;
 
-import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 数据库表属性创建或者修改SQL语句的基本实现版实现,实际数据库如果操作相同可以继承该类,不同可以选择重写
@@ -11,7 +12,7 @@ import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 public abstract class SdBasicTableContent extends SdAbstractTableContent {
 
 	@Override
-	public String createSQL() {
+	public List<String> createSQL() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(String.format("CREATE TABLE %s %s%s(", (isIfNotExist() ? " IF NOT EXIST " : ""), (getSchema() == null ? "" : getSchema() + "."), getTableName()));
 		for (int i = 0; i < getColums().size(); i++) {
@@ -43,7 +44,9 @@ public abstract class SdBasicTableContent extends SdAbstractTableContent {
 			}
 		}
 		sb.append(");\n");
-		return sb.toString();
+		List<String> result = new ArrayList<String>();
+		result.add(sb.toString());
+		return result;
 	}
 
 	@Override

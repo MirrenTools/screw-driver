@@ -1,5 +1,9 @@
 package org.mirrentools.sd.models.db.update.impl.db2;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 
 public class SdTableContentByDB2 extends SdAbstractTableContent{
@@ -10,35 +14,31 @@ public class SdTableContentByDB2 extends SdAbstractTableContent{
 	 *
 	 */
 	@Override
-	public String createSQL() {
+	public List<String> createSQL() {
+		List<String> result = new ArrayList<String>();
 		StringBuilder sb = new StringBuilder();
-		sb.append("CREATE TABLE " + getTableName() + "(");
+		sb.append("CREATE TABLE  " +(getSchema() == null ? "" : getSchema() + ".")+ getTableName() + "(");
 		for (int i = 0; i < getColums().size(); i++) {
 			sb.append(getColums().get(i).createSQL());
 			if (i != getColums().size() - 1) {
 				sb.append(",");
 			}
 		}
+		sb.append(");\\n");
+		result.add(sb.toString());
 		if (getIndexKeys() != null && !getIndexKeys().isEmpty()) {
-			sb.append(",");
 			for (int i = 0; i < getIndexKeys().size(); i++) {
-				sb.append(getIndexKeys().get(i).createSQL());
-				if (i != getIndexKeys().size() - 1) {
-					sb.append(",");
-				}
+				result.add(getIndexKeys().get(i).createSQL());
 			}
 		}
 		if (getForeignKeys() != null && !getForeignKeys().isEmpty()) {
 			sb.append(",");
 			for (int i = 0; i < getForeignKeys().size(); i++) {
-				sb.append(getForeignKeys().get(i).createSQL());
-				if (i != getForeignKeys().size() - 1) {
-					sb.append(",");
-				}
+				result.add(getForeignKeys().get(i).createSQL());
 			}
 		}
-		sb.append(")");
-		return sb.toString();
+		
+		return result;
 	}
 
 	@Override
@@ -86,7 +86,24 @@ public class SdTableContentByDB2 extends SdAbstractTableContent{
 		return " DROP TABLE `" + getTableName() + "`;";
 	}
 
+	/**
+	 * 创建表的注释
+	 * 
+	 * @return
+	 */
+	public String createTableComment() {
+		return String.format(" COMMENT ON TABLE %s.%s IS '%s';\n", getSchema(), getTableName(), getRemark());
+	}
 
+	/**
+	 * 创建表中列的注释注释
+	 * 
+	 * @param column
+	 * @return
+	 */
+	public String createColumnComment(SdAbstractColumnContent column) {
+		return String.format(" COMMENT ON COLUMN %s.%s.%s IS '%s';\n", getSchema(), getTableName(), column.getName(), column.getRemark());
+	}
 
 	@Override
 	public String toString() {

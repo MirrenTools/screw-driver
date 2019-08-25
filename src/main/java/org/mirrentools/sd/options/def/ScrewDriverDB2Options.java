@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
 import org.mirrentools.sd.converter.impl.db2.SdTableContentConverterDB2Impl;
+import org.mirrentools.sd.dbutil.impl.SdDbUtilDB2Impl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
@@ -97,7 +98,7 @@ public class ScrewDriverDB2Options extends ScrewDriverOptions {
 		// super.setBeanConverter(new SdClassConverterDB2Impl());
 
 		super.setTableConverter(new SdTableContentConverterDB2Impl());
-		// super.setDbUtil(new SdDbUtilDB2Impl(databaseOptions));
+		super.setDbUtil(new SdDbUtilDB2Impl(databaseOptions));
 	}
 
 }

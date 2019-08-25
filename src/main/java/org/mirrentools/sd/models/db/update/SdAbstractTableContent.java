@@ -48,7 +48,7 @@ public abstract class SdAbstractTableContent {
 	 * 
 	 * @return
 	 */
-	public abstract String createSQL();
+	public abstract List<String> createSQL();
 
 	/**
 	 * 修改表的SQL语句,仅可以添加或删除

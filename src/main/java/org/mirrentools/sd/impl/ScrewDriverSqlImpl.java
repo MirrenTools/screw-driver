@@ -11,6 +11,7 @@ import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
+import org.mirrentools.sd.models.db.update.impl.db2.SdDatabaseContentByDB2;
 import org.mirrentools.sd.models.db.update.impl.mysql.SdDatabaseContentByMySQL;
 import org.mirrentools.sd.models.db.update.impl.postgresql.SdDatabaseContentByPostgreSql;
 import org.mirrentools.sd.options.ScrewDriverOptions;
@@ -71,6 +72,8 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 						dbContent = new SdDatabaseContentByMySQL(databaseOptions.getDatabase());
 					} else if (groupId.contains("postgresql")) {
 						dbContent = new SdDatabaseContentByPostgreSql(databaseOptions.getDatabase());
+					} else if (groupId.contains("db2")) {
+						dbContent = new SdDatabaseContentByDB2(databaseOptions.getDatabase());
 					}
 					// 其他数据库创建可以在这里写实现
 
