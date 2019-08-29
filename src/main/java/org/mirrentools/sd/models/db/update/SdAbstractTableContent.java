@@ -40,6 +40,9 @@ public abstract class SdAbstractTableContent {
 	private List<SdAbstractForeignKeyContent> foreignKeys;
 	/** 约束属性 */
 	private List<SdAbstractConstraintContent> constraints;
+	/** 序列属性 */
+	private List<SdAbstractSequenceContent> sequences;
+
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -305,6 +308,26 @@ public abstract class SdAbstractTableContent {
 	}
 
 	/**
+	 * 获取序列属性
+	 * 
+	 * @return
+	 */
+	public List<SdAbstractSequenceContent> getSequences() {
+		return sequences;
+	}
+
+	/**
+	 * 设置序列属性
+	 * 
+	 * @param sequences
+	 * @return
+	 */
+	public SdAbstractTableContent setSequences(List<SdAbstractSequenceContent> sequences) {
+		this.sequences = sequences;
+		return this;
+	}
+
+	/**
 	 * 获得拓展属性
 	 * 
 	 * @return
@@ -433,7 +456,7 @@ public abstract class SdAbstractTableContent {
 	 * 
 	 * @return
 	 */
-	public Boolean isCompressable() {
+	public Boolean getCompressable() {
 		return compressable;
 	}
 

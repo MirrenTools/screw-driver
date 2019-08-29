@@ -10,11 +10,13 @@ import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
+import org.mirrentools.sd.models.SdSequence;
 import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
 import org.mirrentools.sd.models.db.update.SdAbstractConstraintContent;
 import org.mirrentools.sd.models.db.update.SdAbstractForeignKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractIndexKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractPrimaryKeyContent;
+import org.mirrentools.sd.models.db.update.SdAbstractSequenceContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 
 /**
@@ -84,6 +86,14 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	 * @return
 	 */
 	public abstract SdAbstractConstraintContent newConstraintContent(SdColumn col);
+	
+	/**
+	 * 初始化序列,子类需要实现它并初始化子类相应的内容
+	 * 
+	 * @param col
+	 * @return
+	 */
+	public abstract SdAbstractSequenceContent newSequenceContent(SdSequence sequence);
 
 	@Override
 	public SdAbstractTableContent converter(SdBean bean) {
@@ -106,7 +116,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 		if (result.getIndexspace() == null) {
 			result.setIndexspace(bean.getIndexspace());
 		}
-		if (result.isCompressable() == null) {
+		if (result.getCompressable() == null) {
 			result.setCompressable(bean.isCompressable());
 		}
 		if (bean.getColumns() != null) {

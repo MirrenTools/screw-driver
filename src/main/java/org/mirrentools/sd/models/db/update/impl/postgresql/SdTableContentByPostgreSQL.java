@@ -6,6 +6,7 @@ import java.util.List;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
 import org.mirrentools.sd.models.db.update.SdAbstractIndexKeyContent;
+import org.mirrentools.sd.models.db.update.SdAbstractSequenceContent;
 import org.mirrentools.sd.models.db.update.SdBasicTableContent;
 
 /**
@@ -37,52 +38,61 @@ public class SdTableContentByPostgreSQL extends SdBasicTableContent {
 
 	@Override
 	public List<String> createSQL() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.createSQL().get(0).replace("UNSIGNED", ""));
+		List<String> result = new ArrayList<String>();
+		result.add(super.createSQL().get(0).replace("UNSIGNED", ""));
 		// 添加表的注释
 		if (!SdUtil.isNullOrEmpty(getRemark())) {
-			sb.append(createTableComment());
+			result.add(createTableComment());
 		}
 		// 添加列的注释
 		for (int i = 0; i < getColums().size(); i++) {
 			if (!SdUtil.isNullOrEmpty(getColums().get(i).getRemark())) {
-				sb.append(createColumnComment(getColums().get(i)));
+				result.add(createColumnComment(getColums().get(i)));
 			}
 		}
 		// 创建索引以及索引的注释
 		if (getIndexKeys() != null && !getIndexKeys().isEmpty()) {
 			for (int i = 0; i < getIndexKeys().size(); i++) {
-				sb.append(createIndex(getIndexKeys().get(i)));
+				generateIndex(true, getIndexKeys().get(i), result);
 			}
 		}
-		List<String> result = new ArrayList<String>();
-		result.add(sb.toString());
+		// 创建序列
+		if (getSequences() != null && !getSequences().isEmpty()) {
+			for (SdAbstractSequenceContent sequence : getSequences()) {
+				result.add(sequence.createSQL());
+			}
+		}
+
 		return result;
 	}
 
 	@Override
 	public List<String> updateSQL() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.updateSQL().get(0).replace("UNSIGNED", ""));
+		List<String> result = new ArrayList<String>();
+		result.add(super.updateSQL().get(0).replace("UNSIGNED", ""));
 		// 添加表的注释
 		if (!SdUtil.isNullOrEmpty(getRemark())) {
-			sb.append(createTableComment());
+			result.add(createTableComment());
 		}
 		// 添加列的注释
 		for (int i = 0; i < getColums().size(); i++) {
 			if (!SdUtil.isNullOrEmpty(getColums().get(i).getRemark())) {
-				sb.append(createColumnComment(getColums().get(i)));
+				result.add(createColumnComment(getColums().get(i)));
 			}
 		}
 		// 创建索引以及索引的注释
 		if (getIndexKeys() != null && !getIndexKeys().isEmpty()) {
 			for (int i = 0; i < getIndexKeys().size(); i++) {
-				sb.append(String.format(" DROP INDEX IF EXISTS %s.%s;", getSchema(), getIndexKeys().get(i).getName()));
-				sb.append(createIndex(getIndexKeys().get(i)));
+				result.add(String.format(" DROP INDEX IF EXISTS %s.%s;", getSchema(), getIndexKeys().get(i).getName()));
+				generateIndex(false, getIndexKeys().get(i), result);
 			}
 		}
-		List<String> result = new ArrayList<String>();
-		result.add(sb.toString());
+		// 创建序列
+		if (getSequences() != null && !getSequences().isEmpty()) {
+			for (SdAbstractSequenceContent sequence : getSequences()) {
+				result.add(sequence.updateSQL());
+			}
+		}
 		return result;
 	}
 
@@ -113,12 +123,20 @@ public class SdTableContentByPostgreSQL extends SdBasicTableContent {
 	/**
 	 * 创建索引
 	 * 
+	 * @param mode
+	 *          类型,ture=创建,false=修改
 	 * @param index
-	 * @return
+	 *          索引数据
+	 * @param result
+	 *          SQL语句集合
 	 */
-	public String createIndex(SdAbstractIndexKeyContent index) {
+	public void generateIndex(boolean mode, SdAbstractIndexKeyContent index, List<String> result) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(" CREATE ");
+		if (mode) {
+			sb.append(" CREATE ");
+		} else {
+			sb.append(" ALTER ");
+		}
 		if (index.isUnique()) {
 			sb.append(" UNIQUE ");
 		}
@@ -138,11 +156,9 @@ public class SdTableContentByPostgreSQL extends SdBasicTableContent {
 		if (converterExtensions() != null) {
 			sb.append(" " + converterExtensions());
 		}
-		sb.append(";\n");
-		if (index.getRemark() != null) {
-			sb.append(String.format(" COMMENT ON INDEX %s.%s IS '%s';\n", getSchema(), index.getName(), index.getRemark()));
-		}
-		return sb.toString();
+		sb.append(";");
+		result.add(sb.toString());
+		result.add(String.format(" COMMENT ON INDEX %s.%s IS '%s';\n", getSchema(), index.getName(), index.getRemark()));
 	}
 
 	/**

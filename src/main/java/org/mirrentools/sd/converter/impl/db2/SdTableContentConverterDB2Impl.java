@@ -3,11 +3,13 @@ package org.mirrentools.sd.converter.impl.db2;
 import org.mirrentools.sd.converter.SdAbstractTableContentConverter;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
+import org.mirrentools.sd.models.SdSequence;
 import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
 import org.mirrentools.sd.models.db.update.SdAbstractConstraintContent;
 import org.mirrentools.sd.models.db.update.SdAbstractForeignKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractIndexKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractPrimaryKeyContent;
+import org.mirrentools.sd.models.db.update.SdAbstractSequenceContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 import org.mirrentools.sd.models.db.update.impl.db2.SdConstraintContentByDB2;
 import org.mirrentools.sd.models.db.update.impl.db2.SdTableContentByDB2;
@@ -15,6 +17,7 @@ import org.mirrentools.sd.models.db.update.impl.db2.SdColumnContentByDB2;
 import org.mirrentools.sd.models.db.update.impl.db2.SdForeignKeyContentByDB2;
 import org.mirrentools.sd.models.db.update.impl.db2.SdIndexKeyContentByDB2;
 import org.mirrentools.sd.models.db.update.impl.db2.SdPrimaryKeyContentByDB2;
+import org.mirrentools.sd.models.db.update.impl.db2.SdSequenceContentByDB2;
 /**
  * 将SdBean转换为DB2数据库创建表需要的内容
  * 
@@ -56,8 +59,12 @@ public class SdTableContentConverterDB2Impl extends SdAbstractTableContentConver
 
 	@Override
 	public SdAbstractConstraintContent newConstraintContent(SdColumn col) {
-		// TODO Auto-generated method stub
 		return new SdConstraintContentByDB2();
+	}
+
+	@Override
+	public SdAbstractSequenceContent newSequenceContent(SdSequence sequence) {
+		return new SdSequenceContentByDB2();
 	}
 
 }

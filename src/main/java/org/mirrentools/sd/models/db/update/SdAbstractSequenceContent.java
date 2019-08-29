@@ -1,20 +1,15 @@
-package org.mirrentools.sd.models;
+package org.mirrentools.sd.models.db.update;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.mirrentools.sd.common.SdUtil;
-
 /**
- * 数据库序列
+ * 抽象序列,用于新建与修改
  * 
- * @author <a href="http://mirrentools.org">Mirren</a>
+ * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdSequence {
-	/** 关键字NONE */
-	public final static String NONE = "NONE";
-
+public abstract class SdAbstractSequenceContent {
 	/** 序列的名称 */
 	private String name;
 	/** 制定序列的数据类型 */
@@ -35,9 +30,38 @@ public class SdSequence {
 	private Boolean cycle;
 	/** 关联列 */
 	private String ownedBy;
-
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
+
+	/**
+	 * 创建的SQL语句
+	 * 
+	 * @return
+	 */
+	public abstract String createSQL();
+
+	/**
+	 * 修改的SQL语句,仅可以添加或删除
+	 * 
+	 * @return
+	 */
+	public abstract String updateSQL();
+
+	/**
+	 * 删除的SQL语句
+	 * 
+	 * @return
+	 */
+	public abstract String deleteSQL();
+
+	/**
+	 * 转换拓展字段,该方法用户转换拓展字段,如果基础的getBasicSQL方法可以用但是需要用到拓展字段时可以重写该方法,给方法的内容如果不为空会被追加到最后
+	 * 
+	 * @return
+	 */
+	public String converterExtensions() {
+		return null;
+	}
 
 	/**
 	 * 获取序列的名称
@@ -54,13 +78,13 @@ public class SdSequence {
 	 * @param name
 	 * @return
 	 */
-	public SdSequence setName(String name) {
+	public SdAbstractSequenceContent setName(String name) {
 		this.name = name;
 		return this;
 	}
 
 	/**
-	 * 序列的数据类型
+	 * 获取序列的数据类型
 	 * 
 	 * @return
 	 */
@@ -69,18 +93,18 @@ public class SdSequence {
 	}
 
 	/**
-	 * 制定序列的数据类型
+	 * 序列的数据类型
 	 * 
 	 * @param dataType
 	 * @return
 	 */
-	public SdSequence setDataType(String dataType) {
+	public SdAbstractSequenceContent setDataType(String dataType) {
 		this.dataType = dataType;
 		return this;
 	}
 
 	/**
-	 * 获取最小值,null=NO MINVALUE
+	 * 获取最小值
 	 * 
 	 * @return
 	 */
@@ -94,13 +118,13 @@ public class SdSequence {
 	 * @param minValue
 	 * @return
 	 */
-	public SdSequence setMinValue(Long minValue) {
+	public SdAbstractSequenceContent setMinValue(Long minValue) {
 		this.minValue = minValue;
 		return this;
 	}
 
 	/**
-	 * 获取最大值,null=NO MAXVALUE
+	 * 获取最大值
 	 * 
 	 * @return
 	 */
@@ -114,13 +138,13 @@ public class SdSequence {
 	 * @param maxValue
 	 * @return
 	 */
-	public SdSequence setMaxValue(Long maxValue) {
+	public SdAbstractSequenceContent setMaxValue(Long maxValue) {
 		this.maxValue = maxValue;
 		return this;
 	}
 
 	/**
-	 * 获取增量
+	 * 获取每次累加多少
 	 * 
 	 * @return
 	 */
@@ -129,18 +153,18 @@ public class SdSequence {
 	}
 
 	/**
-	 * 设置增量
+	 * 设置每次累加多少
 	 * 
 	 * @param incrementBy
 	 * @return
 	 */
-	public SdSequence setIncrementBy(Long incrementBy) {
+	public SdAbstractSequenceContent setIncrementBy(Long incrementBy) {
 		this.incrementBy = incrementBy;
 		return this;
 	}
 
 	/**
-	 * 获取开始值
+	 * 获取开始计数
 	 * 
 	 * @return
 	 */
@@ -149,12 +173,12 @@ public class SdSequence {
 	}
 
 	/**
-	 * 设置开始值
+	 * 设置开始计数
 	 * 
 	 * @param start
 	 * @return
 	 */
-	public SdSequence setStart(Long start) {
+	public SdAbstractSequenceContent setStart(Long start) {
 		this.start = start;
 		return this;
 	}
@@ -174,7 +198,7 @@ public class SdSequence {
 	 * @param restart
 	 * @return
 	 */
-	public SdSequence setRestart(Long restart) {
+	public SdAbstractSequenceContent setRestart(Long restart) {
 		this.restart = restart;
 		return this;
 	}
@@ -194,13 +218,13 @@ public class SdSequence {
 	 * @param cache
 	 * @return
 	 */
-	public SdSequence setCache(Long cache) {
+	public SdAbstractSequenceContent setCache(Long cache) {
 		this.cache = cache;
 		return this;
 	}
 
 	/**
-	 * 获取是否循环
+	 * 获取是否循环,true=CYCLE,false=NO CYCLE
 	 * 
 	 * @return
 	 */
@@ -214,7 +238,7 @@ public class SdSequence {
 	 * @param cycle
 	 * @return
 	 */
-	public SdSequence setCycle(Boolean cycle) {
+	public SdAbstractSequenceContent setCycle(Boolean cycle) {
 		this.cycle = cycle;
 		return this;
 	}
@@ -234,9 +258,18 @@ public class SdSequence {
 	 * @param ownedBy
 	 * @return
 	 */
-	public SdSequence setOwnedBy(String ownedBy) {
+	public SdAbstractSequenceContent setOwnedBy(String ownedBy) {
 		this.ownedBy = ownedBy;
 		return this;
+	}
+
+	/**
+	 * 获得拓展属性
+	 * 
+	 * @return
+	 */
+	public Map<String, Object> getExtensions() {
+		return extensions;
 	}
 
 	/**
@@ -245,9 +278,6 @@ public class SdSequence {
 	 * @return
 	 */
 	public Object getExtension(String key) {
-		if (SdUtil.isNullOrEmpty(getExtensions())) {
-			return null;
-		}
 		return getExtensions().get(key);
 	}
 
@@ -258,38 +288,28 @@ public class SdSequence {
 	 * @param value
 	 * @return
 	 */
-	public SdSequence addExtension(String key, Object value) {
+	public SdAbstractSequenceContent addExtension(String key, Object value) {
 		if (getExtensions() == null) {
 			setExtensions(new LinkedHashMap<String, Object>());
 		}
-		this.extensions.put(key, value);
+		getExtensions().put(key, value);
 		return this;
 	}
 
 	/**
-	 * 获取拓展属性
-	 * 
-	 * @return
-	 */
-	public Map<String, Object> getExtensions() {
-		return extensions;
-	}
-
-	/**
-	 * 设置拓展属性
+	 * 设置附加属性
 	 * 
 	 * @param extensions
 	 * @return
 	 */
-	public SdSequence setExtensions(Map<String, Object> extensions) {
+	public SdAbstractSequenceContent setExtensions(Map<String, Object> extensions) {
 		this.extensions = extensions;
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "SdSequence [name=" + name + ", dataType=" + dataType + ", minValue=" + minValue + ", maxValue=" + maxValue + ", incrementBy=" + incrementBy + ", start=" + start + ", restart=" + restart
-				+ ", cache=" + cache + ", cycle=" + cycle + ", ownedBy=" + ownedBy + ", extensions=" + extensions + "]";
+		return "SdAbstractSequenceContent [name=" + name + ", dataType=" + dataType + ", minValue=" + minValue + ", maxValue=" + maxValue + ", incrementBy=" + incrementBy + ", start=" + start
+				+ ", restart=" + restart + ", cache=" + cache + ", cycle=" + cycle + ", ownedBy=" + ownedBy + ", extensions=" + extensions + "]";
 	}
-
 }

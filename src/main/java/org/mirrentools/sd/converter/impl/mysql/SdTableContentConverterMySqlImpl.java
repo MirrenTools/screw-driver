@@ -3,11 +3,13 @@ package org.mirrentools.sd.converter.impl.mysql;
 import org.mirrentools.sd.converter.SdAbstractTableContentConverter;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
+import org.mirrentools.sd.models.SdSequence;
 import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
 import org.mirrentools.sd.models.db.update.SdAbstractConstraintContent;
 import org.mirrentools.sd.models.db.update.SdAbstractForeignKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractIndexKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractPrimaryKeyContent;
+import org.mirrentools.sd.models.db.update.SdAbstractSequenceContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 import org.mirrentools.sd.models.db.update.impl.mysql.SdColumnContentByMySQL;
 import org.mirrentools.sd.models.db.update.impl.mysql.SdConstraintContentByMySQL;
@@ -58,6 +60,11 @@ public class SdTableContentConverterMySqlImpl extends SdAbstractTableContentConv
 	@Override
 	public SdAbstractConstraintContent newConstraintContent(SdColumn col) {
 		return new SdConstraintContentByMySQL();
+	}
+
+	@Override
+	public SdAbstractSequenceContent newSequenceContent(SdSequence sequence) {
+		return null;
 	}
 
 }
