@@ -26,7 +26,10 @@ public abstract class SdAbstractForeignKeyContent {
 	private List<String> referencesColumns;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
-
+	/** 模式 */
+	private String schema;
+	/** 表 */
+	private String table;
 	/**
 	 * 创建的SQL语句
 	 * 
@@ -245,5 +248,46 @@ public abstract class SdAbstractForeignKeyContent {
 		this.extensions = extensions;
 		return this;
 	}
+	/**
+	 * 获取索引的模式
+	 * 
+	 * @return
+	 */
+	public String getSchema() {
+		return schema;
+	}
+	/**
+	 * 设置索引模式
+	 * 
+	 * @param columns
+	 */
+	public void setSchema(String schema) {
+		this.schema = schema;
+	}
+	/**
+	 * 获取索引的表
+	 * 
+	 * @return
+	 */
+	public String getTable() {
+		return table;
+	}
+	/**
+	 * 设置索引的表
+	 * 
+	 * @param columns
+	 */
+	public void setTable(String table) {
+		this.table = table;
+	}
+
+	@Override
+	public String toString() {
+		return "SdAbstractForeignKeyContent [constraint=" + constraint + ", removeConstraint=" + removeConstraint
+				+ ", foreignKeys=" + foreignKeys + ", referencesDB=" + referencesDB + ", referencesTable=" + referencesTable
+				+ ", referencesColumns=" + referencesColumns + ", extensions=" + extensions + ", schema=" + schema + ", table="
+				+ table + "]";
+	}
+
 
 }

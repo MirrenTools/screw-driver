@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mirrentools.sd.models.db.update.SdAbstractColumnContent;
+import org.mirrentools.sd.models.db.update.SdAbstractForeignKeyContent;
+import org.mirrentools.sd.models.db.update.SdAbstractIndexKeyContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 
 public class SdTableContentByDB2 extends SdAbstractTableContent{
@@ -17,26 +19,39 @@ public class SdTableContentByDB2 extends SdAbstractTableContent{
 	public List<String> createSQL() {
 		List<String> result = new ArrayList<String>();
 		StringBuilder sb = new StringBuilder();
-		sb.append("CREATE TABLE  " +(getSchema() == null ? "" : getSchema() + ".")+ getTableName() + "(");
+		String tbname = (getSchema() == null ? "" : getSchema() + ".")+ getTableName();
+		//建表语句以及列注释
+		sb.append("CREATE TABLE  " + tbname + "(");
 		for (int i = 0; i < getColums().size(); i++) {
 			sb.append(getColums().get(i).createSQL());
 			if (i != getColums().size() - 1) {
 				sb.append(",");
 			}
+			if (getColums().get(i).getRemark()!= null ) {
+				result.add("comment on column "+tbname+"."+getColums().get(i).getName()+" is'" +getColums().get(i).getRemark()+ "'");
+			}
+		
 		}
-		sb.append(");\\n");
-		result.add(sb.toString());
+		sb.append(")");
+		result.add(0,sb.toString());
+		//创建表注释
+		
+		if (getRemark()!= null ) {
+			result.add("comment on table "+tbname+" is '" +getRemark() +"'");
+		}
+		//创建索引
 		if (getIndexKeys() != null && !getIndexKeys().isEmpty()) {
-			for (int i = 0; i < getIndexKeys().size(); i++) {
-				result.add(getIndexKeys().get(i).createSQL());
+			for(SdAbstractIndexKeyContent index :getIndexKeys()) {
+				result.add(index.createSQL());
 			}
 		}
+		//创建外键
 		if (getForeignKeys() != null && !getForeignKeys().isEmpty()) {
-			sb.append(",");
-			for (int i = 0; i < getForeignKeys().size(); i++) {
-				result.add(getForeignKeys().get(i).createSQL());
+			for(SdAbstractForeignKeyContent foreignkey:getForeignKeys()) {
+				result.add(foreignkey.createSQL());
 			}
 		}
+		
 		
 		return result;
 	}

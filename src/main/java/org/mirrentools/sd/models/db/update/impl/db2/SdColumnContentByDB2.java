@@ -24,6 +24,9 @@ public class SdColumnContentByDB2  extends SdBasicColumnContent{
 		if (isNotNull()) {
 			sb.append(" NOT NULL");
 		}
+		if (isPrimary()) {
+			sb.append(" PRIMARY KEY");
+		}
 		if (isAutoIncrement()) {
 			sb.append(" GENERATED ALWAYS AS IDENTITY ");
 		}
