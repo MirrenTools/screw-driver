@@ -181,8 +181,9 @@ public abstract class SdAbstractPrimaryKeyContent {
 	 * 
 	 * @param columns
 	 */
-	public void setSchema(String schema) {
+	public SdAbstractPrimaryKeyContent setSchema(String schema) {
 		this.schema = schema;
+		return this;
 	}
 	/**
 	 * 获取索引的表
@@ -197,8 +198,10 @@ public abstract class SdAbstractPrimaryKeyContent {
 	 * 
 	 * @param columns
 	 */
-	public void setTable(String table) {
+	public SdAbstractPrimaryKeyContent setTable(String table) {
 		this.table = table;
+		return this;
+		
 	}
 
 

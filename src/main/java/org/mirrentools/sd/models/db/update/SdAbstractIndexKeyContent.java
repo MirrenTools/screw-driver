@@ -273,8 +273,9 @@ public abstract class SdAbstractIndexKeyContent {
 	 * 
 	 * @param columns
 	 */
-	public void setSchema(String schema) {
+	public SdAbstractIndexKeyContent setSchema(String schema) {
 		this.schema = schema;
+		return this;
 	}
 	/**
 	 * 获取索引的表
@@ -289,8 +290,9 @@ public abstract class SdAbstractIndexKeyContent {
 	 * 
 	 * @param columns
 	 */
-	public void setTable(String table) {
+	public SdAbstractIndexKeyContent setTable(String table) {
 		this.table = table;
+		return this;
 	}
 
 	@Override
