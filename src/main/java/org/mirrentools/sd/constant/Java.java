@@ -1,7 +1,7 @@
 package org.mirrentools.sd.constant;
 
 /**
- * java的访问修饰器
+ * java相关关键字的常量
  * 
  * @author <a href="http://szmirren.com">Mirren</a>
  *
@@ -93,7 +93,7 @@ public interface Java {
 
 	/** java.util.uuid数据类型 */
 	public final static String UUID = "java.util.uuid";
-	
+
 	/** java.util.Calendar数据类型 */
 	public final static String CALENDAR = "java.util.Calendar";
 	/** java.util.Date数据类型 */
