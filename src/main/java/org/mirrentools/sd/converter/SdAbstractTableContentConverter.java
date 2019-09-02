@@ -36,8 +36,22 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	/** 模式 */
 	private String schemas;
 
+	/** 类型转换器 */
+	private SdTypeConverter typeConverter;
+
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
+
+	/**
+	 * 初始化
+	 * 
+	 * @param typeConverter
+	 *          SdType转换为SQL类型的转换器
+	 */
+	public SdAbstractTableContentConverter(SdTypeConverter typeConverter) {
+		super();
+		this.typeConverter = typeConverter;
+	}
 
 	/**
 	 * 初始化一个表内容,子类需要实现它并初始化子类相应的内容
@@ -86,7 +100,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	 * @return
 	 */
 	public abstract SdAbstractConstraintContent newConstraintContent(SdColumn col);
-	
+
 	/**
 	 * 初始化序列,子类需要实现它并初始化子类相应的内容
 	 * 
@@ -159,7 +173,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			SdAbstractColumnContent column = newColumnContent(col);
 			column.setName(col.getName());
 			column.setRemark(col.getRemark());
-			column.setType(col.getType());
+			column.setType(getTypeConverter().converter(col.getType()));
 			column.setLength(col.getLength());
 			column.setDefault(col.getDefault());
 			column.setPrimary(col.isPrimary());
@@ -374,6 +388,17 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	@Override
 	public SdTableContentConverter setSchemas(String schemas) {
 		this.schemas = schemas;
+		return this;
+	}
+
+	@Override
+	public SdTypeConverter getTypeConverter() {
+		return typeConverter;
+	}
+
+	@Override
+	public SdTableContentConverter setTypeConverter(SdTypeConverter typeConverter) {
+		this.typeConverter = typeConverter;
 		return this;
 	}
 

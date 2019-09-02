@@ -82,6 +82,21 @@ public interface SdTableContentConverter {
 	SdTableContentConverter setSchemas(String schemas);
 
 	/**
+	 * 获取SdType转换为SQL类型
+	 * 
+	 * @return
+	 */
+	SdTypeConverter getTypeConverter();
+
+	/**
+	 * 设置SdType转换为SQL类型
+	 * 
+	 * @param typeConverter
+	 * @return
+	 */
+	SdTableContentConverter setTypeConverter(SdTypeConverter typeConverter);
+
+	/**
 	 * 获取拓展属性
 	 * 
 	 * @return

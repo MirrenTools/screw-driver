@@ -1,6 +1,10 @@
 package org.mirrentools.sd.converter.impl.postgresql;
 
+import org.mirrentools.sd.constant.SdType;
 import org.mirrentools.sd.converter.SdAbstractTableContentConverter;
+import org.mirrentools.sd.converter.SdBasicTypeConverter;
+import org.mirrentools.sd.converter.SdTypeConverter;
+import org.mirrentools.sd.enums.SdTypeMode;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.SdSequence;
@@ -26,6 +30,14 @@ import org.mirrentools.sd.models.db.update.impl.postgresql.SdTableContentByPostg
  *
  */
 public class SdTableContentConverterPostgreSqlImpl extends SdAbstractTableContentConverter {
+
+	public SdTableContentConverterPostgreSqlImpl() {
+		super(new SdBasicTypeConverter("ScrewDriver UNKNOWN TYPE", SdType.getDictionary(SdTypeMode.POSTGRE_SQL)));
+	}
+
+	public SdTableContentConverterPostgreSqlImpl(SdTypeConverter typeConverter) {
+		super(typeConverter);
+	}
 
 	@Override
 	public SdAbstractTableContent newTableContent(SdBean bean) {

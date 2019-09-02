@@ -1,6 +1,10 @@
 package org.mirrentools.sd.converter.impl.db2;
 
+import org.mirrentools.sd.constant.SdType;
 import org.mirrentools.sd.converter.SdAbstractTableContentConverter;
+import org.mirrentools.sd.converter.SdBasicTypeConverter;
+import org.mirrentools.sd.converter.SdTypeConverter;
+import org.mirrentools.sd.enums.SdTypeMode;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.SdSequence;
@@ -18,6 +22,7 @@ import org.mirrentools.sd.models.db.update.impl.db2.SdForeignKeyContentByDB2;
 import org.mirrentools.sd.models.db.update.impl.db2.SdIndexKeyContentByDB2;
 import org.mirrentools.sd.models.db.update.impl.db2.SdPrimaryKeyContentByDB2;
 import org.mirrentools.sd.models.db.update.impl.db2.SdSequenceContentByDB2;
+
 /**
  * 将SdBean转换为DB2数据库创建表需要的内容
  * 
@@ -25,6 +30,14 @@ import org.mirrentools.sd.models.db.update.impl.db2.SdSequenceContentByDB2;
  *
  */
 public class SdTableContentConverterDB2Impl extends SdAbstractTableContentConverter {
+
+	public SdTableContentConverterDB2Impl() {
+		super(new SdBasicTypeConverter("ScrewDriver UNKNOWN TYPE", SdType.getDictionary(SdTypeMode.DB2)));
+	}
+
+	public SdTableContentConverterDB2Impl(SdTypeConverter typeConverter) {
+		super(typeConverter);
+	}
 
 	@Override
 	public SdAbstractTableContent newTableContent(SdBean bean) {

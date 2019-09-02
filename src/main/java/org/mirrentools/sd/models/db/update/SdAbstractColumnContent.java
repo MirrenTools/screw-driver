@@ -15,7 +15,7 @@ public abstract class SdAbstractColumnContent {
 	/** 列的数据类型 */
 	private String type;
 	/** 列的长度 */
-	private Integer length;
+	private String length;
 	/** 列的默认值 */
 	private Object _default;
 	/** 列是否主键 */
@@ -107,7 +107,7 @@ public abstract class SdAbstractColumnContent {
 	 * 
 	 * @return
 	 */
-	public Integer getLength() {
+	public String getLength() {
 		return length;
 	}
 
@@ -117,7 +117,7 @@ public abstract class SdAbstractColumnContent {
 	 * @param length
 	 * @return
 	 */
-	public SdAbstractColumnContent setLength(Integer length) {
+	public SdAbstractColumnContent setLength(String length) {
 		this.length = length;
 		return this;
 	}

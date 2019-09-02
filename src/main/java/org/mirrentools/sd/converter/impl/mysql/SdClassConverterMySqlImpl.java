@@ -1,7 +1,11 @@
 package org.mirrentools.sd.converter.impl.mysql;
 
+import org.mirrentools.sd.constant.Java;
+import org.mirrentools.sd.constant.SdType;
 import org.mirrentools.sd.converter.SdAbstractClassConverter;
+import org.mirrentools.sd.converter.SdBasicTypeConverter;
 import org.mirrentools.sd.converter.SdTypeConverter;
+import org.mirrentools.sd.enums.SdTypeMode;
 
 /**
  * SdBean转换器MySQL版实现
@@ -18,8 +22,9 @@ public class SdClassConverterMySqlImpl extends SdAbstractClassConverter {
 	 */
 	public SdClassConverterMySqlImpl() {
 		super();
-		this.typeConverter = new SdTypeConverterMySqlToJavaImpl();
+		this.typeConverter = new SdBasicTypeConverter(Java.OBJECT, SdType.getDictionary(SdTypeMode.JAVA));
 	}
+
 	/**
 	 * 使用自定义的SQL转实体类转换器初始化
 	 * 
@@ -34,6 +39,7 @@ public class SdClassConverterMySqlImpl extends SdAbstractClassConverter {
 	public SdTypeConverter getTypeConverter() {
 		return typeConverter;
 	}
+
 	@Override
 	public SdClassConverterMySqlImpl setTypeConverter(SdTypeConverter typeConverter) {
 		this.typeConverter = typeConverter;

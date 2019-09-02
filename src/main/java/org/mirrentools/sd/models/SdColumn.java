@@ -49,7 +49,7 @@ public class SdColumn implements Comparable<SdColumn> {
 	/** 列的注释 */
 	private String remark;
 	/** 列的长度 */
-	private Integer length;
+	private String length;
 	/** 列的默认值 */
 	private String _default;
 	/** 列是否为主键 */
@@ -352,18 +352,29 @@ public class SdColumn implements Comparable<SdColumn> {
 	 * 
 	 * @return
 	 */
-	public Integer getLength() {
+	public String getLength() {
 		return length;
 	}
 
 	/**
-	 * 设置列的长度
+	 * 设置列的长度不带小数点
 	 * 
 	 * @param length
 	 * @return
 	 */
 	public SdColumn setLength(Integer length) {
-		this.length = length;
+		this.length = Integer.toString(length);
+		return this;
+	}
+
+	/**
+	 * 设置列的长度带小数点,比如2,2
+	 * 
+	 * @param length
+	 * @return
+	 */
+	public SdColumn setLengths(String lengths) {
+		this.length = lengths;
 		return this;
 	}
 

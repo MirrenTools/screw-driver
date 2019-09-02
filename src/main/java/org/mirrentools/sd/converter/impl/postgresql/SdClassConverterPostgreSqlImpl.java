@@ -1,7 +1,11 @@
 package org.mirrentools.sd.converter.impl.postgresql;
 
+import org.mirrentools.sd.constant.Java;
+import org.mirrentools.sd.constant.SdType;
 import org.mirrentools.sd.converter.SdAbstractClassConverter;
+import org.mirrentools.sd.converter.SdBasicTypeConverter;
 import org.mirrentools.sd.converter.SdTypeConverter;
+import org.mirrentools.sd.enums.SdTypeMode;
 
 /**
  * SdBean转换器PostgreSql版实现
@@ -18,7 +22,7 @@ public class SdClassConverterPostgreSqlImpl extends SdAbstractClassConverter {
 	 */
 	public SdClassConverterPostgreSqlImpl() {
 		super();
-		this.typeConverter = new SdTypeConverterPostgreSqlToJavaImpl();
+		this.typeConverter = new SdBasicTypeConverter(Java.OBJECT, SdType.getDictionary(SdTypeMode.JAVA));
 	}
 
 	/**

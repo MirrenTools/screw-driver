@@ -25,6 +25,8 @@ public interface Java {
 	public final static String ENUM = "Enum";
 	/** void数据类型 */
 	public final static String VOID = "void";
+	/** null数据类型 */
+	public final static String NULL = "null";
 	/** java.util.Map数据类型 */
 	public final static String MAP = "java.util.Map";
 	/** Iterable数据类型 */
@@ -100,8 +102,12 @@ public interface Java {
 	public final static String DATE = "java.util.Date";
 	/** java.sql.Date数据类型 */
 	public final static String DATE_SQL = "java.sql.Date";
+	/** java.sql.Time数据类型 */
+	public final static String DIME_SQL = "java.sql.Time";
 	/** java.sql.Timestamp数据类型 */
 	public final static String TIMESTAMP = "java.sql.Timestamp";
+	/** java.sql.TimeZone数据类型 */
+	public final static String TIMEZONE = "java.sql.TimeZone";
 
 	/** java.time.LocalDate数据类型 */
 	public final static String LOCAL_DATE = "java.time.LocalDate";
