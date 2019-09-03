@@ -14,137 +14,7 @@ import org.mirrentools.sd.enums.SdTypeMode;
  */
 public class SdType {
 	// ***********************************************************
-	// **********************通用数据类型*************************
-	// ***********************************************************
-	/**
-	 * 数据类型String,对应类型:<br>
-	 * Java=String<br>
-	 * 所有数据库=VARCHAR
-	 */
-	public final static String STRING = "String";
-	/**
-	 * 数据类型char,对应类型:<br>
-	 * Java=String<br>
-	 * 所有数据库=CHAR
-	 */
-	public final static String CHAR = "char";
-	/**
-	 * 数据类型varchar,对应类型:<br>
-	 * Java=String<br>
-	 * 所有数据库=VARCHAR
-	 */
-	public final static String VARCHAR = "varchar";
-
-	/**
-	 * 数据类型short,对应类型:<br>
-	 * Java=short<br>
-	 * 所有数据库=SMALLINT<br>
-	 */
-	public final static String SHORT_BASIC = "short_basic";
-	/**
-	 * 数据类型Short,对应类型:<br>
-	 * Java=Short<br>
-	 * 所有数据库=SMALLINT<br>
-	 */
-	public final static String SHORT = "Short";
-
-	/**
-	 * 数据类型int,对应类型:<br>
-	 * Java=int<br>
-	 * 所有数据库=INT
-	 */
-	public final static String INT_BASIC = "int_basic";
-	/**
-	 * 数据类型Integer,对应类型:<br>
-	 * Java=Integer<br>
-	 * 所有数据库=INTEGER<br>
-	 */
-	public final static String INTEGER = "Integer";
-
-	/**
-	 * 数据类型long,对应类型:<br>
-	 * Java=long<br>
-	 * 所有数据库=BIGINT<br>
-	 */
-	public final static String LONG_BASIC = "long_basic";
-	/**
-	 * 数据类型Long,对应类型:<br>
-	 * Java=Long<br>
-	 * 所有数据库=BIGINT<br>
-	 */
-	public final static String LONG = "Long";
-	/**
-	 * 数据类型float,对应类型:<br>
-	 * Java=float<br>
-	 * 所有数据库=FLOAT<br>
-	 */
-	public final static String FLOAT_BASIC = "float_basic";
-	/**
-	 * 数据类型Float,对应类型:<br>
-	 * Java=Float<br>
-	 * 所有数据库=FLOAT<br>
-	 */
-	public final static String FLOAT = "Float";
-	/**
-	 * 数据类型real,对应类型:<br>
-	 * Java=Number<br>
-	 * 所有数据库=REAL<br>
-	 */
-	public final static String REAL = "real";
-
-	/**
-	 * 数据类型double,对应类型:<br>
-	 * Java=double<br>
-	 * 所有数据库=DOUBLE<br>
-	 */
-	public final static String DOUBLE_BASIC = "double_basic";
-
-	/**
-	 * 数据类型Double,对应类型:<br>
-	 * Java=Double<br>
-	 * 所有数据库=DOUBLE<br>
-	 */
-	public final static String DOUBLE = "Double";
-
-	/**
-	 * 数据类型Numeric,对应类型:<br>
-	 * Java=Number<br>
-	 * 所有数据库=NUMERIC<br>
-	 */
-	public final static String NUMERIC = "Numeric";
-	/**
-	 * 数据类型Decimal,对应类型:<br>
-	 * Java=BigDecimal<br>
-	 * 所有数据库=DECIMAL<br>
-	 */
-	public final static String DECIMAL = "Decimal";
-	/**
-	 * 数据类型DateTime,对应类型:<br>
-	 * Java=java.time.LocalDateTime<br>
-	 * 所有数据库=DATETIME<br>
-	 */
-	public final static String DATETIME = "DateTime";
-	/**
-	 * 数据类型Date,对应类型:<br>
-	 * Java=java.time.LocalDate<br>
-	 * 所有数据库=DATE<br>
-	 */
-	public final static String DATE = "Date";
-	/**
-	 * 数据类型Time,对应类型:<br>
-	 * Java=java.time.LocalTime<br>
-	 * 所有数据库=DATE<br>
-	 */
-	public final static String TIME = "Time";
-	/**
-	 * 数据类型Timestamp,对应类型:<br>
-	 * Java=java.time.Instant<br>
-	 * 所有数据库=DATE<br>
-	 */
-	public final static String TIMESTAMP = "Timestamp";
-
-	// ***********************************************************
-	// **********************不通用数据类型***********************
+	// **********************JAVA数据类型***************************
 	// ***********************************************************
 	/**
 	 * 数据类型byte,对应类型:<br>
@@ -153,6 +23,13 @@ public class SdType {
 	 * PostgreSQL=SMALLINT
 	 */
 	public final static String BYTE = "byte";
+	/**
+	 * 数据类型byte array,对应类型:<br>
+	 * Java=byte[]<br>
+	 * MySQL=BLOB<br>
+	 * PostgreSQL=BYTEA
+	 */
+	public final static String BYTE_ARRAY = "byte_array";
 	/**
 	 * 数据类型boolean,对应类型:<br>
 	 * Java=boolean<br>
@@ -167,6 +44,183 @@ public class SdType {
 	 * PostgreSQL=BOOLEAN<br>
 	 */
 	public final static String BOOLEAN = "Boolean";
+	/**
+	 * 数据类型String,对应类型:<br>
+	 * Java=String<br>
+	 * MySQL=VARCHAR<br>
+	 * PostgreSQL=VARCHAR<br>
+	 */
+	public final static String STRING = "String";
+	/**
+	 * 数据类型short,对应类型:<br>
+	 * Java=short<br>
+	 * MySQL=SMALLINT<br>
+	 * PostgreSQL=SMALLINT<br>
+	 */
+	public final static String SHORT_BASIC = "short_basic";
+	/**
+	 * 数据类型Short,对应类型:<br>
+	 * Java=Short<br>
+	 * MySQL=SMALLINT<br>
+	 * PostgreSQL=SMALLINT<br>
+	 */
+	public final static String SHORT = "Short";
+
+	/**
+	 * 数据类型int,对应类型:<br>
+	 * Java=int<br>
+	 * MySQL=INT<br>
+	 * PostgreSQL=INTEGER<br>
+	 */
+	public final static String INT_BASIC = "int_basic";
+	/**
+	 * 数据类型Integer,对应类型:<br>
+	 * Java=Integer<br>
+	 * MySQL=INT<br>
+	 * PostgreSQL=INTEGER<br>
+	 */
+	public final static String INTEGER = "Integer";
+	/**
+	 * 数据类型long,对应类型:<br>
+	 * Java=long<br>
+	 * MySQL=BIGINT<br>
+	 * PostgreSQL=BIGINT<br>
+	 */
+	public final static String LONG_BASIC = "long_basic";
+	/**
+	 * 数据类型Long,对应类型:<br>
+	 * Java=Long<br>
+	 * MySQL=BIGINT<br>
+	 * PostgreSQL=BIGINT<br>
+	 */
+	public final static String LONG = "Long";
+	/**
+	 * 数据类型float,对应类型:<br>
+	 * Java=float<br>
+	 * MySQL=FLOAT<br>
+	 * PostgreSQL=REAL<br>
+	 */
+	public final static String FLOAT_BASIC = "float_basic";
+	/**
+	 * 数据类型Float,对应类型:<br>
+	 * Java=Float<br>
+	 * MySQL=FLOAT<br>
+	 * PostgreSQL=REAL<br>
+	 */
+	public final static String FLOAT = "Float";
+	/**
+	 * 数据类型double,对应类型:<br>
+	 * Java=double<br>
+	 * MySQL=DOUBLE<br>
+	 * PostgreSQL=DOUBLE PRECISION<br>
+	 */
+	public final static String DOUBLE_BASIC = "double_basic";
+
+	/**
+	 * 数据类型Double,对应类型:<br>
+	 * Java=Double<br>
+	 * 所有数据库=DOUBLE PRECISION<br>
+	 */
+	public final static String DOUBLE = "Double";
+	/**
+	 * 数据类型Number,对应类型:<br>
+	 * Java=Number<br>
+	 * MySQL=NUMERIC<br>
+	 * PostgreSQL=NUMERIC<br>
+	 */
+	public final static String NUMBER = "Number";
+
+	/**
+	 * 数据类型Decimal,对应类型:<br>
+	 * Java=BigDecimal<br>
+	 * MySQL=DECIMAL<br>
+	 * PostgreSQL=DECIMAL<br>
+	 */
+	public final static String DECIMAL = "Decimal";
+
+	/**
+	 * 数据类型ZonedDateTime,对应类型:<br>
+	 * Java=java.time.ZonedDateTime<br>
+	 * MySQL=TIMESTAMP<br>
+	 * PostgreSQL=TIMESTAMP WITH TIME ZONE<br>
+	 */
+	public final static String ZONED_DATE_TIME = "ZonedDateTime";
+	/**
+	 * 数据类型GregorianCalendar,对应类型:<br>
+	 * Java=java.util.GregorianCalendar<br>
+	 * MySQL=TIMESTAMP<br>
+	 * PostgreSQL=TIMESTAMP WITH TIME ZONE<br>
+	 */
+	public final static String GREGORIAN_CALENDAR = "java.util.GregorianCalendar";
+	/**
+	 * 数据类型DateTime,对应类型:<br>
+	 * Java=java.time.LocalDateTime<br>
+	 * MySQL=DATETIME<br>
+	 * PostgreSQL=TIMESTAMP<br>
+	 */
+	public final static String DATETIME = "DateTime";
+	/**
+	 * 数据类型Date,对应类型:<br>
+	 * Java=java.time.LocalDate<br>
+	 * MySQL=DATE<br>
+	 * PostgreSQL=DATE<br>
+	 */
+	public final static String DATE = "Date";
+	/**
+	 * 数据类型Time,对应类型:<br>
+	 * Java=java.time.LocalTime<br>
+	 * MySQL=TIME<br>
+	 * PostgreSQL=TIME<br>
+	 */
+	public final static String TIME = "Time";
+	/**
+	 * 数据类型Timestamp,对应类型:<br>
+	 * Java=java.time.Instant<br>
+	 * MySQL=TIMESTAMP<br>
+	 * PostgreSQL=TIMESTAMP<br>
+	 */
+	public final static String TIMESTAMP = "Timestamp";
+	/**
+	 * 数据类型java.util.Date,对应类型:<br>
+	 * Java=java.util.Date<br>
+	 * MySQL=DATETIME<br>
+	 * PostgreSQL=TIMESTAMP<br>
+	 */
+	public final static String DATE_UTIL = "java.util.Date";
+	/**
+	 * 数据类型java.util.Calendar,对应类型:<br>
+	 * Java=java.util.Calendar<br>
+	 * MySQL=DATE<br>
+	 * PostgreSQL=DATE<br>
+	 */
+	public final static String CALENDAR = "java.util.Calendar";
+
+	/**
+	 * 数据类型java.sql.Time,对应类型:<br>
+	 * Java=java.sql.Date<br>
+	 * MySQL=DATE<br>
+	 * PostgreSQL=DATE<br>
+	 */
+	public final static String DATE_SQL = "java.sql.Date";
+
+	/**
+	 * 数据类型java.sql.Time,对应类型:<br>
+	 * Java=java.sql.Time<br>
+	 * MySQL=TIME<br>
+	 * PostgreSQL=TIME<br>
+	 */
+	public final static String TIME_SQL = "java.sql.Time";
+	/**
+	 * 数据类型java.sql.Timestamp,对应类型:<br>
+	 * Java=java.sql.Timestamp<br>
+	 * MySQL=DATETIME<br>
+	 * PostgreSQL=TIMESTAMP<br>
+	 */
+	public final static String TIMESTAMP_SQL = "java.sql.Timestamp";
+
+	// ***********************************************************
+	// **********************SQL数据类型***********************
+	// ***********************************************************
 
 	/**
 	 * 数据类型nchar,对应类型:<br>
@@ -189,13 +243,7 @@ public class SdType {
 	 * PostgreSQL=varchar<br>
 	 */
 	public final static String VARCHAR2 = "varchar2";
-	/**
-	 * 数据类型Number,对应类型:<br>
-	 * Java=Number<br>
-	 * MySQL=NUMERIC<br>
-	 * PostgreSQL=NUMERIC<br>
-	 */
-	public final static String NUMBER = "Number";
+
 	/**
 	 * 数据类型Money,对应类型:<br>
 	 * Java=BigDecimal<br>
@@ -233,6 +281,36 @@ public class SdType {
 	 * PostgreSQL=JSONB
 	 */
 	public final static String JSONB = "jsonb";
+
+	// ***********************************************************
+	// ************************SQL通用类型***********************
+	// ***********************************************************
+	/**
+	 * 数据类型char,对应类型:<br>
+	 * Java=String<br>
+	 * 所有数据库=CHAR
+	 */
+	public final static String CHAR = "char";
+	/**
+	 * 数据类型varchar,对应类型:<br>
+	 * Java=String<br>
+	 * 所有数据库=VARCHAR
+	 */
+	public final static String VARCHAR = "varchar";
+
+	/**
+	 * 数据类型real,对应类型:<br>
+	 * Java=Number<br>
+	 * 所有数据库=REAL<br>
+	 */
+	public final static String REAL = "real";
+
+	/**
+	 * 数据类型Numeric,对应类型:<br>
+	 * Java=Number<br>
+	 * 所有数据库=NUMERIC<br>
+	 */
+	public final static String NUMERIC = "Numeric";
 
 	// ***********************************************************
 	// ************************数据类型映射***********************
@@ -285,7 +363,6 @@ public class SdType {
 		initOracleMaps();
 		initSqlServerMaps();
 		initSqliteMaps();
-
 	}
 
 	/**
@@ -354,21 +431,60 @@ public class SdType {
 	}
 
 	/**
+	 * 初始化通用SQL
+	 */
+	private static void initCommonSQLMaps() {
+		// 通用数据库类型设置
+		COMMON_SQL_MAPS.put(CHAR, SQL.CHAR);
+		COMMON_SQL_MAPS.put(VARCHAR, SQL.VARCHAR);
+		COMMON_SQL_MAPS.put(REAL, SQL.REAL);
+		COMMON_SQL_MAPS.put(NUMERIC, SQL.NUMERIC);
+
+	}
+
+	/**
 	 * 初始化MySQL类型映射
 	 */
 	private static void initMySQLMaps() {
 		MYSQL_MAPS.put(BYTE, MySQL.TINYINT);
+		MYSQL_MAPS.put(BYTE_ARRAY, MySQL.BLOB);
 		MYSQL_MAPS.put(BOOLEAN, MySQL.BOOLEAN);
 		MYSQL_MAPS.put(BOOLEAN_BASIC, MySQL.BOOLEAN);
+		MYSQL_MAPS.put(STRING, MySQL.VARCHAR);
+		MYSQL_MAPS.put(SHORT, MySQL.SMALLINT);
+		MYSQL_MAPS.put(SHORT_BASIC, MySQL.SMALLINT);
+		MYSQL_MAPS.put(INT_BASIC, MySQL.INT);
+		MYSQL_MAPS.put(INTEGER, MySQL.INT);
+		MYSQL_MAPS.put(LONG, MySQL.BIGINT);
+		MYSQL_MAPS.put(LONG_BASIC, SQL.BIGINT);
+		MYSQL_MAPS.put(FLOAT, MySQL.FLOAT);
+		MYSQL_MAPS.put(FLOAT_BASIC, MySQL.FLOAT);
+		MYSQL_MAPS.put(DOUBLE, MySQL.DOUBLE);
+		MYSQL_MAPS.put(DOUBLE_BASIC, MySQL.DOUBLE);
+		MYSQL_MAPS.put(NUMBER, MySQL.NUMERIC);
+		MYSQL_MAPS.put(MONEY, MySQL.DECIMAL);
+		MYSQL_MAPS.put(DECIMAL, MySQL.DECIMAL);
+
 		MYSQL_MAPS.put(NCHAR, MySQL.CHAR);
 		MYSQL_MAPS.put(NVARCHAR, MySQL.VARCHAR);
 		MYSQL_MAPS.put(VARCHAR2, MySQL.VARCHAR);
-		MYSQL_MAPS.put(MONEY, MySQL.DECIMAL);
-		MYSQL_MAPS.put(NUMBER, MySQL.NUMERIC);
 		MYSQL_MAPS.put(TEXT, MySQL.TEXT);
 		MYSQL_MAPS.put(LONGTEXT, MySQL.LONGTEXT);
 		MYSQL_MAPS.put(JSON, MySQL.JSON);
 		MYSQL_MAPS.put(JSONB, MySQL.JSON);
+
+		MYSQL_MAPS.put(ZONED_DATE_TIME, MySQL.TIMESTAMP);
+		MYSQL_MAPS.put(GREGORIAN_CALENDAR, MySQL.TIMESTAMP);
+		MYSQL_MAPS.put(DATETIME, MySQL.DATETIME);
+		MYSQL_MAPS.put(DATE, MySQL.DATE);
+		MYSQL_MAPS.put(CALENDAR, MySQL.DATE);
+		MYSQL_MAPS.put(DATE_SQL, MySQL.DATE);
+		MYSQL_MAPS.put(DATE_UTIL, MySQL.DATE);
+		MYSQL_MAPS.put(TIME, MySQL.TIME);
+		MYSQL_MAPS.put(TIME_SQL, MySQL.TIME);
+		MYSQL_MAPS.put(TIMESTAMP, MySQL.TIMESTAMP);
+		MYSQL_MAPS.put(TIMESTAMP_SQL, MySQL.TIMESTAMP);
+
 		// TODO MySQL添加映射的模块
 	}
 
@@ -377,17 +493,44 @@ public class SdType {
 	 */
 	private static void initPostgreSQLMaps() {
 		POSTGRE_SQL_MAPS.put(BYTE, PostgreSQL.SMALLINT);
+		POSTGRE_SQL_MAPS.put(BYTE_ARRAY, PostgreSQL.BYTEA);
 		POSTGRE_SQL_MAPS.put(BOOLEAN, PostgreSQL.BOOLEAN);
 		POSTGRE_SQL_MAPS.put(BOOLEAN_BASIC, PostgreSQL.BOOLEAN);
+		POSTGRE_SQL_MAPS.put(STRING, PostgreSQL.VARCHAR);
+		POSTGRE_SQL_MAPS.put(SHORT, PostgreSQL.SMALLINT);
+		POSTGRE_SQL_MAPS.put(SHORT_BASIC, PostgreSQL.SMALLINT);
+		POSTGRE_SQL_MAPS.put(INT_BASIC, PostgreSQL.INTEGER);
+		POSTGRE_SQL_MAPS.put(INTEGER, PostgreSQL.INTEGER);
+		POSTGRE_SQL_MAPS.put(LONG, PostgreSQL.BIGINT);
+		POSTGRE_SQL_MAPS.put(LONG_BASIC, PostgreSQL.BIGINT);
+		POSTGRE_SQL_MAPS.put(FLOAT, PostgreSQL.REAL);
+		POSTGRE_SQL_MAPS.put(FLOAT_BASIC, PostgreSQL.REAL);
+		POSTGRE_SQL_MAPS.put(DOUBLE, PostgreSQL.DOUBLE_PRECISION);
+		POSTGRE_SQL_MAPS.put(DOUBLE_BASIC, PostgreSQL.DOUBLE_PRECISION);
+		POSTGRE_SQL_MAPS.put(NUMBER, PostgreSQL.NUMERIC);
+		POSTGRE_SQL_MAPS.put(MONEY, PostgreSQL.MONEY);
+		POSTGRE_SQL_MAPS.put(DECIMAL, PostgreSQL.DECIMAL);
+
 		POSTGRE_SQL_MAPS.put(NCHAR, PostgreSQL.CHAR);
 		POSTGRE_SQL_MAPS.put(NVARCHAR, PostgreSQL.VARCHAR);
 		POSTGRE_SQL_MAPS.put(VARCHAR2, PostgreSQL.VARCHAR);
-		POSTGRE_SQL_MAPS.put(MONEY, PostgreSQL.MONEY);
-		POSTGRE_SQL_MAPS.put(NUMBER, PostgreSQL.NUMERIC);
 		POSTGRE_SQL_MAPS.put(TEXT, PostgreSQL.TEXT);
 		POSTGRE_SQL_MAPS.put(LONGTEXT, PostgreSQL.TEXT);
 		POSTGRE_SQL_MAPS.put(JSON, PostgreSQL.JSON);
 		POSTGRE_SQL_MAPS.put(JSONB, PostgreSQL.JSONB);
+
+		POSTGRE_SQL_MAPS.put(ZONED_DATE_TIME, PostgreSQL.TIMESTAMP_WITH_TIME_ZONE);
+		POSTGRE_SQL_MAPS.put(GREGORIAN_CALENDAR, PostgreSQL.TIMESTAMP_WITH_TIME_ZONE);
+		POSTGRE_SQL_MAPS.put(DATETIME, PostgreSQL.TIMESTAMP);
+		POSTGRE_SQL_MAPS.put(DATE, PostgreSQL.DATE);
+		POSTGRE_SQL_MAPS.put(CALENDAR, PostgreSQL.DATE);
+		POSTGRE_SQL_MAPS.put(DATE_SQL, PostgreSQL.DATE);
+		POSTGRE_SQL_MAPS.put(DATE_UTIL, PostgreSQL.DATE);
+		POSTGRE_SQL_MAPS.put(TIME, PostgreSQL.TIME);
+		POSTGRE_SQL_MAPS.put(TIME_SQL, PostgreSQL.TIME);
+		POSTGRE_SQL_MAPS.put(TIMESTAMP, PostgreSQL.TIMESTAMP);
+		POSTGRE_SQL_MAPS.put(TIMESTAMP_SQL, PostgreSQL.TIMESTAMP);
+
 		// TODO PostgreSQL添加映射的模块
 	}
 
@@ -424,40 +567,15 @@ public class SdType {
 	}
 
 	/**
-	 * 初始化通用SQL
-	 */
-	private static void initCommonSQLMaps() {
-		// 通用数据库类型设置
-		COMMON_SQL_MAPS.put(STRING, SQL.VARCHAR);
-		COMMON_SQL_MAPS.put(CHAR, SQL.CHAR);
-		COMMON_SQL_MAPS.put(VARCHAR, SQL.VARCHAR);
-		COMMON_SQL_MAPS.put(SHORT, SQL.SMALLINT);
-		COMMON_SQL_MAPS.put(SHORT_BASIC, SQL.SMALLINT);
-		COMMON_SQL_MAPS.put(INT_BASIC, SQL.INT);
-		COMMON_SQL_MAPS.put(INTEGER, SQL.INTEGER);
-		COMMON_SQL_MAPS.put(LONG, SQL.BIGINT);
-		COMMON_SQL_MAPS.put(LONG_BASIC, SQL.BIGINT);
-		COMMON_SQL_MAPS.put(FLOAT, SQL.FLOAT);
-		COMMON_SQL_MAPS.put(FLOAT_BASIC, SQL.FLOAT);
-		COMMON_SQL_MAPS.put(REAL, SQL.REAL);
-		COMMON_SQL_MAPS.put(DOUBLE, SQL.DOUBLE);
-		COMMON_SQL_MAPS.put(DOUBLE_BASIC, SQL.DOUBLE);
-		COMMON_SQL_MAPS.put(NUMERIC, SQL.NUMERIC);
-		COMMON_SQL_MAPS.put(DECIMAL, SQL.DECIMAL);
-		COMMON_SQL_MAPS.put(DATETIME, SQL.DATETIME);
-		COMMON_SQL_MAPS.put(DATE, SQL.DATE);
-		COMMON_SQL_MAPS.put(TIME, SQL.TIME);
-		COMMON_SQL_MAPS.put(TIMESTAMP, SQL.TIMESTAMP);
-
-	}
-
-	/**
 	 * 初始化Java字典
 	 */
 	private static void initJavaMap() {
+		JAVA_MAPS.put(BYTE, Java.BYTE);
+		JAVA_MAPS.put(BYTE_ARRAY, Java.BYTE_ARRAYS);
+		JAVA_MAPS.put(BOOLEAN_BASIC, Java.BOOLEAN);
+		JAVA_MAPS.put(BOOLEAN, Java.BOOLEAN_OBJ);
+
 		JAVA_MAPS.put(STRING, Java.STRING);
-		JAVA_MAPS.put(CHAR, Java.STRING);
-		JAVA_MAPS.put(VARCHAR, Java.STRING);
 		JAVA_MAPS.put(SHORT_BASIC, Java.SHORT);
 		JAVA_MAPS.put(SHORT, Java.SHORT_OBJ);
 		JAVA_MAPS.put(INT_BASIC, Java.INT);
@@ -469,23 +587,35 @@ public class SdType {
 		JAVA_MAPS.put(REAL, Java.NUMBER);
 		JAVA_MAPS.put(DOUBLE_BASIC, Java.DOUBLE);
 		JAVA_MAPS.put(DOUBLE, Java.DOUBLE_OBJ);
+
 		JAVA_MAPS.put(NUMERIC, Java.NUMBER);
 		JAVA_MAPS.put(DECIMAL, Java.BIG_DECIMAL);
-		JAVA_MAPS.put(DATETIME, Java.LOCAL_DATE_TIME);
-		JAVA_MAPS.put(DATE, Java.LOCAL_DATE);
-		JAVA_MAPS.put(TIME, Java.LOCAL_TIME);
-		JAVA_MAPS.put(TIMESTAMP, Java.INSTANT);
+		JAVA_MAPS.put(NUMBER, Java.NUMBER);
+		JAVA_MAPS.put(MONEY, Java.BIG_DECIMAL);
 
-		JAVA_MAPS.put(BYTE, Java.BYTE);
-		JAVA_MAPS.put(BOOLEAN_BASIC, Java.BOOLEAN);
-		JAVA_MAPS.put(BOOLEAN, Java.BOOLEAN_OBJ);
+		JAVA_MAPS.put(DATETIME, Java.LOCAL_DATE_TIME);
+		JAVA_MAPS.put(DATE_UTIL, Java.DATE);
+		JAVA_MAPS.put(DATE_SQL, Java.DATE_SQL);
+		JAVA_MAPS.put(DATE, Java.LOCAL_DATE);
+		JAVA_MAPS.put(CALENDAR, Java.CALENDAR);
+		JAVA_MAPS.put(TIME, Java.LOCAL_TIME);
+		JAVA_MAPS.put(TIME_SQL, Java.TIME_SQL);
+		JAVA_MAPS.put(TIMESTAMP, Java.INSTANT);
+		JAVA_MAPS.put(TIMESTAMP_SQL, Java.TIMESTAMP);
+		JAVA_MAPS.put(ZONED_DATE_TIME, Java.ZONED_DATE_TIME);
+		JAVA_MAPS.put(GREGORIAN_CALENDAR, Java.GREGORIAN_CALENDAR);
+
+		JAVA_MAPS.put(CHAR, Java.STRING);
+		JAVA_MAPS.put(VARCHAR, Java.STRING);
 		JAVA_MAPS.put(NCHAR, Java.STRING);
 		JAVA_MAPS.put(NVARCHAR, Java.STRING);
 		JAVA_MAPS.put(VARCHAR2, Java.STRING);
-		JAVA_MAPS.put(MONEY, Java.BIG_DECIMAL);
-		JAVA_MAPS.put(NUMBER, Java.NUMBER);
 		JAVA_MAPS.put(TEXT, Java.STRING);
 		JAVA_MAPS.put(LONGTEXT, Java.STRING);
+
+		JAVA_MAPS.put(JSON, Java.STRING);
+		JAVA_MAPS.put(JSONB, Java.STRING);
+
 	}
 
 	/**
@@ -553,10 +683,11 @@ public class SdType {
 		JAVA_MAPS.put(SQL.LONGVARBINARY, Java.BYTE_ARRAYS);
 		JAVA_MAPS.put(SQL.BLOB, Java.BYTE_ARRAYS);
 
-		JAVA_MAPS.put(SQL.DATE, Java.DATE_SQL);
-		JAVA_MAPS.put(SQL.TIME, Java.DIME_SQL);
-		JAVA_MAPS.put(SQL.TIMESTAMP, Java.TIMESTAMP);
-		JAVA_MAPS.put(SQL.TIME_WITH_TIMEZONE, Java.TIMEZONE);
+		JAVA_MAPS.put(SQL.DATETIME, Java.LOCAL_DATE_TIME);
+		JAVA_MAPS.put(SQL.DATE, Java.LOCAL_DATE);
+		JAVA_MAPS.put(SQL.TIME, Java.LOCAL_TIME);
+		JAVA_MAPS.put(SQL.TIMESTAMP, Java.INSTANT);
+		JAVA_MAPS.put(SQL.TIME_WITH_TIMEZONE, Java.ZONED_DATE_TIME);
 
 		JAVA_MAPS.put(SQL.OTHER, Java.OBJECT);
 

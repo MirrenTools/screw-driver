@@ -373,7 +373,7 @@ public class SdColumn implements Comparable<SdColumn> {
 	 * @param length
 	 * @return
 	 */
-	public SdColumn setLengths(String lengths) {
+	public SdColumn setLength(String lengths) {
 		this.length = lengths;
 		return this;
 	}

@@ -96,18 +96,19 @@ public interface Java {
 	/** java.util.uuid数据类型 */
 	public final static String UUID = "java.util.uuid";
 
-	/** java.util.Calendar数据类型 */
-	public final static String CALENDAR = "java.util.Calendar";
 	/** java.util.Date数据类型 */
 	public final static String DATE = "java.util.Date";
+	/** java.util.Calendar数据类型 */
+	public final static String CALENDAR = "java.util.Calendar";
+	/** java.util.GregorianCalendar数据类型 */
+	public final static String GREGORIAN_CALENDAR = "java.util.GregorianCalendar";
+
 	/** java.sql.Date数据类型 */
 	public final static String DATE_SQL = "java.sql.Date";
 	/** java.sql.Time数据类型 */
-	public final static String DIME_SQL = "java.sql.Time";
+	public final static String TIME_SQL = "java.sql.Time";
 	/** java.sql.Timestamp数据类型 */
 	public final static String TIMESTAMP = "java.sql.Timestamp";
-	/** java.sql.TimeZone数据类型 */
-	public final static String TIMEZONE = "java.sql.TimeZone";
 
 	/** java.time.LocalDate数据类型 */
 	public final static String LOCAL_DATE = "java.time.LocalDate";

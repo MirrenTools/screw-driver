@@ -104,6 +104,8 @@ public interface PostgreSQL {
 	public final static String TIMESTAMP = "timestamp";
 	/** PostgreSQL数据类型timestamptz 日期和时间，包括时区 */
 	public final static String TIMESTAMPTZ = "timestamptz";
+	/** PostgreSQL数据类型timestamp with time zone 日期和时间，包括时区 */
+	public final static String TIMESTAMP_WITH_TIME_ZONE = "timestamp with time zone";
 
 	/** PostgreSQL数据类型bit 定长位串 */
 	public final static String BIT = "bit";
