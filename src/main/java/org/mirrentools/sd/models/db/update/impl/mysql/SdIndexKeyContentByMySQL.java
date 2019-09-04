@@ -14,10 +14,10 @@ public class SdIndexKeyContentByMySQL extends SdAbstractIndexKeyContent {
 	public String createSQL() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" " + getType());
-		sb.append(" `" + getName() + "`");
+		sb.append(" " + getName());
 		sb.append(" (");
 		for (int i = 0; i < getColumns().size(); i++) {
-			sb.append("`" + getColumns().get(i) + "`");
+			sb.append(" " + getColumns().get(i));
 			if (i != getColumns().size() - 1) {
 				sb.append(",");
 			}
@@ -31,10 +31,7 @@ public class SdIndexKeyContentByMySQL extends SdAbstractIndexKeyContent {
 
 	@Override
 	public String updateSQL() {
-		return 
-				deleteSQL() == null 
-				? " ADD " + createSQL() 
-				: deleteSQL() + " , ADD " + createSQL();
+		return deleteSQL() == null ? " ADD " + createSQL() : deleteSQL() + " , ADD " + createSQL();
 	}
 
 	@Override

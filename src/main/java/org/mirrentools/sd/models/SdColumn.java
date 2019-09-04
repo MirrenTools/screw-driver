@@ -363,6 +363,9 @@ public class SdColumn implements Comparable<SdColumn> {
 	 * @return
 	 */
 	public SdColumn setLength(Integer length) {
+		if (length == null) {
+			return this;
+		}
 		this.length = Integer.toString(length);
 		return this;
 	}

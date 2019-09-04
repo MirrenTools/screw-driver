@@ -31,7 +31,7 @@ public class SdBasicPrimaryKeyContent extends SdAbstractPrimaryKeyContent {
 
 	@Override
 	public String updateSQL() {
-		return deleteSQL() + ", ADD " + createSQL();
+		return " ADD " + createSQL();
 	}
 
 	@Override

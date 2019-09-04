@@ -8,11 +8,10 @@ import org.mirrentools.sd.ScrewDriverTemplate;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.converter.SdClassConverter;
+import org.mirrentools.sd.converter.SdDatabaseContentConverter;
 import org.mirrentools.sd.converter.SdTableContentConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.dbutil.SdDbUtil;
-import org.mirrentools.sd.models.SdBean;
-import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.def.ScrewDriverDB2Options;
 import org.mirrentools.sd.options.def.ScrewDriverMySqlOptions;
@@ -29,11 +28,6 @@ import org.mirrentools.sd.options.def.ScrewDriverSqliteOptions;
  */
 public class ScrewDriverOptions {
 	// ***************基本配置*******************
-
-	/** 实体描述 */
-	private SdBean bean;
-	/** 实体类的属性,生成代码是该属性与bean二选一 */
-	private SdClassContent classContent;
 	/** 数据库配置 */
 	private SdDatabaseOptions databaseOptions;
 
@@ -52,18 +46,23 @@ public class ScrewDriverOptions {
 	private ScrewDriverTemplate templateUtil;
 
 	// ***************SQL配置*******************
-	/** 如果数据库不存在是否创建, 如果支持默认创建 */
-	private boolean createDatabase = true;
-	/** 如果表已经存在是否修改表,默认不修改表 */
-	private boolean alterTable;
 	/** 数据库执行工具 */
 	private SdDbUtil dbUtil;
 	/** 将SdBean转换为数据库表的操作属性的转换器 */
 	private SdTableContentConverter tableConverter;
+	/** 将SdDatabase转换为数据库的操作属性 */
+	private SdDatabaseContentConverter databaseConverter;
 
 	// ***************拓展配置*******************
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
+
+	/**
+	 * 实例化
+	 */
+	public ScrewDriverOptions(ScrewDriverOptions options) {
+		wrap(options);
+	}
 
 	/**
 	 * 实例化一个空的配置,后续添加自定义配置
@@ -73,75 +72,52 @@ public class ScrewDriverOptions {
 	}
 
 	/**
-	 * 实例化仅生成SQL的配置
+	 * 根据数据库配置信息实例化SQL的配置
 	 * 
-	 * @param bean
-	 *          实体描述
 	 * @param databaseOptions
 	 *          数据库连接信息
 	 */
-	public ScrewDriverOptions(SdBean bean, SdDatabaseOptions databaseOptions) {
+	public ScrewDriverOptions(SdDatabaseOptions databaseOptions) {
 		super();
-		init(bean, null, null, databaseOptions);
+		init(null, databaseOptions);
 	}
 
 	/**
-	 * 实例化仅生成代码的配置
+	 * 根据数据库配置信息实例化生成代码与SQL的配置
 	 * 
-	 * @param classContent
-	 *          实体类属性
 	 * @param templateMaps
 	 *          模板
 	 * @param databaseOptions
 	 *          数据库连接信息
 	 */
-	public ScrewDriverOptions(SdClassContent classContent, Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
+	public ScrewDriverOptions(Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
 		super();
-		init(null, classContent, templateMaps, databaseOptions);
-	}
-
-	/**
-	 * 实例化生成代码与SQL的配置
-	 * 
-	 * @param bean
-	 *          实体描述
-	 * @param templateMaps
-	 *          模板
-	 * @param databaseOptions
-	 *          数据库连接信息
-	 */
-	public ScrewDriverOptions(SdBean bean, Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
-		super();
-		init(bean, null, templateMaps, databaseOptions);
+		init(templateMaps, databaseOptions);
 	}
 
 	/**
 	 * 初始化
 	 * 
-	 * @param bean
-	 *          实体描述
-	 * @param classContent
-	 *          实体类属性
 	 * @param templateMaps
 	 *          模板
 	 * @param databaseOptions
 	 *          数据库连接信息
 	 */
-	private void init(SdBean bean, SdClassContent classContent, Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
+	private void init(Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
 		SdUtil.requireNonNull(databaseOptions, "数据库连接信息不能为空!");
 		String groupId = databaseOptions.getDriverClass();
 		if (groupId.contains("mysql")) {
-			wrap(new ScrewDriverMySqlOptions(bean, classContent, templateMaps, databaseOptions));
+			wrap(new ScrewDriverMySqlOptions(templateMaps, databaseOptions));
 		} else if (groupId.contains("postgresql")) {
-			wrap(new ScrewDriverPostgreSqlOptions(bean, classContent, templateMaps, databaseOptions));
+			wrap(new ScrewDriverPostgreSqlOptions(templateMaps, databaseOptions));
 		} else if (groupId.contains("db2")) {
-			wrap(new ScrewDriverDB2Options(bean, classContent, templateMaps, databaseOptions));
+			wrap(new ScrewDriverDB2Options(templateMaps, databaseOptions));
 		} else if (groupId.contains("oracle")) {
-			wrap(new ScrewDriverOracleOptions(bean, classContent, templateMaps, databaseOptions));
+			wrap(new ScrewDriverOracleOptions(templateMaps, databaseOptions));
 		} else if (groupId.contains("sqlserver")) {
-			wrap(new ScrewDriverSqlServerOptions(bean, classContent, templateMaps, databaseOptions));
+			wrap(new ScrewDriverSqlServerOptions(templateMaps, databaseOptions));
 		} else if (groupId.contains("sqlite")) {
-			wrap(new ScrewDriverSqliteOptions(bean, classContent, templateMaps, databaseOptions));
+			wrap(new ScrewDriverSqliteOptions(templateMaps, databaseOptions));
 		} else {
 			throw new ScrewDriverException("Unable to recognize database types through DriverClass,You can try new ScrewDriver(DB name)Options and complete the initialization");
 		}
@@ -153,60 +129,17 @@ public class ScrewDriverOptions {
 	 * @param options
 	 */
 	public void wrap(ScrewDriverOptions options) {
-		setBean(options.getBean());
-		setClassContent(options.getClassContent());
 		setDatabaseOptions(options.getDatabaseOptions());
 		setTemplateMaps(options.getTemplateMaps());
 		setProjectPath(options.getProjectPath());
 		setCodeFormat(options.getCodeFormat());
-		setCreateDatabase(options.isCreateDatabase());
-		setAlterTable(options.isAlterTable());
 		setExtensions(options.getExtensions());
 		setBeanConverter(options.getBeanConverter());
 		setTableConverter(options.getTableConverter());
+		setDatabaseConverter(options.getDatabaseConverter());
 		setTemplateContentConverter(options.getTemplateContentConverter());
 		setTemplateUtil(options.getTemplateUtil());
 		setDbUtil(options.getDbUtil());
-	}
-
-	/**
-	 * 获取实体描述
-	 * 
-	 * @return
-	 */
-	public SdBean getBean() {
-		return bean;
-	}
-
-	/**
-	 * 设置实体描述
-	 * 
-	 * @param bean
-	 * @return
-	 */
-	public ScrewDriverOptions setBean(SdBean bean) {
-		this.bean = bean;
-		return this;
-	}
-
-	/**
-	 * 获取实体类的属性,生成代码是该属性与bean二选一
-	 * 
-	 * @return
-	 */
-	public SdClassContent getClassContent() {
-		return classContent;
-	}
-
-	/**
-	 * 设置实体类的属性,生成代码是该属性与bean二选一
-	 * 
-	 * @param classContent
-	 * @return
-	 */
-	public ScrewDriverOptions setClassContent(SdClassContent classContent) {
-		this.classContent = classContent;
-		return this;
 	}
 
 	/**
@@ -350,46 +283,6 @@ public class ScrewDriverOptions {
 	}
 
 	/**
-	 * 如果数据库不存在是否创建
-	 * 
-	 * @return
-	 */
-	public boolean isCreateDatabase() {
-		return createDatabase;
-	}
-
-	/**
-	 * 设置如果数据库不存在是否创建,默认true创建
-	 * 
-	 * @param createDatabase
-	 * @return
-	 */
-	public ScrewDriverOptions setCreateDatabase(boolean createDatabase) {
-		this.createDatabase = createDatabase;
-		return this;
-	}
-
-	/**
-	 * 如果表已经存在是否修改表
-	 * 
-	 * @return
-	 */
-	public boolean isAlterTable() {
-		return alterTable;
-	}
-
-	/**
-	 * 如果表已经存在是否修改表,默认不修改表
-	 * 
-	 * @param alterTable
-	 * @return
-	 */
-	public ScrewDriverOptions setAlterTable(boolean alterTable) {
-		this.alterTable = alterTable;
-		return this;
-	}
-
-	/**
 	 * 获取数据库操作工具
 	 * 
 	 * @return
@@ -426,6 +319,26 @@ public class ScrewDriverOptions {
 	 */
 	public ScrewDriverOptions setTableConverter(SdTableContentConverter tableConverter) {
 		this.tableConverter = tableConverter;
+		return this;
+	}
+
+	/**
+	 * 获取数据库属性转换器
+	 * 
+	 * @return
+	 */
+	public SdDatabaseContentConverter getDatabaseConverter() {
+		return databaseConverter;
+	}
+
+	/**
+	 * 设置数据库属性转换器
+	 * 
+	 * @param databaseConverter
+	 * @return
+	 */
+	public ScrewDriverOptions setDatabaseConverter(SdDatabaseContentConverter databaseConverter) {
+		this.databaseConverter = databaseConverter;
 		return this;
 	}
 
@@ -480,8 +393,6 @@ public class ScrewDriverOptions {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append("ScrewDriverOptions:" + "\n");
-		result.append("  ┣━bean= " + getBean() + "\n");
-		result.append("  ┣━classContent= " + getClassContent() + "\n");
 		result.append("  ┣━databaseOptions= " + getDatabaseOptions() + "\n");
 		result.append("  ┣━projectPath= " + getProjectPath() + "\n");
 		result.append("  ┣━codeFormat= " + getCodeFormat() + "\n");
@@ -489,10 +400,9 @@ public class ScrewDriverOptions {
 		result.append("  ┣━templateContentConverter= " + (getTemplateContentConverter() == null ? "null" : getTemplateContentConverter().getClass().getName()) + "\n");
 		result.append("  ┣━templateUtil= " + (getTemplateUtil() == null ? "null" : getTemplateUtil().getClass().getName()) + "\n");
 		result.append("  ┣━templateMaps= " + getTemplateMaps() + "\n");
-		result.append("  ┣━createDatabase= " + isCreateDatabase() + "\n");
-		result.append("  ┣━alterTable= " + isAlterTable() + "\n");
 		result.append("  ┣━dbUtil= " + (getDbUtil() == null ? "null" : getDbUtil().getClass().getName()) + "\n");
 		result.append("  ┣━tableConverter= " + (getTableConverter() == null ? "null" : getTableConverter().getClass().getName()) + "\n");
+		result.append("  ┣━databaseConverter= " + (getDatabaseConverter() == null ? "null" : getDatabaseConverter().getClass().getName()) + "\n");
 		result.append("  ┗━extensions= " + getExtensions());
 		return result.toString();
 	}

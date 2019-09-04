@@ -30,10 +30,10 @@ public class ScrewDriverMainExample {
 		databaseOptions.setUser("root");
 		databaseOptions.setPassword("root");
 		// 初始化执行工具
-		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(bean, templates, databaseOptions));
+		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(templates, databaseOptions));
 		// 创建代码
-		screwDriver.createCode();
+		screwDriver.createCode(bean);
 		// 生成表
-		screwDriver.createSQL();
+		screwDriver.createTable(bean);
 	}
 }

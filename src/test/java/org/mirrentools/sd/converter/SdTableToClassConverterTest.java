@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mirrentools.sd.constant.CommonConstant;
 import org.mirrentools.sd.converter.impl.mysql.SdTableToClassConverterMySqlImpl;
 import org.mirrentools.sd.models.SdClassContent;
 
@@ -22,7 +23,7 @@ public class SdTableToClassConverterTest {
 	}
 	@Test
 	public void testConverter() {
-		SdClassContent content = converter.converter(TestConstant.studentTable);
+		SdClassContent content = converter.converter(CommonConstant.studentTable);
 		assertEquals("classes_student", content.getTableName());
 		assertEquals("classes_student", content.getUnderScoreName());
 		assertEquals("classes-student", content.getHyphenName());

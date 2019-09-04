@@ -24,12 +24,12 @@ public class Db2Test {
 		Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 		templates.put("entity", new SdTemplate().setPath("mybatis").setFile("JavaEntity.ftl").setSourceFolder(Constant.MAVEN_SRC).setPackageName("entity").setClassName("User"));
 		// 初始化SQL执行生成工具
-		SdDatabaseOptions databaseOptions = new SdDatabaseOptions(DB2.DB2_DERVER,"jdbc:db2://127.0.0.1:50000/sample");
+		SdDatabaseOptions databaseOptions = new SdDatabaseOptions(DB2.DB2_DERVER, "jdbc:db2://127.0.0.1:50000/sample");
 		databaseOptions.setUser("db2admin");
 		databaseOptions.setPassword("000000");
-		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverDB2Options(bean, databaseOptions));
-		screwDriver.createSQL();
-		screwDriver.createCode();
+		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverDB2Options(databaseOptions));
+		screwDriver.createTable(bean);
+		screwDriver.createCode(bean);
 	}
 
 }

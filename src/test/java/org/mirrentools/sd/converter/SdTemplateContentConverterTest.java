@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mirrentools.sd.constant.CommonConstant;
+import org.mirrentools.sd.constant.MySqlConstant;
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
 import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdTemplate;
@@ -33,9 +35,9 @@ public class SdTemplateContentConverterTest {
 	@Before
 	public void setUp() {
 		converter = new SdTemplateContentConverterDefaultImpl();
-		templates = TestConstant.templates;
-		studentContent = TestConstant.studentBeanContent;
-		databaseOptions = TestConstant.databaseOptions;
+		templates = CommonConstant.templates;
+		studentContent = MySqlConstant.studentBeanContent;
+		databaseOptions = MySqlConstant.databaseOptions;
 	}
 
 	@Test

@@ -147,7 +147,7 @@ public class SdTableContentByPostgreSQL extends SdBasicTableContent {
 		sb.append(String.format(" %s ON %s.%s USING %s ", index.getName(), getSchema(), getTableName(), index.getType()));
 		sb.append(" (");
 		for (int i = 0; i < index.getColumns().size(); i++) {
-			sb.append("'" + index.getColumns().get(i) + "'");
+			sb.append("\"" + index.getColumns().get(i) + "\"");
 			if (i != index.getColumns().size() - 1) {
 				sb.append(",");
 			}
@@ -156,9 +156,11 @@ public class SdTableContentByPostgreSQL extends SdBasicTableContent {
 		if (converterExtensions() != null) {
 			sb.append(" " + converterExtensions());
 		}
-		sb.append(";");
+		sb.append(";\n");
 		result.add(sb.toString());
-		result.add(String.format(" COMMENT ON INDEX %s.%s IS '%s';\n", getSchema(), index.getName(), index.getRemark()));
+		if (!SdUtil.isNullOrEmpty(index.getRemark())) {
+			result.add(String.format(" COMMENT ON INDEX %s.%s IS '%s';\n", getSchema(), index.getName(), index.getRemark()));
+		}
 	}
 
 	/**

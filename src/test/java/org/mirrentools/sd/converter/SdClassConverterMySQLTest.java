@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mirrentools.sd.constant.MySqlConstant;
 import org.mirrentools.sd.converter.impl.mysql.SdClassConverterMySqlImpl;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
@@ -26,8 +27,8 @@ public class SdClassConverterMySQLTest {
 	@Before
 	public void setUp() {
 		converter = new SdClassConverterMySqlImpl();
-		classesBean = TestConstant.classesBean;
-		studentBean = TestConstant.studentBean;
+		classesBean = MySqlConstant.classesBean;
+		studentBean = MySqlConstant.studentBean;
 	}
 	@Test
 	public void testConverter() {

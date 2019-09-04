@@ -218,7 +218,7 @@ public class SdBean {
 	 * @return
 	 */
 	public SdBean addColumn(SdColumn column) {
-		SdUtil.requireNonNull(columns);
+		SdUtil.requireNonNull(column);
 		if (getColumns() == null) {
 			setColumns(new ArrayList<SdColumn>());
 		}
@@ -430,7 +430,6 @@ public class SdBean {
 		sb.append("  ┣━sequences = " + sequences + "\n");
 		sb.append("  ┗━extensions = " + extensions + "\n");
 		return sb.toString();
-
 	}
 
 }

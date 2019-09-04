@@ -37,7 +37,7 @@ public abstract class SdBasicColumnContent extends SdAbstractColumnContent {
 
 	@Override
 	public String updateSQL() {
-		return deleteSQL()+", ADD COLUMN " + createSQL();
+		return " ADD COLUMN " + createSQL();
 	}
 
 	@Override

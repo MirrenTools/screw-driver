@@ -17,9 +17,7 @@ public class SdBasicConstraintContent extends SdAbstractConstraintContent {
 
 	@Override
 	public String updateSQL() {
-		return deleteSQL() == null 
-													? " ADD " + createSQL() 
-													: deleteSQL() + ", ADD " + createSQL();
+		return " ADD " + createSQL();
 	}
 
 	@Override
@@ -27,7 +25,7 @@ public class SdBasicConstraintContent extends SdAbstractConstraintContent {
 		if (getRemoveConstraint() == null) {
 			return null;
 		}
-		return String.format(" DROP CONSTRAINT " + getRemoveConstraint());
+		return String.format(" DROP CONSTRAINT  IF EXISTS  " + getRemoveConstraint());
 	}
 
 	@Override

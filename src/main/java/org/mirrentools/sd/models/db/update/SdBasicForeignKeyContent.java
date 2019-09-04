@@ -45,9 +45,7 @@ public class SdBasicForeignKeyContent extends SdAbstractForeignKeyContent {
 
 	@Override
 	public String updateSQL() {
-		return deleteSQL() == null 
-													? " ADD " + createSQL() 
-													: deleteSQL() + ", ADD " + createSQL();
+		return " ADD " + createSQL();
 	}
 
 	@Override
@@ -55,7 +53,7 @@ public class SdBasicForeignKeyContent extends SdAbstractForeignKeyContent {
 		if (getRemoveConstraint() == null) {
 			return null;
 		}
-		return " DROP CONSTRAINT  " + getRemoveConstraint();
+		return " DROP CONSTRAINT  IF EXISTS  " + getRemoveConstraint();
 	}
 
 }

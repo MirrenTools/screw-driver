@@ -2,6 +2,8 @@ package org.mirrentools.sd.common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -147,12 +149,56 @@ public class SdUtil {
 	}
 
 	/**
+	 * 字符串连接
+	 * 
+	 * @param separator
+	 *          分隔符 如果null 则为""
+	 * @param str
+	 *          任意字符串
+	 * @return
+	 */
+	public static String join(String separator, Object... str) {
+		if (str == null) {
+			return null;
+		}
+		return join(Arrays.asList(str), separator);
+	}
+
+	/**
+	 * 字符串拼接
+	 * 
+	 * @param collection
+	 *          集合
+	 * @param separator
+	 *          分隔符 如果null 则为""
+	 * @return
+	 */
+	public static String join(Collection<?> collection, String separator) {
+		if (collection == null) {
+			return null;
+		}
+		Iterator<?> iterator = collection.iterator();
+		if (!iterator.hasNext()) {
+			return "";
+		}
+		StringBuilder result = new StringBuilder();
+		Object start = iterator.next();
+		result.append(start == null ? "" : start);
+		while (iterator.hasNext()) {
+			Object next = iterator.next();
+			result.append(separator == null ? "" : separator);
+			result.append(next == null ? "" : next);
+		}
+		return result.toString();
+	}
+
+	/**
 	 * 将字符串大小写字母按词拆分,并将其连接成新的字符串
 	 * 
 	 * @param str
 	 *          字符串
 	 * @param join
-	 *          连接词,如果字符串存在loin则按join分词并返回
+	 *          连接词,如果字符串存在join则按join分词并返回
 	 * @return
 	 */
 	public static String splitJoin(String str, String join) {
@@ -483,6 +529,7 @@ public class SdUtil {
 		}
 		return false;
 	}
+
 	/**
 	 * 检查对象是否为null,为null则抛异常
 	 * 
@@ -493,6 +540,7 @@ public class SdUtil {
 			throw new NullPointerException();
 		}
 	}
+
 	/**
 	 * 检查对象是否为null,为null则抛异常
 	 * 
@@ -515,6 +563,7 @@ public class SdUtil {
 			throw new NullPointerException();
 		}
 	}
+
 	/**
 	 * 检查对象是否为空,为空则抛异常
 	 * 

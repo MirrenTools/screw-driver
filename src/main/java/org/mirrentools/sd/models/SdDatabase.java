@@ -1,17 +1,19 @@
-package org.mirrentools.sd.models.db.update.impl.postgresql;
+package org.mirrentools.sd.models;
 
-import org.mirrentools.sd.models.SdDatabase;
-import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
- * PostgreSql数据库的数据库属性
+ * Sd数据库描述
  * 
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
-	/** 新的数据库名称 */
-	private String newDatabaseName;
+public class SdDatabase {
+	/** 数据库的名称 */
+	private String database;
+	/** 数据库新的名称 */
+	private String newDatabase;
 	/** 用户的角色名 */
 	private String userName;
 	/** 数据库的模板名称 */
@@ -30,134 +32,46 @@ public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
 	private String connlimit;
 	/** 如果为真，则任何具有CREATEDB特权的用户都可以从这个数据库克隆。如果为假（默认），则只有超级用户或者该数据库的拥有者可以克隆它。 */
 	private String istemplate;
+	/** 拓展属性 */
+	private Map<String, Object> extensions;
 
 	/**
-	 * 初始化一个数据库SQL类
+	 * 获取数据库的名称
 	 * 
-	 * @param databaseName
-	 *          数据库的名字
+	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql(String databaseName) {
-		super(databaseName);
+	public String getDatabase() {
+		return database;
 	}
 
 	/**
+	 * 设置数据库名称
 	 * 
 	 * @param database
+	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql(SdDatabase database) {
-		super(database.getDatabase());
-		super.setExtensions(database.getExtensions());
-		this.newDatabaseName = database.getNewDatabase();
-		this.userName = database.getUserName();
-		this.template = database.getUserName();
-		this.encoding = database.getEncoding();
-		this.collate = database.getCollate();
-		this.ctype = database.getCtype();
-		this.tablespaceName = database.getTablespaceName();
-		this.allowconn = database.getAllowconn();
-		this.connlimit = database.getConnlimit();
-		this.istemplate = database.getIstemplate();
-	}
-
-	@Override
-	public String createSQL() {
-		StringBuilder sb = new StringBuilder("CREATE DATABASE ");
-		sb.append(getDatabaseName());
-		if (getUserName() != null) {
-			sb.append(" OWNER = " + getUserName());
-		}
-		if (getTemplate() != null) {
-			sb.append(" TEMPLATE = " + getTemplate());
-		}
-		if (getEncoding() != null) {
-			sb.append(" ENCODING = " + getEncoding());
-		}
-		if (getCollate() != null) {
-			sb.append(" LC_COLLATE = " + getCollate());
-		}
-		if (getCtype() != null) {
-			sb.append(" LC_CTYPE = " + getCtype());
-		}
-		if (getTablespaceName() != null) {
-			sb.append(" TABLESPACE = " + getTablespaceName());
-		}
-		if (getAllowconn() != null) {
-			sb.append(" ALLOW_CONNECTIONS = " + getAllowconn());
-		}
-		if (getConnlimit() != null) {
-			sb.append(" CONNECTION LIMIT = " + getConnlimit());
-		}
-		if (getIstemplate() != null) {
-			sb.append(" IS_TEMPLATE = " + getIstemplate());
-		}
-
-		sb.append(";");
-		return sb.toString();
-	}
-
-	@Override
-	public String updateSQL() throws UnsupportedOperationException {
-		StringBuilder sb = new StringBuilder(" ALTER DATABASE ");
-		sb.append(getDatabaseName());
-		if (getAllowconn() != null) {
-			sb.append(" ALLOW_CONNECTIONS = " + getAllowconn());
-		}
-		if (getConnlimit() != null) {
-			sb.append(" CONNECTION LIMIT = " + getConnlimit());
-		}
-		if (getIstemplate() != null) {
-			sb.append(" IS_TEMPLATE = " + getIstemplate());
-		}
-		if (getAllowconn() != null && getConnlimit() != null && getIstemplate() != null) {
-			sb.append(";");
-		}
-		if (getNewDatabaseName() != null) {
-			sb.append(" ALTER DATABASE ");
-			sb.append(getDatabaseName());
-			sb.append(" RENAME TO ");
-			sb.append(getNewDatabaseName());
-			sb.append(";");
-		}
-		if (getUserName() != null) {
-			sb.append(" ALTER DATABASE ");
-			sb.append(getDatabaseName());
-			sb.append(" OWNER TO ");
-			sb.append(getUserName());
-			sb.append(";");
-		}
-		if (getTablespaceName() != null) {
-			sb.append(" ALTER DATABASE ");
-			sb.append(getDatabaseName());
-			sb.append(" SET TABLESPACE ");
-			sb.append(getTablespaceName());
-			sb.append(";");
-		}
-		return sb.toString();
-	}
-
-	@Override
-	public String deleteSQL() {
-		return "DROP DATABASE " + getDatabaseName();
+	public SdDatabase setDatabase(String database) {
+		this.database = database;
+		return this;
 	}
 
 	/**
-	 * 获取新的数据库名称
+	 * 获取数据库新的名称
 	 * 
 	 * @return
 	 */
-	public String getNewDatabaseName() {
-		return newDatabaseName;
+	public String getNewDatabase() {
+		return newDatabase;
 	}
 
 	/**
-	 * 设置新的数据库名称
+	 * 设置数据库新的名称
 	 * 
-	 * @param newDatabaseName
+	 * @param newDatabase
 	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql setNewDatabaseName(String newDatabaseName) {
-		this.newDatabaseName = newDatabaseName;
+	public SdDatabase setNewDatabase(String newDatabase) {
+		this.newDatabase = newDatabase;
 		return this;
 	}
 
@@ -176,7 +90,7 @@ public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
 	 * @param userName
 	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql setUserName(String userName) {
+	public SdDatabase setUserName(String userName) {
 		this.userName = userName;
 		return this;
 	}
@@ -196,7 +110,7 @@ public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
 	 * @param template
 	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql setTemplate(String template) {
+	public SdDatabase setTemplate(String template) {
 		this.template = template;
 		return this;
 	}
@@ -216,7 +130,7 @@ public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
 	 * @param encoding
 	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql setEncoding(String encoding) {
+	public SdDatabase setEncoding(String encoding) {
 		this.encoding = encoding;
 		return this;
 	}
@@ -236,7 +150,7 @@ public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
 	 * @param collate
 	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql setCollate(String collate) {
+	public SdDatabase setCollate(String collate) {
 		this.collate = collate;
 		return this;
 	}
@@ -256,7 +170,7 @@ public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
 	 * @param tablespaceName
 	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql setTablespaceName(String tablespaceName) {
+	public SdDatabase setTablespaceName(String tablespaceName) {
 		this.tablespaceName = tablespaceName;
 		return this;
 	}
@@ -276,7 +190,7 @@ public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
 	 * @param ctype
 	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql setCtype(String ctype) {
+	public SdDatabase setCtype(String ctype) {
 		this.ctype = ctype;
 		return this;
 	}
@@ -296,7 +210,7 @@ public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
 	 * @param allowconn
 	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql setAllowconn(String allowconn) {
+	public SdDatabase setAllowconn(String allowconn) {
 		this.allowconn = allowconn;
 		return this;
 	}
@@ -316,7 +230,7 @@ public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
 	 * @param connlimit
 	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql setConnlimit(String connlimit) {
+	public SdDatabase setConnlimit(String connlimit) {
 		this.connlimit = connlimit;
 		return this;
 	}
@@ -336,9 +250,72 @@ public class SdDatabaseContentByPostgreSql extends SdAbstractDatabaseContent {
 	 * @param istemplate
 	 * @return
 	 */
-	public SdDatabaseContentByPostgreSql setIstemplate(String istemplate) {
+	public SdDatabase setIstemplate(String istemplate) {
 		this.istemplate = istemplate;
 		return this;
+	}
+
+	/**
+	 * 获得拓展属性
+	 * 
+	 * @return
+	 */
+	public Map<String, Object> getExtensions() {
+		return extensions;
+	}
+
+	/**
+	 * 获得拓展属性值
+	 * 
+	 * @return
+	 */
+	public Object getExtension(String key) {
+		return getExtensions().get(key);
+	}
+
+	/**
+	 * 添加附加属性
+	 * 
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public SdDatabase addExtension(String key, Object value) {
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
+		}
+		getExtensions().put(key, value);
+		return this;
+	}
+
+	/**
+	 * 设置附加属性
+	 * 
+	 * @param extensions
+	 * @return
+	 */
+	public SdDatabase setExtensions(Map<String, Object> extensions) {
+		this.extensions = extensions;
+		return this;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("SdDatabase: \n");
+		sb.append("  ┣━database = " + database + "\n");
+		sb.append("  ┣━newDatabase = " + newDatabase + "\n");
+		sb.append("  ┣━userName = " + userName + "\n");
+		sb.append("  ┣━template = " + template + "\n");
+		sb.append("  ┣━encoding = " + encoding + "\n");
+		sb.append("  ┣━collate = " + collate + "\n");
+		sb.append("  ┣━ctype = " + ctype + "\n");
+		sb.append("  ┣━tablespaceName = " + tablespaceName + "\n");
+		sb.append("  ┣━allowconn = " + allowconn + "\n");
+		sb.append("  ┣━connlimit = " + connlimit + "\n");
+		sb.append("  ┣━istemplate = " + istemplate + "\n");
+		sb.append("  ┗━extensions = " + extensions + "\n");
+		return sb.toString();
 	}
 
 }

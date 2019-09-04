@@ -10,7 +10,7 @@ public abstract class SdBasicIndexKeyContent extends SdAbstractIndexKeyContent {
 
 	@Override
 	public String updateSQL() {
-		return deleteSQL() == null ? " ADD " + createSQL() : deleteSQL() + " , ADD " + createSQL();
+		return " ADD " + createSQL();
 	}
 
 	@Override
@@ -18,7 +18,7 @@ public abstract class SdBasicIndexKeyContent extends SdAbstractIndexKeyContent {
 		if (getRemoveIndexName() == null) {
 			return null;
 		}
-		return " DROP CONSTRAINT " + getRemoveIndexName();
+		return " DROP CONSTRAINT IF EXISTS " + getRemoveIndexName();
 	}
 
 }

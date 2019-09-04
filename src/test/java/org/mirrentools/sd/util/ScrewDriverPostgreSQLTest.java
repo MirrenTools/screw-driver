@@ -1,7 +1,7 @@
 package org.mirrentools.sd.util;
 
 import org.mirrentools.sd.constant.PostgreSQL;
-import org.mirrentools.sd.converter.TestConstant;
+import org.mirrentools.sd.constant.PostgreSqlConstant;
 import org.mirrentools.sd.impl.ScrewDriverSqlImpl;
 import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
@@ -25,12 +25,12 @@ public class ScrewDriverPostgreSQLTest {
 	}
 
 	public void testCreateClasses() {
-		boolean execute = new ScrewDriverSqlImpl(new ScrewDriverOptions(TestConstant.classesBean, config)).execute();
+		boolean execute = new ScrewDriverSqlImpl(new ScrewDriverOptions(config)).createTable(PostgreSqlConstant.classesBean);
 		System.out.println("SQL执行结果:" + execute);
 	}
 
 	public void testCreateStudent() {
-		boolean execute = new ScrewDriverSqlImpl(new ScrewDriverOptions(TestConstant.studentBean, config)).execute();
+		boolean execute = new ScrewDriverSqlImpl(new ScrewDriverOptions(config)).createTable(PostgreSqlConstant.studentBean);
 		System.out.println("SQL执行结果:" + execute);
 	}
 

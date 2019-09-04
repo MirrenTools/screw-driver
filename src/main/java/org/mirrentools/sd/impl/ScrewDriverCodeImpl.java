@@ -29,13 +29,6 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	/** JUL日志 */
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());
 
-	/**
-	 * 实体描述,该属性与classContent二选一,如果classContent为null则由beanConverter
-	 * 将该属性转换问classContent
-	 */
-	private SdBean bean;
-	/** 创建实体类需要的属性 */
-	private SdClassContent classContent;
 	/** 数据库连接属性 */
 	private SdDatabaseOptions databaseOptions;
 	/** 模板集合key为模板的名字,value为模板属性 */
@@ -57,8 +50,6 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	public ScrewDriverCodeImpl(ScrewDriverOptions options) {
 		super();
 		SdUtil.requireNonNull(options, "The ScrewDriverOptions cannot be null ,you can new ScrewDriver(db name)Options");
-		this.bean = options.getBean();
-		this.classContent = options.getClassContent();
 		this.databaseOptions = options.getDatabaseOptions();
 		this.templateMaps = options.getTemplateMaps();
 		this.projectPath = options.getProjectPath();
@@ -69,21 +60,18 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	}
 
 	@Override
-	public boolean execute() {
-		if (SdUtil.isNullOrEmpty(templateMaps)) {
-			throw new NullPointerException("SdTemplate cannot be null ,You need to create a SdTemplate first, because you need it to generate it.");
-		}
-		if (bean == null && classContent == null) {
-			throw new NullPointerException("SdBean or SdClassContent must choose one");
-		}
+	public boolean execute(SdBean bean) {
+		SdUtil.requireNonNull(bean, "The bean cannot ba null");
+		return execute(beanConverter.converter(bean));
+	}
+
+	@Override
+	public boolean execute(SdClassContent classContent) {
+		SdUtil.requireNonNull(templateMaps, "SdTemplate cannot be null ,You need to create a SdTemplate first, because you need it to generate it.");
 		String path = getProjectPath();
 		String format = getCodeFormat();
-		if (classContent == null) {
-			classContent = beanConverter.converter(bean);
-		}
 		Map<String, SdTemplateContent> templates = templateConverter.converter(classContent, databaseOptions, templateMaps);
 		SdRenderContent content = new SdRenderContent(classContent, databaseOptions, templates);
-
 		for (Entry<String, SdTemplate> temp : templateMaps.entrySet()) {
 			LOG.info(String.format("Generating %s...", temp.getKey()));
 			boolean render = templateUtil.render(path, format, content, temp.getValue());

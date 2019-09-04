@@ -89,7 +89,7 @@ public abstract class SdBasicTableContent extends SdAbstractTableContent {
 
 	@Override
 	public String deleteSQL() {
-		return " DROP TABLE " + getTableName() + ";";
+		return " DROP TABLE IF EXISTS " + getTableName() + ";";
 	}
 
 }

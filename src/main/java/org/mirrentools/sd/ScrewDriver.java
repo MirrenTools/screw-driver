@@ -3,6 +3,9 @@ package org.mirrentools.sd;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.impl.ScrewDriverCodeImpl;
 import org.mirrentools.sd.impl.ScrewDriverSqlImpl;
+import org.mirrentools.sd.models.SdBean;
+import org.mirrentools.sd.models.SdClassContent;
+import org.mirrentools.sd.models.SdDatabase;
 import org.mirrentools.sd.options.ScrewDriverOptions;
 
 /**
@@ -48,19 +51,67 @@ public class ScrewDriver {
 	/**
 	 * 生成代码
 	 * 
+	 * @param bean
+	 *          类或表属性的描述
 	 * @return
 	 */
-	public boolean createCode() {
-		return codeUtil.execute();
+	public boolean createCode(SdBean bean) {
+		return codeUtil.execute(bean);
 	}
 
 	/**
-	 * 生成SQL
+	 * 生成代码
 	 * 
+	 * @param classContent
+	 *          类属性的描述
 	 * @return
 	 */
-	public boolean createSQL() {
-		return sqlUtil.execute();
+	public boolean createCode(SdClassContent classContent) {
+		return codeUtil.execute(classContent);
+	}
+
+	/**
+	 * 创建数据库
+	 * 
+	 * @param database
+	 *          数据库属性描述
+	 * @return
+	 */
+	public boolean createDatabase(SdDatabase database) {
+		return sqlUtil.createDatabase(database);
+	}
+
+	/**
+	 * 创建表
+	 * 
+	 * @param bean
+	 *          表属性的描述
+	 * @return
+	 */
+	public boolean createTable(SdBean bean) {
+		return sqlUtil.createTable(bean);
+	}
+
+	/**
+	 * 修改表
+	 * 
+	 * @param bean
+	 *          表属性的描述
+	 * @return
+	 */
+	public boolean updateTable(SdBean bean) {
+		return sqlUtil.alterTable(bean);
+	}
+
+	/**
+	 * 删除表
+	 * 
+	 * @param bean
+	 *          表属性的描述
+	 * @return
+	 */
+	public boolean deleteTable(SdBean bean) {
+		return sqlUtil.deleteTable(bean);
 	}
 
 }

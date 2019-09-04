@@ -4,14 +4,16 @@ import java.util.Map;
 
 import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
+import org.mirrentools.sd.models.SdBean;
+import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
- * 代码生成工具123
+ * 代码生成工具
  * 
  * @author <a href="http://mirrentools.org">Mirren</a>
- *   
+ * 
  */
 public interface ScrewDriverCode {
 
@@ -20,7 +22,14 @@ public interface ScrewDriverCode {
 	 * 
 	 * @return
 	 */
-	boolean execute();
+	boolean execute(SdBean bean);
+
+	/**
+	 * 执行生成
+	 * 
+	 * @return
+	 */
+	boolean execute(SdClassContent classContent);
 
 	/**
 	 * 获取项目所在目录
@@ -51,7 +60,6 @@ public interface ScrewDriverCode {
 	 * @return
 	 */
 	ScrewDriverCode setCodeFormat(String codeFormat);
-
 
 	/**
 	 * 获取数据库连接属性

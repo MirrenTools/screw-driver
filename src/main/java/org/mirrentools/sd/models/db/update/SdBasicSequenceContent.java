@@ -81,7 +81,7 @@ public class SdBasicSequenceContent extends SdAbstractSequenceContent {
 
 	@Override
 	public String deleteSQL() {
-		return String.format("DROP SEQUENCE %s", getName());
+		return String.format("DROP SEQUENCE  IF EXISTS %s", getName());
 	}
 
 }

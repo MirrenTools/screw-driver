@@ -6,14 +6,14 @@ import java.util.logging.Logger;
 
 import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.ScrewDriverSQL;
+import org.mirrentools.sd.common.SdUtil;
+import org.mirrentools.sd.converter.SdDatabaseContentConverter;
 import org.mirrentools.sd.converter.SdTableContentConverter;
 import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
+import org.mirrentools.sd.models.SdDatabase;
 import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
-import org.mirrentools.sd.models.db.update.impl.db2.SdDatabaseContentByDB2;
-import org.mirrentools.sd.models.db.update.impl.mysql.SdDatabaseContentByMySQL;
-import org.mirrentools.sd.models.db.update.impl.postgresql.SdDatabaseContentByPostgreSql;
 import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
@@ -27,19 +27,15 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	/** JUL日志 */
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());
 
-	/** 创建类需要的属性 */
-	private SdBean bean;
 	/** 数据库连接属性 */
 	private SdDatabaseOptions databaseOptions;
 
-	/** 如果数据库不存在是否创建, 如果支持默认创建 */
-	private boolean createDatabase = true;
-	/** 如果表已经存在是否修改表,默认不修改表 */
-	private boolean alterTable;
 	/** 数据库执行工具 */
 	private SdDbUtil dbUtil;
 	/** SdBean转换器 */
 	private SdTableContentConverter converter;
+	/** SdDatabase转换器 */
+	private SdDatabaseContentConverter databaseConverter;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -50,38 +46,31 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	 */
 	public ScrewDriverSqlImpl(ScrewDriverOptions options) {
 		super();
-		this.bean = options.getBean();
 		this.databaseOptions = options.getDatabaseOptions();
-		this.createDatabase = options.isCreateDatabase();
-		this.alterTable = options.isAlterTable();
 		this.dbUtil = options.getDbUtil();
 		this.converter = options.getTableConverter();
+		this.databaseConverter = options.getDatabaseConverter();
 		this.extensions = options.getExtensions();
 	}
 
 	@Override
-	public boolean execute() {
-		SdAbstractTableContent content = converter.converter(bean);
-		try {
-			if (databaseOptions.getDatabase() != null && isCreateDatabase()) {
-				boolean existDatabase = dbUtil.existDatabase(databaseOptions.getDatabase());
-				if (!existDatabase) {
-					String groupId = databaseOptions.getDriverClass();
-					SdAbstractDatabaseContent dbContent = null;
-					if (groupId.contains("mysql")) {
-						dbContent = new SdDatabaseContentByMySQL(databaseOptions.getDatabase());
-					} else if (groupId.contains("postgresql")) {
-						dbContent = new SdDatabaseContentByPostgreSql(databaseOptions.getDatabase());
-					} else if (groupId.contains("db2")) {
-						dbContent = new SdDatabaseContentByDB2(databaseOptions.getDatabase());
-					}
-					// 其他数据库创建可以在这里写实现
-
-					if (dbContent != null) {
-						dbUtil.createDatabase(dbContent);
-					}
-				}
+	public boolean createDatabase(SdDatabase database) {
+		SdUtil.requireNonNull(databaseConverter, "This database does not support database creation or SdDatabaseContentConverter options is null");
+		SdAbstractDatabaseContent dbContent = databaseConverter.converter(database);
+		if (dbContent != null) {
+			try {
+				return dbUtil.createDatabase(dbContent);
+			} catch (Exception e) {
+				throw new ScrewDriverException(e);
 			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean createTable(SdBean bean) {
+		try {
+			SdAbstractTableContent content = converter.converter(bean);
 			return dbUtil.createTable(content);
 		} catch (Exception e) {
 			throw new ScrewDriverException(e);
@@ -89,14 +78,23 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	}
 
 	@Override
-	public SdBean getBean() {
-		return bean;
+	public boolean alterTable(SdBean bean) {
+		try {
+			SdAbstractTableContent content = converter.converter(bean);
+			return dbUtil.updateTable(content);
+		} catch (Exception e) {
+			throw new ScrewDriverException(e);
+		}
 	}
 
 	@Override
-	public ScrewDriverSqlImpl setBean(SdBean bean) {
-		this.bean = bean;
-		return this;
+	public boolean deleteTable(SdBean bean) {
+		try {
+			SdAbstractTableContent content = converter.converter(bean);
+			return dbUtil.deleteTable(content);
+		} catch (Exception e) {
+			throw new ScrewDriverException(e);
+		}
 	}
 
 	@Override
@@ -107,28 +105,6 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	@Override
 	public ScrewDriverSqlImpl setDatabaseOptions(SdDatabaseOptions dbOptions) {
 		this.databaseOptions = dbOptions;
-		return this;
-	}
-
-	@Override
-	public boolean isCreateDatabase() {
-		return createDatabase;
-	}
-
-	@Override
-	public ScrewDriverSqlImpl setCreateDatabase(boolean createDatabase) {
-		this.createDatabase = createDatabase;
-		return this;
-	}
-
-	@Override
-	public boolean isAlterTable() {
-		return alterTable;
-	}
-
-	@Override
-	public ScrewDriverSqlImpl setAlterTable(boolean alterTable) {
-		this.alterTable = alterTable;
 		return this;
 	}
 
@@ -179,8 +155,7 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 
 	@Override
 	public String toString() {
-		return "ScrewDriverSqlImpl [bean=" + bean + ", databaseOptions=" + databaseOptions + ", createDatabase=" + createDatabase + ", alterTable=" + alterTable + ", dbUtil=" + dbUtil + ", converter="
-				+ converter + ", extensions=" + extensions + "]";
+		return "ScrewDriverSqlImpl [databaseOptions=" + databaseOptions + ", dbUtil=" + dbUtil + ", converter=" + converter + ", extensions=" + extensions + "]";
 	}
 
 }

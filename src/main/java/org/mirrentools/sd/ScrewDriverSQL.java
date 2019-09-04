@@ -5,6 +5,7 @@ import java.util.Map;
 import org.mirrentools.sd.converter.SdTableContentConverter;
 import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
+import org.mirrentools.sd.models.SdDatabase;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -15,26 +16,40 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  */
 public interface ScrewDriverSQL {
 	/**
-	 * 执行生成
+	 * 创建数据库
 	 * 
+	 * @param database
+	 *          数据库属性描述
 	 * @return
 	 */
-	boolean execute();
+	boolean createDatabase(SdDatabase database);
 
 	/**
-	 * 获取创建所需要的属性
-	 * 
-	 * @return
-	 */
-	SdBean getBean();
-
-	/**
-	 * 设置创建所需要的属性
+	 * 创建表
 	 * 
 	 * @param bean
+	 *          表属性的描述
 	 * @return
 	 */
-	ScrewDriverSQL setBean(SdBean bean);
+	boolean createTable(SdBean bean);
+
+	/**
+	 * 修改表
+	 * 
+	 * @param bean
+	 *          表属性的描述
+	 * @return
+	 */
+	boolean alterTable(SdBean bean);
+
+	/**
+	 * 删除表
+	 * 
+	 * @param bean
+	 *          表属性的描述
+	 * @return
+	 */
+	boolean deleteTable(SdBean bean);
 
 	/**
 	 * 获取数据库连接属性
@@ -50,36 +65,6 @@ public interface ScrewDriverSQL {
 	 * @return
 	 */
 	ScrewDriverSQL setDatabaseOptions(SdDatabaseOptions dbOptions);
-
-	/**
-	 * 获取如果数据库不存在,是否创建数据库(如果支持创建)
-	 * 
-	 * @return
-	 */
-	boolean isCreateDatabase();
-
-	/**
-	 * 设置如果数据库不存在,是否创建数据库(如果支持创建)
-	 * 
-	 * @param createDatabase
-	 * @return
-	 */
-	ScrewDriverSQL setCreateDatabase(boolean createDatabase);
-
-	/**
-	 * 获取如果数据库中已经存在该表是否修改
-	 * 
-	 * @return
-	 */
-	boolean isAlterTable();
-
-	/**
-	 * 设置如果数据库中已经存在该表是否修改
-	 * 
-	 * @param alterTable
-	 * @return
-	 */
-	ScrewDriverSQL setAlterTable(boolean alterTable);
 
 	/**
 	 * 获取数据库操作工具
