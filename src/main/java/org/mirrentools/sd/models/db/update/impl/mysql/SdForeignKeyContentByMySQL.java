@@ -13,11 +13,10 @@ public class SdForeignKeyContentByMySQL extends SdAbstractForeignKeyContent {
 	@Override
 	public String createSQL() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(" CONSTRAINT `" + getConstraint() + "`");
-
+		sb.append(" CONSTRAINT " + getConstraint());
 		sb.append(" FOREIGN KEY (");
 		for (int i = 0; i < getForeignKeys().size(); i++) {
-			sb.append("`" + getForeignKeys().get(i) + "`");
+			sb.append(getForeignKeys().get(i));
 			if (i != getForeignKeys().size() - 1) {
 				sb.append(",");
 			}
@@ -26,13 +25,13 @@ public class SdForeignKeyContentByMySQL extends SdAbstractForeignKeyContent {
 
 		sb.append(" REFERENCES ");
 		if (getReferencesDB() != null) {
-			sb.append(" `" + getReferencesDB() + "`.`" + getReferencesTable() + "`");
+			sb.append(getReferencesDB() + "." + getReferencesTable());
 		} else {
-			sb.append(" `" + getReferencesTable() + "`");
+			sb.append(getReferencesTable());
 		}
 		sb.append("(");
 		for (int i = 0; i < getReferencesColumns().size(); i++) {
-			sb.append("`" + getReferencesColumns().get(i) + "`");
+			sb.append(getReferencesColumns().get(i));
 			if (i != getReferencesColumns().size() - 1) {
 				sb.append(",");
 			}
@@ -46,10 +45,7 @@ public class SdForeignKeyContentByMySQL extends SdAbstractForeignKeyContent {
 
 	@Override
 	public String updateSQL() {
-		return 
-				deleteSQL() == null 
-				? " ADD " + createSQL() 
-				: deleteSQL() + ", ADD " + createSQL() ;
+		return deleteSQL() == null ? " ADD " + createSQL() : deleteSQL() + ", ADD " + createSQL();
 	}
 
 	@Override
@@ -57,7 +53,7 @@ public class SdForeignKeyContentByMySQL extends SdAbstractForeignKeyContent {
 		if (getRemoveConstraint() == null) {
 			return null;
 		}
-		return " DROP FOREIGN KEY `" + getRemoveConstraint() + "`";
+		return " DROP FOREIGN KEY " + getRemoveConstraint();
 	}
 
 }

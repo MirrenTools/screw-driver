@@ -1,5 +1,6 @@
 package org.mirrentools.sd.models.db.update.impl.mysql;
 
+import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.models.db.update.SdBasicPrimaryKeyContent;
 
 /**
@@ -14,12 +15,7 @@ public class SdPrimaryKeyContentByMySQL extends SdBasicPrimaryKeyContent {
 	public String createSQL() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" PRIMARY KEY (");
-		for (int i = 0; i < getColumns().size(); i++) {
-			sb.append("`" + getColumns().get(i) + "`");
-			if (i != getColumns().size() - 1) {
-				sb.append(",");
-			}
-		}
+		sb.append(SdUtil.join(getColumns(), ","));
 		sb.append(")");
 		if (converterExtensions() != null) {
 			sb.append(" " + converterExtensions());
@@ -34,7 +30,7 @@ public class SdPrimaryKeyContentByMySQL extends SdBasicPrimaryKeyContent {
 
 	@Override
 	public String deleteSQL() {
-		return " DROP PRIMARY KEY" + (getName() == null ? "" : getName());
+		return " DROP PRIMARY KEY " + (getName() == null ? "" : getName());
 	}
 
 }

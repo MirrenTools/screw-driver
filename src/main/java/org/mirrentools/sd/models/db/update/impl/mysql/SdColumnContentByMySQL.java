@@ -15,7 +15,7 @@ public class SdColumnContentByMySQL extends SdBasicColumnContent {
 	@Override
 	public String createSQL() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("`" + getName() + "`");
+		sb.append(getName());
 		sb.append(" " + getType());
 		if (getLength() != null) {
 			sb.append("(" + getLength() + ")");

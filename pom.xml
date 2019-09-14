@@ -32,7 +32,8 @@
 			<version>db2jcc4</version>
 			<scope>provided</scope>
 		</dependency>
-		<!--oracle的jdbc本地添加依赖 mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc -Dversion=local -Dpackaging=jar -Dfile=your ojdbc path -->
+		<!--oracle的jdbc本地添加依赖 mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc 
+			-Dversion=local -Dpackaging=jar -Dfile=your ojdbc path -->
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc</artifactId>
@@ -49,6 +50,12 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.2.6.jre6</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.28.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

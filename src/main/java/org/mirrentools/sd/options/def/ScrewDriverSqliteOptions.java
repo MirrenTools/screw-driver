@@ -3,20 +3,23 @@ package org.mirrentools.sd.options.def;
 import java.util.Map;
 
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
+import org.mirrentools.sd.converter.impl.sqlite.SdClassConverterSqliteImpl;
+import org.mirrentools.sd.converter.impl.sqlite.SdTableContentConverterSqliteImpl;
+import org.mirrentools.sd.dbutil.impl.SdDbUtilSqliteImpl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
- * Sqlite版配置
+ * SQLite版配置
  * 
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
 public class ScrewDriverSqliteOptions extends ScrewDriverOptions {
 	/**
-	 * 初始化一个Sqlite版的ScrewDriver配置,用于仅生成SQL
+	 * 初始化一个SQLite版的ScrewDriver配置,用于仅生成SQL
 	 * 
 	 * 
 	 * @param databaseOptions
@@ -27,7 +30,7 @@ public class ScrewDriverSqliteOptions extends ScrewDriverOptions {
 	}
 
 	/**
-	 * 初始化一个Sqlite版的ScrewDriver配置,用于仅生成代码
+	 * 初始化一个SQLite版的ScrewDriver配置,用于仅生成代码
 	 * 
 	 * 
 	 * @param templateMaps
@@ -39,7 +42,7 @@ public class ScrewDriverSqliteOptions extends ScrewDriverOptions {
 	}
 
 	/**
-	 * 初始化一个Sqlite版的ScrewDriver配置,用于生成代码与SQL
+	 * 初始化一个SQLite版的ScrewDriver配置,用于生成代码与SQL
 	 * 
 	 * @param templateMaps
 	 *          模板集
@@ -64,12 +67,9 @@ public class ScrewDriverSqliteOptions extends ScrewDriverOptions {
 		super.setDatabaseOptions(databaseOptions);
 		super.setTemplateContentConverter(new SdTemplateContentConverterDefaultImpl());
 		super.setTemplateUtil(new ScrewDriverTemplateFreeMarkerImpl());
-
-		// TODO 创建响应的实现并取消注释
-		// super.setBeanConverter(new SdClassConverterSqliteImpl());
-
-		// super.setTableConverter(new SdTableContentConverterSqliteImpl());
-		// super.setDbUtil(new SdDbUtilSqliteImpl(databaseOptions));
+		super.setBeanConverter(new SdClassConverterSqliteImpl());
+		super.setTableConverter(new SdTableContentConverterSqliteImpl());
+		super.setDbUtil(new SdDbUtilSqliteImpl(databaseOptions));
 	}
 
 }

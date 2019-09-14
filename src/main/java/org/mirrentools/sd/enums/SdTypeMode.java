@@ -22,7 +22,7 @@ public enum SdTypeMode {
 	/** SQL Server数据类型 */
 	SQL_SERVER,
 	/** Sqlite数据类型 */
-	SELITE,
+	SQLITE,
 	/** 自定义数据类型,该类型最高级会覆盖其他类型 */
 	CUSTOM;
 }

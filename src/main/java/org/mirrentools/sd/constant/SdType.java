@@ -19,6 +19,7 @@ public class SdType {
 	/**
 	 * 数据类型byte,对应类型:<br>
 	 * Java=byte<br>
+	 * SQLite=TINYINT<br>
 	 * MySQL=TINYINT<br>
 	 * PostgreSQL=SMALLINT
 	 */
@@ -26,6 +27,7 @@ public class SdType {
 	/**
 	 * 数据类型byte array,对应类型:<br>
 	 * Java=byte[]<br>
+	 * SQLite=BLOB<br>
 	 * MySQL=BLOB<br>
 	 * PostgreSQL=BYTEA
 	 */
@@ -33,6 +35,7 @@ public class SdType {
 	/**
 	 * 数据类型boolean,对应类型:<br>
 	 * Java=boolean<br>
+	 * SQLite=BOOLEAN<br>
 	 * MySQL=BOOLEAN<br>
 	 * PostgreSQL=BOOLEAN<br>
 	 */
@@ -40,6 +43,7 @@ public class SdType {
 	/**
 	 * 数据类型Boolean,对应类型:<br>
 	 * Java=Boolean<br>
+	 * SQLite=BOOLEAN<br>
 	 * MySQL=BOOLEAN<br>
 	 * PostgreSQL=BOOLEAN<br>
 	 */
@@ -47,6 +51,7 @@ public class SdType {
 	/**
 	 * 数据类型String,对应类型:<br>
 	 * Java=String<br>
+	 * SQLite=NVARCHAR<br>
 	 * MySQL=VARCHAR<br>
 	 * PostgreSQL=VARCHAR<br>
 	 */
@@ -54,6 +59,7 @@ public class SdType {
 	/**
 	 * 数据类型short,对应类型:<br>
 	 * Java=short<br>
+	 * SQLite=SMALLINT<br>
 	 * MySQL=SMALLINT<br>
 	 * PostgreSQL=SMALLINT<br>
 	 */
@@ -61,6 +67,7 @@ public class SdType {
 	/**
 	 * 数据类型Short,对应类型:<br>
 	 * Java=Short<br>
+	 * SQLite=SMALLINT<br>
 	 * MySQL=SMALLINT<br>
 	 * PostgreSQL=SMALLINT<br>
 	 */
@@ -69,6 +76,7 @@ public class SdType {
 	/**
 	 * 数据类型int,对应类型:<br>
 	 * Java=int<br>
+	 * SQLite=INT<br>
 	 * MySQL=INT<br>
 	 * PostgreSQL=INTEGER<br>
 	 */
@@ -76,6 +84,7 @@ public class SdType {
 	/**
 	 * 数据类型Integer,对应类型:<br>
 	 * Java=Integer<br>
+	 * SQLite=INT<br>
 	 * MySQL=INT<br>
 	 * PostgreSQL=INTEGER<br>
 	 */
@@ -83,6 +92,7 @@ public class SdType {
 	/**
 	 * 数据类型long,对应类型:<br>
 	 * Java=long<br>
+	 * SQLite=BIGINT<br>
 	 * MySQL=BIGINT<br>
 	 * PostgreSQL=BIGINT<br>
 	 */
@@ -90,6 +100,7 @@ public class SdType {
 	/**
 	 * 数据类型Long,对应类型:<br>
 	 * Java=Long<br>
+	 * SQLite=BIGINT<br>
 	 * MySQL=BIGINT<br>
 	 * PostgreSQL=BIGINT<br>
 	 */
@@ -97,6 +108,7 @@ public class SdType {
 	/**
 	 * 数据类型float,对应类型:<br>
 	 * Java=float<br>
+	 * SQLite=FLOAT<br>
 	 * MySQL=FLOAT<br>
 	 * PostgreSQL=REAL<br>
 	 */
@@ -104,6 +116,7 @@ public class SdType {
 	/**
 	 * 数据类型Float,对应类型:<br>
 	 * Java=Float<br>
+	 * SQLite=FLOAT<br>
 	 * MySQL=FLOAT<br>
 	 * PostgreSQL=REAL<br>
 	 */
@@ -111,6 +124,7 @@ public class SdType {
 	/**
 	 * 数据类型double,对应类型:<br>
 	 * Java=double<br>
+	 * SQLite=DOUBLE<br>
 	 * MySQL=DOUBLE<br>
 	 * PostgreSQL=DOUBLE PRECISION<br>
 	 */
@@ -119,12 +133,15 @@ public class SdType {
 	/**
 	 * 数据类型Double,对应类型:<br>
 	 * Java=Double<br>
-	 * 所有数据库=DOUBLE PRECISION<br>
+	 * SQLite=DOUBLE<br>
+	 * MySQL=DOUBLE<br>
+	 * PostgreSQL=DOUBLE PRECISION<br>
 	 */
 	public final static String DOUBLE = "Double";
 	/**
 	 * 数据类型Number,对应类型:<br>
 	 * Java=Number<br>
+	 * SQLite=NUMERIC<br>
 	 * MySQL=NUMERIC<br>
 	 * PostgreSQL=NUMERIC<br>
 	 */
@@ -133,6 +150,7 @@ public class SdType {
 	/**
 	 * 数据类型Decimal,对应类型:<br>
 	 * Java=BigDecimal<br>
+	 * SQLite=DECIMAL<br>
 	 * MySQL=DECIMAL<br>
 	 * PostgreSQL=DECIMAL<br>
 	 */
@@ -141,6 +159,7 @@ public class SdType {
 	/**
 	 * 数据类型ZonedDateTime,对应类型:<br>
 	 * Java=java.time.ZonedDateTime<br>
+	 * SQLite=TIMESTAMP<br>
 	 * MySQL=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP WITH TIME ZONE<br>
 	 */
@@ -148,6 +167,7 @@ public class SdType {
 	/**
 	 * 数据类型GregorianCalendar,对应类型:<br>
 	 * Java=java.util.GregorianCalendar<br>
+	 * SQLite=TIMESTAMP<br>
 	 * MySQL=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP WITH TIME ZONE<br>
 	 */
@@ -155,6 +175,7 @@ public class SdType {
 	/**
 	 * 数据类型DateTime,对应类型:<br>
 	 * Java=java.time.LocalDateTime<br>
+	 * SQLite=DATETIME<br>
 	 * MySQL=DATETIME<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
@@ -162,6 +183,7 @@ public class SdType {
 	/**
 	 * 数据类型Date,对应类型:<br>
 	 * Java=java.time.LocalDate<br>
+	 * SQLite=DATE<br>
 	 * MySQL=DATE<br>
 	 * PostgreSQL=DATE<br>
 	 */
@@ -169,6 +191,7 @@ public class SdType {
 	/**
 	 * 数据类型Time,对应类型:<br>
 	 * Java=java.time.LocalTime<br>
+	 * SQLite=TIME<br>
 	 * MySQL=TIME<br>
 	 * PostgreSQL=TIME<br>
 	 */
@@ -176,6 +199,7 @@ public class SdType {
 	/**
 	 * 数据类型Timestamp,对应类型:<br>
 	 * Java=java.time.Instant<br>
+	 * SQLite=TIMESTAMP<br>
 	 * MySQL=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
@@ -183,6 +207,7 @@ public class SdType {
 	/**
 	 * 数据类型java.util.Date,对应类型:<br>
 	 * Java=java.util.Date<br>
+	 * SQLite=DATETIME<br>
 	 * MySQL=DATETIME<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
@@ -190,6 +215,7 @@ public class SdType {
 	/**
 	 * 数据类型java.util.Calendar,对应类型:<br>
 	 * Java=java.util.Calendar<br>
+	 * SQLite=DATE<br>
 	 * MySQL=DATE<br>
 	 * PostgreSQL=DATE<br>
 	 */
@@ -198,6 +224,7 @@ public class SdType {
 	/**
 	 * 数据类型java.sql.Time,对应类型:<br>
 	 * Java=java.sql.Date<br>
+	 * SQLite=DATE<br>
 	 * MySQL=DATE<br>
 	 * PostgreSQL=DATE<br>
 	 */
@@ -206,6 +233,7 @@ public class SdType {
 	/**
 	 * 数据类型java.sql.Time,对应类型:<br>
 	 * Java=java.sql.Time<br>
+	 * SQLite=TIME<br>
 	 * MySQL=TIME<br>
 	 * PostgreSQL=TIME<br>
 	 */
@@ -213,6 +241,7 @@ public class SdType {
 	/**
 	 * 数据类型java.sql.Timestamp,对应类型:<br>
 	 * Java=java.sql.Timestamp<br>
+	 * SQLite=DATETIME<br>
 	 * MySQL=DATETIME<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
@@ -225,28 +254,32 @@ public class SdType {
 	/**
 	 * 数据类型nchar,对应类型:<br>
 	 * Java=String<br>
-	 * MySQL=char<br>
-	 * PostgreSQL=char<br>
+	 * SQLite=NCHAR<br>
+	 * MySQL=CHAR<br>
+	 * PostgreSQL=CHAR<br>
 	 */
 	public final static String NCHAR = "nchar";
 	/**
 	 * 数据类型nvarchar,对应类型:<br>
 	 * Java=String<br>
-	 * MySQL=varchar<br>
-	 * PostgreSQL=varchar<br>
+	 * SQLite=NVARCHAR<br>
+	 * MySQL=VARCHAR<br>
+	 * PostgreSQL=VARCHAR<br>
 	 */
 	public final static String NVARCHAR = "nvarchar";
 	/**
 	 * 数据类型varchar2,对应类型:<br>
 	 * Java=String<br>
-	 * MySQL=varchar<br>
-	 * PostgreSQL=varchar<br>
+	 * SQLite=VARCHAR2<br>
+	 * MySQL=VARCHAR<br>
+	 * PostgreSQL=VARCHAR<br>
 	 */
 	public final static String VARCHAR2 = "varchar2";
 
 	/**
-	 * 数据类型Money,对应类型:<br>
+	 * 数据类型money,对应类型:<br>
 	 * Java=BigDecimal<br>
+	 * SQLite=MONEY<br>
 	 * MySQL=DECIMAL<br>
 	 * PostgreSQL=MONEY<br>
 	 */
@@ -254,21 +287,24 @@ public class SdType {
 	/**
 	 * 数据类型text,对应类型:<br>
 	 * Java=String<br>
+	 * SQLite=TEXT<br>
 	 * MySQL=TEXT<br>
-	 * PostgreSQL=text
+	 * PostgreSQL=TEXT
 	 */
 	public final static String TEXT = "text";
 	/**
 	 * 数据类型longtext,对应类型:<br>
 	 * Java=String<br>
+	 * SQLite=TEXT<br>
 	 * MySQL=LONGTEXT<br>
-	 * PostgreSQL=text
+	 * PostgreSQL=TEXT
 	 */
 	public final static String LONGTEXT = "longtext";
 
 	/**
 	 * 数据类型json,对应类型:<br>
 	 * Java=String<br>
+	 * SQLite=TEXT<br>
 	 * MySQL=JSON<br>
 	 * PostgreSQL=JSON
 	 */
@@ -277,6 +313,7 @@ public class SdType {
 	/**
 	 * 数据类型jsonb,对应类型:<br>
 	 * Java=String<br>
+	 * SQLite=TEXT<br>
 	 * MySQL=JSON<br>
 	 * PostgreSQL=JSONB
 	 */
@@ -419,7 +456,7 @@ public class SdType {
 			case SQL_SERVER:
 				result.putAll(SQL_SERVER_MAPS);
 				break;
-			case SELITE:
+			case SQLITE:
 				result.putAll(SQLITE_MAPS);
 				break;
 			default:
@@ -599,7 +636,44 @@ public class SdType {
 	 * 初始化Sqlite类型映射
 	 */
 	private static void initSqliteMaps() {
+		SQLITE_MAPS.put(BYTE, SQLite.TINYINT);
+		SQLITE_MAPS.put(BYTE_ARRAY, SQLite.BLOB);
+		SQLITE_MAPS.put(BOOLEAN, SQLite.BOOLEAN);
+		SQLITE_MAPS.put(BOOLEAN_BASIC, SQLite.BOOLEAN);
+		SQLITE_MAPS.put(STRING, SQLite.VARCHAR);
+		SQLITE_MAPS.put(SHORT, SQLite.SMALLINT);
+		SQLITE_MAPS.put(SHORT_BASIC, SQLite.SMALLINT);
+		SQLITE_MAPS.put(INT_BASIC, SQLite.INT);
+		SQLITE_MAPS.put(INTEGER, SQLite.INT);
+		SQLITE_MAPS.put(LONG, SQLite.BIGINT);
+		SQLITE_MAPS.put(LONG_BASIC, SQL.BIGINT);
+		SQLITE_MAPS.put(FLOAT, SQLite.FLOAT);
+		SQLITE_MAPS.put(FLOAT_BASIC, SQLite.FLOAT);
+		SQLITE_MAPS.put(DOUBLE, SQLite.DOUBLE);
+		SQLITE_MAPS.put(DOUBLE_BASIC, SQLite.DOUBLE);
+		SQLITE_MAPS.put(NUMBER, SQLite.NUMERIC);
+		SQLITE_MAPS.put(MONEY, SQLite.DECIMAL);
+		SQLITE_MAPS.put(DECIMAL, SQLite.DECIMAL);
 
+		SQLITE_MAPS.put(NCHAR, SQLite.CHAR);
+		SQLITE_MAPS.put(NVARCHAR, SQLite.VARCHAR);
+		SQLITE_MAPS.put(VARCHAR2, SQLite.VARCHAR);
+		SQLITE_MAPS.put(TEXT, SQLite.TEXT);
+		SQLITE_MAPS.put(LONGTEXT, SQLite.TEXT);
+		SQLITE_MAPS.put(JSON, SQLite.TEXT);
+		SQLITE_MAPS.put(JSONB, SQLite.TEXT);
+
+		SQLITE_MAPS.put(ZONED_DATE_TIME, SQLite.TIMESTAMP);
+		SQLITE_MAPS.put(GREGORIAN_CALENDAR, SQLite.TIMESTAMP);
+		SQLITE_MAPS.put(DATETIME, SQLite.DATETIME);
+		SQLITE_MAPS.put(DATE, SQLite.DATE);
+		SQLITE_MAPS.put(CALENDAR, SQLite.DATE);
+		SQLITE_MAPS.put(DATE_SQL, SQLite.DATE);
+		SQLITE_MAPS.put(DATE_UTIL, SQLite.DATE);
+		SQLITE_MAPS.put(TIME, SQLite.TIME);
+		SQLITE_MAPS.put(TIME_SQL, SQLite.TIME);
+		SQLITE_MAPS.put(TIMESTAMP, SQLite.TIMESTAMP);
+		SQLITE_MAPS.put(TIMESTAMP_SQL, SQLite.TIMESTAMP);
 		// TODO Sqlite添加映射的模块
 	}
 
