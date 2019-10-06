@@ -26,8 +26,12 @@ public abstract class SdAbstractColumnContent {
 	private String remark;
 	/** 是否为无符号 */
 	private boolean unsigned;
-	/** 是否自增 */
+	/** 是否自增或为标识 */
 	private boolean autoIncrement;
+	/** 标识种子 */
+	private Integer identitySeed;
+	/** 标识增量 */
+	private Integer identityIncrement;
 
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
@@ -242,6 +246,26 @@ public abstract class SdAbstractColumnContent {
 		return this;
 	}
 
+	public Integer getIdentitySeed() {
+		return identitySeed;
+	}
+
+	public SdAbstractColumnContent setIdentitySeed(Integer identitySeed) {
+		this.autoIncrement = true;
+		this.identitySeed = identitySeed;
+		return this;
+	}
+
+	public Integer getIdentityIncrement() {
+		return identityIncrement;
+	}
+
+	public SdAbstractColumnContent setIdentityIncrement(Integer identityIncrement) {
+		this.autoIncrement = true;
+		this.identityIncrement = identityIncrement;
+		return this;
+	}
+
 	/**
 	 * 获得拓展属性
 	 * 
@@ -288,8 +312,8 @@ public abstract class SdAbstractColumnContent {
 
 	@Override
 	public String toString() {
-		return "AbstractColumnContent [name=" + name + ", type=" + type + ", length=" + length + ", default=" + _default + ", primary=" + primary + ", notNull=" + notNull + ", remark=" + remark
-				+ ", unsigned=" + unsigned + ", autoIncrement=" + autoIncrement + ", extensions=" + extensions + "]";
+		return "SdAbstractColumnContent [name=" + name + ", type=" + type + ", length=" + length + ", _default=" + _default + ", primary=" + primary + ", notNull=" + notNull + ", remark=" + remark
+				+ ", unsigned=" + unsigned + ", autoIncrement=" + autoIncrement + ", identitySeed=" + identitySeed + ", identityIncrement=" + identityIncrement + ", extensions=" + extensions + "]";
 	}
 
 }

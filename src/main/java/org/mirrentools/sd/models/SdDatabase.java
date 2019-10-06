@@ -32,6 +32,28 @@ public class SdDatabase {
 	private String connlimit;
 	/** 如果为真，则任何具有CREATEDB特权的用户都可以从这个数据库克隆。如果为假（默认），则只有超级用户或者该数据库的拥有者可以克隆它。 */
 	private String istemplate;
+
+	/** 数据库逻辑名称显示在数据库的名字 */
+	private String dbName;
+	/** 数据库存放的路径 */
+	private String dbFilename;
+	/** 数据库的大小比如=5 就代表5mb */
+	private String dbSize;
+	/** 数据库的大小增长按百分比还是按指定在都可以,比如=10%/=5则代表按10%增长/5mb增长 */
+	private String dbFilegrowth;
+	/** 数据库文件最大值 */
+	private String dbMaxsize;
+
+	/** 日志文件逻辑名称显示在日志文件的名字 */
+	private String logName;
+	/** 日志文件存放的路径 */
+	private String logFilename;
+	/** 日志文件的大小比如=5 就代表5mb */
+	private String logSize;
+	/** 日志文件的大小增长按百分比还是按指定在都可以,比如=10%/=5则代表按10%增长/5mb增长 */
+	private String logFilegrowth;
+	/** 日志文件最大值 */
+	private String logMaxsize;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -256,6 +278,206 @@ public class SdDatabase {
 	}
 
 	/**
+	 * 获取数据库逻辑名称
+	 * 
+	 * @return
+	 */
+	public String getDbName() {
+		return dbName;
+	}
+
+	/**
+	 * 设置数据库逻辑名称
+	 * 
+	 * @param dbName
+	 * @return
+	 */
+	public SdDatabase setDbName(String dbName) {
+		this.dbName = dbName;
+		return this;
+	}
+
+	/**
+	 * 获取数据库文件存储路径
+	 * 
+	 * @return
+	 */
+	public String getDbFilename() {
+		return dbFilename;
+	}
+
+	/**
+	 * 设置数据库文件存储路径
+	 * 
+	 * @param dbFilename
+	 * @return
+	 */
+	public SdDatabase setDbFilename(String dbFilename) {
+		this.dbFilename = dbFilename;
+		return this;
+	}
+
+	/**
+	 * 获取数据库的大小比如=5 就代表5mb
+	 * 
+	 * @return
+	 */
+	public String getDbSize() {
+		return dbSize;
+	}
+
+	/**
+	 * 设置数据库的大小比如=5 就代表5mb
+	 * 
+	 * @param dbSize
+	 * @return
+	 */
+	public SdDatabase setDbSize(String dbSize) {
+		this.dbSize = dbSize;
+		return this;
+	}
+
+	/**
+	 * 获取数据库的大小增长按百分比还是按指定在都可以,比如=10%/=5则代表按10%增长/5mb增长
+	 * 
+	 * @return
+	 */
+	public String getDbFilegrowth() {
+		return dbFilegrowth;
+	}
+
+	/**
+	 * 设置数据库的大小增长按百分比还是按指定在都可以,比如=10%/=5则代表按10%增长/5mb增长
+	 * 
+	 * @param dbFilegrowth
+	 * @return
+	 */
+	public SdDatabase setDbFilegrowth(String dbFilegrowth) {
+		this.dbFilegrowth = dbFilegrowth;
+		return this;
+	}
+
+	/**
+	 * 获取数据库文件最大值
+	 * 
+	 * @return
+	 */
+	public String getDbMaxsize() {
+		return dbMaxsize;
+	}
+
+	/**
+	 * 设置数据库文件最大值
+	 * 
+	 * @param dbMaxsize
+	 * @return
+	 */
+	public SdDatabase setDbMaxsize(String dbMaxsize) {
+		this.dbMaxsize = dbMaxsize;
+		return this;
+	}
+
+	/**
+	 * 获取日志文件逻辑名称显示在日志文件的名字
+	 * 
+	 * @return
+	 */
+	public String getLogName() {
+		return logName;
+	}
+
+	/**
+	 * 设置日志文件逻辑名称显示在日志文件的名字
+	 * 
+	 * @param logName
+	 * @return
+	 */
+	public SdDatabase setLogName(String logName) {
+		this.logName = logName;
+		return this;
+	}
+
+	/**
+	 * 获取日志文件存放的路径
+	 * 
+	 * @return
+	 */
+	public String getLogFilename() {
+		return logFilename;
+	}
+
+	/**
+	 * 设置日志文件存放的路径
+	 * 
+	 * @param logFilename
+	 * @return
+	 */
+	public SdDatabase setLogFilename(String logFilename) {
+		this.logFilename = logFilename;
+		return this;
+	}
+
+	/**
+	 * 获取日志文件的大小比如=5 就代表5mb
+	 * 
+	 * @return
+	 */
+	public String getLogSize() {
+		return logSize;
+	}
+
+	/**
+	 * 设置日志文件的大小比如=5 就代表5mb
+	 * 
+	 * @param logSize
+	 * @return
+	 */
+	public SdDatabase setLogSize(String logSize) {
+		this.logSize = logSize;
+		return this;
+	}
+
+	/**
+	 * 获取日志文件的大小增长按百分比还是按指定在都可以,比如=10%/=5则代表按10%增长/5mb增长
+	 * 
+	 * @return
+	 */
+	public String getLogFilegrowth() {
+		return logFilegrowth;
+	}
+
+	/**
+	 * 设置日志文件的大小增长按百分比还是按指定在都可以,比如=10%/=5则代表按10%增长/5mb增长
+	 * 
+	 * @param logFilegrowth
+	 * @return
+	 */
+	public SdDatabase setLogFilegrowth(String logFilegrowth) {
+		this.logFilegrowth = logFilegrowth;
+		return this;
+	}
+
+	/**
+	 * 获取日志文件最大值
+	 * 
+	 * @return
+	 */
+	public String getLogMaxsize() {
+		return logMaxsize;
+	}
+
+	/**
+	 * 设置日志文件最大值
+	 * 
+	 * @param logMaxsize
+	 * @return
+	 */
+	public SdDatabase setLogMaxsize(String logMaxsize) {
+		this.logMaxsize = logMaxsize;
+		return this;
+	}
+
+	/**
 	 * 获得拓展属性
 	 * 
 	 * @return
@@ -314,6 +536,16 @@ public class SdDatabase {
 		sb.append("  ┣━allowconn = " + allowconn + "\n");
 		sb.append("  ┣━connlimit = " + connlimit + "\n");
 		sb.append("  ┣━istemplate = " + istemplate + "\n");
+		sb.append("  ┣━dbName = " + dbName + "\n");
+		sb.append("  ┣━dbFilename = " + dbFilename + "\n");
+		sb.append("  ┣━dbSize = " + dbSize + "\n");
+		sb.append("  ┣━dbFilegrowth = " + dbFilegrowth + "\n");
+		sb.append("  ┣━dbMaxsize = " + dbMaxsize + "\n");
+		sb.append("  ┣━logName = " + logName + "\n");
+		sb.append("  ┣━logFilename = " + logFilename + "\n");
+		sb.append("  ┣━logSize = " + logSize + "\n");
+		sb.append("  ┣━logFilegrowth = " + logFilegrowth + "\n");
+		sb.append("  ┣━logMaxsize = " + logMaxsize + "\n");
 		sb.append("  ┗━extensions = " + extensions + "\n");
 		return sb.toString();
 	}

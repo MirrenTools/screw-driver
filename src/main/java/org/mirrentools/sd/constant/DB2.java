@@ -1,12 +1,12 @@
 package org.mirrentools.sd.constant;
+
 /**
  * DB2的常量
  * 
  * @author likk
  *
  */
-
-public class DB2 {
+public interface DB2 {
 	/** DB2名字常量=DB2 */
 	public final static String DB2 = "DB2";
 	/** DB2数据库驱动包常量=com.mysql.jdbc.Driver */
@@ -50,6 +50,6 @@ public class DB2 {
 	/** DB2数据类型distinct */
 	public final static String DISTINCT = "DISTINCT";
 	/** DB2数据类型xml */
-	public final static String XML  = "XML";
+	public final static String XML = "XML";
 
 }

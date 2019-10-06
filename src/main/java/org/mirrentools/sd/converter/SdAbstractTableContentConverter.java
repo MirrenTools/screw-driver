@@ -180,6 +180,8 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			column.setPrimary(col.isPrimary());
 			column.setNotNull(!col.isNullable());
 			column.setAutoIncrement(col.isAutoIncrement());
+			column.setIdentitySeed(col.getIdentitySeed());
+			column.setIdentitySeed(col.getIdentitySeed());
 			column.setUnsigned(col.isUnsigned());
 			column.setExtensions(col.getExtensions());
 			result.addColum(column);

@@ -82,8 +82,13 @@ public class SdColumn implements Comparable<SdColumn> {
 	private boolean nullable = true;
 	/** 列是否为无符号 */
 	private boolean unsigned;
-	/** 列是否自增量 */
+	/** 列是否自增量或为标识 */
 	private boolean autoIncrement;
+	/** 标识种子 */
+	private Integer identitySeed;
+	/** 标识增量 */
+	private Integer identityIncrement;
+
 	/** 自增采用的序列名称 */
 	private String sequenceName;
 	/** 约束条件的类型 */
@@ -697,13 +702,63 @@ public class SdColumn implements Comparable<SdColumn> {
 	}
 
 	/**
-	 * 设置是否自增
+	 * 设置是否自增或为标识<br>
+	 * MySQL数据库对应increment<br>
+	 * SQL Server数据库对应identity
 	 * 
 	 * @param autoIncrement
 	 * @return
 	 */
 	public SdColumn setAutoIncrement(boolean autoIncrement) {
 		this.autoIncrement = autoIncrement;
+		return this;
+	}
+
+	/**
+	 * 获取标识种子,如果种子为空并且autoIncrement=true则返回1
+	 * 
+	 * @return
+	 */
+	public Integer getIdentitySeed() {
+		if (autoIncrement && identitySeed == null) {
+			return 1;
+		}
+		return identitySeed;
+	}
+
+	/**
+	 * 获取标识增量,如果增量为空并且autoIncrement=true则返回1
+	 * 
+	 * @return
+	 */
+	public Integer getIdentityIncrement() {
+		if (autoIncrement && identityIncrement == null) {
+			return 1;
+		}
+		return identityIncrement;
+	}
+
+	/**
+	 * 设置标识种子
+	 * 
+	 * @param identitySeed
+	 * @return
+	 */
+	public SdColumn setIdentitySeed(Integer identitySeed) {
+		this.autoIncrement = true;
+		this.identitySeed = identitySeed;
+		return this;
+	}
+
+	/**
+	 * 设置标识增量
+	 * 
+	 * @param identityIncrement
+	 * @return
+	 */
+	public SdColumn setIdentityIncrement(Integer identityIncrement) {
+		this.autoIncrement = true;
+		this.identityIncrement = identityIncrement;
 		return this;
 	}
 
@@ -925,6 +980,8 @@ public class SdColumn implements Comparable<SdColumn> {
 		sb.append("  ┣━nullable = " + nullable + "\n");
 		sb.append("  ┣━unsigned = " + unsigned + "\n");
 		sb.append("  ┣━autoIncrement = " + autoIncrement + "\n");
+		sb.append("  ┣━identitySeed = " + identitySeed + "\n");
+		sb.append("  ┣━identityIncrement = " + identityIncrement + "\n");
 		sb.append("  ┣━sequenceName = " + sequenceName + "\n");
 		sb.append("  ┣━constraintType = " + constraintType + "\n");
 		sb.append("  ┣━constraintName = " + constraintName + "\n");

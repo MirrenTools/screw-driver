@@ -21,7 +21,9 @@ public class SdType {
 	 * Java=byte<br>
 	 * SQLite=TINYINT<br>
 	 * MySQL=TINYINT<br>
-	 * PostgreSQL=SMALLINT
+	 * SQL Server=TINYINT<br>
+	 * DB2=SMALLINT<br>
+	 * PostgreSQL=SMALLINT<br>
 	 */
 	public final static String BYTE = "byte";
 	/**
@@ -29,7 +31,9 @@ public class SdType {
 	 * Java=byte[]<br>
 	 * SQLite=BLOB<br>
 	 * MySQL=BLOB<br>
-	 * PostgreSQL=BYTEA
+	 * SQL Server=IMAGE<br>
+	 * DB2=BLOB<br>
+	 * PostgreSQL=BYTEA<br>
 	 */
 	public final static String BYTE_ARRAY = "byte_array";
 	/**
@@ -37,6 +41,8 @@ public class SdType {
 	 * Java=boolean<br>
 	 * SQLite=BOOLEAN<br>
 	 * MySQL=BOOLEAN<br>
+	 * SQL Server=BIT<br>
+	 * DB2=CHAR<br>
 	 * PostgreSQL=BOOLEAN<br>
 	 */
 	public final static String BOOLEAN_BASIC = "boolean_basic";
@@ -45,7 +51,9 @@ public class SdType {
 	 * Java=Boolean<br>
 	 * SQLite=BOOLEAN<br>
 	 * MySQL=BOOLEAN<br>
-	 * PostgreSQL=BOOLEAN<br>
+	 * SQL Server=BIT<br>
+	 * DB2=CHAR<br>
+	 * PostgreSQL=BOOLEAN
 	 */
 	public final static String BOOLEAN = "Boolean";
 	/**
@@ -53,6 +61,8 @@ public class SdType {
 	 * Java=String<br>
 	 * SQLite=NVARCHAR<br>
 	 * MySQL=VARCHAR<br>
+	 * SQL Server=NVARCHAR<br>
+	 * DB2=VARCHAR<br>
 	 * PostgreSQL=VARCHAR<br>
 	 */
 	public final static String STRING = "String";
@@ -61,6 +71,8 @@ public class SdType {
 	 * Java=short<br>
 	 * SQLite=SMALLINT<br>
 	 * MySQL=SMALLINT<br>
+	 * SQL Server=SMALLINT<br>
+	 * DB2=SMALLINT<br>
 	 * PostgreSQL=SMALLINT<br>
 	 */
 	public final static String SHORT_BASIC = "short_basic";
@@ -69,6 +81,8 @@ public class SdType {
 	 * Java=Short<br>
 	 * SQLite=SMALLINT<br>
 	 * MySQL=SMALLINT<br>
+	 * SQL Server=SMALLINT<br>
+	 * DB2=SMALLINT<br>
 	 * PostgreSQL=SMALLINT<br>
 	 */
 	public final static String SHORT = "Short";
@@ -78,6 +92,8 @@ public class SdType {
 	 * Java=int<br>
 	 * SQLite=INT<br>
 	 * MySQL=INT<br>
+	 * SQL Server=INT<br>
+	 * DB2=INTEGER<br>
 	 * PostgreSQL=INTEGER<br>
 	 */
 	public final static String INT_BASIC = "int_basic";
@@ -86,6 +102,8 @@ public class SdType {
 	 * Java=Integer<br>
 	 * SQLite=INT<br>
 	 * MySQL=INT<br>
+	 * SQL Server=INT<br>
+	 * DB2=INTEGER<br>
 	 * PostgreSQL=INTEGER<br>
 	 */
 	public final static String INTEGER = "Integer";
@@ -94,6 +112,8 @@ public class SdType {
 	 * Java=long<br>
 	 * SQLite=BIGINT<br>
 	 * MySQL=BIGINT<br>
+	 * SQL Server=BIGINT<br>
+	 * DB2=BIGINT<br>
 	 * PostgreSQL=BIGINT<br>
 	 */
 	public final static String LONG_BASIC = "long_basic";
@@ -102,6 +122,8 @@ public class SdType {
 	 * Java=Long<br>
 	 * SQLite=BIGINT<br>
 	 * MySQL=BIGINT<br>
+	 * SQL Server=BIGINT<br>
+	 * DB2=BIGINT<br>
 	 * PostgreSQL=BIGINT<br>
 	 */
 	public final static String LONG = "Long";
@@ -110,6 +132,8 @@ public class SdType {
 	 * Java=float<br>
 	 * SQLite=FLOAT<br>
 	 * MySQL=FLOAT<br>
+	 * SQL Server=FLOAT<br>
+	 * DB2=REAL<br>
 	 * PostgreSQL=REAL<br>
 	 */
 	public final static String FLOAT_BASIC = "float_basic";
@@ -118,6 +142,8 @@ public class SdType {
 	 * Java=Float<br>
 	 * SQLite=FLOAT<br>
 	 * MySQL=FLOAT<br>
+	 * SQL Server=FLOAT<br>
+	 * DB2=REAL<br>
 	 * PostgreSQL=REAL<br>
 	 */
 	public final static String FLOAT = "Float";
@@ -126,6 +152,8 @@ public class SdType {
 	 * Java=double<br>
 	 * SQLite=DOUBLE<br>
 	 * MySQL=DOUBLE<br>
+	 * SQL Server=FLOAT<br>
+	 * DB2=DOUBLE<br>
 	 * PostgreSQL=DOUBLE PRECISION<br>
 	 */
 	public final static String DOUBLE_BASIC = "double_basic";
@@ -135,6 +163,8 @@ public class SdType {
 	 * Java=Double<br>
 	 * SQLite=DOUBLE<br>
 	 * MySQL=DOUBLE<br>
+	 * SQL Server=FLOAT<br>
+	 * DB2=DOUBLE<br>
 	 * PostgreSQL=DOUBLE PRECISION<br>
 	 */
 	public final static String DOUBLE = "Double";
@@ -143,6 +173,8 @@ public class SdType {
 	 * Java=Number<br>
 	 * SQLite=NUMERIC<br>
 	 * MySQL=NUMERIC<br>
+	 * SQL Server=NUMERIC<br>
+	 * DB2=DECIMAL<br>
 	 * PostgreSQL=NUMERIC<br>
 	 */
 	public final static String NUMBER = "Number";
@@ -152,6 +184,8 @@ public class SdType {
 	 * Java=BigDecimal<br>
 	 * SQLite=DECIMAL<br>
 	 * MySQL=DECIMAL<br>
+	 * SQL Server=DECIMAL<br>
+	 * DB2=DECIMAL<br>
 	 * PostgreSQL=DECIMAL<br>
 	 */
 	public final static String DECIMAL = "Decimal";
@@ -161,6 +195,8 @@ public class SdType {
 	 * Java=java.time.ZonedDateTime<br>
 	 * SQLite=TIMESTAMP<br>
 	 * MySQL=TIMESTAMP<br>
+	 * SQL Server=DATETIMEOFFSET<br>
+	 * DB2=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP WITH TIME ZONE<br>
 	 */
 	public final static String ZONED_DATE_TIME = "ZonedDateTime";
@@ -169,6 +205,8 @@ public class SdType {
 	 * Java=java.util.GregorianCalendar<br>
 	 * SQLite=TIMESTAMP<br>
 	 * MySQL=TIMESTAMP<br>
+	 * SQL Server=DATETIMEOFFSET<br>
+	 * DB2=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP WITH TIME ZONE<br>
 	 */
 	public final static String GREGORIAN_CALENDAR = "java.util.GregorianCalendar";
@@ -177,6 +215,8 @@ public class SdType {
 	 * Java=java.time.LocalDateTime<br>
 	 * SQLite=DATETIME<br>
 	 * MySQL=DATETIME<br>
+	 * SQL Server=DATETIME<br>
+	 * DB2=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
 	public final static String DATETIME = "DateTime";
@@ -185,6 +225,8 @@ public class SdType {
 	 * Java=java.time.LocalDate<br>
 	 * SQLite=DATE<br>
 	 * MySQL=DATE<br>
+	 * SQL Server=DATE<br>
+	 * DB2=DATE<br>
 	 * PostgreSQL=DATE<br>
 	 */
 	public final static String DATE = "Date";
@@ -193,6 +235,8 @@ public class SdType {
 	 * Java=java.time.LocalTime<br>
 	 * SQLite=TIME<br>
 	 * MySQL=TIME<br>
+	 * SQL Server=TIME<br>
+	 * DB2=TIME<br>
 	 * PostgreSQL=TIME<br>
 	 */
 	public final static String TIME = "Time";
@@ -201,6 +245,8 @@ public class SdType {
 	 * Java=java.time.Instant<br>
 	 * SQLite=TIMESTAMP<br>
 	 * MySQL=TIMESTAMP<br>
+	 * SQL Server=TIMESTAMP<br>
+	 * DB2=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
 	public final static String TIMESTAMP = "Timestamp";
@@ -209,6 +255,8 @@ public class SdType {
 	 * Java=java.util.Date<br>
 	 * SQLite=DATETIME<br>
 	 * MySQL=DATETIME<br>
+	 * SQL Server=DATETIME<br>
+	 * DB2=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
 	public final static String DATE_UTIL = "java.util.Date";
@@ -217,6 +265,8 @@ public class SdType {
 	 * Java=java.util.Calendar<br>
 	 * SQLite=DATE<br>
 	 * MySQL=DATE<br>
+	 * SQL Server=DATE<br>
+	 * DB2=DATE<br>
 	 * PostgreSQL=DATE<br>
 	 */
 	public final static String CALENDAR = "java.util.Calendar";
@@ -226,6 +276,8 @@ public class SdType {
 	 * Java=java.sql.Date<br>
 	 * SQLite=DATE<br>
 	 * MySQL=DATE<br>
+	 * SQL Server=DATE<br>
+	 * DB2=DATE<br>
 	 * PostgreSQL=DATE<br>
 	 */
 	public final static String DATE_SQL = "java.sql.Date";
@@ -235,6 +287,8 @@ public class SdType {
 	 * Java=java.sql.Time<br>
 	 * SQLite=TIME<br>
 	 * MySQL=TIME<br>
+	 * SQL Server=TIME<br>
+	 * DB2=TIME<br>
 	 * PostgreSQL=TIME<br>
 	 */
 	public final static String TIME_SQL = "java.sql.Time";
@@ -243,6 +297,8 @@ public class SdType {
 	 * Java=java.sql.Timestamp<br>
 	 * SQLite=DATETIME<br>
 	 * MySQL=DATETIME<br>
+	 * SQL Server=DATETIME<br>
+	 * DB2=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
 	public final static String TIMESTAMP_SQL = "java.sql.Timestamp";
@@ -256,6 +312,8 @@ public class SdType {
 	 * Java=String<br>
 	 * SQLite=NCHAR<br>
 	 * MySQL=CHAR<br>
+	 * SQL Server=NCHAR<br>
+	 * DB2=CHAR<br>
 	 * PostgreSQL=CHAR<br>
 	 */
 	public final static String NCHAR = "nchar";
@@ -264,6 +322,8 @@ public class SdType {
 	 * Java=String<br>
 	 * SQLite=NVARCHAR<br>
 	 * MySQL=VARCHAR<br>
+	 * SQL Server=NVARCHAR<br>
+	 * DB2=VARCHAR<br>
 	 * PostgreSQL=VARCHAR<br>
 	 */
 	public final static String NVARCHAR = "nvarchar";
@@ -272,6 +332,8 @@ public class SdType {
 	 * Java=String<br>
 	 * SQLite=VARCHAR2<br>
 	 * MySQL=VARCHAR<br>
+	 * SQL Server=NVARCHAR<br>
+	 * DB2=VARCHAR<br>
 	 * PostgreSQL=VARCHAR<br>
 	 */
 	public final static String VARCHAR2 = "varchar2";
@@ -281,6 +343,8 @@ public class SdType {
 	 * Java=BigDecimal<br>
 	 * SQLite=MONEY<br>
 	 * MySQL=DECIMAL<br>
+	 * SQL Server=MONEY<br>
+	 * DB2=DECIMAL<br>
 	 * PostgreSQL=MONEY<br>
 	 */
 	public final static String MONEY = "money";
@@ -289,7 +353,9 @@ public class SdType {
 	 * Java=String<br>
 	 * SQLite=TEXT<br>
 	 * MySQL=TEXT<br>
-	 * PostgreSQL=TEXT
+	 * SQL Server=TEXT<br>
+	 * DB2=CLOB<br>
+	 * PostgreSQL=TEXT<br>
 	 */
 	public final static String TEXT = "text";
 	/**
@@ -297,7 +363,9 @@ public class SdType {
 	 * Java=String<br>
 	 * SQLite=TEXT<br>
 	 * MySQL=LONGTEXT<br>
-	 * PostgreSQL=TEXT
+	 * SQL Server=TEXT<br>
+	 * DB2=CLOB<br>
+	 * PostgreSQL=TEXT<br>
 	 */
 	public final static String LONGTEXT = "longtext";
 
@@ -306,7 +374,9 @@ public class SdType {
 	 * Java=String<br>
 	 * SQLite=TEXT<br>
 	 * MySQL=JSON<br>
-	 * PostgreSQL=JSON
+	 * SQL Server=TEXT<br>
+	 * DB2=CLOB<br>
+	 * PostgreSQL=JSON<br>
 	 */
 	public final static String JSON = "json";
 
@@ -315,7 +385,9 @@ public class SdType {
 	 * Java=String<br>
 	 * SQLite=TEXT<br>
 	 * MySQL=JSON<br>
-	 * PostgreSQL=JSONB
+	 * SQL Server=TEXT<br>
+	 * DB2=CLOB<br>
+	 * PostgreSQL=JSONB<br>
 	 */
 	public final static String JSONB = "jsonb";
 
@@ -521,8 +593,6 @@ public class SdType {
 		MYSQL_MAPS.put(TIME_SQL, MySQL.TIME);
 		MYSQL_MAPS.put(TIMESTAMP, MySQL.TIMESTAMP);
 		MYSQL_MAPS.put(TIMESTAMP_SQL, MySQL.TIMESTAMP);
-
-		// TODO MySQL添加映射的模块
 	}
 
 	/**
@@ -567,8 +637,6 @@ public class SdType {
 		POSTGRE_SQL_MAPS.put(TIME_SQL, PostgreSQL.TIME);
 		POSTGRE_SQL_MAPS.put(TIMESTAMP, PostgreSQL.TIMESTAMP);
 		POSTGRE_SQL_MAPS.put(TIMESTAMP_SQL, PostgreSQL.TIMESTAMP);
-
-		// TODO PostgreSQL添加映射的模块
 	}
 
 	/**
@@ -613,7 +681,6 @@ public class SdType {
 		DB2_MAPS.put(TIME_SQL, DB2.TIME);
 		DB2_MAPS.put(TIMESTAMP, DB2.TIMESTAMP);
 		DB2_MAPS.put(TIMESTAMP_SQL, DB2.TIMESTAMP);
-		
 	}
 
 	/**
@@ -628,8 +695,44 @@ public class SdType {
 	 * 初始化SqlServer类型映射
 	 */
 	private static void initSqlServerMaps() {
+		SQL_SERVER_MAPS.put(BYTE, SqlServer.TINYINT);
+		SQL_SERVER_MAPS.put(BYTE_ARRAY, SqlServer.IMAGE);
+		SQL_SERVER_MAPS.put(BOOLEAN, SqlServer.BIT);
+		SQL_SERVER_MAPS.put(BOOLEAN_BASIC, SqlServer.BIT);
+		SQL_SERVER_MAPS.put(STRING, SqlServer.VARCHAR);
+		SQL_SERVER_MAPS.put(SHORT, SqlServer.SMALLINT);
+		SQL_SERVER_MAPS.put(SHORT_BASIC, SqlServer.SMALLINT);
+		SQL_SERVER_MAPS.put(INT_BASIC, SqlServer.INT);
+		SQL_SERVER_MAPS.put(INTEGER, SqlServer.INT);
+		SQL_SERVER_MAPS.put(LONG, SqlServer.BIGINT);
+		SQL_SERVER_MAPS.put(LONG_BASIC, SQL.BIGINT);
+		SQL_SERVER_MAPS.put(FLOAT, SqlServer.FLOAT);
+		SQL_SERVER_MAPS.put(FLOAT_BASIC, SqlServer.FLOAT);
+		SQL_SERVER_MAPS.put(DOUBLE, SqlServer.FLOAT);
+		SQL_SERVER_MAPS.put(DOUBLE_BASIC, SqlServer.FLOAT);
+		SQL_SERVER_MAPS.put(NUMBER, SqlServer.NUMERIC);
+		SQL_SERVER_MAPS.put(MONEY, SqlServer.DECIMAL);
+		SQL_SERVER_MAPS.put(DECIMAL, SqlServer.DECIMAL);
 
-		// TODO SqlServer添加映射的模块
+		SQL_SERVER_MAPS.put(NCHAR, SqlServer.CHAR);
+		SQL_SERVER_MAPS.put(NVARCHAR, SqlServer.VARCHAR);
+		SQL_SERVER_MAPS.put(VARCHAR2, SqlServer.VARCHAR);
+		SQL_SERVER_MAPS.put(TEXT, SqlServer.TEXT);
+		SQL_SERVER_MAPS.put(LONGTEXT, SqlServer.TEXT);
+		SQL_SERVER_MAPS.put(JSON, SqlServer.TEXT);
+		SQL_SERVER_MAPS.put(JSONB, SqlServer.TEXT);
+
+		SQL_SERVER_MAPS.put(ZONED_DATE_TIME, SqlServer.DATETIMEOFFSET);
+		SQL_SERVER_MAPS.put(GREGORIAN_CALENDAR, SqlServer.TIMESTAMP);
+		SQL_SERVER_MAPS.put(DATETIME, SqlServer.DATETIME);
+		SQL_SERVER_MAPS.put(DATE, SqlServer.DATE);
+		SQL_SERVER_MAPS.put(CALENDAR, SqlServer.DATE);
+		SQL_SERVER_MAPS.put(DATE_SQL, SqlServer.DATE);
+		SQL_SERVER_MAPS.put(DATE_UTIL, SqlServer.DATE);
+		SQL_SERVER_MAPS.put(TIME, SqlServer.TIME);
+		SQL_SERVER_MAPS.put(TIME_SQL, SqlServer.TIME);
+		SQL_SERVER_MAPS.put(TIMESTAMP, SqlServer.TIMESTAMP);
+		SQL_SERVER_MAPS.put(TIMESTAMP_SQL, SqlServer.TIMESTAMP);
 	}
 
 	/**
@@ -674,7 +777,6 @@ public class SdType {
 		SQLITE_MAPS.put(TIME_SQL, SQLite.TIME);
 		SQLITE_MAPS.put(TIMESTAMP, SQLite.TIMESTAMP);
 		SQLITE_MAPS.put(TIMESTAMP_SQL, SQLite.TIMESTAMP);
-		// TODO Sqlite添加映射的模块
 	}
 
 	/**
