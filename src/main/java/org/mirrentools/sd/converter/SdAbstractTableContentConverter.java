@@ -178,7 +178,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			column.setLength(col.getLength());
 			column.setDefault(col.getDefault());
 			column.setPrimary(col.isPrimary());
-			column.setNotNull(col.isNullable());
+			column.setNotNull(!col.isNullable());
 			column.setAutoIncrement(col.isAutoIncrement());
 			column.setUnsigned(col.isUnsigned());
 			column.setExtensions(col.getExtensions());
@@ -349,6 +349,9 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			for (SdSequence seq : sequences) {
 				if (seq.getName() != null) {
 					SdAbstractSequenceContent content = newSequenceContent(seq);
+					if (content == null) {
+						return;
+					}
 					content.setName(seq.getName());
 					content.setDataType(seq.getDataType());
 					content.setMinValue(seq.getMinValue());

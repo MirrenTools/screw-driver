@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.mirrentools.sd.constant.MySQL;
 import org.mirrentools.sd.constant.SQLite;
+import org.mirrentools.sd.constant.SqliteConstant;
 import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.dbutil.impl.SdDbUtilMySqlImpl;
 import org.mirrentools.sd.dbutil.impl.SdDbUtilSqliteImpl;
@@ -32,10 +33,10 @@ public class SdDbUtilSqliteQueryTest {
 	public static void main(String[] args) throws Exception {
 		SdDbUtilSqliteQueryTest test = new SdDbUtilSqliteQueryTest();
 		test.setUp();
-		String tableName = "root";
+		String tableName = SqliteConstant.studentBean.getName();
 		test.existDatabaseTest();
 		 test.existTableTest(tableName);
-		// test.getSdTableTest(tableName);
+		 test.getSdTableTest(tableName);
 		// test.getTableNamesTest();
 		// test.getTableAttributeTest(tableName);
 		// test.getColumnsTest(tableName);
@@ -46,7 +47,7 @@ public class SdDbUtilSqliteQueryTest {
 	}
 
 	public void setUp() throws Exception {
-		SdDatabaseOptions config = new SdDatabaseOptions(SQLite.SQLITE_DERVER, "jdbc:sqlite:D:/tempProject/test.db");
+		SdDatabaseOptions config = new SdDatabaseOptions(SQLite.SQLITE_DERVER, "jdbc:sqlite:D:/tempProject/item.db");
 		sdDbUtil = new SdDbUtilSqliteImpl(config);
 	}
 

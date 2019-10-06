@@ -11,7 +11,7 @@ public class SdBasicSequenceContent extends SdAbstractSequenceContent {
 	@Override
 	public String createSQL() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(" CREATE SEQUENCE " + getName());
+		sb.append(" CREATE SEQUENCE IF NOT EXISTS " + getName());
 		if (getDataType() != null) {
 			sb.append(" AS " + getDataType());
 		}
@@ -75,7 +75,7 @@ public class SdBasicSequenceContent extends SdAbstractSequenceContent {
 
 	@Override
 	public String deleteSQL() {
-		return String.format("DROP SEQUENCE  IF EXISTS %s", getName());
+		return String.format("DROP SEQUENCE IF EXISTS %s", getName());
 	}
 
 }
