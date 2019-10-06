@@ -4,9 +4,7 @@ ScrewDriver is a tool that generates database tables and code in a Java-enabled 
 # 使用教程 	Manual
 SdBean 一个表或类的描述  A description of a table or class  
 SdColumn 列的描述  A description of column  
-ScrewDriverCode 用于生成代码 create code  
-ScrewDriverSQL 用于生成SQL create SQL  
-ScrewDriverProject 用于生成项目 create Project
+ScrewDriver 工具类,用于生成代码和SQL   create code and SQL
 
 ```java
 public static void main(String[] args) throws Exception {
@@ -44,11 +42,11 @@ public static void main(String[] args) throws Exception {
     .setUser("root")
     .setPassword("root");
   // 初始化执行工具   Initialization Execution Generation Tool
-  ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(bean, templates, databaseOptions));
+  ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(templates, databaseOptions));
   // 创建代码   Generate class
-  screwDriver.createCode();
+  screwDriver.createCode(bean);
   // 生成表  Create table
-  screwDriver.createSQL();
+  screwDriver.createTable(bean);
 }
 ``` 
 

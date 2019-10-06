@@ -12,6 +12,7 @@ public class SdIndexKeyContentByPostgreSQL extends SdBasicIndexKeyContent {
 
 	@Override
 	public String createSQL() {
+		//该方法已经在TableContent中实现
 		return null;
 	}
 
