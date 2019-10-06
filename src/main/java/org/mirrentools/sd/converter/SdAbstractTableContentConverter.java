@@ -104,7 +104,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 	/**
 	 * 初始化序列,子类需要实现它并初始化子类相应的内容
 	 * 
-	 * @param col
+	 * @param sequence
 	 * @return
 	 */
 	public abstract SdAbstractSequenceContent newSequenceContent(SdSequence sequence);
@@ -158,6 +158,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 		} else {
 			throw new ScrewDriverException("SdBean 中 getColumns() 为 null 如果创建表没有列属性没有任何意义");
 		}
+		converterSequenceContent(bean.getSequences(), result);
 		converterExtensions(bean, result);
 		return result;
 	}
@@ -333,6 +334,34 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 					}
 				}
 				result.addConstraint(constraint);
+			}
+		}
+	}
+
+	/**
+	 * 转换序列内容
+	 * 
+	 * @param sequences
+	 * @param result
+	 */
+	public void converterSequenceContent(List<SdSequence> sequences, SdAbstractTableContent result) {
+		if (sequences != null && !sequences.isEmpty()) {
+			for (SdSequence seq : sequences) {
+				if (seq.getName() != null) {
+					SdAbstractSequenceContent content = newSequenceContent(seq);
+					content.setName(seq.getName());
+					content.setDataType(seq.getDataType());
+					content.setMinValue(seq.getMinValue());
+					content.setMaxValue(seq.getMaxValue());
+					content.setIncrementBy(seq.getIncrementBy());
+					content.setStart(seq.getStart());
+					content.setRestart(seq.getRestart());
+					content.setCache(seq.getCache());
+					content.setCycle(seq.getCycle());
+					content.setOwnedBy(seq.getOwnedBy());
+					content.setExtensions(seq.getExtensions());
+					result.addSequence(content);
+				}
 			}
 		}
 	}

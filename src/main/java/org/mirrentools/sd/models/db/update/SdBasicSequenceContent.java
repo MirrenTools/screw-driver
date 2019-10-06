@@ -20,21 +20,18 @@ public class SdBasicSequenceContent extends SdAbstractSequenceContent {
 		}
 		if (getMinValue() != null) {
 			sb.append(" MINVALUE " + getMinValue());
-		} else {
-			sb.append(" MINVALUE NO MINVALUE ");
 		}
 		if (getMaxValue() != null) {
 			sb.append(" MAXVALUE " + getMaxValue());
-		} else {
-			sb.append(" MAXVALUE NO MAXVALUE ");
 		}
 		if (getStart() != null) {
 			sb.append(" START WITH " + getStart());
 		}
 		if (getCache() != null) {
-			sb.append("  CACHE " + getCache());
-		} else {
-			sb.append("  CACHE NO CYCLE ");
+			sb.append(" CACHE " + getCache());
+		}
+		if (getCycle() != null && getCycle()) {
+			sb.append(" CYCLE ");
 		}
 		if (getOwnedBy() != null) {
 			sb.append(" OWNED BY " + getOwnedBy());
@@ -54,13 +51,9 @@ public class SdBasicSequenceContent extends SdAbstractSequenceContent {
 		}
 		if (getMinValue() != null) {
 			sb.append(" MINVALUE " + getMinValue());
-		} else {
-			sb.append(" MINVALUE NO MINVALUE ");
 		}
 		if (getMaxValue() != null) {
 			sb.append(" MAXVALUE " + getMaxValue());
-		} else {
-			sb.append(" MAXVALUE NO MAXVALUE ");
 		}
 		if (getStart() != null) {
 			sb.append(" START WITH " + getStart());
@@ -70,8 +63,9 @@ public class SdBasicSequenceContent extends SdAbstractSequenceContent {
 		}
 		if (getCache() != null) {
 			sb.append("  CACHE " + getCache());
-		} else {
-			sb.append("  CACHE NO CYCLE ");
+		}
+		if (getCycle() != null && getCycle()) {
+			sb.append(" CYCLE ");
 		}
 		if (getOwnedBy() != null) {
 			sb.append(" OWNED BY " + getOwnedBy());

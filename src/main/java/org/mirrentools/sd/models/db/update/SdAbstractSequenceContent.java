@@ -14,9 +14,9 @@ public abstract class SdAbstractSequenceContent {
 	private String name;
 	/** 制定序列的数据类型 */
 	private String dataType;
-	/** 最小值,null=NO MINVALUE */
+	/** 最小值,null=数据库默认值 */
 	private Long minValue;
-	/** 最大值,null=NO MAXVALUE */
+	/** 最大值,null=数据库默认值 */
 	private Long maxValue;
 	/** 每次累加多少 */
 	private Long incrementBy;
@@ -26,7 +26,7 @@ public abstract class SdAbstractSequenceContent {
 	private Long restart;
 	/** 缓存值 */
 	private Long cache;
-	/** 是否循环,true=CYCLE,false=NO CYCLE */
+	/** 是否循环,true=CYCLE,false=数据库默认值 */
 	private Boolean cycle;
 	/** 关联列 */
 	private String ownedBy;

@@ -317,6 +317,20 @@ public abstract class SdAbstractTableContent {
 	}
 
 	/**
+	 * 添加序列属性
+	 * 
+	 * @param sequences
+	 * @return
+	 */
+	public SdAbstractTableContent addSequence(SdAbstractSequenceContent sequence) {
+		if (getSequences() == null) {
+			setSequences(new ArrayList<SdAbstractSequenceContent>());
+		}
+		getSequences().add(sequence);
+		return this;
+	}
+
+	/**
 	 * 设置序列属性
 	 * 
 	 * @param sequences

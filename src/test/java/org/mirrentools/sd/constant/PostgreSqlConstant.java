@@ -7,6 +7,7 @@ import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.SdRelational;
+import org.mirrentools.sd.models.SdSequence;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
@@ -43,11 +44,16 @@ public class PostgreSqlConstant {
 	private static void initBean() {
 		// 初始化班级bean
 		classesBean = new SdBean();
-		SdColumn cc1 = new SdColumn().setName("id").setType(SdType.INTEGER).setRemark("班级的id").setPrimary(true).setAutoIncrement(true);
+		SdColumn cc1 = new SdColumn().setName("id").setType(SdType.INTEGER).setRemark("班级的id").setPrimary(true);
 		SdColumn cc2 = new SdColumn().setName("name").setType(SdType.STRING).setRemark("班级的名字").setLength(10).setNullable(false);
 		SdColumn cc3 = new SdColumn().setName("teacher_id").setType(SdType.LONG).setRemark("班主任的id").setNullable(false);
 		SdColumn cc4 = new SdColumn().setName("teacherName").setFieldType(SdType.STRING).setRemark("班主任的名字");
 		classesBean.setName("classes").setRemark("班级").addColumn(cc1, cc2, cc3).addAdditionalColumn(cc4);
+
+		// 初始化班级用的序列
+		SdSequence sequence = new SdSequence();
+		sequence.setName("seq_classes_id").setMinValue(1001L);
+		classesBean.addSequence(sequence);
 
 		// 初始化学生bean
 		studentBean = new SdBean();

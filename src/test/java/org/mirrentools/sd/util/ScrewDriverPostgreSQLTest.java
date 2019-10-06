@@ -32,5 +32,7 @@ public class ScrewDriverPostgreSQLTest {
 		boolean execute = new ScrewDriverSqlImpl(new ScrewDriverOptions(config)).createTable(PostgreSqlConstant.studentBean);
 		System.out.println("SQL执行结果:" + execute);
 	}
+	
+	
 
 }
