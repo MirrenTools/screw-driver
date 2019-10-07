@@ -3,6 +3,9 @@ package org.mirrentools.sd.options.def;
 import java.util.Map;
 
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
+import org.mirrentools.sd.converter.impl.sqlserver.SdClassConverterSqlServerImpl;
+import org.mirrentools.sd.converter.impl.sqlserver.SdTableContentConverterSqlServerImpl;
+import org.mirrentools.sd.dbutil.impl.SdDbUtilSqlServerImpl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.ScrewDriverOptions;
@@ -63,11 +66,10 @@ public class ScrewDriverSqlServerOptions extends ScrewDriverOptions {
 		super.setTemplateContentConverter(new SdTemplateContentConverterDefaultImpl());
 		super.setTemplateUtil(new ScrewDriverTemplateFreeMarkerImpl());
 
-		// TODO 创建响应的实现并取消注释
-		// super.setBeanConverter(new SdClassConverterSqlServerImpl());
+		super.setBeanConverter(new SdClassConverterSqlServerImpl());
 
-		// super.setTableConverter(new SdTableContentConverterSqlServerImpl());
-		// super.setDbUtil(new SdDbUtilSqlServerImpl(databaseOptions));
+		super.setTableConverter(new SdTableContentConverterSqlServerImpl());
+		super.setDbUtil(new SdDbUtilSqlServerImpl(databaseOptions));
 	}
 
 }

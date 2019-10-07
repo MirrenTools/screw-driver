@@ -3,7 +3,6 @@ package org.mirrentools.sd.dbutil.impl;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import org.mirrentools.sd.dbutil.SdAbstractDbUtil;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
@@ -58,16 +57,6 @@ public class SdDbUtilOracleImpl extends SdAbstractDbUtil {
 				connection.close();
 			}
 		}
-	}
-
-	@Override
-	public void converterTableAttribute(ResultSet rs, SdTableAttribute result) throws SQLException {
-		result.setTableCat(rs.getString("TABLE_CAT"));
-		result.setTableSchem(rs.getString("TABLE_SCHEM"));
-		result.setTableName(rs.getString("TABLE_NAME"));
-		result.setTableType(rs.getString("TABLE_TYPE"));
-		result.setRemarks(rs.getString("REMARKS"));
-		result.setTypeCat("TYPE_CAT");
 	}
 
 }

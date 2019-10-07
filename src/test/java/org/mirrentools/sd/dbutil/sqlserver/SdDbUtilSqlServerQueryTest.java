@@ -1,4 +1,4 @@
-package org.mirrentools.sd.dbutil.sqlite;
+package org.mirrentools.sd.dbutil.sqlserver;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -6,10 +6,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.mirrentools.sd.constant.SQLite;
+import org.mirrentools.sd.constant.SqlServer;
 import org.mirrentools.sd.constant.SqliteConstant;
 import org.mirrentools.sd.dbutil.SdDbUtil;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilSqliteImpl;
+import org.mirrentools.sd.dbutil.impl.SdDbUtilSqlServerImpl;
 import org.mirrentools.sd.models.db.query.SdTable;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
@@ -24,29 +24,31 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public class SdDbUtilSqliteQueryTest {
+public class SdDbUtilSqlServerQueryTest {
 	/** 操作工具 */
 	private SdDbUtil sdDbUtil;
 
 	public static void main(String[] args) throws Exception {
-		SdDbUtilSqliteQueryTest test = new SdDbUtilSqliteQueryTest();
+		SdDbUtilSqlServerQueryTest test = new SdDbUtilSqlServerQueryTest();
 		test.setUp();
 		String tableName = SqliteConstant.studentBean.getName();
 		test.existDatabaseTest();
-		 test.existTableTest(tableName);
-		 test.getSdTableTest(tableName);
-		 test.getTableNamesTest();
-		 test.getTableAttributeTest(tableName);
-		 test.getColumnsTest(tableName);
-		 test.getTablePrimaryKeyAttributeTest(tableName);
-		 test.getTableIndexKeysAttributeTest(tableName);
-		 test.getTableExportedKeysAttributeTest(tableName);
+		test.existTableTest(tableName);
+		test.getSdTableTest(tableName);
+		test.getTableNamesTest();
+		test.getTableAttributeTest(tableName);
+		test.getColumnsTest(tableName);
+		test.getTablePrimaryKeyAttributeTest(tableName);
+		test.getTableIndexKeysAttributeTest(tableName);
+		test.getTableExportedKeysAttributeTest(tableName);
 		 test.getTableImportedKeysAttributeTest(tableName);
 	}
 
 	public void setUp() throws Exception {
-		SdDatabaseOptions config = new SdDatabaseOptions(SQLite.SQLITE_DERVER, "jdbc:sqlite:D:/tempProject/item.db");
-		sdDbUtil = new SdDbUtilSqliteImpl(config);
+		SdDatabaseOptions config = new SdDatabaseOptions(SqlServer.SQL_SERVER_DERVER, "jdbc:sqlserver://localhost:1433;DatabaseName=item");
+		config.setUser("sa");
+		config.setPassword("root");
+		sdDbUtil = new SdDbUtilSqlServerImpl(config);
 	}
 
 	public void existDatabaseTest() throws Exception {
@@ -69,12 +71,11 @@ public class SdDbUtilSqliteQueryTest {
 		List<String> names = sdDbUtil.getTableNames();
 		System.out.println(names);
 	}
-
 	public void getTableAttributeTest(String tableName) throws Exception {
 		SdTableAttribute attribute = sdDbUtil.getTableAttribute(tableName);
 		System.out.println(attribute);
 		assertEquals("classes_student", attribute.getTableName());
-//		assertEquals("remarks test", attribute.getRemarks());
+		assertEquals("班级里面的学生", attribute.getRemarks());
 	}
 
 	public void getColumnsTest(String tableName) throws Exception {
@@ -91,7 +92,7 @@ public class SdDbUtilSqliteQueryTest {
 	}
 
 	public void getTableIndexKeysAttributeTest(String tableName) throws Exception {
-		List<SdTableIndexKeyAttribute> list = sdDbUtil.getTableIndexKeysAttribute(tableName, true, true);
+		List<SdTableIndexKeyAttribute> list = sdDbUtil.getTableIndexKeysAttribute(tableName, false, true);
 		System.out.println(list);
 		assertEquals(2, list.size());
 		assertEquals("idx_user_mobile_phone", list.get(0).getIndexName());

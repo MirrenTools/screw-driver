@@ -25,7 +25,7 @@ public class SdIndexKeyContentBySqlite extends SdBasicIndexKeyContent {
 		result.append(getTable());
 		result.append(" ( ");
 		result.append(SdUtil.join(getColumns(), ","));
-		result.append(" ) ");
+		result.append(" ); ");
 		return result.toString();
 	}
 

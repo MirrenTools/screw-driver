@@ -129,10 +129,10 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		try {
 			LOG.info("执行SQL语句:\n" + content.createSQL());
 			statement = connection.createStatement();
-			for(String sql: content.createSQL()) {
+			for (String sql : content.createSQL()) {
 				statement.execute(sql);
 			}
-			
+
 			LOG.info(String.format("Create table-->%s Successful", content.getTableName()));
 			return true;
 		} catch (Exception e) {
@@ -155,7 +155,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 			LOG.info("执行SQL语句:\n" + content.updateSQL());
 			statement = connection.createStatement();
 			List<String> list = content.updateSQL();
-			for(int i = 0;i<list.size();i++) {
+			for (int i = 0; i < list.size(); i++) {
 				statement.execute(list.get(i));
 			}
 			LOG.info(String.format("Update table-->%s Successful", content.getTableName()));
@@ -300,7 +300,7 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 			while (rs.next()) {
 				SdTableColumnAttribute attr = new SdTableColumnAttribute();
 				converterColumnsAttribute(rs, attr);
-				columnMap.put(rs.getString(4), attr);
+				columnMap.put(rs.getString("COLUMN_NAME"), attr);
 			}
 			if (columnMap.size() == 0) {
 				throw new NullPointerException("从表中获取字段失败!获取不到任何字段!");
@@ -429,26 +429,40 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 	 * @throws SQLException
 	 */
 	public void converterTableAttribute(ResultSet rs, SdTableAttribute result) throws SQLException {
-		// TABLE_CAT
-		result.setTableCat(rs.getString(1));
-		// TABLE_SCHEM
-		result.setTableSchem(rs.getString(2));
-		// TABLE_NAME
-		result.setTableName(rs.getString(3));
-		// TABLE_TYPE
-		result.setTableType(rs.getString(4));
-		// REMARKS
-		result.setRemarks(rs.getString(5));
-		// TYPE_CAT
-		result.setTypeCat(rs.getString(6));
-		// TYPE_SCHEM
-		result.setTypeSchem(rs.getString(7));
-		// TYPE_NAME
-		result.setTypeName(rs.getString(8));
-		// SELF_REFERENCING_COL_NAME
-		result.setSelfReferencingColName(rs.getString(9));
-		// REF_GENERATION
-		result.setRefGeneration(rs.getString(10));
+		result.setTableName(rs.getString("TABLE_NAME"));
+		result.setRemarks(rs.getString("REMARKS"));
+		try {
+			result.setTableCat(rs.getString("TABLE_CAT"));
+		} catch (Exception e1) {
+		}
+		try {
+			result.setTableSchem(rs.getString("TABLE_SCHEM"));
+		} catch (Exception e1) {
+		}
+		try {
+			result.setTableType(rs.getString("TABLE_TYPE"));
+		} catch (Exception e1) {
+		}
+		try {
+			result.setTypeCat(rs.getString("TYPE_CAT"));
+		} catch (Exception e) {
+		}
+		try {
+			result.setTypeSchem(rs.getString("TYPE_SCHEM"));
+		} catch (Exception e) {
+		}
+		try {
+			result.setTypeName(rs.getString("TYPE_NAME"));
+		} catch (Exception e) {
+		}
+		try {
+			result.setSelfReferencingColName(rs.getString("SELF_REFERENCING_COL_NAME"));
+		} catch (Exception e) {
+		}
+		try {
+			result.setRefGeneration(rs.getString("REF_GENERATION"));
+		} catch (Exception e) {
+		}
 	}
 
 	/**
@@ -495,8 +509,15 @@ public abstract class SdAbstractDbUtil implements SdDbUtil {
 		result.setScopeSchema(rs.getString(20));
 		// SCOPE_TABLE
 		result.setScopeTable(rs.getString(21));
-		// SOURCE_DATA_TYPE
-		result.setSourceDataType(rs.getShort(22));
+		try {
+			// SOURCE_DATA_TYPE
+			result.setSourceDataType(rs.getShort(22));
+		} catch (Exception e) {
+			try {
+				result.setSourceDataType(new Short(rs.getString(22)));
+			} catch (NumberFormatException e1) {
+			}
+		}
 		// IS_AUTOINCREMENT
 		result.setAutoincrement(rs.getString(23));
 		// IS_GENERATEDCOLUMN

@@ -34,10 +34,6 @@ public class SdDatabaseContentBySqlServer extends SdAbstractDatabaseContent {
 	/** 日志文件最大值 */
 	private String logMaxsize;
 
-	public SdDatabaseContentBySqlServer(String databaseName) {
-		super(databaseName);
-	}
-
 	public SdDatabaseContentBySqlServer(SdDatabase database) {
 		super(database.getDatabase());
 		this.newDatabaseName = database.getNewDatabase();
@@ -59,8 +55,8 @@ public class SdDatabaseContentBySqlServer extends SdAbstractDatabaseContent {
 		result.append(" CREATE DATABASE ");
 		result.append(getDatabaseName());
 		result.append(" ON ( ");
-		result.append(" name = " + getDbName() + ",");
-		result.append(" filename = " + getDbFilename());
+		result.append(" name = '" + getDbName() + "',");
+		result.append(" filename = '" + getDbFilename() + "'");
 		if (getDbSize() != null) {
 			result.append(",");
 			result.append(" size = " + getDbSize());
@@ -76,8 +72,8 @@ public class SdDatabaseContentBySqlServer extends SdAbstractDatabaseContent {
 		result.append(" ) ");
 
 		result.append("LOG ON (");
-		result.append(" name = " + getLogName() + ",");
-		result.append(" filename = " + getLogFilename());
+		result.append(" name = '" + getLogName() + "',");
+		result.append(" filename = '" + getLogFilename() + "'");
 		if (getLogSize() != null) {
 			result.append(",");
 			result.append(" size = " + getLogSize());
