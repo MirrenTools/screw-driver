@@ -45,7 +45,20 @@ public abstract class SdBasicTableContent extends SdAbstractTableContent {
 		}
 		sb.append(");\n");
 		List<String> result = new ArrayList<String>();
+		// 添加创建表的语句
 		result.add(sb.toString());
+		// 添加创建索引的语句
+		if (getIndexKeys() != null && !getIndexKeys().isEmpty()) {
+			for (int i = 0; i < getIndexKeys().size(); i++) {
+				result.add(getIndexKeys().get(i).createSQL());
+			}
+		}
+		// 添加序列的语句
+		if (getSequences() != null && !getSequences().isEmpty()) {
+			for (int i = 0; i < getSequences().size(); i++) {
+				result.add(getSequences().get(i).createSQL());
+			}
+		}
 		return result;
 	}
 
@@ -83,7 +96,20 @@ public abstract class SdBasicTableContent extends SdAbstractTableContent {
 		}
 		sb.append(";\n");
 		List<String> result = new ArrayList<String>();
+		// 添加创建表的语句
 		result.add(sb.toString());
+		// 添加创建索引的语句
+		if (getIndexKeys() != null && !getIndexKeys().isEmpty()) {
+			for (int i = 0; i < getIndexKeys().size(); i++) {
+				result.add(getIndexKeys().get(i).updateSQL());
+			}
+		}
+		// 添加序列的语句
+		if (getSequences() != null && !getSequences().isEmpty()) {
+			for (int i = 0; i < getSequences().size(); i++) {
+				result.add(getSequences().get(i).updateSQL());
+			}
+		}
 		return result;
 	}
 

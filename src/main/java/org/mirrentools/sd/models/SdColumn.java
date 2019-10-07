@@ -82,8 +82,10 @@ public class SdColumn implements Comparable<SdColumn> {
 	private boolean nullable = true;
 	/** 列是否为无符号 */
 	private boolean unsigned;
-	/** 列是否自增量或为标识 */
+	/** 列是否自增量 */
 	private boolean autoIncrement;
+	/** 列是否为标识 */
+	private boolean identity;
 	/** 标识种子 */
 	private Integer identitySeed;
 	/** 标识增量 */
@@ -714,27 +716,30 @@ public class SdColumn implements Comparable<SdColumn> {
 		return this;
 	}
 
+	public boolean isIdentity() {
+		return identity;
+	}
+
+	public SdColumn setIdentity(boolean identity) {
+		this.identity = identity;
+		return this;
+	}
+
 	/**
-	 * 获取标识种子,如果种子为空并且autoIncrement=true则返回1
+	 * 获取标识种子
 	 * 
 	 * @return
 	 */
 	public Integer getIdentitySeed() {
-		if (autoIncrement && identitySeed == null) {
-			return 1;
-		}
 		return identitySeed;
 	}
 
 	/**
-	 * 获取标识增量,如果增量为空并且autoIncrement=true则返回1
+	 * 获取标识增量
 	 * 
 	 * @return
 	 */
 	public Integer getIdentityIncrement() {
-		if (autoIncrement && identityIncrement == null) {
-			return 1;
-		}
 		return identityIncrement;
 	}
 
@@ -745,7 +750,7 @@ public class SdColumn implements Comparable<SdColumn> {
 	 * @return
 	 */
 	public SdColumn setIdentitySeed(Integer identitySeed) {
-		this.autoIncrement = true;
+		this.identity = true;
 		this.identitySeed = identitySeed;
 		return this;
 	}
@@ -757,7 +762,7 @@ public class SdColumn implements Comparable<SdColumn> {
 	 * @return
 	 */
 	public SdColumn setIdentityIncrement(Integer identityIncrement) {
-		this.autoIncrement = true;
+		this.identity = true;
 		this.identityIncrement = identityIncrement;
 		return this;
 	}
@@ -980,6 +985,7 @@ public class SdColumn implements Comparable<SdColumn> {
 		sb.append("  ┣━nullable = " + nullable + "\n");
 		sb.append("  ┣━unsigned = " + unsigned + "\n");
 		sb.append("  ┣━autoIncrement = " + autoIncrement + "\n");
+		sb.append("  ┣━identity = " + identity + "\n");
 		sb.append("  ┣━identitySeed = " + identitySeed + "\n");
 		sb.append("  ┣━identityIncrement = " + identityIncrement + "\n");
 		sb.append("  ┣━sequenceName = " + sequenceName + "\n");

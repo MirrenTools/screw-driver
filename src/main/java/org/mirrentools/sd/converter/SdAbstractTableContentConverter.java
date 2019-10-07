@@ -180,6 +180,7 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			column.setPrimary(col.isPrimary());
 			column.setNotNull(!col.isNullable());
 			column.setAutoIncrement(col.isAutoIncrement());
+			column.setIdentity(col.isIdentity());
 			column.setIdentitySeed(col.getIdentitySeed());
 			column.setIdentitySeed(col.getIdentitySeed());
 			column.setUnsigned(col.isUnsigned());
@@ -230,10 +231,6 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			Map<String, SdAbstractIndexKeyContent> indexs = new LinkedHashMap<String, SdAbstractIndexKeyContent>();
 			for (int i = 0; i < columns.size(); i++) {
 				SdColumn col = columns.get(i);
-				if (col.getIndexType() == null) {
-					System.out.println(col);
-					throw new ScrewDriverException("索引的类型不能为空");
-				}
 				SdAbstractIndexKeyContent indexContent = indexs.get(col.getIndexName());
 				if (indexContent == null) {
 					indexContent = newIndexKeyContent(col);
@@ -243,6 +240,8 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 					indexContent.setType(col.getIndexType());
 					indexContent.setRemark(col.getIndexRemark());
 					indexContent.addColumn(col.getName());
+					indexContent.setSchema(result.getSchema());
+					indexContent.setTable(result.getTableName());
 					indexs.put(col.getIndexName(), indexContent);
 				} else {
 					if (indexContent.getType() != null && col.getIndexType() != null) {

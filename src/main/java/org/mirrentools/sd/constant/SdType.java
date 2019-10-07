@@ -90,7 +90,7 @@ public class SdType {
 	/**
 	 * 数据类型int,对应类型:<br>
 	 * Java=int<br>
-	 * SQLite=INT<br>
+	 * SQLite=INTEGER<br>
 	 * MySQL=INT<br>
 	 * SQL Server=INT<br>
 	 * DB2=INTEGER<br>
@@ -100,7 +100,7 @@ public class SdType {
 	/**
 	 * 数据类型Integer,对应类型:<br>
 	 * Java=Integer<br>
-	 * SQLite=INT<br>
+	 * SQLite=INTEGER<br>
 	 * MySQL=INT<br>
 	 * SQL Server=INT<br>
 	 * DB2=INTEGER<br>
@@ -746,8 +746,8 @@ public class SdType {
 		SQLITE_MAPS.put(STRING, SQLite.VARCHAR);
 		SQLITE_MAPS.put(SHORT, SQLite.SMALLINT);
 		SQLITE_MAPS.put(SHORT_BASIC, SQLite.SMALLINT);
-		SQLITE_MAPS.put(INT_BASIC, SQLite.INT);
-		SQLITE_MAPS.put(INTEGER, SQLite.INT);
+		SQLITE_MAPS.put(INT_BASIC, SQLite.INTEGER);
+		SQLITE_MAPS.put(INTEGER, SQLite.INTEGER);
 		SQLITE_MAPS.put(LONG, SQLite.BIGINT);
 		SQLITE_MAPS.put(LONG_BASIC, SQL.BIGINT);
 		SQLITE_MAPS.put(FLOAT, SQLite.FLOAT);

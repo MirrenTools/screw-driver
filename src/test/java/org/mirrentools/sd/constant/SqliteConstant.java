@@ -57,8 +57,7 @@ public class SqliteConstant {
 		SdColumn column4 = new SdColumn().setName("email").setType(SdType.INTEGER).setRemark("学生的邮箱");
 		SdColumn column5 = new SdColumn().setName("mobile_area").setType(SdType.STRING).setDefault("0086").setNullable(false).setLength(30).setRemark("学生的手机区号");
 		SdColumn column6 = new SdColumn().setName("mobile_phone").setType(SdType.STRING).setNullable(false).setLength(30).setRemark("学生的手机号码");
-		column5.setUnique(true).setIndexType(PostgreSQL.INDEX_BTREE).setIndexName("idx_user_mobile_phone");
-		column6.setUnique(true).setIndexRemark("测试注释").setIndexType(PostgreSQL.INDEX_BTREE).setIndexName("idx_user_mobile_phone");
+		column6.setUnique(true).setIndexRemark("测试注释").setIndexName("idx_user_mobile_phone");
 		SdColumn column7 = new SdColumn().setName("classes_id").setType(SdType.INTEGER).setNullable(false).setRemark("班级的id");
 		column7.setForeignReferencesTable(classesBean.getName()).setForeignReferencesColumn(cc1.getName()).setForeignConstraint("FK_classes_student_id");
 		studentBean.setName("classes_student").setRemark("班级里面的学生").addColumn(column, column2, column3, column4, column5, column6, column7);

@@ -26,8 +26,10 @@ public abstract class SdAbstractColumnContent {
 	private String remark;
 	/** 是否为无符号 */
 	private boolean unsigned;
-	/** 是否自增或为标识 */
+	/** 是否为自增 */
 	private boolean autoIncrement;
+	/** 是否为标识 */
+	private boolean identity;
 	/** 标识种子 */
 	private Integer identitySeed;
 	/** 标识增量 */
@@ -246,12 +248,20 @@ public abstract class SdAbstractColumnContent {
 		return this;
 	}
 
+	public boolean isIdentity() {
+		return identity;
+	}
+
+	public SdAbstractColumnContent setIdentity(boolean identity) {
+		this.identity = identity;
+		return this;
+	}
+
 	public Integer getIdentitySeed() {
 		return identitySeed;
 	}
 
 	public SdAbstractColumnContent setIdentitySeed(Integer identitySeed) {
-		this.autoIncrement = true;
 		this.identitySeed = identitySeed;
 		return this;
 	}
@@ -261,7 +271,6 @@ public abstract class SdAbstractColumnContent {
 	}
 
 	public SdAbstractColumnContent setIdentityIncrement(Integer identityIncrement) {
-		this.autoIncrement = true;
 		this.identityIncrement = identityIncrement;
 		return this;
 	}
@@ -313,7 +322,8 @@ public abstract class SdAbstractColumnContent {
 	@Override
 	public String toString() {
 		return "SdAbstractColumnContent [name=" + name + ", type=" + type + ", length=" + length + ", _default=" + _default + ", primary=" + primary + ", notNull=" + notNull + ", remark=" + remark
-				+ ", unsigned=" + unsigned + ", autoIncrement=" + autoIncrement + ", identitySeed=" + identitySeed + ", identityIncrement=" + identityIncrement + ", extensions=" + extensions + "]";
+				+ ", unsigned=" + unsigned + ", autoIncrement=" + autoIncrement + ", identity=" + identity + ", identitySeed=" + identitySeed + ", identityIncrement=" + identityIncrement + ", extensions="
+				+ extensions + "]";
 	}
 
 }

@@ -1,5 +1,6 @@
 package org.mirrentools.sd.models.db.update.impl.sqlite;
 
+import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.models.db.update.SdBasicIndexKeyContent;
 
 /**
@@ -12,7 +13,25 @@ public class SdIndexKeyContentBySqlite extends SdBasicIndexKeyContent {
 
 	@Override
 	public String createSQL() {
-		return null;
+		StringBuilder result = new StringBuilder();
+		result.append(" CREATE ");
+		if (isUnique()) {
+			result.append(" UNIQUE ");
+		}
+		result.append(" INDEX ");
+		result.append(" IF NOT EXISTS ");
+		result.append(getName());
+		result.append(" ON ");
+		result.append(getTable());
+		result.append(" ( ");
+		result.append(SdUtil.join(getColumns(), ","));
+		result.append(" ) ");
+		return result.toString();
+	}
+
+	@Override
+	public String deleteSQL() {
+		return " DROP INDEX " + getRemoveIndexName();
 	}
 
 }
