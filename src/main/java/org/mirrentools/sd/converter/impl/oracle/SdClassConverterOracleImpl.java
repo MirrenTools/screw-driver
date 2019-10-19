@@ -1,4 +1,4 @@
-package org.mirrentools.sd.converter.impl.db2;
+package org.mirrentools.sd.converter.impl.oracle;
 
 import org.mirrentools.sd.constant.Java;
 import org.mirrentools.sd.constant.SdType;
@@ -7,12 +7,12 @@ import org.mirrentools.sd.converter.SdBasicTypeConverter;
 import org.mirrentools.sd.converter.SdTypeConverter;
 import org.mirrentools.sd.enums.SdTypeMode;
 
-public class SdClassConverterDB2Impl  extends SdBasicClassConverter {
+public class SdClassConverterOracleImpl  extends SdBasicClassConverter {
 
 	/**
 	 * 使用默认的SQL数据类型转换器初始化
 	 */
-	public SdClassConverterDB2Impl() {
+	public SdClassConverterOracleImpl() {
 		super(new SdBasicTypeConverter(Java.OBJECT, SdType.getDictionary(SdTypeMode.JAVA)));
 	}
 	/**
@@ -20,7 +20,7 @@ public class SdClassConverterDB2Impl  extends SdBasicClassConverter {
 	 * 
 	 * @param typeConverter
 	 */
-	public SdClassConverterDB2Impl(SdTypeConverter typeConverter) {
+	public SdClassConverterOracleImpl(SdTypeConverter typeConverter) {
 		super(typeConverter);
 	}
 

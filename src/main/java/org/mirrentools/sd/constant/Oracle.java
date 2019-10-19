@@ -23,6 +23,8 @@ public interface Oracle {
 	
 	public static final String CLOB = "clob";
 	
+	public static final String BLOB = "blob";
+	
 	public static final String NCLOB = "nclob";
 	
 	public static final String LONG = "long";
@@ -34,6 +36,8 @@ public interface Oracle {
 	public static final String RAW = "raw";
 	
 	public static final String NUMBER = "number";
+	
+	public static final String DECIMAL = "decimal";
 	
 	public static final String INTEGER = "integer";
 	

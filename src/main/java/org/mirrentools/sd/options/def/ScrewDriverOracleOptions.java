@@ -3,6 +3,8 @@ package org.mirrentools.sd.options.def;
 import java.util.Map;
 
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
+import org.mirrentools.sd.converter.impl.oracle.SdTableContentConverterOracleImpl;
+import org.mirrentools.sd.dbutil.impl.SdDbUtilOracleImpl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.ScrewDriverOptions;
@@ -67,8 +69,8 @@ public class ScrewDriverOracleOptions extends ScrewDriverOptions {
 		// TODO 创建响应的实现并取消注释
 		// super.setBeanConverter(new SdClassConverterOracleImpl());
 
-		// super.setTableConverter(new SdTableContentConverterOracleImpl());
-		// super.setDbUtil(new SdDbUtilOracleImpl(databaseOptions));
+		 super.setTableConverter(new SdTableContentConverterOracleImpl());
+		 super.setDbUtil(new SdDbUtilOracleImpl(databaseOptions));
 	}
 
 }

@@ -18,7 +18,7 @@ public class Db2Test {
 		// 创建一个实体描述
 		SdBean bean = new SdBean();
 		SdColumn column = new SdColumn().setName("id").setType(SdType.DECIMAL).setLength(10).setPrimary(true).setRemark("用户的id");
-		SdColumn column2 = new SdColumn().setName("name").setType(SdType.BYTE_ARRAY).setLength(30).setRemark("用户的名字");
+		SdColumn column2 = new SdColumn().setName("name").setType(SdType.VARCHAR).setLength(60).setRemark("用户的名字");
 		SdColumn column3 = new SdColumn().setName("pwd").setType(SdType.VARCHAR).setLength(60).setRemark("用户的的密码");
 		bean.setName("user").setRemark("用户").setColumns(SdUtil.asList(column, column2, column3));
 		// 设置实体生成模板
