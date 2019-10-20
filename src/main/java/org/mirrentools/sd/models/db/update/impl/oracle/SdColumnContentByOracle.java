@@ -1,7 +1,6 @@
 package org.mirrentools.sd.models.db.update.impl.oracle;
 
 import org.mirrentools.sd.models.db.update.SdBasicColumnContent;
-import org.mirrentools.sd.models.db.update.impl.mysql.SdColumnContentByMySQL;
 /**
  * 数据列属性的Oracle实现
  * 

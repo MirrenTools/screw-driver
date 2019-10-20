@@ -1,7 +1,6 @@
 package org.mirrentools.sd.models.db.update.impl.db2;
 
 import org.mirrentools.sd.models.db.update.SdBasicColumnContent;
-import org.mirrentools.sd.models.db.update.impl.mysql.SdColumnContentByMySQL;
 /**
  * 数据列属性的DB2实现
  * 

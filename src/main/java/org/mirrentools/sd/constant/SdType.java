@@ -23,6 +23,7 @@ public class SdType {
 	 * MySQL=TINYINT<br>
 	 * SQL Server=TINYINT<br>
 	 * DB2=SMALLINT<br>
+	 * ORACLE=BLOB<br>
 	 * PostgreSQL=SMALLINT<br>
 	 */
 	public final static String BYTE = "byte";
@@ -33,6 +34,7 @@ public class SdType {
 	 * MySQL=BLOB<br>
 	 * SQL Server=IMAGE<br>
 	 * DB2=BLOB<br>
+	 * ORACLE=BLOB<br>
 	 * PostgreSQL=BYTEA<br>
 	 */
 	public final static String BYTE_ARRAY = "byte_array";
@@ -43,6 +45,7 @@ public class SdType {
 	 * MySQL=BOOLEAN<br>
 	 * SQL Server=BIT<br>
 	 * DB2=CHAR<br>
+	 * ORACLE=CHAR<br>
 	 * PostgreSQL=BOOLEAN<br>
 	 */
 	public final static String BOOLEAN_BASIC = "boolean_basic";
@@ -53,6 +56,7 @@ public class SdType {
 	 * MySQL=BOOLEAN<br>
 	 * SQL Server=BIT<br>
 	 * DB2=CHAR<br>
+	 * ORACLE=CHAR<br>
 	 * PostgreSQL=BOOLEAN
 	 */
 	public final static String BOOLEAN = "Boolean";
@@ -63,6 +67,7 @@ public class SdType {
 	 * MySQL=VARCHAR<br>
 	 * SQL Server=NVARCHAR<br>
 	 * DB2=VARCHAR<br>
+	 * ORACLE=VARCHAR2<br>
 	 * PostgreSQL=VARCHAR<br>
 	 */
 	public final static String STRING = "String";
@@ -73,6 +78,7 @@ public class SdType {
 	 * MySQL=SMALLINT<br>
 	 * SQL Server=SMALLINT<br>
 	 * DB2=SMALLINT<br>
+	 * ORACLE=SMALLINT<br>
 	 * PostgreSQL=SMALLINT<br>
 	 */
 	public final static String SHORT_BASIC = "short_basic";
@@ -83,6 +89,7 @@ public class SdType {
 	 * MySQL=SMALLINT<br>
 	 * SQL Server=SMALLINT<br>
 	 * DB2=SMALLINT<br>
+	 * ORACLE=NUMBER<br>
 	 * PostgreSQL=SMALLINT<br>
 	 */
 	public final static String SHORT = "Short";
@@ -94,6 +101,7 @@ public class SdType {
 	 * MySQL=INT<br>
 	 * SQL Server=INT<br>
 	 * DB2=INTEGER<br>
+	 * ORACLE=NUMBER<br>
 	 * PostgreSQL=INTEGER<br>
 	 */
 	public final static String INT_BASIC = "int_basic";
@@ -104,6 +112,7 @@ public class SdType {
 	 * MySQL=INT<br>
 	 * SQL Server=INT<br>
 	 * DB2=INTEGER<br>
+	 * ORACLE=INTEGER<br>
 	 * PostgreSQL=INTEGER<br>
 	 */
 	public final static String INTEGER = "Integer";
@@ -114,6 +123,7 @@ public class SdType {
 	 * MySQL=BIGINT<br>
 	 * SQL Server=BIGINT<br>
 	 * DB2=BIGINT<br>
+	 * ORACLE=NUMBER<br>
 	 * PostgreSQL=BIGINT<br>
 	 */
 	public final static String LONG_BASIC = "long_basic";
@@ -124,6 +134,7 @@ public class SdType {
 	 * MySQL=BIGINT<br>
 	 * SQL Server=BIGINT<br>
 	 * DB2=BIGINT<br>
+	 * ORACLE=NUMBER<br>
 	 * PostgreSQL=BIGINT<br>
 	 */
 	public final static String LONG = "Long";
@@ -134,6 +145,7 @@ public class SdType {
 	 * MySQL=FLOAT<br>
 	 * SQL Server=FLOAT<br>
 	 * DB2=REAL<br>
+	 * ORACLE=NUMBER<br>
 	 * PostgreSQL=REAL<br>
 	 */
 	public final static String FLOAT_BASIC = "float_basic";
@@ -144,6 +156,7 @@ public class SdType {
 	 * MySQL=FLOAT<br>
 	 * SQL Server=FLOAT<br>
 	 * DB2=REAL<br>
+	 * ORACLE=NUMBER<br>
 	 * PostgreSQL=REAL<br>
 	 */
 	public final static String FLOAT = "Float";
@@ -154,6 +167,7 @@ public class SdType {
 	 * MySQL=DOUBLE<br>
 	 * SQL Server=FLOAT<br>
 	 * DB2=DOUBLE<br>
+	 * ORACLE=NUMBER<br>
 	 * PostgreSQL=DOUBLE PRECISION<br>
 	 */
 	public final static String DOUBLE_BASIC = "double_basic";
@@ -165,6 +179,7 @@ public class SdType {
 	 * MySQL=DOUBLE<br>
 	 * SQL Server=FLOAT<br>
 	 * DB2=DOUBLE<br>
+	 * ORACLE=NUMBER<br>
 	 * PostgreSQL=DOUBLE PRECISION<br>
 	 */
 	public final static String DOUBLE = "Double";
@@ -175,6 +190,7 @@ public class SdType {
 	 * MySQL=NUMERIC<br>
 	 * SQL Server=NUMERIC<br>
 	 * DB2=DECIMAL<br>
+	 * ORACLE=NUMBER<br>
 	 * PostgreSQL=NUMERIC<br>
 	 */
 	public final static String NUMBER = "Number";
@@ -186,6 +202,7 @@ public class SdType {
 	 * MySQL=DECIMAL<br>
 	 * SQL Server=DECIMAL<br>
 	 * DB2=DECIMAL<br>
+	 * ORACLE=DECIMAL<br>
 	 * PostgreSQL=DECIMAL<br>
 	 */
 	public final static String DECIMAL = "Decimal";
@@ -197,6 +214,7 @@ public class SdType {
 	 * MySQL=TIMESTAMP<br>
 	 * SQL Server=DATETIMEOFFSET<br>
 	 * DB2=TIMESTAMP<br>
+	 * ORACLE=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP WITH TIME ZONE<br>
 	 */
 	public final static String ZONED_DATE_TIME = "ZonedDateTime";
@@ -207,6 +225,7 @@ public class SdType {
 	 * MySQL=TIMESTAMP<br>
 	 * SQL Server=DATETIMEOFFSET<br>
 	 * DB2=TIMESTAMP<br>
+	 * ORACLE=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP WITH TIME ZONE<br>
 	 */
 	public final static String GREGORIAN_CALENDAR = "java.util.GregorianCalendar";
@@ -217,6 +236,7 @@ public class SdType {
 	 * MySQL=DATETIME<br>
 	 * SQL Server=DATETIME<br>
 	 * DB2=TIMESTAMP<br>
+	 * ORACLE=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
 	public final static String DATETIME = "DateTime";
@@ -227,6 +247,7 @@ public class SdType {
 	 * MySQL=DATE<br>
 	 * SQL Server=DATE<br>
 	 * DB2=DATE<br>
+	 * ORACLE=DATE<br>
 	 * PostgreSQL=DATE<br>
 	 */
 	public final static String DATE = "Date";
@@ -237,6 +258,7 @@ public class SdType {
 	 * MySQL=TIME<br>
 	 * SQL Server=TIME<br>
 	 * DB2=TIME<br>
+	 * ORACLE=TIME<br>
 	 * PostgreSQL=TIME<br>
 	 */
 	public final static String TIME = "Time";
@@ -247,6 +269,7 @@ public class SdType {
 	 * MySQL=TIMESTAMP<br>
 	 * SQL Server=TIMESTAMP<br>
 	 * DB2=TIMESTAMP<br>
+	 * ORACLE=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
 	public final static String TIMESTAMP = "Timestamp";
@@ -257,6 +280,7 @@ public class SdType {
 	 * MySQL=DATETIME<br>
 	 * SQL Server=DATETIME<br>
 	 * DB2=TIMESTAMP<br>
+	 * ORACLE=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
 	public final static String DATE_UTIL = "java.util.Date";
@@ -267,6 +291,7 @@ public class SdType {
 	 * MySQL=DATE<br>
 	 * SQL Server=DATE<br>
 	 * DB2=DATE<br>
+	 * ORACLE=DATE<br>
 	 * PostgreSQL=DATE<br>
 	 */
 	public final static String CALENDAR = "java.util.Calendar";
@@ -278,6 +303,7 @@ public class SdType {
 	 * MySQL=DATE<br>
 	 * SQL Server=DATE<br>
 	 * DB2=DATE<br>
+	 * ORACLE=DATE<br>
 	 * PostgreSQL=DATE<br>
 	 */
 	public final static String DATE_SQL = "java.sql.Date";
@@ -289,6 +315,7 @@ public class SdType {
 	 * MySQL=TIME<br>
 	 * SQL Server=TIME<br>
 	 * DB2=TIME<br>
+	 * ORACLE=TIMESTAMP<br>
 	 * PostgreSQL=TIME<br>
 	 */
 	public final static String TIME_SQL = "java.sql.Time";
@@ -299,6 +326,7 @@ public class SdType {
 	 * MySQL=DATETIME<br>
 	 * SQL Server=DATETIME<br>
 	 * DB2=TIMESTAMP<br>
+	 * ORACLE=TIMESTAMP<br>
 	 * PostgreSQL=TIMESTAMP<br>
 	 */
 	public final static String TIMESTAMP_SQL = "java.sql.Timestamp";
@@ -314,6 +342,7 @@ public class SdType {
 	 * MySQL=CHAR<br>
 	 * SQL Server=NCHAR<br>
 	 * DB2=CHAR<br>
+	 * ORACLE=CHAR<br>
 	 * PostgreSQL=CHAR<br>
 	 */
 	public final static String NCHAR = "nchar";
@@ -324,6 +353,7 @@ public class SdType {
 	 * MySQL=VARCHAR<br>
 	 * SQL Server=NVARCHAR<br>
 	 * DB2=VARCHAR<br>
+	 * ORACLE=VARCHAR2<br>
 	 * PostgreSQL=VARCHAR<br>
 	 */
 	public final static String NVARCHAR = "nvarchar";
@@ -334,6 +364,7 @@ public class SdType {
 	 * MySQL=VARCHAR<br>
 	 * SQL Server=NVARCHAR<br>
 	 * DB2=VARCHAR<br>
+	 * ORACLE=VARCHAR2<br>
 	 * PostgreSQL=VARCHAR<br>
 	 */
 	public final static String VARCHAR2 = "varchar2";
@@ -345,6 +376,7 @@ public class SdType {
 	 * MySQL=DECIMAL<br>
 	 * SQL Server=MONEY<br>
 	 * DB2=DECIMAL<br>
+	 * ORACLE=NUMBER<br>
 	 * PostgreSQL=MONEY<br>
 	 */
 	public final static String MONEY = "money";
@@ -355,6 +387,7 @@ public class SdType {
 	 * MySQL=TEXT<br>
 	 * SQL Server=TEXT<br>
 	 * DB2=CLOB<br>
+	 * ORACLE=CLOB<br>
 	 * PostgreSQL=TEXT<br>
 	 */
 	public final static String TEXT = "text";
@@ -365,6 +398,7 @@ public class SdType {
 	 * MySQL=LONGTEXT<br>
 	 * SQL Server=TEXT<br>
 	 * DB2=CLOB<br>
+	 * ORACLE=CLOB<br>
 	 * PostgreSQL=TEXT<br>
 	 */
 	public final static String LONGTEXT = "longtext";
@@ -376,6 +410,7 @@ public class SdType {
 	 * MySQL=JSON<br>
 	 * SQL Server=TEXT<br>
 	 * DB2=CLOB<br>
+	 * ORACLE=CLOB<br>
 	 * PostgreSQL=JSON<br>
 	 */
 	public final static String JSON = "json";
@@ -387,6 +422,7 @@ public class SdType {
 	 * MySQL=JSON<br>
 	 * SQL Server=TEXT<br>
 	 * DB2=CLOB<br>
+	 * ORACLE=CLOB<br>
 	 * PostgreSQL=JSONB<br>
 	 */
 	public final static String JSONB = "jsonb";
@@ -687,8 +723,6 @@ public class SdType {
 	 * 初始化Oracle类型映射
 	 */
 	private static void initOracleMaps() {
-
-		// TODO Oracle添加映射的模块
 		ORACLE_MAPS.put(BYTE, Oracle.BLOB);
 		ORACLE_MAPS.put(BYTE_ARRAY, Oracle.BLOB);
 		ORACLE_MAPS.put(BOOLEAN, Oracle.CHAR);
@@ -722,7 +756,7 @@ public class SdType {
 		ORACLE_MAPS.put(DATE, Oracle.DATE);
 		ORACLE_MAPS.put(CALENDAR, Oracle.DATE);
 		ORACLE_MAPS.put(DATE_SQL, Oracle.DATE);
-		ORACLE_MAPS.put(DATE_UTIL, Oracle.DATE);
+		ORACLE_MAPS.put(DATE_UTIL, Oracle.TIMESTAMP);
 		ORACLE_MAPS.put(TIME, Oracle.TIMESTAMP);
 		ORACLE_MAPS.put(TIME_SQL, Oracle.TIMESTAMP);
 		ORACLE_MAPS.put(TIMESTAMP, Oracle.TIMESTAMP);
