@@ -1,10 +1,5 @@
 代办事项:
-1.添加 PostgreSQL , oracle , db2 , SqlServer(mssql) , Sqlite的实现,分别需要实现:
-	A:在constant包中添加数据AndJavaTypeDictionary并编写他们的对应关系
-	B:实现converter包中对应的转换器,在.impl.数据库中创建,命名规范:Sd(Xxx)Converter(Xxx)Impl
-	C:实现dbutil包中对应的数据库操作工具,在.impl中创建,命名规范:SdDbUtil(Xxx)MySqlImpl
-	D:编写测试用例,有数据库依赖的写成在main方法中手动测试
-	
+
 2.创建Vert.x , Spring的模板(以SpringBoot为准包括Mybatis,Hibernate)
 
 3.选择性实现ScrewDriverTemplate多一两个模板引擎
