@@ -1,7 +1,7 @@
 module.exports = {
   title: 'ScrewDriver V1.1.0',
 	description: '用于生成代码、创建或读取数据库表的工具包',
-  dest:'dist',
+	dest:'dist',
 	themeConfig: {
   	nav:[
 			{ text: 'MirrenTools', link: 'https://mirrentools.org'},
@@ -9,7 +9,7 @@ module.exports = {
 			{ text: 'gitee', link: 'https://gitee.com/duhua/screw-driver'}
 		],
   	sidebar:{
-  		'/intro/':[{title:'介绍', collapsable: true,children:['/intro/introduction']}]
+  		'/':[{title:'起步', collapsable: true,children:['/start/introduction']}]
   		}
     }
 }

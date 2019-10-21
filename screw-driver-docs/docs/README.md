@@ -1,8 +1,8 @@
 ---
 home: true
-heroImage: /logo.jpg
+heroImage: /logo.png
 actionText: 使用文档
-actionLink: /intro/introduction
+actionLink: /start/introduction
 features:
 - title: 基于模板引擎
   details: 生成代码的风格由你自由编写模板,已实现FreeMarker等模板引擎,默认提供多套代码模板
