@@ -5,9 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.sql.Connection;
 
+import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.constant.SqlServer;
-import org.mirrentools.sd.dbutil.SdDbUtil;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilMySqlImpl;
 import org.mirrentools.sd.models.SdDatabase;
 import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.models.db.update.impl.sqlserver.SdDatabaseContentBySqlServer;
@@ -21,7 +20,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  */
 public class SdDbUtilSqlServerExecuteTest {
 	/** 操作工具 */
-	private SdDbUtil sdDbUtil;
+	private ScrewDriverDbUtil sdDbUtil;
 
 	public static void main(String[] args) throws Exception {
 		SdDbUtilSqlServerExecuteTest test = new SdDbUtilSqlServerExecuteTest();
@@ -36,7 +35,7 @@ public class SdDbUtilSqlServerExecuteTest {
 		SdDatabaseOptions config = new SdDatabaseOptions(SqlServer.SQL_SERVER_DERVER, "jdbc:sqlserver://localhost:1433;DatabaseName=item");
 		config.setUser("sa");
 		config.setPassword("root");
-		sdDbUtil = new SdDbUtilMySqlImpl(config);
+		sdDbUtil =  ScrewDriverDbUtil.instance(config);
 	}
 
 	public void testGetConnection() throws Exception {

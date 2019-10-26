@@ -6,10 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.constant.SqlServer;
 import org.mirrentools.sd.constant.SqliteConstant;
-import org.mirrentools.sd.dbutil.SdDbUtil;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilSqlServerImpl;
 import org.mirrentools.sd.models.db.query.SdTable;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
@@ -26,7 +25,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  */
 public class SdDbUtilSqlServerQueryTest {
 	/** 操作工具 */
-	private SdDbUtil sdDbUtil;
+	private ScrewDriverDbUtil sdDbUtil;
 
 	public static void main(String[] args) throws Exception {
 		SdDbUtilSqlServerQueryTest test = new SdDbUtilSqlServerQueryTest();
@@ -48,7 +47,7 @@ public class SdDbUtilSqlServerQueryTest {
 		SdDatabaseOptions config = new SdDatabaseOptions(SqlServer.SQL_SERVER_DERVER, "jdbc:sqlserver://localhost:1433;DatabaseName=item");
 		config.setUser("sa");
 		config.setPassword("root");
-		sdDbUtil = new SdDbUtilSqlServerImpl(config);
+		sdDbUtil =  ScrewDriverDbUtil.instance(config);
 	}
 
 	public void existDatabaseTest() throws Exception {

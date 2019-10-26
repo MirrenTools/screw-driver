@@ -6,9 +6,8 @@ import static org.junit.Assert.fail;
 
 import java.sql.Connection;
 
+import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.constant.PostgreSQL;
-import org.mirrentools.sd.dbutil.SdDbUtil;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilPostgreSqlImpl;
 import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.models.db.update.impl.mysql.SdDatabaseContentByMySQL;
 import org.mirrentools.sd.options.SdDatabaseOptions;
@@ -21,7 +20,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  */
 public class SdDbUtilPostgreSqlExecuteTest {
 	/** 操作工具 */
-	private SdDbUtil sdDbUtil;
+	private ScrewDriverDbUtil sdDbUtil;
 
 	public static void main(String[] args) throws Exception {
 		SdDbUtilPostgreSqlExecuteTest test = new SdDbUtilPostgreSqlExecuteTest();
@@ -36,7 +35,7 @@ public class SdDbUtilPostgreSqlExecuteTest {
 		SdDatabaseOptions config = new SdDatabaseOptions(PostgreSQL.POSTGRE_SQL_DERVER, "jdbc:postgresql://localhost:5432/root");
 		config.setUser("postgres");
 		config.setPassword("root");
-		sdDbUtil = new SdDbUtilPostgreSqlImpl(config);
+		sdDbUtil = ScrewDriverDbUtil.instance(config);
 	}
 
 	public void testGetConnection() {

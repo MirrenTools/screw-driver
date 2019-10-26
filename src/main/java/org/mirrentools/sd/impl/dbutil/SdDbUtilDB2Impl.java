@@ -1,10 +1,9 @@
-package org.mirrentools.sd.dbutil.impl;
+package org.mirrentools.sd.impl.dbutil;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.logging.Logger;
 
-import org.mirrentools.sd.dbutil.SdAbstractDbUtil;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.options.SdDatabaseOptions;

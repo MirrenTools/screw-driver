@@ -3,9 +3,10 @@ package org.mirrentools.sd.options.def;
 import java.util.Map;
 
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
+import org.mirrentools.sd.converter.impl.db2.SdClassConverterDB2Impl;
 import org.mirrentools.sd.converter.impl.db2.SdTableContentConverterDB2Impl;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilDB2Impl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
+import org.mirrentools.sd.impl.dbutil.SdDbUtilDB2Impl;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
@@ -64,8 +65,7 @@ public class ScrewDriverDB2Options extends ScrewDriverOptions {
 		super.setTemplateContentConverter(new SdTemplateContentConverterDefaultImpl());
 		super.setTemplateUtil(new ScrewDriverTemplateFreeMarkerImpl());
 
-		// TODO 创建响应的实现并取消注释
-		// super.setBeanConverter(new SdClassConverterDB2Impl());
+		super.setBeanConverter(new SdClassConverterDB2Impl());
 
 		super.setTableConverter(new SdTableContentConverterDB2Impl());
 		super.setDbUtil(new SdDbUtilDB2Impl(databaseOptions));

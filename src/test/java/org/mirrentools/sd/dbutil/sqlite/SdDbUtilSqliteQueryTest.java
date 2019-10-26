@@ -6,10 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.constant.SQLite;
 import org.mirrentools.sd.constant.SqliteConstant;
-import org.mirrentools.sd.dbutil.SdDbUtil;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilSqliteImpl;
 import org.mirrentools.sd.models.db.query.SdTable;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
@@ -26,7 +25,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  */
 public class SdDbUtilSqliteQueryTest {
 	/** 操作工具 */
-	private SdDbUtil sdDbUtil;
+	private ScrewDriverDbUtil sdDbUtil;
 
 	public static void main(String[] args) throws Exception {
 		SdDbUtilSqliteQueryTest test = new SdDbUtilSqliteQueryTest();
@@ -46,7 +45,7 @@ public class SdDbUtilSqliteQueryTest {
 
 	public void setUp() throws Exception {
 		SdDatabaseOptions config = new SdDatabaseOptions(SQLite.SQLITE_DERVER, "jdbc:sqlite:D:/tempProject/item.db");
-		sdDbUtil = new SdDbUtilSqliteImpl(config);
+		sdDbUtil =  ScrewDriverDbUtil.instance(config);
 	}
 
 	public void existDatabaseTest() throws Exception {

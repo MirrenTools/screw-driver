@@ -1,42 +1,27 @@
 package org.mirrentools.sd;
 
-import org.mirrentools.sd.common.SdUtil;
-import org.mirrentools.sd.impl.ScrewDriverCodeImpl;
-import org.mirrentools.sd.impl.ScrewDriverSqlImpl;
+import org.mirrentools.sd.impl.ScrewDriverImpl;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdDatabase;
 import org.mirrentools.sd.options.ScrewDriverOptions;
 
 /**
- * 螺丝刀核心类
+ * ScrewDriver的核心,用于生成代码与数据库操作
  * 
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class ScrewDriver {
-	// /** 项目工具 */
-	// private ScrewDriverProject projectUtil;
-	/** 代码工具 */
-	private ScrewDriverCode codeUtil;
-	/** 数据库工具 */
-	private ScrewDriverSQL sqlUtil;
+public abstract class ScrewDriver {
 
 	/**
-	 * 根据配置配置文件创建ScrewDriver
+	 * 根据配置文件实例化ScrewDriver
 	 * 
 	 * @param options
 	 * @return
 	 */
 	public static ScrewDriver instance(ScrewDriverOptions options) {
-		SdUtil.requireNonNull(options, "The ScrewDriverOptions cannot be null , you can new ScrewDriverOptions");
-		return new ScrewDriver(options);
-	}
-
-	private ScrewDriver(ScrewDriverOptions options) {
-		super();
-		this.codeUtil = new ScrewDriverCodeImpl(options);
-		this.sqlUtil = new ScrewDriverSqlImpl(options);
+		return new ScrewDriverImpl(options);
 	}
 
 	// /**
@@ -44,9 +29,7 @@ public class ScrewDriver {
 	// *
 	// * @return
 	// */
-	// public boolean createProject() {
-	// return projectUtil.execute();
-	// }
+	// public abstract boolean createProject();
 
 	/**
 	 * 生成代码
@@ -55,9 +38,7 @@ public class ScrewDriver {
 	 *          类或表属性的描述
 	 * @return
 	 */
-	public boolean createCode(SdBean bean) {
-		return codeUtil.execute(bean);
-	}
+	public abstract boolean createCode(SdBean bean);
 
 	/**
 	 * 生成代码
@@ -66,9 +47,7 @@ public class ScrewDriver {
 	 *          类属性的描述
 	 * @return
 	 */
-	public boolean createCode(SdClassContent classContent) {
-		return codeUtil.execute(classContent);
-	}
+	public abstract boolean createCode(SdClassContent classContent);
 
 	/**
 	 * 创建数据库
@@ -77,9 +56,7 @@ public class ScrewDriver {
 	 *          数据库属性描述
 	 * @return
 	 */
-	public boolean createDatabase(SdDatabase database) {
-		return sqlUtil.createDatabase(database);
-	}
+	public abstract boolean createDatabase(SdDatabase database);
 
 	/**
 	 * 创建表
@@ -88,9 +65,7 @@ public class ScrewDriver {
 	 *          表属性的描述
 	 * @return
 	 */
-	public boolean createTable(SdBean bean) {
-		return sqlUtil.createTable(bean);
-	}
+	public abstract boolean createTable(SdBean bean);
 
 	/**
 	 * 修改表
@@ -99,9 +74,7 @@ public class ScrewDriver {
 	 *          表属性的描述
 	 * @return
 	 */
-	public boolean updateTable(SdBean bean) {
-		return sqlUtil.alterTable(bean);
-	}
+	public abstract boolean updateTable(SdBean bean);
 
 	/**
 	 * 删除表
@@ -110,8 +83,6 @@ public class ScrewDriver {
 	 *          表属性的描述
 	 * @return
 	 */
-	public boolean deleteTable(SdBean bean) {
-		return sqlUtil.deleteTable(bean);
-	}
+	public abstract boolean deleteTable(SdBean bean);
 
 }

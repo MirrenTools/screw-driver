@@ -6,9 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.constant.MySQL;
-import org.mirrentools.sd.dbutil.SdDbUtil;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilMySqlImpl;
 import org.mirrentools.sd.models.db.query.SdTable;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
@@ -25,7 +24,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  */
 public class SdDbUtilMySqlQueryTest {
 	/** 操作工具 */
-	private SdDbUtil sdDbUtil;
+	private ScrewDriverDbUtil sdDbUtil;
 
 	public static void main(String[] args) throws Exception {
 		SdDbUtilMySqlQueryTest test = new SdDbUtilMySqlQueryTest();
@@ -47,7 +46,7 @@ public class SdDbUtilMySqlQueryTest {
 		SdDatabaseOptions config = new SdDatabaseOptions(MySQL.MYSQL_DERVER, "jdbc:mysql://localhost:3306/root?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC");
 		config.setUser("root");
 		config.setPassword("root");
-		sdDbUtil = new SdDbUtilMySqlImpl(config);
+		sdDbUtil =  ScrewDriverDbUtil.instance(config);
 	}
 
 	public void existDatabaseTest() throws Exception {

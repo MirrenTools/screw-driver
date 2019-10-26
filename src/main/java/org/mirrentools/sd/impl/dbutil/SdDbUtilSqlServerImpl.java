@@ -1,4 +1,4 @@
-package org.mirrentools.sd.dbutil.impl;
+package org.mirrentools.sd.impl.dbutil;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.mirrentools.sd.dbutil.SdAbstractDbUtil;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
 import org.mirrentools.sd.models.db.query.SdTableIndexKeyAttribute;

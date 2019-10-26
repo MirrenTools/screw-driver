@@ -4,12 +4,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.ScrewDriverSQL;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.converter.SdDatabaseContentConverter;
 import org.mirrentools.sd.converter.SdTableContentConverter;
-import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdDatabase;
 import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
@@ -31,7 +31,7 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	private SdDatabaseOptions databaseOptions;
 
 	/** 数据库执行工具 */
-	private SdDbUtil dbUtil;
+	private ScrewDriverDbUtil dbUtil;
 	/** SdBean转换器 */
 	private SdTableContentConverter converter;
 	/** SdDatabase转换器 */
@@ -109,12 +109,12 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	}
 
 	@Override
-	public SdDbUtil getDbUtil() {
+	public ScrewDriverDbUtil getDbUtil() {
 		return dbUtil;
 	}
 
 	@Override
-	public ScrewDriverSqlImpl setDbUtil(SdDbUtil dbUtil) {
+	public ScrewDriverSqlImpl setDbUtil(ScrewDriverDbUtil dbUtil) {
 		this.dbUtil = dbUtil;
 		return this;
 	}

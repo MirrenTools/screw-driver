@@ -1,8 +1,14 @@
-package org.mirrentools.sd.dbutil;
+package org.mirrentools.sd;
 
 import java.sql.Connection;
 import java.util.List;
 
+import org.mirrentools.sd.impl.dbutil.SdDbUtilDB2Impl;
+import org.mirrentools.sd.impl.dbutil.SdDbUtilMySqlImpl;
+import org.mirrentools.sd.impl.dbutil.SdDbUtilOracleImpl;
+import org.mirrentools.sd.impl.dbutil.SdDbUtilPostgreSqlImpl;
+import org.mirrentools.sd.impl.dbutil.SdDbUtilSqlServerImpl;
+import org.mirrentools.sd.impl.dbutil.SdDbUtilSqliteImpl;
 import org.mirrentools.sd.models.db.query.SdTable;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
@@ -14,19 +20,36 @@ import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
- * 数据库操作相关的工具接口,该工具用户创建/读取:库.表.属性等
+ * ScrewDriver数据库操作相关的工具接口,该工具用户创建/读取:库.表.属性等
  * 
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public interface SdDbUtil {
+public abstract class ScrewDriverDbUtil {
 	/**
-	 * 获取数据库连接
+	 * 根据配置文件实例化ScrewDriverDbUtil
 	 * 
-	 * @param config
+	 * @param databaseOptions
 	 * @return
 	 */
-	Connection getConnection() throws Exception;
+	public static ScrewDriverDbUtil instance(SdDatabaseOptions databaseOptions) {
+		String groupId = databaseOptions.getDriverClass();
+		if (groupId.contains("mysql")) {
+			return new SdDbUtilMySqlImpl(databaseOptions);
+		} else if (groupId.contains("postgresql")) {
+			return new SdDbUtilPostgreSqlImpl(databaseOptions);
+		} else if (groupId.contains("db2")) {
+			return new SdDbUtilDB2Impl(databaseOptions);
+		} else if (groupId.contains("oracle")) {
+			return new SdDbUtilOracleImpl(databaseOptions);
+		} else if (groupId.contains("sqlserver")) {
+			return new SdDbUtilSqlServerImpl(databaseOptions);
+		} else if (groupId.contains("sqlite")) {
+			return new SdDbUtilSqliteImpl(databaseOptions);
+		} else {
+			throw new ScrewDriverException("Unable to recognize database types through DriverClass,You can extends the SdAbstractDbUtil class and init it");
+		}
+	}
 
 	/**
 	 * 获取数据库连接
@@ -34,7 +57,15 @@ public interface SdDbUtil {
 	 * @param config
 	 * @return
 	 */
-	Connection getConnection(SdDatabaseOptions config) throws Exception;
+	public abstract Connection getConnection() throws Exception;
+
+	/**
+	 * 获取数据库连接
+	 * 
+	 * @param config
+	 * @return
+	 */
+	public abstract Connection getConnection(SdDatabaseOptions config) throws Exception;
 
 	/**
 	 * 数据库是否存在
@@ -44,7 +75,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean existDatabase(String dbName) throws Exception;
+	public abstract boolean existDatabase(String dbName) throws Exception;
 
 	/**
 	 * 数据库是否存在
@@ -56,7 +87,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean existDatabase(SdDatabaseOptions config, String dbName) throws Exception;
+	public abstract boolean existDatabase(SdDatabaseOptions config, String dbName) throws Exception;
 
 	/**
 	 * 数据库表是否存在
@@ -64,7 +95,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean existTable(String tableName) throws Exception;
+	public abstract boolean existTable(String tableName) throws Exception;
 
 	/**
 	 * 创建数据库
@@ -74,7 +105,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean createDatabase(SdAbstractDatabaseContent content) throws Exception;
+	public abstract boolean createDatabase(SdAbstractDatabaseContent content) throws Exception;
 
 	/**
 	 * 创建数据库
@@ -86,7 +117,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean createDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception;
+	public abstract boolean createDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception;
 
 	/**
 	 * 修改数据库
@@ -96,7 +127,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean updateDatabase(SdAbstractDatabaseContent content) throws Exception;
+	public abstract boolean updateDatabase(SdAbstractDatabaseContent content) throws Exception;
 
 	/**
 	 * 修改数据库
@@ -108,7 +139,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean updateDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception;
+	public abstract boolean updateDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception;
 
 	/**
 	 * 创建一张表
@@ -117,7 +148,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean createTable(SdAbstractTableContent content) throws Exception;
+	public abstract boolean createTable(SdAbstractTableContent content) throws Exception;
 
 	/**
 	 * 修改一张表
@@ -126,7 +157,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean updateTable(SdAbstractTableContent content) throws Exception;
+	public abstract boolean updateTable(SdAbstractTableContent content) throws Exception;
 
 	/**
 	 * 删除一张表
@@ -135,7 +166,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean deleteTable(SdAbstractTableContent content) throws Exception;
+	public abstract boolean deleteTable(SdAbstractTableContent content) throws Exception;
 
 	/**
 	 * 获取数据库中指定表的描述
@@ -144,7 +175,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	SdTable getSdTable(String tableName) throws Exception;
+	public abstract SdTable getSdTable(String tableName) throws Exception;
 
 	/**
 	 * 获取数据库中指定表的描述
@@ -162,7 +193,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	SdTable getSdTable(String tableName, boolean unique, boolean approximate) throws Exception;
+	public abstract SdTable getSdTable(String tableName, boolean unique, boolean approximate) throws Exception;
 
 	/**
 	 * 获取当前数据库所有数据库表名,如果不存在返回长度为0的集合
@@ -170,7 +201,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	List<String> getTableNames() throws Exception;
+	public abstract List<String> getTableNames() throws Exception;
 
 	/**
 	 * 获取指定数据库,指定表的属性,如果不存在返回null
@@ -180,7 +211,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	SdTableAttribute getTableAttribute(String tableName) throws Exception;
+	public abstract SdTableAttribute getTableAttribute(String tableName) throws Exception;
 
 	/**
 	 * 获取当前数据库中指定表的所有属性,如果不存在抛出异常
@@ -189,7 +220,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	List<SdTableColumnAttribute> getTableColumnsAttribute(String tableName) throws Exception;
+	public abstract List<SdTableColumnAttribute> getTableColumnsAttribute(String tableName) throws Exception;
 
 	/**
 	 * 获取指定表的主键属性,如果不存在返回null
@@ -198,7 +229,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	SdTablePrimaryKeyAttribute getTablePrimaryKeyAttribute(String tableName) throws Exception;
+	public abstract SdTablePrimaryKeyAttribute getTablePrimaryKeyAttribute(String tableName) throws Exception;
 
 	/**
 	 * 获取指定表的索引属性,如果不存在返回长度为0的集合
@@ -213,7 +244,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	List<SdTableIndexKeyAttribute> getTableIndexKeysAttribute(String tableName, boolean unique, boolean approximate) throws Exception;
+	public abstract List<SdTableIndexKeyAttribute> getTableIndexKeysAttribute(String tableName, boolean unique, boolean approximate) throws Exception;
 
 	/**
 	 * 获取指定表的外键索引属性,如果不存在返回长度为0的集合
@@ -222,7 +253,7 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	List<SdTablePortedKeysAttribute> getTableExportedKeysAttribute(String tableName) throws Exception;
+	public abstract List<SdTablePortedKeysAttribute> getTableExportedKeysAttribute(String tableName) throws Exception;
 
 	/**
 	 * 获取指定表的主键索引属性,如果不存在返回长度为0的集合
@@ -231,6 +262,6 @@ public interface SdDbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	List<SdTablePortedKeysAttribute> getTableImportedKeysAttribute(String tableName) throws Exception;
+	public abstract List<SdTablePortedKeysAttribute> getTableImportedKeysAttribute(String tableName) throws Exception;
 
 }

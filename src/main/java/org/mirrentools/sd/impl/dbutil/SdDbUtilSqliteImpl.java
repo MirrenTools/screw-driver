@@ -1,10 +1,9 @@
-package org.mirrentools.sd.dbutil.impl;
+package org.mirrentools.sd.impl.dbutil;
 
 import java.io.File;
 import java.sql.Connection;
 
 import org.mirrentools.sd.ScrewDriverException;
-import org.mirrentools.sd.dbutil.SdAbstractDbUtil;
 import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 

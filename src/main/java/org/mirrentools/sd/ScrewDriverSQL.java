@@ -3,7 +3,6 @@ package org.mirrentools.sd;
 import java.util.Map;
 
 import org.mirrentools.sd.converter.SdTableContentConverter;
-import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdDatabase;
 import org.mirrentools.sd.options.SdDatabaseOptions;
@@ -71,7 +70,7 @@ public interface ScrewDriverSQL {
 	 * 
 	 * @return
 	 */
-	SdDbUtil getDbUtil();
+	ScrewDriverDbUtil getDbUtil();
 
 	/**
 	 * 数据库操作工具
@@ -79,7 +78,7 @@ public interface ScrewDriverSQL {
 	 * @param dbUtil
 	 * @return
 	 */
-	ScrewDriverSQL setDbUtil(SdDbUtil dbUtil);
+	ScrewDriverSQL setDbUtil(ScrewDriverDbUtil dbUtil);
 
 	/**
 	 * 获取转换器

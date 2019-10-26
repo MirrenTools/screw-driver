@@ -1,4 +1,4 @@
-package org.mirrentools.sd.dbutil;
+package org.mirrentools.sd.impl.dbutil;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.models.db.query.SdTable;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
@@ -30,7 +31,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  * @author <a href="http://szmirren.com">Mirren</a>
  *
  */
-public abstract class SdAbstractDbUtil implements SdDbUtil {
+public abstract class SdAbstractDbUtil extends ScrewDriverDbUtil {
 	/** JUL日志 */
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());
 

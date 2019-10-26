@@ -4,9 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.constant.PostgreSQL;
-import org.mirrentools.sd.dbutil.SdDbUtil;
-import org.mirrentools.sd.dbutil.impl.SdDbUtilPostgreSqlImpl;
 import org.mirrentools.sd.models.db.query.SdTableAttribute;
 import org.mirrentools.sd.models.db.query.SdTableColumnAttribute;
 import org.mirrentools.sd.models.db.query.SdTableIndexKeyAttribute;
@@ -22,7 +21,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
  */
 public class SdDbUtilPostgreSqlQueryTest {
 	/** 操作工具 */
-	private SdDbUtil sdDbUtil;
+	private ScrewDriverDbUtil sdDbUtil;
 
 	public static void main(String[] args) throws Exception {
 		SdDbUtilPostgreSqlQueryTest test = new SdDbUtilPostgreSqlQueryTest();
@@ -41,7 +40,7 @@ public class SdDbUtilPostgreSqlQueryTest {
 		SdDatabaseOptions config = new SdDatabaseOptions(PostgreSQL.POSTGRE_SQL_DERVER, "jdbc:postgresql://localhost:5432/root");
 		config.setUser("postgres");
 		config.setPassword("root");
-		sdDbUtil = new SdDbUtilPostgreSqlImpl(config);
+		sdDbUtil =  ScrewDriverDbUtil.instance(config);
 	}
 
 	public void getTableNamesTest() throws Exception {

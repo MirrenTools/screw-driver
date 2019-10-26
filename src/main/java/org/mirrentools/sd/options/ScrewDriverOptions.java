@@ -3,6 +3,7 @@ package org.mirrentools.sd.options;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.ScrewDriverTemplate;
 import org.mirrentools.sd.common.SdUtil;
@@ -11,7 +12,6 @@ import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdDatabaseContentConverter;
 import org.mirrentools.sd.converter.SdTableContentConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
-import org.mirrentools.sd.dbutil.SdDbUtil;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.def.ScrewDriverDB2Options;
 import org.mirrentools.sd.options.def.ScrewDriverMySqlOptions;
@@ -47,7 +47,7 @@ public class ScrewDriverOptions {
 
 	// ***************SQL配置*******************
 	/** 数据库执行工具 */
-	private SdDbUtil dbUtil;
+	private ScrewDriverDbUtil dbUtil;
 	/** 将SdBean转换为数据库表的操作属性的转换器 */
 	private SdTableContentConverter tableConverter;
 	/** 将SdDatabase转换为数据库的操作属性 */
@@ -287,7 +287,7 @@ public class ScrewDriverOptions {
 	 * 
 	 * @return
 	 */
-	public SdDbUtil getDbUtil() {
+	public ScrewDriverDbUtil getDbUtil() {
 		return dbUtil;
 	}
 
@@ -297,7 +297,7 @@ public class ScrewDriverOptions {
 	 * @param dbUtil
 	 * @return
 	 */
-	public ScrewDriverOptions setDbUtil(SdDbUtil dbUtil) {
+	public ScrewDriverOptions setDbUtil(ScrewDriverDbUtil dbUtil) {
 		this.dbUtil = dbUtil;
 		return this;
 	}
