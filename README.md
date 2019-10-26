@@ -3,7 +3,7 @@ ScrewDriver是一个用于生成代码、创建或读取数据库表信息的工
 
 运行环境要求: java >= 1.6
 
-QQ交流群:519714660  [加入QQ交流群] (<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a3a3b32d79453bd9d740662a622d3b620e6adf0488f670a228186a41fbadb257"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="加入QQ交流群"  title="加入QQ交流群"></a>)
+QQ交流群:519714660 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a3a3b32d79453bd9d740662a622d3b620e6adf0488f670a228186a41fbadb257"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="加入QQ交流群"  title="加入QQ交流群"></a>
 
 ## 添加依赖
 ``` XML
