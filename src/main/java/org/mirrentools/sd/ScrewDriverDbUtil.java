@@ -20,7 +20,7 @@ import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
 /**
- * ScrewDriver数据库操作相关的工具接口,该工具用户创建/读取:库.表.属性等
+ * ScrewDriver数据库操作相关的工具接口,该工具用户创建/读取:库、表、属性等
  * 
  * @author <a href="http://szmirren.com">Mirren</a>
  *
