@@ -6,6 +6,7 @@ import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
 import org.mirrentools.sd.converter.impl.mysql.SdClassConverterMySqlImpl;
 import org.mirrentools.sd.converter.impl.mysql.SdDatabaseConverterMySqlImpl;
 import org.mirrentools.sd.converter.impl.mysql.SdTableContentConverterMySqlImpl;
+import org.mirrentools.sd.converter.impl.mysql.SdTableToClassConverterMySqlImpl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 import org.mirrentools.sd.impl.dbutil.SdDbUtilMySqlImpl;
 import org.mirrentools.sd.models.SdTemplate;
@@ -67,8 +68,9 @@ public class ScrewDriverMySqlOptions extends ScrewDriverOptions {
 		super.setBeanConverter(new SdClassConverterMySqlImpl());
 
 		super.setTableConverter(new SdTableContentConverterMySqlImpl());
+		super.setClassConverter(new SdTableToClassConverterMySqlImpl());
 		super.setDatabaseConverter(new SdDatabaseConverterMySqlImpl());
-		
+
 		super.setDbUtil(new SdDbUtilMySqlImpl(databaseOptions));
 	}
 }

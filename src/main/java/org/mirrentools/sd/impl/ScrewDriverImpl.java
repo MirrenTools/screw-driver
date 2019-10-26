@@ -23,83 +23,53 @@ public class ScrewDriverImpl extends ScrewDriver {
 	/** 数据库工具 */
 	private ScrewDriverSQL sqlUtil;
 
+	/**
+	 * 用过配置文件初始化ScrewDriver的默认实现
+	 * 
+	 * @param options
+	 */
 	public ScrewDriverImpl(ScrewDriverOptions options) {
 		SdUtil.requireNonNull(options, "The ScrewDriverOptions cannot be null , you can new ScrewDriverOptions");
 		this.codeUtil = new ScrewDriverCodeImpl(options);
 		this.sqlUtil = new ScrewDriverSqlImpl(options);
 	}
 
-	// /**
-	// * 生成项目
-	// *
-	// * @return
-	// */
+	// @Override
 	// public boolean createProject() {
 	// return projectUtil.execute();
 	// }
 
-	/**
-	 * 生成代码
-	 * 
-	 * @param bean
-	 *          类或表属性的描述
-	 * @return
-	 */
+	@Override
 	public boolean createCode(SdBean bean) {
 		return codeUtil.execute(bean);
 	}
 
-	/**
-	 * 生成代码
-	 * 
-	 * @param classContent
-	 *          类属性的描述
-	 * @return
-	 */
+	@Override
 	public boolean createCode(SdClassContent classContent) {
 		return codeUtil.execute(classContent);
 	}
 
-	/**
-	 * 创建数据库
-	 * 
-	 * @param database
-	 *          数据库属性描述
-	 * @return
-	 */
+	@Override
 	public boolean createDatabase(SdDatabase database) {
 		return sqlUtil.createDatabase(database);
 	}
 
-	/**
-	 * 创建表
-	 * 
-	 * @param bean
-	 *          表属性的描述
-	 * @return
-	 */
+	@Override
 	public boolean createTable(SdBean bean) {
 		return sqlUtil.createTable(bean);
 	}
 
-	/**
-	 * 修改表
-	 * 
-	 * @param bean
-	 *          表属性的描述
-	 * @return
-	 */
+	@Override
+	public SdClassContent readTable(String tableName) {
+		return sqlUtil.readTable(tableName);
+	}
+
+	@Override
 	public boolean updateTable(SdBean bean) {
 		return sqlUtil.alterTable(bean);
 	}
 
-	/**
-	 * 删除表
-	 * 
-	 * @param bean
-	 *          表属性的描述
-	 * @return
-	 */
+	@Override
 	public boolean deleteTable(SdBean bean) {
 		return sqlUtil.deleteTable(bean);
 	}

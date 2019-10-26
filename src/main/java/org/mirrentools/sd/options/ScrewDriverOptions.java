@@ -11,6 +11,7 @@ import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdDatabaseContentConverter;
 import org.mirrentools.sd.converter.SdTableContentConverter;
+import org.mirrentools.sd.converter.SdTableToClassConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.def.ScrewDriverDB2Options;
@@ -50,6 +51,8 @@ public class ScrewDriverOptions {
 	private ScrewDriverDbUtil dbUtil;
 	/** 将SdBean转换为数据库表的操作属性的转换器 */
 	private SdTableContentConverter tableConverter;
+	/** 将SdTable转换ClassContent的转换器 */
+	private SdTableToClassConverter classConverter;
 	/** 将SdDatabase转换为数据库的操作属性 */
 	private SdDatabaseContentConverter databaseConverter;
 
@@ -136,6 +139,7 @@ public class ScrewDriverOptions {
 		setExtensions(options.getExtensions());
 		setBeanConverter(options.getBeanConverter());
 		setTableConverter(options.getTableConverter());
+		setClassConverter(options.getClassConverter());
 		setDatabaseConverter(options.getDatabaseConverter());
 		setTemplateContentConverter(options.getTemplateContentConverter());
 		setTemplateUtil(options.getTemplateUtil());
@@ -319,6 +323,26 @@ public class ScrewDriverOptions {
 	 */
 	public ScrewDriverOptions setTableConverter(SdTableContentConverter tableConverter) {
 		this.tableConverter = tableConverter;
+		return this;
+	}
+
+	/**
+	 * 获取将SdTable转换ClassContent的转换器
+	 * 
+	 * @return
+	 */
+	public SdTableToClassConverter getClassConverter() {
+		return classConverter;
+	}
+
+	/**
+	 * 设置将SdTable转换ClassContent的转换器
+	 * 
+	 * @param classConverter
+	 * @return
+	 */
+	public ScrewDriverOptions setClassConverter(SdTableToClassConverter classConverter) {
+		this.classConverter = classConverter;
 		return this;
 	}
 

@@ -6,6 +6,7 @@ import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
 import org.mirrentools.sd.converter.impl.postgresql.SdClassConverterPostgreSqlImpl;
 import org.mirrentools.sd.converter.impl.postgresql.SdDatabaseConverterPostgreSqlImpl;
 import org.mirrentools.sd.converter.impl.postgresql.SdTableContentConverterPostgreSqlImpl;
+import org.mirrentools.sd.converter.impl.postgresql.SdTableToClassConverterPostgreSqlImpl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 import org.mirrentools.sd.impl.dbutil.SdDbUtilPostgreSqlImpl;
 import org.mirrentools.sd.models.SdTemplate;
@@ -71,6 +72,7 @@ public class ScrewDriverPostgreSqlOptions extends ScrewDriverOptions {
 		super.setBeanConverter(new SdClassConverterPostgreSqlImpl());
 
 		super.setTableConverter(new SdTableContentConverterPostgreSqlImpl());
+		super.setClassConverter(new SdTableToClassConverterPostgreSqlImpl());
 		super.setDatabaseConverter(new SdDatabaseConverterPostgreSqlImpl());
 		
 		super.setDbUtil(new SdDbUtilPostgreSqlImpl(databaseOptions));

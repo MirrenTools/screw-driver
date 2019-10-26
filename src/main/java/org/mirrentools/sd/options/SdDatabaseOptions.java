@@ -1,5 +1,10 @@
 package org.mirrentools.sd.options;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.mirrentools.sd.common.SdUtil;
+
 /**
  * 数据库连接的配置文件
  * 
@@ -22,6 +27,8 @@ public class SdDatabaseOptions {
 	private String password;
 	/** 模式 */
 	private String schema;
+	/** 拓展属性 */
+	private Map<String, Object> extensions;
 
 	/**
 	 * 初始化一个数据库配置
@@ -200,10 +207,65 @@ public class SdDatabaseOptions {
 		return this;
 	}
 
+	/**
+	 * 获得拓展属性值
+	 * 
+	 * @return
+	 */
+	public Object getExtension(String key) {
+		if (SdUtil.isNullOrEmpty(getExtensions())) {
+			return null;
+		}
+		return getExtensions().get(key);
+	}
+
+	/**
+	 * 添加附加属性
+	 * 
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public SdDatabaseOptions addExtension(String key, Object value) {
+		if (getExtensions() == null) {
+			setExtensions(new LinkedHashMap<String, Object>());
+		}
+		this.extensions.put(key, value);
+		return this;
+	}
+
+	/**
+	 * 获取拓展属性
+	 * 
+	 * @return
+	 */
+	public Map<String, Object> getExtensions() {
+		return extensions;
+	}
+
+	/**
+	 * 设置拓展属性
+	 * 
+	 * @param extensions
+	 * @return
+	 */
+	public SdDatabaseOptions setExtensions(Map<String, Object> extensions) {
+		this.extensions = extensions;
+		return this;
+	}
+
 	@Override
 	public String toString() {
-		return "SdDatabaseOptions [loginTimeout=" + loginTimeout + ", driverClass=" + driverClass + ", url=" + url + ", user=" + user
-				+ ", password=" + password + ", schema=" + schema + "]";
+		StringBuilder result = new StringBuilder();
+		result.append("SdDatabaseOptions:" + "\n");
+		result.append("  ┣━loginTimeout= " + getLoginTimeout() + "\n");
+		result.append("  ┣━driverClass= " + getDriverClass() + "\n");
+		result.append("  ┣━url= " + getUrl() + "\n");
+		result.append("  ┣━schema= " + getSchema() + "\n");
+		result.append("  ┣━user= " + getUser() + "\n");
+		result.append("  ┣━password= " + getPassword() + "\n");
+		result.append("  ┗━extensions= " + getExtensions());
+		return result.toString();
 	}
 
 }

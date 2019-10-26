@@ -20,8 +20,7 @@ import org.mirrentools.sd.options.SdDatabaseOptions;
 public class SdTemplateContentConverterDefaultImpl implements SdTemplateContentConverter {
 
 	@Override
-	public Map<String, SdTemplateContent> converter(SdClassContent bean, SdDatabaseOptions databaseOptions,
-			Map<String, SdTemplate> templates) {
+	public Map<String, SdTemplateContent> converter(SdClassContent bean, SdDatabaseOptions databaseOptions, Map<String, SdTemplate> templates) {
 		Map<String, SdTemplateContent> result = new LinkedHashMap<String, SdTemplateContent>();
 		for (Entry<String, SdTemplate> entry : templates.entrySet()) {
 			SdTemplateContent content = new SdTemplateContent();
@@ -32,6 +31,7 @@ public class SdTemplateContentConverterDefaultImpl implements SdTemplateContentC
 		}
 		return result;
 	}
+
 	/**
 	 * 转换基本信息
 	 * 
@@ -49,6 +49,7 @@ public class SdTemplateContentConverterDefaultImpl implements SdTemplateContentC
 		result.setClassName(template.getClassName());
 		result.setSuffix(template.getSuffix());
 	}
+
 	/**
 	 * 转换该模板需要的属性
 	 * 
@@ -65,6 +66,7 @@ public class SdTemplateContentConverterDefaultImpl implements SdTemplateContentC
 			}
 		}
 	}
+
 	/**
 	 * 转换附加属性
 	 * 
@@ -76,27 +78,21 @@ public class SdTemplateContentConverterDefaultImpl implements SdTemplateContentC
 	public void converterExtensions(SdClassContent bean, SdDatabaseOptions databaseOptions, SdTemplate template, SdTemplateContent result) {
 		result.setExtensions(template.getExtensions());
 	}
+
 	/**
 	 * 填充替换属性里面的占位符
+	 * 
 	 * @param bean
 	 * @param databaseOptions
 	 * @param attribute
 	 */
 	public void replaceTemplateAttributePlaceholder(SdClassContent bean, SdDatabaseOptions databaseOptions, SdTemplateAttribute attribute) {
 		if (attribute.getValue() != null) {
-			String value = attribute.getValue()
-					.replace("{c}", bean.getCamelName())
-					.replace("{p}", bean.getPascalName())
-					.replace("{u}", bean.getUnderScoreName())
-					.replace("{h}", bean.getHyphenName());
+			String value = attribute.getValue().replace("{c}", bean.getCamelName()).replace("{p}", bean.getPascalName()).replace("{u}", bean.getUnderScoreName()).replace("{h}", bean.getHyphenName());
 			attribute.setValue(value);
 		}
 		if (attribute.getDescribe() != null) {
-			String value = attribute.getDescribe()
-					.replace("{c}", bean.getCamelName())
-					.replace("{p}", bean.getPascalName())
-					.replace("{u}", bean.getUnderScoreName())
-					.replace("{h}", bean.getHyphenName());
+			String value = attribute.getDescribe().replace("{c}", bean.getCamelName()).replace("{p}", bean.getPascalName()).replace("{u}", bean.getUnderScoreName()).replace("{h}", bean.getHyphenName());
 			attribute.setDescribe(value);
 		}
 	}

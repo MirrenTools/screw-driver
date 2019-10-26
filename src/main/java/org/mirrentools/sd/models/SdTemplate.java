@@ -22,8 +22,8 @@ public class SdTemplate {
 	private String file;
 	/** 如果文件已经存在是否覆盖,默认覆盖 */
 	private boolean override = true;
-	/** 项目的源码目录,比如java版maven项目的src/main/java/ */
-	private String sourceFolder;
+	/** 项目的源码目录,默认值src/main/java/ */
+	private String sourceFolder = Constant.MAVEN_SRC;
 	/** 类的包名 */
 	private String packageName;
 	/** 类的名字 */
@@ -101,11 +101,12 @@ public class SdTemplate {
 	 * @return
 	 */
 	public String getSourceFolder() {
-		return sourceFolder == null ? Constant.MAVEN_SRC : sourceFolder;
+		return sourceFolder;
 	}
 
 	/**
-	 * 设置项目的源码目录,比如java版maven项目的代码源目录src/main/java/
+	 * 设置项目的源码目录,比如java版maven项目的代码源目录src/main/java/<br>
+	 * 默认值: src/main/java/
 	 * 
 	 * @param sourceFolder
 	 * @return

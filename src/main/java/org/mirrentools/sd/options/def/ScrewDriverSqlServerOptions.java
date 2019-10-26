@@ -3,6 +3,7 @@ package org.mirrentools.sd.options.def;
 import java.util.Map;
 
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
+import org.mirrentools.sd.converter.impl.sqlite.SdTableToClassConverterSqliteImpl;
 import org.mirrentools.sd.converter.impl.sqlserver.SdClassConverterSqlServerImpl;
 import org.mirrentools.sd.converter.impl.sqlserver.SdTableContentConverterSqlServerImpl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
@@ -69,6 +70,7 @@ public class ScrewDriverSqlServerOptions extends ScrewDriverOptions {
 		super.setBeanConverter(new SdClassConverterSqlServerImpl());
 
 		super.setTableConverter(new SdTableContentConverterSqlServerImpl());
+		super.setClassConverter(new SdTableToClassConverterSqliteImpl());
 		super.setDbUtil(new SdDbUtilSqlServerImpl(databaseOptions));
 	}
 

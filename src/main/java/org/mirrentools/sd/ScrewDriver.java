@@ -68,6 +68,15 @@ public abstract class ScrewDriver {
 	public abstract boolean createTable(SdBean bean);
 
 	/**
+	 * 读取表信息
+	 * 
+	 * @param tableName
+	 *          表的名称
+	 * @return
+	 */
+	public abstract SdClassContent readTable(String tableName);
+
+	/**
 	 * 修改表
 	 * 
 	 * @param bean
