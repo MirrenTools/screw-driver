@@ -5,6 +5,7 @@ import java.util.Map;
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
 import org.mirrentools.sd.converter.impl.sqlite.SdClassConverterSqliteImpl;
 import org.mirrentools.sd.converter.impl.sqlite.SdTableContentConverterSqliteImpl;
+import org.mirrentools.sd.converter.impl.sqlite.SdTableToClassConverterSqliteImpl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 import org.mirrentools.sd.impl.dbutil.SdDbUtilSqliteImpl;
 import org.mirrentools.sd.models.SdTemplate;
@@ -69,6 +70,7 @@ public class ScrewDriverSqliteOptions extends ScrewDriverOptions {
 		super.setTemplateUtil(new ScrewDriverTemplateFreeMarkerImpl());
 		super.setBeanConverter(new SdClassConverterSqliteImpl());
 		super.setTableConverter(new SdTableContentConverterSqliteImpl());
+		super.setClassConverter(new SdTableToClassConverterSqliteImpl());
 		super.setDbUtil(new SdDbUtilSqliteImpl(databaseOptions));
 	}
 

@@ -5,6 +5,7 @@ import java.util.Map;
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
 import org.mirrentools.sd.converter.impl.oracle.SdClassConverterOracleImpl;
 import org.mirrentools.sd.converter.impl.oracle.SdTableContentConverterOracleImpl;
+import org.mirrentools.sd.converter.impl.oracle.SdTableToClassConverterOracleImpl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 import org.mirrentools.sd.impl.dbutil.SdDbUtilOracleImpl;
 import org.mirrentools.sd.models.SdTemplate;
@@ -66,11 +67,11 @@ public class ScrewDriverOracleOptions extends ScrewDriverOptions {
 		super.setDatabaseOptions(databaseOptions);
 		super.setTemplateContentConverter(new SdTemplateContentConverterDefaultImpl());
 		super.setTemplateUtil(new ScrewDriverTemplateFreeMarkerImpl());
-
-		 super.setBeanConverter(new SdClassConverterOracleImpl());
-
-		 super.setTableConverter(new SdTableContentConverterOracleImpl());
-		 super.setDbUtil(new SdDbUtilOracleImpl(databaseOptions));
+		
+		super.setBeanConverter(new SdClassConverterOracleImpl());
+		super.setClassConverter(new SdTableToClassConverterOracleImpl());
+		super.setTableConverter(new SdTableContentConverterOracleImpl());
+		super.setDbUtil(new SdDbUtilOracleImpl(databaseOptions));
 	}
 
 }

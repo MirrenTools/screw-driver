@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.mirrentools.sd.converter.SdTableContentConverter;
 import org.mirrentools.sd.models.SdBean;
+import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdDatabase;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
@@ -31,6 +32,15 @@ public interface ScrewDriverSQL {
 	 * @return
 	 */
 	boolean createTable(SdBean bean);
+
+	/**
+	 * 读取表信息
+	 * 
+	 * @param tableName
+	 *          表的名称
+	 * @return
+	 */
+	SdClassContent readTable(String tableName);
 
 	/**
 	 * 修改表

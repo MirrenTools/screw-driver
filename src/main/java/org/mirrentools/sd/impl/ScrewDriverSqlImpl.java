@@ -10,7 +10,9 @@ import org.mirrentools.sd.ScrewDriverSQL;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.converter.SdDatabaseContentConverter;
 import org.mirrentools.sd.converter.SdTableContentConverter;
+import org.mirrentools.sd.converter.SdTableToClassConverter;
 import org.mirrentools.sd.models.SdBean;
+import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdDatabase;
 import org.mirrentools.sd.models.db.update.SdAbstractDatabaseContent;
 import org.mirrentools.sd.models.db.update.SdAbstractTableContent;
@@ -34,6 +36,8 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 	private ScrewDriverDbUtil dbUtil;
 	/** SdBean转换器 */
 	private SdTableContentConverter converter;
+	/** 将SdTable转换ClassContent的转换器 */
+	private SdTableToClassConverter classConverter;
 	/** SdDatabase转换器 */
 	private SdDatabaseContentConverter databaseConverter;
 	/** 拓展属性 */
@@ -49,6 +53,7 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 		this.databaseOptions = options.getDatabaseOptions();
 		this.dbUtil = options.getDbUtil();
 		this.converter = options.getTableConverter();
+		this.classConverter = options.getClassConverter();
 		this.databaseConverter = options.getDatabaseConverter();
 		this.extensions = options.getExtensions();
 	}
@@ -72,6 +77,16 @@ public class ScrewDriverSqlImpl implements ScrewDriverSQL {
 		try {
 			SdAbstractTableContent content = converter.converter(bean);
 			return dbUtil.createTable(content);
+		} catch (Exception e) {
+			throw new ScrewDriverException(e);
+		}
+	}
+
+	@Override
+	public SdClassContent readTable(String tableName) {
+		SdUtil.requireNonNull(classConverter, "This SdTableToClassConverter options is null");
+		try {
+			return classConverter.converter(dbUtil.getSdTable(tableName));
 		} catch (Exception e) {
 			throw new ScrewDriverException(e);
 		}
