@@ -18,6 +18,7 @@ footer: MIT Licensed | Copyright © 2019-present mirrentools.org
 </video>
 
 ScrewDriver是一个用于生成代码、创建或读取数据库表信息的工具包,可用于IDE编程式生成代码(包括数据库表的读取与创建)或作为其他工具的支持包!
-::: 运行环境要求
+
+::: warning 运行环境要求
 java >= 1.6
 :::
