@@ -36,7 +36,7 @@ public interface ScrewDriverCode {
 	 * 
 	 * @return
 	 */
-	String getProjectPath();
+	String getOutputPath();
 
 	/**
 	 * 设置项目所在目录
@@ -44,7 +44,7 @@ public interface ScrewDriverCode {
 	 * @param projectPath
 	 * @return
 	 */
-	ScrewDriverCode setProjectPath(String projectPath);
+	ScrewDriverCode setOutputPath(String projectPath);
 
 	/**
 	 * 获取生成编码格式
@@ -135,15 +135,15 @@ public interface ScrewDriverCode {
 	 * 
 	 * @return
 	 */
-	ScrewDriverTemplate getTemplateUtil();
+	ScrewDriverTemplateEngine getTemplateEngine();
 
 	/**
 	 * 设置模板工具
 	 * 
-	 * @param templateUtil
+	 * @param templateEngine
 	 * @return
 	 */
-	ScrewDriverCode setTemplateUtil(ScrewDriverTemplate templateUtil);
+	ScrewDriverCode setTemplateEngine(ScrewDriverTemplateEngine templateEngine);
 
 	/**
 	 * 添加附加属性

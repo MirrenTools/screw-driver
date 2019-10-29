@@ -63,7 +63,7 @@ public class ScrewDriverMySqlOptions extends ScrewDriverOptions {
 		super.setTemplateMaps(templateMaps);
 		super.setDatabaseOptions(databaseOptions);
 		super.setTemplateContentConverter(new SdTemplateContentConverterDefaultImpl());
-		super.setTemplateUtil(new ScrewDriverTemplateFreeMarkerImpl());
+		super.setTemplateEngine(new ScrewDriverTemplateFreeMarkerImpl());
 
 		super.setBeanConverter(new SdClassConverterMySqlImpl());
 

@@ -63,6 +63,11 @@
 			<artifactId>freemarker</artifactId>
 			<version>2.3.28</version>
 		</dependency>
+		<dependency>
+			<groupId>org.mvel</groupId>
+			<artifactId>mvel2</artifactId>
+			<version>2.4.4.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -86,7 +91,8 @@
 		</snapshotRepository>
 		<repository>
 			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2
+			</url>
 		</repository>
 	</distributionManagement>
 	<profiles>
@@ -183,7 +189,8 @@
 
 	<scm>
 		<url>https://github.com/MirrenTools/screw-driver</url>
-		<connection>https://github.com/MirrenTools/screw-driver.git</connection>
+		<connection>https://github.com/MirrenTools/screw-driver.git
+		</connection>
 	</scm>
 	<organization>
 		<name>Mirren Tools</name>
@@ -193,7 +200,8 @@
 	<licenses>
 		<license>
 			<name>MIT License</name>
-			<url>https://raw.githubusercontent.com/xtuhcy/gecco/master/LICENSE</url>
+			<url>https://raw.githubusercontent.com/xtuhcy/gecco/master/LICENSE
+			</url>
 		</license>
 	</licenses>
 

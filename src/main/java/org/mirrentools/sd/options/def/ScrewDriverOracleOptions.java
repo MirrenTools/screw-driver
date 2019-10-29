@@ -66,7 +66,7 @@ public class ScrewDriverOracleOptions extends ScrewDriverOptions {
 		super.setTemplateMaps(templateMaps);
 		super.setDatabaseOptions(databaseOptions);
 		super.setTemplateContentConverter(new SdTemplateContentConverterDefaultImpl());
-		super.setTemplateUtil(new ScrewDriverTemplateFreeMarkerImpl());
+		super.setTemplateEngine(new ScrewDriverTemplateFreeMarkerImpl());
 		
 		super.setBeanConverter(new SdClassConverterOracleImpl());
 		super.setClassConverter(new SdTableToClassConverterOracleImpl());

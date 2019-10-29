@@ -64,7 +64,7 @@ public class ScrewDriverDB2Options extends ScrewDriverOptions {
 		super.setTemplateMaps(templateMaps);
 		super.setDatabaseOptions(databaseOptions);
 		super.setTemplateContentConverter(new SdTemplateContentConverterDefaultImpl());
-		super.setTemplateUtil(new ScrewDriverTemplateFreeMarkerImpl());
+		super.setTemplateEngine(new ScrewDriverTemplateFreeMarkerImpl());
 
 		super.setBeanConverter(new SdClassConverterDB2Impl());
 		super.setClassConverter(new SdTableToClassConverterDB2Impl());

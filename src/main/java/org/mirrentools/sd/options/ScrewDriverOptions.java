@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.ScrewDriverException;
-import org.mirrentools.sd.ScrewDriverTemplate;
+import org.mirrentools.sd.ScrewDriverTemplateEngine;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.converter.SdClassConverter;
@@ -36,7 +36,7 @@ public class ScrewDriverOptions {
 	/** 创建代码模板集合,key为模板的名字,value为模板属性 */
 	private Map<String, SdTemplate> templateMaps;
 	/** 项目所在路径,默认当前项目 */
-	private String projectPath = SdUtil.getUserDir();
+	private String outputPath = SdUtil.getUserDir();
 	/** 生成使用编码格式,默认UTF-8 */
 	private String codeFormat = Constant.UTF_8;
 	/** 将SdBean转换成类属性的转换器 */
@@ -44,7 +44,7 @@ public class ScrewDriverOptions {
 	/** 模板转换器 */
 	private SdTemplateContentConverter templateContentConverter;
 	/** 模板生成工具 */
-	private ScrewDriverTemplate templateUtil;
+	private ScrewDriverTemplateEngine templateEngine;
 
 	// ***************SQL配置*******************
 	/** 数据库执行工具 */
@@ -134,7 +134,7 @@ public class ScrewDriverOptions {
 	public void wrap(ScrewDriverOptions options) {
 		setDatabaseOptions(options.getDatabaseOptions());
 		setTemplateMaps(options.getTemplateMaps());
-		setProjectPath(options.getProjectPath());
+		setOutputPath(options.getOutputPath());
 		setCodeFormat(options.getCodeFormat());
 		setExtensions(options.getExtensions());
 		setBeanConverter(options.getBeanConverter());
@@ -142,7 +142,7 @@ public class ScrewDriverOptions {
 		setClassConverter(options.getClassConverter());
 		setDatabaseConverter(options.getDatabaseConverter());
 		setTemplateContentConverter(options.getTemplateContentConverter());
-		setTemplateUtil(options.getTemplateUtil());
+		setTemplateEngine(options.getTemplateEngine());
 		setDbUtil(options.getDbUtil());
 	}
 
@@ -171,8 +171,8 @@ public class ScrewDriverOptions {
 	 * 
 	 * @return
 	 */
-	public String getProjectPath() {
-		return projectPath;
+	public String getOutputPath() {
+		return outputPath;
 	}
 
 	/**
@@ -181,8 +181,8 @@ public class ScrewDriverOptions {
 	 * @param projectPath
 	 * @return
 	 */
-	public ScrewDriverOptions setProjectPath(String projectPath) {
-		this.projectPath = projectPath;
+	public ScrewDriverOptions setOutputPath(String outputPath) {
+		this.outputPath = outputPath;
 		return this;
 	}
 
@@ -251,18 +251,18 @@ public class ScrewDriverOptions {
 	 * 
 	 * @return
 	 */
-	public ScrewDriverTemplate getTemplateUtil() {
-		return templateUtil;
+	public ScrewDriverTemplateEngine getTemplateEngine() {
+		return templateEngine;
 	}
 
 	/**
 	 * 设置模板渲染工具
 	 * 
-	 * @param templateUtil
+	 * @param templateEngine
 	 * @return
 	 */
-	public ScrewDriverOptions setTemplateUtil(ScrewDriverTemplate templateUtil) {
-		this.templateUtil = templateUtil;
+	public ScrewDriverOptions setTemplateEngine(ScrewDriverTemplateEngine templateEngine) {
+		this.templateEngine = templateEngine;
 		return this;
 	}
 
@@ -418,11 +418,11 @@ public class ScrewDriverOptions {
 		StringBuilder result = new StringBuilder();
 		result.append("ScrewDriverOptions:" + "\n");
 		result.append("  ┣━databaseOptions= " + getDatabaseOptions() + "\n");
-		result.append("  ┣━projectPath= " + getProjectPath() + "\n");
+		result.append("  ┣━outputPath= " + getOutputPath() + "\n");
 		result.append("  ┣━codeFormat= " + getCodeFormat() + "\n");
 		result.append("  ┣━beanConverter= " + (getBeanConverter() == null ? "null" : getBeanConverter().getClass().getName()) + "\n");
 		result.append("  ┣━templateContentConverter= " + (getTemplateContentConverter() == null ? "null" : getTemplateContentConverter().getClass().getName()) + "\n");
-		result.append("  ┣━templateUtil= " + (getTemplateUtil() == null ? "null" : getTemplateUtil().getClass().getName()) + "\n");
+		result.append("  ┣━templateEngine= " + (getTemplateEngine() == null ? "null" : getTemplateEngine().getClass().getName()) + "\n");
 		result.append("  ┣━templateMaps= " + getTemplateMaps() + "\n");
 		result.append("  ┣━dbUtil= " + (getDbUtil() == null ? "null" : getDbUtil().getClass().getName()) + "\n");
 		result.append("  ┣━tableConverter= " + (getTableConverter() == null ? "null" : getTableConverter().getClass().getName()) + "\n");

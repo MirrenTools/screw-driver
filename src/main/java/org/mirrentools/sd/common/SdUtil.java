@@ -1,5 +1,9 @@
 package org.mirrentools.sd.common;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -575,5 +579,18 @@ public class SdUtil {
 			throw new NullPointerException(msg == null ? "null" : msg);
 		}
 	}
-
+	/**
+	 * 读取file内容并将其装换为字符串
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 */
+	public static String readFileToString(File file) throws IOException {
+		InputStream inputStream = new FileInputStream(file);
+		byte[] bytes = new byte[inputStream.available()];
+		inputStream.read(bytes);
+		inputStream.close();
+		return new String(bytes);
+	}
 }

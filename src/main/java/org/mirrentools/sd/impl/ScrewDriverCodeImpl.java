@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import org.mirrentools.sd.ScrewDriverCode;
-import org.mirrentools.sd.ScrewDriverTemplate;
+import org.mirrentools.sd.ScrewDriverTemplateEngine;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.converter.SdClassConverter;
@@ -34,8 +34,8 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	/** 模板集合key为模板的名字,value为模板属性 */
 	private Map<String, SdTemplate> templateMaps;
 
-	/** 项目所在路径,默认当前项目 */
-	private String projectPath;
+	/** 文件生成输出路径 */
+	private String outputPath;
 	/** 生成使用编码格式,默认UTF-8 */
 	private String codeFormat;
 	/** SdBean转换器 */
@@ -43,7 +43,7 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	/** 模板内容转换器 */
 	private SdTemplateContentConverter templateConverter;
 	/** 模板生成工具 */
-	private ScrewDriverTemplate templateUtil;
+	private ScrewDriverTemplateEngine templateEngine;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
 
@@ -52,10 +52,10 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 		SdUtil.requireNonNull(options, "The ScrewDriverOptions cannot be null ,you can new ScrewDriver(db name)Options");
 		this.databaseOptions = options.getDatabaseOptions();
 		this.templateMaps = options.getTemplateMaps();
-		this.projectPath = options.getProjectPath();
+		this.outputPath = options.getOutputPath();
 		this.beanConverter = options.getBeanConverter();
 		this.templateConverter = options.getTemplateContentConverter();
-		this.templateUtil = options.getTemplateUtil();
+		this.templateEngine = options.getTemplateEngine();
 		this.extensions = options.getExtensions();
 	}
 
@@ -67,14 +67,15 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 
 	@Override
 	public boolean execute(SdClassContent classContent) {
-		SdUtil.requireNonNull(templateMaps, "SdTemplate cannot be null ,You need to create a SdTemplate first, because you need it to generate it.");
-		String path = getProjectPath();
+		SdUtil.requireNonNull(templateMaps,
+				"SdTemplate cannot be null ,You need to create a SdTemplate first, because you need it to generate it.");
+		String path = getOutputPath();
 		String format = getCodeFormat();
 		Map<String, SdTemplateContent> templates = templateConverter.converter(classContent, databaseOptions, templateMaps);
 		SdRenderContent content = new SdRenderContent(classContent, databaseOptions, templates);
 		for (Entry<String, SdTemplate> temp : templateMaps.entrySet()) {
 			LOG.info(String.format("Generating %s...", temp.getKey()));
-			boolean render = templateUtil.render(path, format, content, temp.getValue());
+			boolean render = templateEngine.render(path, format, content, temp.getValue());
 			if (render) {
 				LOG.info(String.format("Generated %s--> Successful!", temp.getKey()));
 			} else {
@@ -85,13 +86,13 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	}
 
 	@Override
-	public String getProjectPath() {
-		return projectPath == null ? SdUtil.getUserDir() : projectPath;
+	public String getOutputPath() {
+		return outputPath;
 	}
 
 	@Override
-	public ScrewDriverCodeImpl setProjectPath(String projectPath) {
-		this.projectPath = projectPath;
+	public ScrewDriverCodeImpl setOutputPath(String outputPath) {
+		this.outputPath = outputPath;
 		return this;
 	}
 
@@ -160,13 +161,13 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	}
 
 	@Override
-	public ScrewDriverTemplate getTemplateUtil() {
-		return templateUtil;
+	public ScrewDriverTemplateEngine getTemplateEngine() {
+		return templateEngine;
 	}
 
 	@Override
-	public ScrewDriverCodeImpl setTemplateUtil(ScrewDriverTemplate templateUtil) {
-		this.templateUtil = templateUtil;
+	public ScrewDriverCodeImpl setTemplateEngine(ScrewDriverTemplateEngine templateEngine) {
+		this.templateEngine = templateEngine;
 		return this;
 	}
 

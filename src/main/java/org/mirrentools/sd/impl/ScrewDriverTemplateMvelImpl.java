@@ -13,21 +13,17 @@ import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.ScrewDriverTemplateEngine;
 import org.mirrentools.sd.common.SdTemplatePathUtil;
 import org.mirrentools.sd.common.SdUtil;
-import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.models.SdRenderContent;
 import org.mirrentools.sd.models.SdTemplate;
-
-import freemarker.template.Configuration;
-import freemarker.template.DefaultObjectWrapper;
-import freemarker.template.Template;
+import org.mvel2.templates.TemplateRuntime;
 
 /**
- * 模板生成工具FreeMarker实现版
+ * 模板生成工具MVEL版实现
  * 
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public class ScrewDriverTemplateFreeMarkerImpl extends ScrewDriverTemplateEngine {
+public class ScrewDriverTemplateMvelImpl extends ScrewDriverTemplateEngine {
 	/** JUL日志 */
 	private final Logger LOG = Logger.getLogger(this.getClass().getName());
 
@@ -57,12 +53,9 @@ public class ScrewDriverTemplateFreeMarkerImpl extends ScrewDriverTemplateEngine
 				return false;
 			}
 		}
+
 		Writer writer = null;
 		try {
-			Configuration config = new Configuration(Configuration.VERSION_2_3_23);
-			config.setDirectoryForTemplateLoading(new File(SdTemplatePathUtil.getPath(template.getPath())));
-			config.setObjectWrapper(new DefaultObjectWrapper(Configuration.VERSION_2_3_23));
-			config.setDefaultEncoding(Constant.UTF_8);
 			Map<String, Object> dataModel = new HashMap<String, Object>();
 			dataModel.put("content", content);
 			File outDir = new File(outputDirPath);
@@ -72,11 +65,11 @@ public class ScrewDriverTemplateFreeMarkerImpl extends ScrewDriverTemplateEngine
 					LOG.warning("执行创建文件输出文件夹结果: " + mkdirs);
 				}
 			}
+			File file = SdTemplatePathUtil.getFile(template.getPath(), template.getFile());
+			String templateStr = SdUtil.readFileToString(file);
 			writer = new OutputStreamWriter(new FileOutputStream(outputFilePath), format);
-			// 检查文件是否存在,如果不存在检查默认模板中是否存在,如果存在就创建默认模板文件夹并负责到模板文件夹中
-			SdTemplatePathUtil.getFile(template.getPath(), template.getFile());
-			Template freeTemplate = config.getTemplate(template.getFile());
-			freeTemplate.process(dataModel, writer);
+			Object result = TemplateRuntime.eval(templateStr, dataModel);
+			writer.write(result.toString());
 			return true;
 		} catch (Exception e) {
 			throw new ScrewDriverException(e);
@@ -91,5 +84,4 @@ public class ScrewDriverTemplateFreeMarkerImpl extends ScrewDriverTemplateEngine
 			}
 		}
 	}
-
 }
