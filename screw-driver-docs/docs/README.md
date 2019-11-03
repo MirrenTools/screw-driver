@@ -5,11 +5,11 @@ actionText: 使用文档
 actionLink: /start/introduction
 features:
 - title: 基于模板引擎
-  details: 生成代码的风格由你自由编写模板,已实现FreeMarker等模板引擎,默认提供多套代码模板
+  details: 生成代码的风格由你自由编写模板,已实现FreeMarker、MVEL等模板引擎
 - title: 支持多种数据库
   details: 支持MySQL、PostgreSQL、Oracle、DB2、SQL Server、SQLite等数据库
 - title: 插拔式
-  details: 项目使用插拔式设计拓展更简单
+  details: 插拔式设计二次开发、拓展更简单
 footer: MIT Licensed | Copyright © 2019-present mirrentools.org
 ---
 ## 一分钟了解ScrewDriver

@@ -47,7 +47,7 @@ public class ScrewDriverOptions {
 	private ScrewDriverTemplateEngine templateEngine;
 
 	// ***************SQL配置*******************
-	/** 数据库执行工具 */
+	/** 数据库相关操作执行工具 */
 	private ScrewDriverDbUtil dbUtil;
 	/** 将SdBean转换为数据库表的操作属性的转换器 */
 	private SdTableContentConverter tableConverter;
@@ -287,7 +287,7 @@ public class ScrewDriverOptions {
 	}
 
 	/**
-	 * 获取数据库操作工具
+	 * 获取数据库相关操作执行工具
 	 * 
 	 * @return
 	 */
@@ -296,7 +296,7 @@ public class ScrewDriverOptions {
 	}
 
 	/**
-	 * 设置数据库操作工具
+	 * 设置数据库相关操作执行工具
 	 * 
 	 * @param dbUtil
 	 * @return

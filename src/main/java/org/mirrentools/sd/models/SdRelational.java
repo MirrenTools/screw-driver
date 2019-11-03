@@ -17,7 +17,7 @@ import org.mirrentools.sd.enums.Relational;
 public class SdRelational {
 	/** 需要导入的包 */
 	private Set<String> imports;
-	/** 注解 */
+	/** 属性需要的注解 */
 	private Set<String> annotations;
 	/** 关系类型 */
 	private Relational relationalType;

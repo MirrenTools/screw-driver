@@ -297,7 +297,7 @@ public class SdType {
 	public final static String CALENDAR = "java.util.Calendar";
 
 	/**
-	 * 数据类型java.sql.Time,对应类型:<br>
+	 * 数据类型java.sql.Date,对应类型:<br>
 	 * Java=java.sql.Date<br>
 	 * SQLite=DATE<br>
 	 * MySQL=DATE<br>

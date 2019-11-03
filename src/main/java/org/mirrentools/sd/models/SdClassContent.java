@@ -10,7 +10,7 @@ import java.util.Set;
 import org.mirrentools.sd.common.SdUtil;
 
 /**
- * 模板生成所需要的实体属性
+ * 模板生成所需要的实体属性上下文
  * 
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
