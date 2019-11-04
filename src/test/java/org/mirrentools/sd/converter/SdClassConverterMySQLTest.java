@@ -38,13 +38,12 @@ public class SdClassConverterMySQLTest {
 		assertEquals("classes-student", content.getHyphenName());
 		assertEquals("classesStudent", content.getCamelName());
 		assertEquals("ClassesStudent", content.getPascalName());
-		assertEquals(6, content.getFields().size());
-
+		assertEquals(7, content.getFields().size());
 		assertEquals(1, content.getPrimaryField().size());
 		assertEquals(1, content.getForeignField().size());
-		assertEquals(1, content.getIndexField().size());
+		assertEquals(2, content.getIndexField().size());
 		assertEquals(3, content.getOtherField().size());
-		assertEquals(5, content.getCantNullField().size());
+		assertEquals(6, content.getCantNullField().size());
 	}
 
 	@Test
