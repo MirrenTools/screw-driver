@@ -32,7 +32,7 @@ public class SdTemplatePathUtil {
 	 * 1. path<br>
 	 * 2. user.dir/path<br>
 	 * 3. user.dir/SdTemplates/path<br>
-	 * 4. 创建user.dir/SdTemplates/path<<br>
+	 * 4. 创建user.dir/SdTemplates/path<br>
 	 * 
 	 * @return
 	 */

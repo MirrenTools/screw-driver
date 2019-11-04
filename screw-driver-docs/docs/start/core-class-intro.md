@@ -1,6 +1,8 @@
 # 核心类介绍
 ## SdBean
 SdBean类用来描述一个实体信息,你可以用它来描述一张数据库表(主要)或一个实体类,属性说明:
+
+该类对应的模板数据为 [SdClassContent](./template-attr.md#sdclasscontent) 
 |属性名称	|数据类型	|属性描述	|
 |--	|--	|--	|
 |name	|String	|名称	|
@@ -11,8 +13,8 @@ SdBean类用来描述一个实体信息,你可以用它来描述一张数据库�
 |tablespace	|String	|表空间	|
 |indexspace	|String	|索引表空间	|
 |compressable	|Boolean	|是否压缩	|
-|columns	|List&lt;SdColumn&gt;	|列属性	|
-|additionalColumns	|List&lt;SdColumn&gt;	|附加的列属性,该属性一般用于只需要创建类属性而不需要创建表属性时使用	|
+|columns	|List&lt;[SdColumn](./template-attr.md#sdcolumn)&gt;	|列属性	|
+|additionalColumns	|List&lt;[SdColumn](./template-attr.md#sdcolumn)&gt;	|附加的列属性,该属性一般用于只需要创建类属性而不需要创建表属性时使用	|
 |relationals	|List&lt;SdRelational&gt;	|表或类的关系属性	|
 |sequences	|List&lt;SdSequence&gt;	|序列属性	|
 |extensions	|Map&lt;String,Object&gt;	|自定义属性	|
@@ -20,12 +22,14 @@ SdBean类用来描述一个实体信息,你可以用它来描述一张数据库�
 ## SdColumn
 SdColumn用来描述一个类或表的字段,该类中主要有两种属性:类属性与表属性,类属性如果不定义或为空时就会自动将表属性转换为类属性
 
+该类对应的模板数据为 [SdColumn](./template-attr.md#sdcolumn) 
+
 **类属性**
 |属性名称	|数据类型	|属性描述	|
 |--	|--	|--	|
 |imports	|Set&lt;String&gt;	|类需要引入的包	|
 |annotations	|Set&lt;String&gt;	|属性需要添加的注解	|
-|relationalContent	|SdRelationalContent	|属性的关系属性	|
+|relationalContent	|[SdRelationalContent](./template-attr.md#sdrelationalcontent)	|属性的关系属性	|
 |fieldType	|String	|属性的数据类型	|
 |fieldName	|String	|属性的名称,驼峰命名,如 mirrenTools	|
 |fieldNamePascal	|String	|属性的名称帕斯卡命名,如 MirrenTools	|
@@ -70,6 +74,8 @@ SdColumn用来描述一个类或表的字段,该类中主要有两种属性:类�
 
 ## SdRelational
 SdRelational 用于描述属性的关系共有4种属性:OneToOne, OneToMany, ManyToOne, ManyToMany
+
+该类对应的模板数据为 [SdRelationalContent](./template-attr.md#sdrelationalcontent) 
 |属性名称	|数据类型	|属性描述	|
 |--	|--	|--	|
 |imports	|Set&lt;String&gt;	|类需要引入的包	|
@@ -83,6 +89,8 @@ SdRelational 用于描述属性的关系共有4种属性:OneToOne, OneToMany, Ma
 
 ## SdTemplate
 SdTemplate用于设置生成模板,比如你想生成3个文件就需要设置3个SdTemplate
+
+该类对应的模板数据为 [SdTemplateContent](./template-attr.md#sdtemplatecontent) 
 |属性名称	|数据类型	|属性描述	|
 |--	|--	|--	|
 |path	|String	|模板所在的路径,获取完整的path可以通过SdTemplatePathUtil	|
@@ -96,6 +104,8 @@ SdTemplate用于设置生成模板,比如你想生成3个文件就需要设置3�
 |extensions	|Map&lt;String,Object&gt;	|拓展属性	|
 ## SdDatabaseOptions
 SdDatabaseOptions为连接数据库的配置信息
+
+该类对应的模板数据为 [SdDatabaseOptions](./template-attr.md#sddatabaseoptions) 
 |属性名称	|数据类型	|属性描述	|
 |--	|--	|--	|
 |loginTimeout	|int	|连接超时时间 单位秒,默认60秒	|

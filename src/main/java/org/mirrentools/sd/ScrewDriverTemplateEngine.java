@@ -18,7 +18,9 @@ public abstract class ScrewDriverTemplateEngine {
 	private Map<String, Object> extensions;
 
 	/**
-	 * 渲染模板
+	 * 渲染模板,规范建议:<br>
+	 * 1.遵循 {@link org.mirrentools.sd.common.SdTemplatePathUtil}中的获取path与获取file规则<br>
+	 * 2.SdRenderContent使用content添加既然模板上下文的名称为content
 	 * 
 	 * @param outputPath
 	 *          输出文件夹
