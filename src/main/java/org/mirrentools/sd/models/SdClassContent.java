@@ -32,6 +32,8 @@ public class SdClassContent {
 	private String remark;
 	/** 需要导入的包 */
 	private Set<String> imports;
+	/** 类的注解 */
+	private Set<String> annotations;
 	/** 属性集(包含下方主键.外键.索引.其他普通属性集,不包含不能为空以及附加属性) */
 	private List<SdColumn> fields;
 	/** 所有主键属性集 */
@@ -207,7 +209,39 @@ public class SdClassContent {
 		this.imports = imports;
 		return this;
 	}
+	/**
+	 * 获取类的注解
+	 * 
+	 * @return
+	 */
+	public Set<String> getAnnotations() {
+		return annotations;
+	}
 
+	/**
+	 * 添加类的注解
+	 * 
+	 * @param annotation
+	 * @return
+	 */
+	public SdClassContent addAnnotation(String annotation) {
+		if (getImports() == null) {
+			this.annotations = new LinkedHashSet<String>();
+		}
+		this.annotations.add(annotation);
+		return this;
+	}
+
+	/**
+	 * 设置类的注解
+	 * 
+	 * @param annotations
+	 * @return
+	 */
+	public SdClassContent setAnnotations(Set<String> annotations) {
+		this.annotations = annotations;
+		return this;
+	}
 	/**
 	 * 获取所有属性列
 	 * 
@@ -528,6 +562,14 @@ public class SdClassContent {
 			}
 		} else {
 			sb.append("imports: " + imports + "\n");
+		}
+		if (annotations != null) {
+			sb.append("*********************annotations*************************\n");
+			for (String anno : annotations) {
+				sb.append("┣━" + anno + "\n");
+			}
+		} else {
+			sb.append("annotations: " + annotations + "\n");
 		}
 		if (fields != null) {
 			sb.append("*********************fields*************************\n");

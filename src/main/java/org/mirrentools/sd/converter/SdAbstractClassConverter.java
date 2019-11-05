@@ -37,6 +37,8 @@ public abstract class SdAbstractClassConverter implements SdClassConverter {
 	 * @param result
 	 */
 	public void converterBean(SdBean bean, SdClassContent result) {
+		result.setImports(bean.getImports());
+		result.setAnnotations(bean.getAnnotations());
 		result.setTableName(bean.getName());
 		result.setAlias(bean.getAlias());
 		result.setCamelName(SdUtil.toCamelCase(bean.getName()));

@@ -3,8 +3,10 @@ package org.mirrentools.sd.models;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.mirrentools.sd.common.SdUtil;
 
@@ -15,6 +17,10 @@ import org.mirrentools.sd.common.SdUtil;
  *
  */
 public class SdBean {
+	/** 需要导入的包 */
+	private Set<String> imports;
+	/** 类的注解 */
+	private Set<String> annotations;
 	/** 表或类的名字 */
 	private String name;
 	/** 表或类的别名 */
@@ -41,6 +47,73 @@ public class SdBean {
 	private List<SdSequence> sequences;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
+	/**
+	 * 获取类属性需要引入的包
+	 * 
+	 * @return
+	 */
+	public Set<String> getImports() {
+		return imports;
+	}
+
+	/**
+	 * 添加类属性需要引入的包,默认根据表中列的类型添加需要引入的包
+	 * 
+	 * @param imports
+	 * @return
+	 */
+	public SdBean addImport(String imports) {
+		if (getImports() == null) {
+			this.imports = new LinkedHashSet<String>();
+		}
+		this.imports.add(imports);
+		return this;
+	}
+
+	/**
+	 * 设置类属性需要引入的包,默认根据表中列的类型添加需要引入的包
+	 * 
+	 * @param imports
+	 * @return
+	 */
+	public SdBean setImports(Set<String> imports) {
+		this.imports = imports;
+		return this;
+	}
+
+	/**
+	 * 获取类的注解
+	 * 
+	 * @return
+	 */
+	public Set<String> getAnnotations() {
+		return annotations;
+	}
+
+	/**
+	 * 添加类的注解
+	 * 
+	 * @param annotation
+	 * @return
+	 */
+	public SdBean addAnnotation(String annotation) {
+		if (getImports() == null) {
+			this.annotations = new LinkedHashSet<String>();
+		}
+		this.annotations.add(annotation);
+		return this;
+	}
+
+	/**
+	 * 设置类的注解
+	 * 
+	 * @param annotations
+	 * @return
+	 */
+	public SdBean setAnnotations(Set<String> annotations) {
+		this.annotations = annotations;
+		return this;
+	}
 
 	/**
 	 * 获取表或者类的名字
@@ -423,9 +496,18 @@ public class SdBean {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("SdBean: \n");
+		sb.append("  ┣━imports = " + imports + "\n");
+		sb.append("  ┣━annotations = " + annotations + "\n");
 		sb.append("  ┣━name = " + name + "\n");
+		sb.append("  ┣━alias = " + alias + "\n");
 		sb.append("  ┣━remark = " + remark + "\n");
+		sb.append("  ┣━owner = " + owner + "\n");
+		sb.append("  ┣━schema = " + schema + "\n");
+		sb.append("  ┣━tablespace = " + tablespace + "\n");
+		sb.append("  ┣━indexspace = " + indexspace + "\n");
+		sb.append("  ┣━compressable = " + compressable + "\n");
 		sb.append("  ┣━columns = " + columns + "\n");
+		sb.append("  ┣━additionalColumns = " + additionalColumns + "\n");
 		sb.append("  ┣━relationals = " + relationals + "\n");
 		sb.append("  ┣━sequences = " + sequences + "\n");
 		sb.append("  ┗━extensions = " + extensions + "\n");
