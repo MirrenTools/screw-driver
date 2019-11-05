@@ -1,7 +1,7 @@
 package org.mirrentools.sd.templateutil;
 
+import org.mirrentools.sd.SdType;
 import org.mirrentools.sd.constant.MySQL;
-import org.mirrentools.sd.constant.SdType;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.options.SdDatabaseOptions;

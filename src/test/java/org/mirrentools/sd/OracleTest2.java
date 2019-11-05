@@ -6,7 +6,6 @@ import java.util.Map;
 import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.constant.Constant;
 import org.mirrentools.sd.constant.Oracle;
-import org.mirrentools.sd.constant.SdType;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.SdTemplate;

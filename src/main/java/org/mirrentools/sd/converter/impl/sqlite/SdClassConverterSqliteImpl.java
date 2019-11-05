@@ -1,7 +1,7 @@
 package org.mirrentools.sd.converter.impl.sqlite;
 
+import org.mirrentools.sd.SdType;
 import org.mirrentools.sd.constant.Java;
-import org.mirrentools.sd.constant.SdType;
 import org.mirrentools.sd.converter.SdBasicClassConverter;
 import org.mirrentools.sd.converter.SdBasicTypeConverter;
 import org.mirrentools.sd.converter.SdTypeConverter;

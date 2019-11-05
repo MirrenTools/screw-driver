@@ -1,9 +1,17 @@
-package org.mirrentools.sd.constant;
+package org.mirrentools.sd;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.mirrentools.sd.common.SdUtil;
+import org.mirrentools.sd.constant.DB2;
+import org.mirrentools.sd.constant.Java;
+import org.mirrentools.sd.constant.MySQL;
+import org.mirrentools.sd.constant.Oracle;
+import org.mirrentools.sd.constant.PostgreSQL;
+import org.mirrentools.sd.constant.SQL;
+import org.mirrentools.sd.constant.SQLite;
+import org.mirrentools.sd.constant.SqlServer;
 import org.mirrentools.sd.enums.SdTypeMode;
 
 /**

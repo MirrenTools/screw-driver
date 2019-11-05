@@ -1,6 +1,6 @@
 package org.mirrentools.sd.converter.impl.oracle;
 
-import org.mirrentools.sd.constant.SdType;
+import org.mirrentools.sd.SdType;
 import org.mirrentools.sd.converter.SdAbstractTableContentConverter;
 import org.mirrentools.sd.converter.SdBasicTypeConverter;
 import org.mirrentools.sd.converter.SdTypeConverter;

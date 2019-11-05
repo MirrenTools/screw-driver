@@ -1,5 +1,6 @@
 package org.mirrentools.sd.constant;
 
+import org.mirrentools.sd.SdType;
 import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.impl.mysql.SdClassConverterMySqlImpl;
 import org.mirrentools.sd.enums.Relational;

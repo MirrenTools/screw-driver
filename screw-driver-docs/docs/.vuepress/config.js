@@ -20,7 +20,7 @@ module.exports = {
 			'/': [{
 				title: '使用说明',
 				collapsable: false,
-				children: ['/start/introduction', '/start/core-class-intro','/start/sd-type','/start/template-rule','/start/template-attr','/start/sql-assist','/start/expand']
+				children: ['/start/introduction', '/start/core-class-intro','/start/sd-type','/start/ide-code-block','/start/template-rule','/start/template-attr','/start/sql-assist','/start/expand','/start/license']
 			}]
 		}
 	}

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.mirrentools.sd.constant.MySQL;
-import org.mirrentools.sd.constant.SdType;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.SdTemplate;

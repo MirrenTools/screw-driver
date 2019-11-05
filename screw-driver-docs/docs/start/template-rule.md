@@ -27,17 +27,11 @@
 3. 复制screw-driver-X.jar/SdTemplates/path/file 到 user.dir/SdTemplates/path/file
 4. 复制screw-driver-X.jar/SdTemplates/file 到 user.dir/SdTemplates/path/file
 
-## 自定义模板实现 
-软件目前提供了FreeMarker与MVEL开箱即用的模板引擎,如果这两个不满足或需要自定义模板,
-
-你可以继承**org.mirrentools.sd.ScrewDriverTemplateEngine**抽象类并实现render方法,
-
-具体实现可以参考**org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl** 或 **ScrewDriverTemplateMvelImpl**。
-
-启用自定义模板需要设置 [ScrewDriverOptions](./core-class-intro.md#screwdriveroptions)的templateEngine属性,既调用setTemplateEngine(你的实现类)
 
 ## 通用模板
-实体类的描述
+ScrewDriver默认使用FreeMarker编写了部分常用的模板,同时也实现了MVEL模板渲染,你可以自己编写模板,其他模板你可以参考 [自定义模板引擎](./expand.md#自定义模板引擎)
+
+
 ## Vert.x模板
 实体类属性的描述
 ## JPA 模板

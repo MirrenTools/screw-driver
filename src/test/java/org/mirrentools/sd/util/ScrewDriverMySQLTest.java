@@ -1,8 +1,8 @@
 package org.mirrentools.sd.util;
 
 import org.mirrentools.sd.ScrewDriver;
+import org.mirrentools.sd.SdType;
 import org.mirrentools.sd.constant.MySqlConstant;
-import org.mirrentools.sd.constant.SdType;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.options.ScrewDriverOptions;
