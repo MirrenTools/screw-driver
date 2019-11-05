@@ -156,8 +156,8 @@ public class SdColumn implements Comparable<SdColumn> {
 	 * @return
 	 */
 	public SdColumn addAnnotation(String annotation) {
-		if (getImports() == null) {
-			this.annotations = new LinkedHashSet<String>();
+		if (getAnnotations() == null) {
+			setAnnotations(new LinkedHashSet<String>());
 		}
 		this.annotations.add(annotation);
 		return this;

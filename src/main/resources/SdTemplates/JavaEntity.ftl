@@ -1,30 +1,45 @@
 package ${content.items.entity.packageName};
 
+<#if content.content.imports??>
+	<#list content.content.imports as impt>
+import ${impt};
+	</#list>
+</#if>
+
 /**
- * ${content.content.tableName}实体类
+ * ${content.content.remark}
  * @author 
- */
+ */ 
+<#if content.content.annotations??>
+	<#list content.content.annotations as anno>
+${anno}
+	</#list>
+</#if>
 public class ${content.items.entity.className} {
 	<#list content.content.fields as item> 
 	/** ${item.fieldRemark!} */
-	private ${item.fieldType} ${item.fieldName}; 
+	<#if item.annotations??><#list item.annotations as anno>${anno}</#list></#if>
+	private ${item.fieldType} ${item.fieldName} <#if item._default??> = item._default</#if>; 
 	</#list>
 	
 	<#list content.content.fields as item> 
+	<#if item.fieldRemark??>
 	/**
 	 * 获取${item.fieldRemark}
 	 * 
 	 * @return
 	 */
+	</#if>
 	public ${item.fieldType} <#if item.fieldType == "boolean" || item.fieldType == "Boolean">is<#else>get</#if>${item.fieldNamePascal}() {
 		return ${item.fieldName};
 	}
-
+	<#if item.fieldRemark??>
 	/**
 	 * 设置${item.fieldRemark}
 	 * 
 	 * @param ${item.fieldName}
 	 */
+	</#if>
 	public void set${item.fieldNamePascal}(${item.fieldType} ${item.fieldName}) {
 		this.${item.fieldName} = ${item.fieldName};
 	}

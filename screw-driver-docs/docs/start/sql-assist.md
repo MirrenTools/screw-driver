@@ -14,8 +14,7 @@ assist.setDistincts(true);
 assist.setResultColumn("id,type,name,seq");
 // (5)通过seq类倒序排序,相当于SQL: order by seq desc
 assist.setOrders(SqlAssist.order("seq", false));
-// (6)获取数据库中第20-35行的数据,你也可以使用setPage(第几页)的方式进行分页获取
-//    相当于SQL: limit 20,15
+// (6)获取数据库中第20-35行的数据,你也可以使用setPage(第几页)的方式进行分页获取,相当于SQL: limit 20,15
 assist.setStartRow(20).setRowSize(15);
 // (7)执行获取数据
 List<Items> result = itemsDao.selectAll(assist);

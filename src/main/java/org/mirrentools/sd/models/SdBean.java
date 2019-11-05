@@ -97,8 +97,8 @@ public class SdBean {
 	 * @return
 	 */
 	public SdBean addAnnotation(String annotation) {
-		if (getImports() == null) {
-			this.annotations = new LinkedHashSet<String>();
+		if (getAnnotations() == null) {
+			setAnnotations(new LinkedHashSet<String>());
 		}
 		this.annotations.add(annotation);
 		return this;

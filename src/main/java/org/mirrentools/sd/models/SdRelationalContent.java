@@ -1,7 +1,7 @@
 package org.mirrentools.sd.models;
 
-import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -57,7 +57,7 @@ public class SdRelationalContent {
 	 */
 	public SdRelationalContent addImport(String imports) {
 		if (getImports() == null) {
-			setImports(new HashSet<String>());
+			setImports(new LinkedHashSet<String>());
 		}
 		getImports().add(imports);
 		return this;
@@ -88,7 +88,7 @@ public class SdRelationalContent {
 	 */
 	public SdRelationalContent addAnnotation(String annotation) {
 		if (getAnnotations() == null) {
-			setAnnotations(new HashSet<String>());
+			setAnnotations(new LinkedHashSet<String>());
 		}
 		getAnnotations().add(annotation);
 		return this;
@@ -287,7 +287,7 @@ public class SdRelationalContent {
 	 * @return
 	 */
 	public SdRelationalContent addExtension(String key, Object value) {
-		if (getExtensions()==null) {
+		if (getExtensions() == null) {
 			setExtensions(new LinkedHashMap<String, Object>());
 		}
 		getExtensions().put(key, value);

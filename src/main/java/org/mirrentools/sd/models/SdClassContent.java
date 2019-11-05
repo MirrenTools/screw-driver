@@ -225,8 +225,8 @@ public class SdClassContent {
 	 * @return
 	 */
 	public SdClassContent addAnnotation(String annotation) {
-		if (getImports() == null) {
-			this.annotations = new LinkedHashSet<String>();
+		if (getAnnotations() == null) {
+			setAnnotations(new LinkedHashSet<String>());
 		}
 		this.annotations.add(annotation);
 		return this;
@@ -593,7 +593,7 @@ public class SdClassContent {
 				sb.append(f);
 			}
 		} else {
-			sb.append("indexField: " + foreignField + "\n");
+			sb.append("foreignField: " + foreignField + "\n");
 		}
 		if (indexField != null) {
 			sb.append("*******************indexField***************************\n");
