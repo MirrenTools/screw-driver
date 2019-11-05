@@ -22,6 +22,7 @@ SdRenderContent 名称为: content
 |underScoreName	|String	|表的名字下划线命名	|
 |remark	|String	|表的注释	|
 |imports	|Set&lt;String&gt;|需要导入的包	|
+|annotations	|Set&lt;String&gt;|需要导入的包	|
 |	|	|	|
 |	|	|	|
 |	|	|	|
