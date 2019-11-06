@@ -3,6 +3,7 @@ package org.mirrentools.sd.templateutil;
 import java.util.HashMap;
 
 import org.mirrentools.sd.ScrewDriver;
+import org.mirrentools.sd.SdType;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
 import org.mirrentools.sd.models.SdTemplate;
@@ -22,8 +23,6 @@ public class FreeMarkerTest {
 		options.setOutputPath("D:/TempJect/freemarker");
 		ScrewDriver screwDriver = ScrewDriver.instance(options);
 		SdBean bean = Constant.BEAN;
-		bean.addColumn(new SdColumn().setName("ge").setDefault("lalal").addImport("inputs").addAnnotation("lalal"));
-		bean.addImport("java.util.date");
 		screwDriver.createCode(bean);
 
 	}

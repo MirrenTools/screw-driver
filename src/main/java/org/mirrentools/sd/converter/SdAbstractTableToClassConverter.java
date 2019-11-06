@@ -78,7 +78,7 @@ public abstract class SdAbstractTableToClassConverter implements SdTableToClassC
 			column.setLength(col.getColumnSize() == 0 ? null : col.getColumnSize());
 			column.setRemark(col.getRemarks());
 			column.setNullable(col.isNullable() == 1 ? true : false);
-			column.setDefault(col.getColumnDef());
+			column.setDefaults(col.getColumnDef());
 			column.setAutoIncrement("YES".equals(col.getAutoincrement()));
 			column.setOrdinalPosition(col.getOrdinalPosition());
 			colMaps.put(col.getColumnName(), column);

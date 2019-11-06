@@ -1,4 +1,4 @@
-# 模板匹配规则说明
+# 模板与匹配规则说明
 模板定义使用 [SdTemplate](./core-class-intro.md#sdtemplate) 通过path属性定义模板所在目录,通过file属性定义模板的名称,模板目录获取规则如下:
 
 **如果path为空则获取**
@@ -29,8 +29,90 @@
 
 
 ## 通用模板
-ScrewDriver默认使用FreeMarker编写了部分常用的模板,同时也实现了MVEL模板渲染,你可以自己编写模板,其他模板你可以参考 [自定义模板引擎](./expand.md#自定义模板引擎)
+ScrewDriver默认使用FreeMarker编写了部分常用的模板,同时也实现了MVEL模板渲染,你可以自己编写模板,其他模板你可以参考 [自定义模板引擎](./expand.md#自定义模板引擎)<br>
+**普通的java类**<br>
+path=null,file=JavaEntity.ftl,生成效果:
+``` java
+package entity;
+/**
+ * 用户
+ * @author 
+ */ 
+public class User {
+  /** 用户的id */
+  private Long id ; 
+  /**
+   * 获取用户的id
+   * 
+   * @return
+   */
+  public Long getId() {
+    return id;
+  }
+  /**
+   * 设置用户的id
+   * 
+   * @param id
+   */
+  public void setId(Long id) {
+    this.id = id;
+  }
+  @Override
+  public String toString() {
+    return "User [id=" + id +"]";
+  }
+}
+```
 
+**Lombok的java类**
+path=null,file=JavaLombokEntity.ftl,生成效果:
+``` java
+package entity;
+import lombok.Data;
+/**
+ * 用户
+ * @author 
+ */ 
+@Data
+public class User {
+	/** 用户的id */
+	private Long id ; 
+}
+```
+**流式的java类**<br>
+path=null,file=JavaFluentEntity.ftl,生成效果:
+``` java
+package entity;
+/**
+ * 用户
+ * @author 
+ */ 
+public class User {
+  /** 用户的id */
+  private Long id ; 
+  /**
+   * 获取用户的id
+   * 
+   * @return
+   */
+  public Long getId() {
+    return id;
+  }
+  /**
+   * 设置用户的id
+   * 
+   * @param id
+   */
+  public User setId(Long id) {
+    this.id = id;
+    return this;
+  }
+  @Override
+  public String toString() {
+    return "User [id=" + id +"]";
+  }
+}
+```
 
 ## Vert.x模板
 实体类属性的描述

@@ -69,6 +69,28 @@ public class SdType {
 	 */
 	public final static String BOOLEAN = "Boolean";
 	/**
+	 * 数据类型char,对应类型:<br>
+	 * Java=char<br>
+	 * SQLite=NCHAR<br>
+	 * MySQL=CHAR<br>
+	 * SQL Server=NCHAR<br>
+	 * DB2=CHAR<br>
+	 * ORACLE=CHAR<br>
+	 * PostgreSQL=CHAR<br>
+	 */
+	public final static String CHAR_BASIC = "char_basic";
+	/**
+	 * 数据类型Character,对应类型:<br>
+	 * Java=Character<br>
+	 * SQLite=NCHAR<br>
+	 * MySQL=CHAR<br>
+	 * SQL Server=NCHAR<br>
+	 * DB2=CHAR<br>
+	 * ORACLE=CHAR<br>
+	 * PostgreSQL=CHAR<br>
+	 */
+	public final static String CHARACTER = "java_Character";
+	/**
 	 * 数据类型String,对应类型:<br>
 	 * Java=String<br>
 	 * SQLite=NVARCHAR<br>
@@ -557,26 +579,26 @@ public class SdType {
 		} else {
 			result.putAll(COMMON_SQL_MAPS);
 			switch (mode) {
-			case MYSQL:
-				result.putAll(MYSQL_MAPS);
-				break;
-			case POSTGRE_SQL:
-				result.putAll(POSTGRE_SQL_MAPS);
-				break;
-			case DB2:
-				result.putAll(DB2_MAPS);
-				break;
-			case ORACLE:
-				result.putAll(ORACLE_MAPS);
-				break;
-			case SQL_SERVER:
-				result.putAll(SQL_SERVER_MAPS);
-				break;
-			case SQLITE:
-				result.putAll(SQLITE_MAPS);
-				break;
-			default:
-				break;
+				case MYSQL :
+					result.putAll(MYSQL_MAPS);
+					break;
+				case POSTGRE_SQL :
+					result.putAll(POSTGRE_SQL_MAPS);
+					break;
+				case DB2 :
+					result.putAll(DB2_MAPS);
+					break;
+				case ORACLE :
+					result.putAll(ORACLE_MAPS);
+					break;
+				case SQL_SERVER :
+					result.putAll(SQL_SERVER_MAPS);
+					break;
+				case SQLITE :
+					result.putAll(SQLITE_MAPS);
+					break;
+				default :
+					break;
 			}
 			result.putAll(CUSTOM_SQL_MAPS);
 		}
@@ -603,6 +625,8 @@ public class SdType {
 		MYSQL_MAPS.put(BYTE_ARRAY, MySQL.BLOB);
 		MYSQL_MAPS.put(BOOLEAN, MySQL.BOOLEAN);
 		MYSQL_MAPS.put(BOOLEAN_BASIC, MySQL.BOOLEAN);
+		MYSQL_MAPS.put(CHAR_BASIC, MySQL.CHAR);
+		MYSQL_MAPS.put(CHARACTER, MySQL.CHAR);
 		MYSQL_MAPS.put(STRING, MySQL.VARCHAR);
 		MYSQL_MAPS.put(SHORT, MySQL.SMALLINT);
 		MYSQL_MAPS.put(SHORT_BASIC, MySQL.SMALLINT);
@@ -647,6 +671,8 @@ public class SdType {
 		POSTGRE_SQL_MAPS.put(BYTE_ARRAY, PostgreSQL.BYTEA);
 		POSTGRE_SQL_MAPS.put(BOOLEAN, PostgreSQL.BOOLEAN);
 		POSTGRE_SQL_MAPS.put(BOOLEAN_BASIC, PostgreSQL.BOOLEAN);
+		POSTGRE_SQL_MAPS.put(CHAR_BASIC, PostgreSQL.CHAR);
+		POSTGRE_SQL_MAPS.put(CHARACTER, PostgreSQL.CHAR);
 		POSTGRE_SQL_MAPS.put(STRING, PostgreSQL.VARCHAR);
 		POSTGRE_SQL_MAPS.put(SHORT, PostgreSQL.SMALLINT);
 		POSTGRE_SQL_MAPS.put(SHORT_BASIC, PostgreSQL.SMALLINT);
@@ -691,6 +717,8 @@ public class SdType {
 		DB2_MAPS.put(BYTE_ARRAY, DB2.BLOB);
 		DB2_MAPS.put(BOOLEAN, DB2.CHAR);
 		DB2_MAPS.put(BOOLEAN_BASIC, DB2.CHAR);
+		DB2_MAPS.put(CHAR_BASIC, DB2.CHAR);
+		DB2_MAPS.put(CHARACTER, DB2.CHAR);
 		DB2_MAPS.put(STRING, DB2.VARCHAR);
 		DB2_MAPS.put(SHORT, DB2.SMALLINT);
 		DB2_MAPS.put(SHORT_BASIC, DB2.SMALLINT);
@@ -735,6 +763,8 @@ public class SdType {
 		ORACLE_MAPS.put(BYTE_ARRAY, Oracle.BLOB);
 		ORACLE_MAPS.put(BOOLEAN, Oracle.CHAR);
 		ORACLE_MAPS.put(BOOLEAN_BASIC, Oracle.CHAR);
+		ORACLE_MAPS.put(CHAR_BASIC, Oracle.CHAR);
+		ORACLE_MAPS.put(CHARACTER, Oracle.CHAR);
 		ORACLE_MAPS.put(STRING, Oracle.VARCHAR2);
 		ORACLE_MAPS.put(SHORT, Oracle.NUMBER);
 		ORACLE_MAPS.put(SHORT_BASIC, Oracle.NUMBER);
@@ -779,6 +809,8 @@ public class SdType {
 		SQL_SERVER_MAPS.put(BYTE_ARRAY, SqlServer.IMAGE);
 		SQL_SERVER_MAPS.put(BOOLEAN, SqlServer.BIT);
 		SQL_SERVER_MAPS.put(BOOLEAN_BASIC, SqlServer.BIT);
+		SQL_SERVER_MAPS.put(CHAR_BASIC, SqlServer.NCHAR);
+		SQL_SERVER_MAPS.put(CHARACTER, SqlServer.NCHAR);
 		SQL_SERVER_MAPS.put(STRING, SqlServer.VARCHAR);
 		SQL_SERVER_MAPS.put(SHORT, SqlServer.SMALLINT);
 		SQL_SERVER_MAPS.put(SHORT_BASIC, SqlServer.SMALLINT);
@@ -823,7 +855,9 @@ public class SdType {
 		SQLITE_MAPS.put(BYTE_ARRAY, SQLite.BLOB);
 		SQLITE_MAPS.put(BOOLEAN, SQLite.BOOLEAN);
 		SQLITE_MAPS.put(BOOLEAN_BASIC, SQLite.BOOLEAN);
-		SQLITE_MAPS.put(STRING, SQLite.VARCHAR);
+		SQLITE_MAPS.put(CHAR_BASIC, SQLite.NCHAR);
+		SQLITE_MAPS.put(CHARACTER, SQLite.NCHAR);
+		SQLITE_MAPS.put(STRING, SQLite.NVARCHAR);
 		SQLITE_MAPS.put(SHORT, SQLite.SMALLINT);
 		SQLITE_MAPS.put(SHORT_BASIC, SQLite.SMALLINT);
 		SQLITE_MAPS.put(INT_BASIC, SQLite.INTEGER);
@@ -838,9 +872,9 @@ public class SdType {
 		SQLITE_MAPS.put(MONEY, SQLite.DECIMAL);
 		SQLITE_MAPS.put(DECIMAL, SQLite.DECIMAL);
 
-		SQLITE_MAPS.put(NCHAR, SQLite.CHAR);
-		SQLITE_MAPS.put(NVARCHAR, SQLite.VARCHAR);
-		SQLITE_MAPS.put(VARCHAR2, SQLite.VARCHAR);
+		SQLITE_MAPS.put(NCHAR, SQLite.NCHAR);
+		SQLITE_MAPS.put(NVARCHAR, SQLite.NVARCHAR);
+		SQLITE_MAPS.put(VARCHAR2, SQLite.VARCHAR2);
 		SQLITE_MAPS.put(TEXT, SQLite.TEXT);
 		SQLITE_MAPS.put(LONGTEXT, SQLite.TEXT);
 		SQLITE_MAPS.put(JSON, SQLite.TEXT);
@@ -868,6 +902,8 @@ public class SdType {
 		JAVA_MAPS.put(BOOLEAN_BASIC, Java.BOOLEAN);
 		JAVA_MAPS.put(BOOLEAN, Java.BOOLEAN_OBJ);
 
+		JAVA_MAPS.put(CHAR_BASIC, Java.CHAR);
+		JAVA_MAPS.put(CHARACTER, Java.CHARACTER);
 		JAVA_MAPS.put(STRING, Java.STRING);
 		JAVA_MAPS.put(SHORT_BASIC, Java.SHORT);
 		JAVA_MAPS.put(SHORT, Java.SHORT_OBJ);

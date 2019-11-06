@@ -51,7 +51,7 @@ public class SdColumn implements Comparable<SdColumn> {
 	/** 列的长度 */
 	private String length;
 	/** 列的默认值 */
-	private String _default;
+	private String defaults;
 	/** 列是否为主键 */
 	private boolean primary;
 	/** 列的主键名称 */
@@ -393,18 +393,18 @@ public class SdColumn implements Comparable<SdColumn> {
 	 * 
 	 * @return
 	 */
-	public String getDefault() {
-		return _default;
+	public String getDefaults() {
+		return defaults;
 	}
 
 	/**
 	 * 获取默认值
 	 * 
-	 * @param _default
+	 * @param defaults
 	 * @return
 	 */
-	public SdColumn setDefault(String _default) {
-		this._default = _default;
+	public SdColumn setDefaults(String defaults) {
+		this.defaults = defaults;
 		return this;
 	}
 
@@ -971,7 +971,7 @@ public class SdColumn implements Comparable<SdColumn> {
 		sb.append("  ┣━type = " + type + "\n");
 		sb.append("  ┣━remark = " + remark + "\n");
 		sb.append("  ┣━length = " + length + "\n");
-		sb.append("  ┣━default = " + _default + "\n");
+		sb.append("  ┣━defaults = " + defaults + "\n");
 		sb.append("  ┣━primary = " + primary + "\n");
 		sb.append("  ┣━primaryName = " + primaryName + "\n");
 		sb.append("  ┣━foreignKey = " + foreignKey + "\n");

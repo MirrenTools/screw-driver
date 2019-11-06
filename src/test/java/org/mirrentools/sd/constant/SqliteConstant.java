@@ -56,7 +56,7 @@ public class SqliteConstant {
 		SdColumn column2 = new SdColumn().setName("name").setType(SdType.STRING).setNullable(false).setLength(30).setRemark("学生的名字");
 		SdColumn column3 = new SdColumn().setName("age").setUnsigned(true).setType(SdType.INTEGER).setNullable(false).setRemark("学生的年龄");
 		SdColumn column4 = new SdColumn().setName("email").setType(SdType.INTEGER).setRemark("学生的邮箱");
-		SdColumn column5 = new SdColumn().setName("mobile_area").setType(SdType.STRING).setDefault("0086").setNullable(false).setLength(30).setRemark("学生的手机区号");
+		SdColumn column5 = new SdColumn().setName("mobile_area").setType(SdType.STRING).setDefaults("0086").setNullable(false).setLength(30).setRemark("学生的手机区号");
 		SdColumn column6 = new SdColumn().setName("mobile_phone").setType(SdType.STRING).setNullable(false).setLength(30).setRemark("学生的手机号码");
 		column6.setUnique(true).setIndexRemark("测试注释").setIndexName("idx_user_mobile_phone");
 		SdColumn column7 = new SdColumn().setName("classes_id").setType(SdType.INTEGER).setNullable(false).setRemark("班级的id");
