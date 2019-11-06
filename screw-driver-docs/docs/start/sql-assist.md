@@ -1,4 +1,4 @@
-# SqlAssist工具类说明
+# SqlAssist帮助类说明
 SqlAssist是为ScrewDriver生成SQL所定制的查询帮助类,可以用于简化工具生成的Vert.x或MyBatis的SQL查询,在Vert.x于MyBatis中具体方法可能存在差异,但使用方法基本一致!
 
 具体使用方式可以查看SqlAssist类的方法注释,如果不清楚的可以在群里资讯
