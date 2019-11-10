@@ -115,7 +115,16 @@ public class User {
 ```
 
 ## Vert.x模板
-实体类属性的描述
+[Vert.x](https://vertx.io/) 模板,生成后的代码依赖[vertx-sql-assist](https://github.com/MirrenTools/vertx-sql-assist) 通用SQL操作,也就是你需要添加依赖:
+``` xml
+<dependency>
+  <groupId>org.mirrentools</groupId>
+  <artifactId>vertx-sql-assist</artifactId>
+  <version>${version}</version>
+</dependency>
+```
+
+
 ## JPA 模板
 实体类属性的描述
 ## MyBatis模板
