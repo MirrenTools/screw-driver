@@ -24,12 +24,23 @@ public class SdTemplateContent {
 	private String packageName;
 	/** 类的名字 */
 	private String className;
+	/** 类的名字全部小写 */
+	private String lowerName;
+	/** 类的名字全部大写 */
+	private String upperName;
+	/** 驼峰命名规则的类名字 */
+	private String camelName;
+	/** 连字符命名规则的类名字 */
+	private String hyphenName;
+	/** 下划线命名规则的类名字 */
+	private String underScoreName;
 	/** 文件的后缀名 */
 	private String suffix;
 	/** 该模板中需要用到的属性,map的key为属性的key */
 	private Map<String, SdTemplateAttribute> attrs;
 	/** 拓展属性 */
 	private Map<String, Object> extensions;
+
 	/**
 	 * 获取模板所在路径
 	 * 
@@ -38,6 +49,7 @@ public class SdTemplateContent {
 	public String getPath() {
 		return path;
 	}
+
 	/**
 	 * 设置模板所在路径
 	 * 
@@ -48,6 +60,7 @@ public class SdTemplateContent {
 		this.path = path;
 		return this;
 	}
+
 	/**
 	 * 获取模板文件名字
 	 * 
@@ -56,6 +69,7 @@ public class SdTemplateContent {
 	public String getFile() {
 		return file;
 	}
+
 	/**
 	 * 设置模板文件名字
 	 * 
@@ -66,6 +80,7 @@ public class SdTemplateContent {
 		this.file = file;
 		return this;
 	}
+
 	/**
 	 * 获取如果文件存在的话是否覆盖
 	 * 
@@ -74,6 +89,7 @@ public class SdTemplateContent {
 	public boolean isOverride() {
 		return override;
 	}
+
 	/**
 	 * 设置如果文件存在的话是否覆盖
 	 * 
@@ -84,6 +100,7 @@ public class SdTemplateContent {
 		this.override = override;
 		return this;
 	}
+
 	/**
 	 * 获取文件的源码路径
 	 * 
@@ -92,6 +109,7 @@ public class SdTemplateContent {
 	public String getSourceFolder() {
 		return sourceFolder;
 	}
+
 	/**
 	 * 设置文件的源码路径
 	 * 
@@ -102,6 +120,7 @@ public class SdTemplateContent {
 		this.sourceFolder = sourceFolder;
 		return this;
 	}
+
 	/**
 	 * 获取软件的包名
 	 * 
@@ -110,6 +129,7 @@ public class SdTemplateContent {
 	public String getPackageName() {
 		return packageName;
 	}
+
 	/**
 	 * 设置软件的包名
 	 * 
@@ -120,6 +140,7 @@ public class SdTemplateContent {
 		this.packageName = packageName;
 		return this;
 	}
+
 	/**
 	 * 获取类的名字
 	 * 
@@ -128,6 +149,7 @@ public class SdTemplateContent {
 	public String getClassName() {
 		return className;
 	}
+
 	/**
 	 * 设置类的名字
 	 * 
@@ -138,6 +160,107 @@ public class SdTemplateContent {
 		this.className = className;
 		return this;
 	}
+
+	/**
+	 * 获取类的名字全部小写
+	 * 
+	 * @return
+	 */
+	public String getLowerName() {
+		return lowerName;
+	}
+
+	/**
+	 * 设置类的名字全部小写
+	 * 
+	 * @param lowerName
+	 * @return
+	 */
+	public SdTemplateContent setLowerName(String lowerName) {
+		this.lowerName = lowerName;
+		return this;
+	}
+
+	/**
+	 * 获取类的名字全部大写
+	 * 
+	 * @return
+	 */
+	public String getUpperName() {
+		return upperName;
+	}
+
+	/**
+	 * 设置类的名字全部大写
+	 * 
+	 * @param upperName
+	 * @return
+	 */
+	public SdTemplateContent setUpperName(String upperName) {
+		this.upperName = upperName;
+		return this;
+	}
+
+	/**
+	 * 获取驼峰命名规则的类名字
+	 * 
+	 * @return
+	 */
+	public String getCamelName() {
+		return camelName;
+	}
+
+	/**
+	 * 设置驼峰命名规则的类名字
+	 * 
+	 * @param camelName
+	 * @return
+	 */
+	public SdTemplateContent setCamelName(String camelName) {
+		this.camelName = camelName;
+		return this;
+	}
+
+	/**
+	 * 获取连字符命名规则的类名字
+	 * 
+	 * @return
+	 */
+	public String getHyphenName() {
+		return hyphenName;
+	}
+
+	/**
+	 * 设置连字符命名规则的类名字
+	 * 
+	 * @param hyphenName
+	 * @return
+	 */
+	public SdTemplateContent setHyphenName(String hyphenName) {
+		this.hyphenName = hyphenName;
+		return this;
+	}
+
+	/**
+	 * 获取下划线命名规则的类名字
+	 * 
+	 * @return
+	 */
+	public String getUnderScoreName() {
+		return underScoreName;
+	}
+
+	/**
+	 * 设置下划线命名规则的类名字
+	 * 
+	 * @param underScoreName
+	 * @return
+	 */
+	public SdTemplateContent setUnderScoreName(String underScoreName) {
+		this.underScoreName = underScoreName;
+		return this;
+	}
+
 	/**
 	 * 获取类的后缀名
 	 * 
@@ -146,6 +269,7 @@ public class SdTemplateContent {
 	public String getSuffix() {
 		return suffix;
 	}
+
 	/**
 	 * 设置类的后缀名
 	 * 
@@ -156,6 +280,7 @@ public class SdTemplateContent {
 		this.suffix = suffix;
 		return this;
 	}
+
 	/**
 	 * 获取该模板的属性
 	 * 
@@ -164,6 +289,7 @@ public class SdTemplateContent {
 	public Map<String, SdTemplateAttribute> getAttrs() {
 		return attrs;
 	}
+
 	/**
 	 * 添加该模板的属性
 	 * 
@@ -177,6 +303,7 @@ public class SdTemplateContent {
 		getAttrs().put(attr.getKey(), attr);
 		return this;
 	}
+
 	/**
 	 * 设置该模板的属性
 	 * 
@@ -208,7 +335,7 @@ public class SdTemplateContent {
 	 * @return
 	 */
 	public SdTemplateContent putExtension(String key, Object value) {
-		if (getExtensions()==null) {
+		if (getExtensions() == null) {
 			setExtensions(new LinkedHashMap<String, Object>());
 		}
 		getExtensions().put(key, value);
@@ -240,6 +367,11 @@ public class SdTemplateContent {
 		sb.append("┣━sourceFolder = " + sourceFolder + "\n");
 		sb.append("┣━packageName = " + packageName + "\n");
 		sb.append("┣━className = " + className + "\n");
+		sb.append("┣━lowerName = " + lowerName + "\n");
+		sb.append("┣━upperName = " + upperName + "\n");
+		sb.append("┣━camelName = " + camelName + "\n");
+		sb.append("┣━hyphenName = " + hyphenName + "\n");
+		sb.append("┣━underScoreName = " + underScoreName + "\n");
 		sb.append("┣━suffix = " + suffix + "\n");
 		sb.append("┣━attrs = " + attrs + "\n");
 		sb.append("┗━extensions = " + extensions + "\n");

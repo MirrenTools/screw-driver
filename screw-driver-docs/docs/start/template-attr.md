@@ -16,6 +16,8 @@ SdRenderContent 名称为: content
 |--	|--	|--	|
 |String	|tableName	|表的名字	|
 |String	|alias	|别名	|
+|String	|lowerName	|表的名字全部小写	|
+|String	|upperName	|表的名字全部大写	|
 |String	|pascalName	|表的名字帕斯卡命名	|
 |String	|camelName	|表的名字驼峰命名	|
 |String	|hyphenName	|表的名字连字符命名	|
@@ -41,6 +43,8 @@ SdRenderContent 名称为: content
 |[SdRelationalContent](#sdrelationalcontent-关系属性)	|relationalContent	|属性的关系属性	|
 |String	|fieldType	|属性的数据类型	|
 |String	|fieldName	|属性的名称,驼峰命名,如 mirrenTools	|
+|String	|fieldNameLower	|属性的名称,全部小写,如 mirrentools	|
+|String	|fieldNameUpper	|属性的名称,全部大写,如 MIRRENTOOLS	|
 |String	|fieldNamePascal	|属性的名称帕斯卡命名,如 MirrenTools	|
 |String	|fieldNameHyphen	|属性的名称连字符命名,如 mirren-tools	|
 |String	|fieldNameUnderScore	|属性的名字下划线命名,如 mirren_tools	|
@@ -91,6 +95,8 @@ SdRenderContent 名称为: content
 |String	|fieldRemark	|关系属性的注释	|
 |String	|fieldType	|关系属性数据类型,比如List&lt;Type&gt;	|
 |String	|fieldName	|属性的名字	|
+|String	|lowerName	|表的名字,全部小写	|
+|String	|upperName	|表的名字,全部大写	|
 |String	|pascalName	|表的名字帕斯卡命名	|
 |String	|camelName	|表的名字驼峰命名	|
 |String	|hyphenName	|表的名字连字符命名	|
@@ -116,6 +122,11 @@ SdRenderContent 名称为: content
 |String	|sourceFolder	|项目的源码目录,比如java版maven项目的src/main/java	|
 |String	|packageName	|类的包名	|
 |String	|className	|类的名字	|
+|String	|lowerName	|类的名字,全部小写	|
+|String	|upperName	|类的名字,全部大写	|
+|String	|camelName	|类的名字驼峰命名	|
+|String	|hyphenName	|类的名字连字符命名	|
+|String	|underScoreName	|类的名字下划线命名	|
 |String	|suffix	|文件的后缀名,如.java	|
 |Map&lt;String,[SdTemplateAttribute](#sdtemplateattribute-模板属性值)&gt;	|attrs	|该模板中需要用到的属性,map的key为属性值的key	|
 |Map&lt;String,Object&gt;	|extensions	|拓展属性	|
@@ -123,5 +134,5 @@ SdRenderContent 名称为: content
 |属性名称	|数据类型	|属性描述	|
 |--	|--	|--	|
 |String	|key	|属性值的key	|
-|String	|value	|属性值的value ,如果需要用实体类名字可以使用占位符{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名	|
-|String	|describe	|属性值的描述 ,如果需要用实体类名字可以使用占位符{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名	|
+|String	|value	|属性值的value ,如果需要用实体类名字可以使用占位符{lo}=全部小写,{up}=全部大写,{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名	|
+|String	|describe	|属性值的描述 ,如果需要用实体类名字可以使用占位符{lo}=全部小写,{up}=全部大写,{c}=驼峰命名,{p}=帕斯卡命名,{u}=下划线命名,{h}=连字符命名	|

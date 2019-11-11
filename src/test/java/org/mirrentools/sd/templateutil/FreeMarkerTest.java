@@ -11,7 +11,7 @@ import org.mirrentools.sd.options.ScrewDriverOptions;
 
 public class FreeMarkerTest {
 	public static void main(String[] args) {
-		String entityName="User"; 
+		String entityName="Users"; 
 		HashMap<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 		templates.put("entity", new SdTemplate()
 				.setPath("/SdTemplates/vertx/")
@@ -23,6 +23,21 @@ public class FreeMarkerTest {
 				.setFile("SQL.ftl")
 				.setPackageName("sql")
 				.setClassName(entityName+"SQL"));
+		templates.put("service", new SdTemplate()
+				.setPath("/SdTemplates/vertx/")
+				.setFile("Service.ftl")
+				.setPackageName("service")
+				.setClassName(entityName+"Service"));
+		templates.put("serviceImpl", new SdTemplate()
+				.setPath("/SdTemplates/vertx/")
+				.setFile("ServiceImpl.ftl")
+				.setPackageName("service.impl")
+				.setClassName(entityName+"ServiceImpl"));
+		templates.put("router", new SdTemplate()
+				.setPath("/SdTemplates/vertx/")
+				.setFile("Router.ftl")
+				.setPackageName("router")
+				.setClassName(entityName+"Router"));
 
 		// 初始化执行工具
 		ScrewDriverOptions options = new ScrewDriverOptions(templates, Constant.DATABASEOPTIONS);

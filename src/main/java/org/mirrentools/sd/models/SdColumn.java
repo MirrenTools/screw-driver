@@ -30,6 +30,10 @@ public class SdColumn implements Comparable<SdColumn> {
 	private String fieldType;
 	/** 类属性的名字 */
 	private String fieldName;
+	/** 类属性的名字,全部小写 */
+	private String fieldNameLower;
+	/** 类属性的名字,全部大写 */
+	private String fieldNameUpper;
 	/** 类属性的名字帕斯卡命名 */
 	private String fieldNamePascal;
 	/** 类属性的名字连字符命名 */
@@ -221,6 +225,46 @@ public class SdColumn implements Comparable<SdColumn> {
 	 */
 	public String getFieldName() {
 		return fieldName;
+	}
+
+	/**
+	 * 获取类属性的名字,全部小写
+	 * 
+	 * @return
+	 */
+	public String getFieldNameLower() {
+		return fieldNameLower;
+	}
+
+	/**
+	 * 设置 类属性的名字,全部小写
+	 * 
+	 * @param fieldNameLower
+	 * @return
+	 */
+	public SdColumn setFieldNameLower(String fieldNameLower) {
+		this.fieldNameLower = fieldNameLower;
+		return this;
+	}
+
+	/**
+	 * 获取类属性的名字,全部大写
+	 * 
+	 * @return
+	 */
+	public String getFieldNameUpper() {
+		return fieldNameUpper;
+	}
+
+	/**
+	 * 设置类属性的名字,全部大写
+	 * 
+	 * @param fieldNameUpper
+	 * @return
+	 */
+	public SdColumn setFieldNameUpper(String fieldNameUpper) {
+		this.fieldNameUpper = fieldNameUpper;
+		return this;
 	}
 
 	/**
@@ -963,6 +1007,8 @@ public class SdColumn implements Comparable<SdColumn> {
 		sb.append("  ┣━relationalContent = " + relationalContent + "\n");
 		sb.append("  ┣━fieldType = " + fieldType + "\n");
 		sb.append("  ┣━fieldName = " + fieldName + "\n");
+		sb.append("  ┣━fieldNameLower = " + fieldNameLower + "\n");
+		sb.append("  ┣━fieldNameUpper = " + fieldNameUpper + "\n");
 		sb.append("  ┣━fieldNamePascal = " + fieldNamePascal + "\n");
 		sb.append("  ┣━fieldNameHyphen = " + fieldNameHyphen + "\n");
 		sb.append("  ┣━fieldNameUnderScore = " + fieldNameUnderScore + "\n");

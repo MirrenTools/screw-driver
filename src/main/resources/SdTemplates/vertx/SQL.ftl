@@ -11,7 +11,7 @@ import io.vertx.ext.sql.assist.SQLExecute;
  * @author 
  */ 
 public class ${content.items.sql.className} extends CommonSQL<JDBCClient> {
-	public UserSQL(SQLExecute<JDBCClient> execute) {
+	public ${content.items.sql.className}(SQLExecute<JDBCClient> execute) {
 		super(${content.items.entity.className}.class, execute);
 	}
 

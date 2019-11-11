@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdTemplate;
@@ -47,6 +48,11 @@ public class SdTemplateContentConverterDefaultImpl implements SdTemplateContentC
 		result.setSourceFolder(template.getSourceFolder());
 		result.setPackageName(template.getPackageName());
 		result.setClassName(template.getClassName());
+		result.setLowerName(template.getClassName().toLowerCase());
+		result.setUpperName(template.getClassName().toUpperCase());
+		result.setCamelName(SdUtil.toCamelCase(template.getClassName()));
+		result.setHyphenName(SdUtil.toHyphenCase(template.getClassName()));
+		result.setUnderScoreName(SdUtil.toUnderScoreCase(template.getClassName()));
 		result.setSuffix(template.getSuffix());
 	}
 
@@ -61,7 +67,7 @@ public class SdTemplateContentConverterDefaultImpl implements SdTemplateContentC
 	public void converterAttribute(SdClassContent bean, SdDatabaseOptions databaseOptions, SdTemplate template, SdTemplateContent result) {
 		if (template.getAttributes() != null) {
 			for (SdTemplateAttribute attribute : template.getAttributes()) {
-				replaceTemplateAttributePlaceholder(bean, databaseOptions, attribute);
+				replaceTemplateAttributePlaceholder(template, databaseOptions, attribute);
 				result.putAttr(attribute);
 			}
 		}
@@ -86,13 +92,31 @@ public class SdTemplateContentConverterDefaultImpl implements SdTemplateContentC
 	 * @param databaseOptions
 	 * @param attribute
 	 */
-	public void replaceTemplateAttributePlaceholder(SdClassContent bean, SdDatabaseOptions databaseOptions, SdTemplateAttribute attribute) {
+	public void replaceTemplateAttributePlaceholder(SdTemplate template, SdDatabaseOptions databaseOptions, SdTemplateAttribute attribute) {
+		String lowerCase = template.getClassName().toLowerCase();
+		String upperCase = template.getClassName().toUpperCase();
+		String pascalCase = SdUtil.toPascalCase(template.getClassName());
+		String camelCase = SdUtil.toCamelCase(template.getClassName());
+		String hyphenCase = SdUtil.toHyphenCase(template.getClassName());
+		String scoreCase = SdUtil.toUnderScoreCase(template.getClassName());
 		if (attribute.getValue() != null) {
-			String value = attribute.getValue().replace("{c}", bean.getCamelName()).replace("{p}", bean.getPascalName()).replace("{u}", bean.getUnderScoreName()).replace("{h}", bean.getHyphenName());
+			String value = attribute.getValue()
+					.replace("{lo}", lowerCase)
+					.replace("{up}", upperCase)
+					.replace("{c}", camelCase)
+					.replace("{p}", pascalCase)
+					.replace("{u}", scoreCase)
+					.replace("{h}", hyphenCase);
 			attribute.setValue(value);
 		}
 		if (attribute.getDescribe() != null) {
-			String value = attribute.getDescribe().replace("{c}", bean.getCamelName()).replace("{p}", bean.getPascalName()).replace("{u}", bean.getUnderScoreName()).replace("{h}", bean.getHyphenName());
+			String value = attribute.getDescribe()
+					.replace("{lo}", lowerCase)
+					.replace("{up}", upperCase)
+					.replace("{c}", camelCase)
+					.replace("{p}", pascalCase)
+					.replace("{u}", scoreCase)
+					.replace("{h}", hyphenCase);
 			attribute.setDescribe(value);
 		}
 	}

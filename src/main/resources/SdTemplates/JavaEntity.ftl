@@ -34,7 +34,7 @@ public class ${content.items.entity.className} {
 	 * @return
 	 */
 	</#if>
-	public ${item.fieldType} <#if item.fieldType == "boolean" || item.fieldType == "Boolean">is<#else>get</#if>${item.fieldNamePascal}() {
+	public ${item.fieldType} <#if item.fieldType == "boolean">is<#else>get</#if>${item.fieldNamePascal}() {
 		return ${item.fieldName};
 	}
 	<#if item.fieldRemark??>

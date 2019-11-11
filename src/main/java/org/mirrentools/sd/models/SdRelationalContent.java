@@ -28,6 +28,10 @@ public class SdRelationalContent {
 	private String fieldType;
 	/** 属性的名字 */
 	private String fieldName;
+	/** 表的名字,全部小写 */
+	private String lowerName;
+	/** 表的名字,全部大写 */
+	private String upperName;
 	/** 表的名字帕斯卡命名 */
 	private String pascalName;
 	/** 表的名字驼峰命名 */
@@ -49,6 +53,7 @@ public class SdRelationalContent {
 	public Set<String> getImports() {
 		return imports;
 	}
+
 	/**
 	 * 添加需要引入的包
 	 * 
@@ -62,6 +67,7 @@ public class SdRelationalContent {
 		getImports().add(imports);
 		return this;
 	}
+
 	/**
 	 * 设置需要引入的包
 	 * 
@@ -72,6 +78,7 @@ public class SdRelationalContent {
 		this.imports = imports;
 		return this;
 	}
+
 	/**
 	 * 获取注解
 	 * 
@@ -80,6 +87,7 @@ public class SdRelationalContent {
 	public Set<String> getAnnotations() {
 		return annotations;
 	}
+
 	/**
 	 * 添加注释
 	 * 
@@ -93,6 +101,7 @@ public class SdRelationalContent {
 		getAnnotations().add(annotation);
 		return this;
 	}
+
 	/**
 	 * 设置注解
 	 * 
@@ -103,6 +112,7 @@ public class SdRelationalContent {
 		this.annotations = annotations;
 		return this;
 	}
+
 	/**
 	 * 获取关系的类型
 	 * 
@@ -111,6 +121,7 @@ public class SdRelationalContent {
 	public Relational getRelationalType() {
 		return relationalType;
 	}
+
 	/**
 	 * 设置关系的类型
 	 * 
@@ -130,6 +141,7 @@ public class SdRelationalContent {
 	public String getFieldRemark() {
 		return fieldRemark;
 	}
+
 	/**
 	 * 设置关系属性注释
 	 * 
@@ -140,6 +152,7 @@ public class SdRelationalContent {
 		this.fieldRemark = fieldRemark;
 		return this;
 	}
+
 	/**
 	 * 获取属性类型
 	 * 
@@ -148,6 +161,7 @@ public class SdRelationalContent {
 	public String getFieldType() {
 		return fieldType;
 	}
+
 	/**
 	 * 设置属性类型
 	 * 
@@ -158,6 +172,7 @@ public class SdRelationalContent {
 		this.fieldType = fieldType;
 		return this;
 	}
+
 	/**
 	 * 获取属性名字
 	 * 
@@ -166,6 +181,7 @@ public class SdRelationalContent {
 	public String getFieldName() {
 		return fieldName;
 	}
+
 	/**
 	 * 设置属性名字
 	 * 
@@ -176,6 +192,47 @@ public class SdRelationalContent {
 		this.fieldName = fieldName;
 		return this;
 	}
+
+	/**
+	 * 获取表的名字,全部小写
+	 * 
+	 * @return
+	 */
+	public String getLowerName() {
+		return lowerName;
+	}
+
+	/**
+	 * 设置表的名字,全部小写
+	 * 
+	 * @param lowerName
+	 * @return
+	 */
+	public SdRelationalContent setLowerName(String lowerName) {
+		this.lowerName = lowerName;
+		return this;
+	}
+
+	/**
+	 * 获取表的名字,全部大写
+	 * 
+	 * @return
+	 */
+	public String getUpperName() {
+		return upperName;
+	}
+
+	/**
+	 * 设置表的名字,全部大写
+	 * 
+	 * @param upperName
+	 * @return
+	 */
+	public SdRelationalContent setUpperName(String upperName) {
+		this.upperName = upperName;
+		return this;
+	}
+
 	/**
 	 * 获取表名的帕斯卡命名
 	 * 
@@ -184,6 +241,7 @@ public class SdRelationalContent {
 	public String getPascalName() {
 		return pascalName;
 	}
+
 	/**
 	 * 设置表名的帕斯卡命名
 	 * 
@@ -194,6 +252,7 @@ public class SdRelationalContent {
 		this.pascalName = pascalName;
 		return this;
 	}
+
 	/**
 	 * 获取表名的驼峰命名
 	 * 
@@ -202,6 +261,7 @@ public class SdRelationalContent {
 	public String getCamelName() {
 		return camelName;
 	}
+
 	/**
 	 * 表名的驼峰命名
 	 * 
@@ -212,6 +272,7 @@ public class SdRelationalContent {
 		this.camelName = camelName;
 		return this;
 	}
+
 	/**
 	 * 获取表名的连字符命名
 	 * 
@@ -220,6 +281,7 @@ public class SdRelationalContent {
 	public String getHyphenName() {
 		return hyphenName;
 	}
+
 	/**
 	 * 设置表名的连字符命名
 	 * 
@@ -230,6 +292,7 @@ public class SdRelationalContent {
 		this.hyphenName = hyphenName;
 		return this;
 	}
+
 	/**
 	 * 获取表名的下划线命名
 	 * 
@@ -238,6 +301,7 @@ public class SdRelationalContent {
 	public String getUnderScoreName() {
 		return underScoreName;
 	}
+
 	/**
 	 * 设置表名的下划线命名
 	 * 
@@ -257,6 +321,7 @@ public class SdRelationalContent {
 	public SdClassContent getClassContent() {
 		return classContent;
 	}
+
 	/**
 	 * 设置实体类需要的属性
 	 * 
@@ -267,6 +332,7 @@ public class SdRelationalContent {
 		this.classContent = classContent;
 		return this;
 	}
+
 	/**
 	 * 获得拓展属性值
 	 * 
@@ -302,6 +368,7 @@ public class SdRelationalContent {
 		this.extensions = extensions;
 		return this;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -312,6 +379,8 @@ public class SdRelationalContent {
 		sb.append("┣━fieldRemark = " + fieldRemark + "\n");
 		sb.append("┣━fieldType = " + fieldType + "\n");
 		sb.append("┣━fieldName = " + fieldName + "\n");
+		sb.append("┣━lowerName = " + lowerName + "\n");
+		sb.append("┣━upperName = " + upperName + "\n");
 		sb.append("┣━pascalName = " + pascalName + "\n");
 		sb.append("┣━camelName = " + camelName + "\n");
 		sb.append("┣━hyphenName = " + hyphenName + "\n");

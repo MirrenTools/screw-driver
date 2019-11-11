@@ -20,6 +20,10 @@ public class SdClassContent {
 	private String tableName;
 	/** 别名 */
 	private String alias;
+	/** 表的名字全部小写 */
+	private String lowerName;
+	/** 表的名字全部大写 */
+	private String upperName;
 	/** 表的名字帕斯卡命名 */
 	private String pascalName;
 	/** 表的名字驼峰命名 */
@@ -86,6 +90,45 @@ public class SdClassContent {
 	 */
 	public SdClassContent setAlias(String alias) {
 		this.alias = alias;
+		return this;
+	}
+	/**
+	 * 获取类的名字全部小写
+	 * 
+	 * @return
+	 */
+	public String getLowerName() {
+		return lowerName;
+	}
+
+	/**
+	 * 设置表的名字全部小写
+	 * 
+	 * @param lowerName
+	 * @return
+	 */
+	public SdClassContent setLowerName(String lowerName) {
+		this.lowerName = lowerName;
+		return this;
+	}
+
+	/**
+	 * 获取表的名字全部大写
+	 * 
+	 * @return
+	 */
+	public String getUpperName() {
+		return upperName;
+	}
+
+	/**
+	 * 设置表的名字全部大写
+	 * 
+	 * @param upperName
+	 * @return
+	 */
+	public SdClassContent setUpperName(String upperName) {
+		this.upperName = upperName;
 		return this;
 	}
 	/**
@@ -550,6 +593,8 @@ public class SdClassContent {
 		sb.append("SdClassContent: \n");
 		sb.append("tableName=" + tableName + "\n");
 		sb.append("alias=" + alias + "\n");
+		sb.append("lowerName=" + lowerName + "\n");
+		sb.append("upperName=" + upperName + "\n");
 		sb.append("pascalName=" + pascalName + "\n");
 		sb.append("camelName=" + camelName + "\n");
 		sb.append("hyphenName=" + hyphenName + "\n");

@@ -30,6 +30,7 @@ public abstract class SdAbstractClassConverter implements SdClassConverter {
 		converterExtensions(bean, result);
 		return result;
 	}
+
 	/**
 	 * 初始化bean的基本信息
 	 * 
@@ -41,6 +42,8 @@ public abstract class SdAbstractClassConverter implements SdClassConverter {
 		result.setAnnotations(bean.getAnnotations());
 		result.setTableName(bean.getName());
 		result.setAlias(bean.getAlias());
+		result.setLowerName(bean.getName().toLowerCase());
+		result.setUpperName(bean.getName().toUpperCase());
 		result.setCamelName(SdUtil.toCamelCase(bean.getName()));
 		result.setPascalName(SdUtil.toPascalCase(bean.getName()));
 		result.setHyphenName(SdUtil.toHyphenCase(bean.getName()));
@@ -63,6 +66,12 @@ public abstract class SdAbstractClassConverter implements SdClassConverter {
 			}
 			if (SdUtil.isNullOrEmpty(col.getFieldName())) {
 				col.setFieldName(SdUtil.toCamelCase(col.getName()));
+			}
+			if (SdUtil.isNullOrEmpty(col.getFieldNameLower())) {
+				col.setFieldNameLower(col.getName().toLowerCase());
+			}
+			if (SdUtil.isNullOrEmpty(col.getFieldNameUpper())) {
+				col.setFieldNameUpper(col.getName().toUpperCase());
 			}
 			if (SdUtil.isNullOrEmpty(col.getFieldNamePascal())) {
 				col.setFieldNamePascal(SdUtil.toPascalCase(col.getName()));
@@ -107,6 +116,7 @@ public abstract class SdAbstractClassConverter implements SdClassConverter {
 			}
 		}
 	}
+
 	/**
 	 * 转换附加属性
 	 * 
@@ -126,6 +136,12 @@ public abstract class SdAbstractClassConverter implements SdClassConverter {
 				}
 				if (SdUtil.isNullOrEmpty(col.getFieldName())) {
 					col.setFieldName(SdUtil.toCamelCase(name));
+				}
+				if (SdUtil.isNullOrEmpty(col.getFieldNameLower())) {
+					col.setFieldNameLower(col.getName().toLowerCase());
+				}
+				if (SdUtil.isNullOrEmpty(col.getFieldNameUpper())) {
+					col.setFieldNameUpper(col.getName().toUpperCase());
 				}
 				if (SdUtil.isNullOrEmpty(col.getFieldNamePascal())) {
 					col.setFieldNamePascal(SdUtil.toPascalCase(name));
@@ -168,6 +184,7 @@ public abstract class SdAbstractClassConverter implements SdClassConverter {
 			}
 		}
 	}
+
 	/**
 	 * 转换关系属性
 	 * 
@@ -217,6 +234,8 @@ public abstract class SdAbstractClassConverter implements SdClassConverter {
 		content.setFieldRemark(rel.getFieldRemark());
 		content.setFieldType(rel.getFieldType());
 		content.setFieldName(rel.getFieldName());
+		content.setLowerName(rel.getFieldName().toLowerCase());
+		content.setUpperName(rel.getFieldName().toUpperCase());
 		content.setPascalName(SdUtil.toPascalCase(rel.getFieldName()));
 		content.setCamelName(SdUtil.toCamelCase(rel.getFieldName()));
 		content.setHyphenName(SdUtil.toHyphenCase(rel.getFieldName()));
