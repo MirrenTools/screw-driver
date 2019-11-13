@@ -7,7 +7,7 @@ import org.mirrentools.sd.ScrewDriverDbUtil;
 import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.ScrewDriverTemplateEngine;
 import org.mirrentools.sd.common.SdUtil;
-import org.mirrentools.sd.constant.Constant;
+import org.mirrentools.sd.constant.SdConstant;
 import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdDatabaseContentConverter;
 import org.mirrentools.sd.converter.SdTableContentConverter;
@@ -38,7 +38,7 @@ public class ScrewDriverOptions {
 	/** 项目所在路径,默认当前项目 */
 	private String outputPath = SdUtil.getUserDir();
 	/** 生成使用编码格式,默认UTF-8 */
-	private String codeFormat = Constant.UTF_8;
+	private String codeFormat = SdConstant.UTF_8;
 	/** 将SdBean转换成类属性的转换器 */
 	private SdClassConverter beanConverter;
 	/** 模板转换器 */

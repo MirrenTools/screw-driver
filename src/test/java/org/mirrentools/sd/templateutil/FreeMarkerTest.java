@@ -1,6 +1,7 @@
 package org.mirrentools.sd.templateutil;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.mirrentools.sd.ScrewDriver;
 import org.mirrentools.sd.SdType;
@@ -12,7 +13,7 @@ import org.mirrentools.sd.options.ScrewDriverOptions;
 public class FreeMarkerTest {
 	public static void main(String[] args) {
 		String entityName="Users"; 
-		HashMap<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
+		Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 		templates.put("entity", new SdTemplate()
 				.setPath("/SdTemplates/vertx/")
 				.setFile("Entity.ftl")
@@ -38,15 +39,21 @@ public class FreeMarkerTest {
 				.setFile("Router.ftl")
 				.setPackageName("router")
 				.setClassName(entityName+"Router"));
+		templates.put("test", new SdTemplate()
+				.setPath("/SdTemplates/vertx/")
+				.setFile("Test.ftl")
+				.setSourceFolder(org.mirrentools.sd.constant.SdConstant.MAVEN_TEST)
+				.setPackageName("test")
+				.setClassName(entityName+"RouterTest"));
 
 		// 初始化执行工具
 		ScrewDriverOptions options = new ScrewDriverOptions(templates, Constant.DATABASEOPTIONS);
 		options.setOutputPath("D:/TempJect/freemarker");
 		ScrewDriver screwDriver = ScrewDriver.instance(options);
 		SdBean bean = Constant.BEAN;
-		bean.addColumn(new SdColumn().setType(SdType.FLOAT).setName("float_test"));
-		bean.addColumn(new SdColumn().setType(SdType.DOUBLE).setName("double_test"));
-		bean.addColumn(new SdColumn().setType(SdType.LONG).setName("long_test"));
+		bean.addColumn(new SdColumn().setType(SdType.FLOAT).setNullable(false).setName("float_test"));
+		bean.addColumn(new SdColumn().setType(SdType.DOUBLE).setNullable(false).setName("double_test"));
+		bean.addColumn(new SdColumn().setType(SdType.LONG).setNullable(false).setName("long_test"));
 		screwDriver.createCode(bean);
 
 	}

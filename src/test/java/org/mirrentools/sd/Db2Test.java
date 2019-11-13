@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.mirrentools.sd.common.SdUtil;
-import org.mirrentools.sd.constant.Constant;
+import org.mirrentools.sd.constant.SdConstant;
 import org.mirrentools.sd.constant.DB2;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdColumn;
@@ -22,7 +22,7 @@ public class Db2Test {
 		bean.setName("user").setRemark("用户").setColumns(SdUtil.asList(column, column2, column3));
 		// 设置实体生成模板
 		Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
-		templates.put("entity", new SdTemplate().setPath("mybatis").setFile("JavaEntity.ftl").setSourceFolder(Constant.MAVEN_SRC).setPackageName("entity").setClassName("User"));
+		templates.put("entity", new SdTemplate().setPath("mybatis").setFile("JavaEntity.ftl").setSourceFolder(SdConstant.MAVEN_SRC).setPackageName("entity").setClassName("User"));
 		// 初始化SQL执行生成工具
 		SdDatabaseOptions databaseOptions = new SdDatabaseOptions(DB2.DB2_DERVER, "jdbc:db2://127.0.0.1:50000/sample");
 		databaseOptions.setUser("db2admin");

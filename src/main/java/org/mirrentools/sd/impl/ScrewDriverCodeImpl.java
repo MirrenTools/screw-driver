@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import org.mirrentools.sd.ScrewDriverCode;
 import org.mirrentools.sd.ScrewDriverTemplateEngine;
 import org.mirrentools.sd.common.SdUtil;
-import org.mirrentools.sd.constant.Constant;
+import org.mirrentools.sd.constant.SdConstant;
 import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.models.SdBean;
@@ -98,7 +98,7 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 
 	@Override
 	public String getCodeFormat() {
-		return codeFormat == null ? Constant.UTF_8 : codeFormat;
+		return codeFormat == null ? SdConstant.UTF_8 : codeFormat;
 	}
 
 	@Override

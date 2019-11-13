@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mirrentools.sd.common.SdUtil;
-import org.mirrentools.sd.constant.Constant;
+import org.mirrentools.sd.constant.SdConstant;
 
 /**
  * 工具生成所需要的模板材料
@@ -23,13 +23,13 @@ public class SdTemplate {
 	/** 如果文件已经存在是否覆盖,默认覆盖 */
 	private boolean override = true;
 	/** 项目的源码目录,默认值src/main/java/ */
-	private String sourceFolder = Constant.MAVEN_SRC;
+	private String sourceFolder = SdConstant.MAVEN_SRC;
 	/** 类的包名 */
 	private String packageName;
 	/** 类的名字 */
 	private String className;
 	/** 类的后缀名 */
-	private String suffix = Constant.JAVA_SUFFIX;
+	private String suffix = SdConstant.JAVA_SUFFIX;
 	/** 模板中需要用到的属性 */
 	private List<SdTemplateAttribute> attributes;
 	/** 拓展属性 */

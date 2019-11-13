@@ -6,7 +6,7 @@ package org.mirrentools.sd.constant;
  * @author <a href="http://mirrentools.org">Mirren</a>
  *
  */
-public interface Constant {
+public interface SdConstant {
 
 	/** UTF-8 */
 	public static final String UTF_8 = "UTF-8";

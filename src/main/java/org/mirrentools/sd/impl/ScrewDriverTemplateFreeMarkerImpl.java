@@ -13,7 +13,7 @@ import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.ScrewDriverTemplateEngine;
 import org.mirrentools.sd.common.SdTemplatePathUtil;
 import org.mirrentools.sd.common.SdUtil;
-import org.mirrentools.sd.constant.Constant;
+import org.mirrentools.sd.constant.SdConstant;
 import org.mirrentools.sd.models.SdRenderContent;
 import org.mirrentools.sd.models.SdTemplate;
 
@@ -62,7 +62,7 @@ public class ScrewDriverTemplateFreeMarkerImpl extends ScrewDriverTemplateEngine
 			Configuration config = new Configuration(Configuration.VERSION_2_3_23);
 			config.setDirectoryForTemplateLoading(new File(SdTemplatePathUtil.getPath(template.getPath())));
 			config.setObjectWrapper(new DefaultObjectWrapper(Configuration.VERSION_2_3_23));
-			config.setDefaultEncoding(Constant.UTF_8);
+			config.setDefaultEncoding(SdConstant.UTF_8);
 			Map<String, Object> dataModel = new HashMap<String, Object>();
 			dataModel.put("content", content);
 			File outDir = new File(outputDirPath);

@@ -123,9 +123,39 @@ public class User {
   <version>${version}</version>
 </dependency>
 ```
+模板路径:
+``` java
+String entityName="Users"; 
+Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
+templates.put("entity", new SdTemplate()
+	.setFile("Entity.ftl")
+	.setPackageName("entity")
+	.setClassName(entityName));
+templates.put("sql", new SdTemplate()
+	.setFile("SQL.ftl")
+	.setPackageName("sql")
+	.setClassName(entityName + "SQL"));
+templates.put("service", new SdTemplate()
+	.setFile("Service.ftl")
+	.setPackageName("service")
+	.setClassName(entityName + "Service"));
+templates.put("serviceImpl", new SdTemplate()
+	.setFile("ServiceImpl.ftl")
+	.setPackageName("service.impl")
+	.setClassName(entityName + "ServiceImpl"));
+templates.put("router", new SdTemplate()
+	.setFile("Router.ftl")
+	.setPackageName("router")
+	.setClassName(entityName + "Router"));
+templates.put("test", new SdTemplate()
+	.setPath("/SdTemplates/vertx/")
+	.setFile("Test.ftl")
+	.setSourceFolder(SdConstant.MAVEN_TEST)
+	.setPackageName("test")
+	.setClassName(entityName+"RouterTest"));
+```
 
-
-## JPA 模板
+## Spring JPA 模板
 实体类属性的描述
 ## MyBatis模板
 实体类属性的描述

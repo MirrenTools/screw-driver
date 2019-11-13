@@ -34,9 +34,9 @@ public class CommonConstant {
 	 */
 	private static void initTemplates() {
 		templates = new HashMap<String, SdTemplate>();
-		SdTemplate entity = new SdTemplate().setFile("entity.ftl").setSourceFolder(Constant.MAVEN_TEST).setPackageName("com.entity").setClassName("User");
+		SdTemplate entity = new SdTemplate().setFile("entity.ftl").setSourceFolder(SdConstant.MAVEN_TEST).setPackageName("com.entity").setClassName("User");
 		templates.put("entity", entity);
-		SdTemplate dao = new SdTemplate().setFile("dao.ftl").setSourceFolder(Constant.MAVEN_TEST).setPackageName("com.dao").setClassName("UserDao");
+		SdTemplate dao = new SdTemplate().setFile("dao.ftl").setSourceFolder(SdConstant.MAVEN_TEST).setPackageName("com.dao").setClassName("UserDao");
 		dao.addAttribute(new SdTemplateAttribute("test", "{c}{p}", "测试驼峰与帕斯卡还有下划线{u},连字符{h}"));
 		templates.put("dao", dao);
 	}

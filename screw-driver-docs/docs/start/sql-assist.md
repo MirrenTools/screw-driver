@@ -28,6 +28,12 @@ SqlAssist是为ScrewDriver生成SQL所定制的查询帮助类,可以用于简�
 * **orGte** 添加或者大于等于条件
 * **andLike** 添加并且like条件
 * **orLike** 添加或者like条件
+* **andNotLike** 添加并且not like条件
+* **orNotLike** 添加或者not like条件
+* **andIsNull** 添加并且is null条件
+* **orIsNull** 添加或者is null条件
+* **andIsNotNull** 添加并且is not null条件
+* **orIsNotNull** 添加或者is not null条件
 * **setConditions** 添加查询条件
 * **customCondition** 添加自定义查询条件
 ## 使用示例
