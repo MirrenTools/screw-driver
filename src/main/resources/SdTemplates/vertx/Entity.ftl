@@ -1,21 +1,3 @@
-	<#if content.entity.primaryField??>
-	<#assign assign_fieldType = content.entity.primaryField[0].fieldType>
-	<#assign assign_fieldName = content.entity.primaryField[0].fieldName>
-	@Override
-	public void get(MultiMap params, Handler<AsyncResult<JsonObject>> handler) {
-		<#if assign_fieldType  ==  "Integer" || assign_fieldType  ==  "int">
-		<#assign assign_fieldIdCreate = "Integer ${assign_fieldName} = getInteger(params.get(\"${assign_fieldName}\"))">
-		<#elseif assign_fieldType  ==  "Long" || assign_fieldType  ==  "long">
-		<#assign assign_fieldIdCreate = "Long ${assign_fieldName} = getLong(params.get(\"${assign_fieldName}\"))">
-		<#elseif assign_fieldType  ==  "Float" || assign_fieldType  ==  "float">
-		<#assign assign_fieldIdCreate = "Float ${assign_fieldName} = getFloat(params.get(\"${assign_fieldName}\"))">
-		<#elseif assign_fieldType  ==  "Double" || assign_fieldType  ==  "double">
-		<#assign assign_fieldIdCreate = "Double ${assign_fieldName} = getDouble(params.get(\"${assign_fieldName}\"))">
-		<#else>
-		<#assign assign_fieldIdCreate = "String ${assign_fieldName} = params.get(\"${assign_fieldName}\")">
-		</#if>
-		${assign_fieldIdCreate};
-		</#if>
 <#assign assign_ClassName = content.items.entity.className>
 package ${content.items.entity.packageName};
 

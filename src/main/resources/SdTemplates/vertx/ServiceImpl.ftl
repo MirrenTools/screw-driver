@@ -27,7 +27,6 @@ import io.vertx.ext.sql.assist.SqlAssist;
  * @author 
  *
  */
- 
 public class ${assign_ClassName} implements ${content.items.service.className} {
 	/** 日志工具 */
 	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
@@ -127,7 +126,7 @@ public class ${assign_ClassName} implements ${content.items.service.className} {
 		<#assign assign_fieldIdCreate = "String ${assign_fieldName} = params.get(\"${assign_fieldName}\")">
 		</#if>
 		${assign_fieldIdCreate};
-		if (${assign_fieldName} == null <#if assign_fieldName == "String">|| ${assign_fieldName}.trim().isEmpty()</#if>) {
+		if (${assign_fieldName} == null <#if assign_fieldType == "String"> || ${assign_fieldName}.trim().isEmpty()</#if>) {
 			handler.handle(formatFailure(412, "获取数据失败,请求中缺少必填的参数!", "id不能为空", null));
 			return;
 		}
@@ -180,7 +179,7 @@ public class ${assign_ClassName} implements ${content.items.service.className} {
 	@Override
 	public void delete(MultiMap params, Handler<AsyncResult<JsonObject>> handler) {
 		${assign_fieldIdCreate};
-		if (${assign_fieldName} == null <#if assign_fieldName == "String">|| ${assign_fieldName}.trim().isEmpty()</#if>) {
+		if (${assign_fieldName} == null <#if assign_fieldType == "String"> || ${assign_fieldName}.trim().isEmpty()</#if>) {
 			handler.handle(formatFailure(412, "删除数据失败,请求中缺少必填的参数!", "id不能为空", null));
 			return;
 		}

@@ -53,7 +53,9 @@ public class SdColumn implements Comparable<SdColumn> {
 	/** 列的注释 */
 	private String remark;
 	/** 列的长度 */
-	private String length;
+	private Integer length;
+	/** 列的小数点精度 */
+	private Integer precision;
 	/** 列的默认值 */
 	private String defaults;
 	/** 列是否为主键 */
@@ -403,32 +405,53 @@ public class SdColumn implements Comparable<SdColumn> {
 	 * 
 	 * @return
 	 */
-	public String getLength() {
+	public Integer getLength() {
 		return length;
 	}
 
 	/**
-	 * 设置列的长度不带小数点
+	 * 设置列的长度
 	 * 
 	 * @param length
 	 * @return
 	 */
 	public SdColumn setLength(Integer length) {
-		if (length == null) {
-			return this;
-		}
-		this.length = Integer.toString(length);
+		this.length = length;
 		return this;
 	}
 
 	/**
-	 * 设置列的长度带小数点,比如2,2
+	 * 设置列的长度与小数点
 	 * 
 	 * @param length
+	 *          长度
+	 * @param precision
+	 *          小数点进度
 	 * @return
 	 */
-	public SdColumn setLength(String lengths) {
-		this.length = lengths;
+	public SdColumn setLength(Integer length, Integer precision) {
+		this.length = length;
+		this.precision = precision;
+		return this;
+	}
+
+	/**
+	 * 获取小数点精度
+	 * 
+	 * @return
+	 */
+	public Integer getPrecision() {
+		return precision;
+	}
+
+	/**
+	 * 设置小数点精度
+	 * 
+	 * @param precision
+	 * @return
+	 */
+	public SdColumn setPrecision(Integer precision) {
+		this.precision = precision;
 		return this;
 	}
 
@@ -1017,6 +1040,7 @@ public class SdColumn implements Comparable<SdColumn> {
 		sb.append("  ┣━type = " + type + "\n");
 		sb.append("  ┣━remark = " + remark + "\n");
 		sb.append("  ┣━length = " + length + "\n");
+		sb.append("  ┣━precision = " + precision + "\n");
 		sb.append("  ┣━defaults = " + defaults + "\n");
 		sb.append("  ┣━primary = " + primary + "\n");
 		sb.append("  ┣━primaryName = " + primaryName + "\n");

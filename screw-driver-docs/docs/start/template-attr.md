@@ -57,7 +57,8 @@ SdRenderContent 名称为: content
 |String	|type	|列的数据类型	|
 |String	|remark	|列的注释	|
 |String	|length	|列的长度	|
-|String	|_default	|列的默认值	|
+|String	|precision	|列的小数点精度	|
+|String	|defaults	|列的默认值	|
 |boolean	|primary	|列是否为主键	|
 |String	|primaryName	|列的主键名称	|
 |boolean	|foreignKey	|列是否为外键	|

@@ -175,7 +175,13 @@ public abstract class SdAbstractTableContentConverter implements SdTableContentC
 			column.setName(col.getName());
 			column.setRemark(col.getRemark());
 			column.setType(getTypeConverter().converter(col.getType()));
-			column.setLength(col.getLength());
+			if (col.getLength() != null) {
+				if (col.getPrecision() != null) {
+					column.setLength(col.getLength() + "," + col.getPrecision());
+				} else {
+					column.setLength(Integer.toString(col.getLength()));
+				}
+			}
 			column.setDefault(col.getDefaults());
 			column.setPrimary(col.isPrimary());
 			column.setNotNull(!col.isNullable());
