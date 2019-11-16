@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import lombok.Data;
 <#if content.content.imports??>
 	<#list content.content.imports as impt>
 import ${impt};
@@ -20,6 +21,7 @@ import ${impt};
 ${anno}
 	</#list>
 </#if>
+@Data
 @Entity
 @Table<#if assign_ClassName != content.content.tableName>(name = "${content.content.tableName}")</#if>
 public class ${assign_ClassName} {
@@ -37,32 +39,4 @@ public class ${assign_ClassName} {
 	</#if>
 	private ${item.fieldType} ${item.fieldName} <#if item.defaults??> = <#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "String">"</#if>${item.defaults}<#if item.fieldType == "String">"</#if><#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "float">f</#if><#if item.fieldType == "Float">F</#if><#if item.fieldType == "long">l</#if><#if item.fieldType == "Long">L</#if></#if>; 
 	</#list>
-	
-	<#list content.content.fields as item> 
-	<#if item.fieldRemark??>
-	/**
-	 * 获取${item.fieldRemark}
-	 * 
-	 * @return
-	 */
-	</#if>
-	public ${item.fieldType} <#if item.fieldType == "boolean">is<#else>get</#if>${item.fieldNamePascal}() {
-		return ${item.fieldName};
-	}
-	<#if item.fieldRemark??>
-	/**
-	 * 设置${item.fieldRemark}
-	 * 
-	 * @param ${item.fieldName}
-	 */
-	</#if>
-	public void set${item.fieldNamePascal}(${item.fieldType} ${item.fieldName}) {
-		this.${item.fieldName} = ${item.fieldName};
-	}
-	</#list>
-
-	@Override
-	public String toString() {
-		return "${content.items.entity.className} [<#list content.content.fields as item>${item.fieldName}=" + ${item.fieldName} + " <#if item?has_next>,</#if> </#list>]";
-	}
 }

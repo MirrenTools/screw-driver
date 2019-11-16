@@ -125,39 +125,77 @@ public class User {
 ```
 模板路径:
 ``` java
+String packageName="org.mirrentools."; 
 String entityName="Users"; 
 Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 templates.put("entity", new SdTemplate()
-	.setFile("Entity.ftl")
-	.setPackageName("entity")
+	.setFile("Entity.ftl")//Lombok模板为EntityLombok.ftl
+	.setPackageName(packageName + "entity")
 	.setClassName(entityName));
 templates.put("sql", new SdTemplate()
 	.setFile("SQL.ftl")
-	.setPackageName("sql")
+	.setPackageName(packageName + "sql")
 	.setClassName(entityName + "SQL"));
 templates.put("service", new SdTemplate()
 	.setFile("Service.ftl")
-	.setPackageName("service")
+	.setPackageName(packageName + "service")
 	.setClassName(entityName + "Service"));
 templates.put("serviceImpl", new SdTemplate()
 	.setFile("ServiceImpl.ftl")
-	.setPackageName("service.impl")
+	.setPackageName(packageName + "service.impl")
 	.setClassName(entityName + "ServiceImpl"));
 templates.put("router", new SdTemplate()
 	.setFile("Router.ftl")
-	.setPackageName("router")
+	.setPackageName(packageName + "router")
 	.setClassName(entityName + "Router"));
 templates.put("test", new SdTemplate()
 	.setPath("/SdTemplates/vertx/")
 	.setFile("Test.ftl")
 	.setSourceFolder(SdConstant.MAVEN_TEST)
-	.setPackageName("test")
+	.setPackageName(packageName + "test")
 	.setClassName(entityName+"RouterTest"));
 ```
 
 ## Spring JPA 模板
-实体类属性的描述
+模板路径:
+``` java
+String packageName="com.example.demo."; 
+String entityName="Users"; 
+Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
+templates.put("entity", new SdTemplate()
+	.setPath("/SdTemplates/jpa/")
+	.setFile("Entity.ftl")//Lombok模板为EntityLombok.ftl
+	.setPackageName(packageName + "entity")
+	.setClassName(entityName));
+templates.put("dao", new SdTemplate()
+	.setPath("/SdTemplates/jpa/")
+	.setFile("Dao.ftl")
+	.setPackageName(packageName + "repository")
+	.setClassName(entityName + "Repository"));
+templates.put("service", new SdTemplate()
+	.setPath("/SdTemplates/jpa/")
+	.setFile("Service.ftl")
+	.setPackageName(packageName + "service")
+	.setClassName(entityName + "Service"));
+templates.put("serviceImpl", new SdTemplate()
+	.setPath("/SdTemplates/jpa/")
+	.setFile("ServiceImpl.ftl")
+	.setPackageName(packageName + "service.impl")
+	.setClassName(entityName + "ServiceImpl"));
+templates.put("controller", new SdTemplate()
+	.setPath("/SdTemplates/jpa/")
+	.setFile("Controller.ftl")
+	.setPackageName(packageName + "controller")
+	.setClassName(entityName + "Controller"));
+templates.put("test", new SdTemplate()
+	.setPath("/SdTemplates/jpa/")
+	.setFile("Test.ftl")
+	.setSourceFolder(org.mirrentools.sd.constant.SdConstant.MAVEN_TEST)
+	.setPackageName(packageName + "test")
+	.setClassName(entityName + "ControllerTest")
+	);
+```
 ## MyBatis模板
 实体类属性的描述
-## MyBatis-Plus 模板
+## MyBatis-Plus模板
 实体类属性的描述

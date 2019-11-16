@@ -10,9 +10,9 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import ${content.items.service.packageName}.${content.items.service.className};
 import ${content.items.dao.packageName}.${content.items.dao.className};
@@ -33,7 +33,7 @@ public class ${assign_ClassName} implements ${content.items.service.className} {
 
 	@Override
 	public Map<String, Object> find() {
-		List<${assign_EntityName}> data = ${assign_daoName}.findAll();
+		List<${assign_EntityName}> data = ${assign_daoName}.selectList(null);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("执行获取数据[${assign_ClassName}.find]-->成功:" + data);
 		}
@@ -51,15 +51,13 @@ public class ${assign_ClassName} implements ${content.items.service.className} {
 		if (rowSize == null) {
 			rowSize = 15;
 		}
-		PageRequest request = PageRequest.of(page, rowSize);
-		Page<${assign_EntityName}> data = ${assign_daoName}.findAll(request);
+		IPage<${assign_EntityName}> data =  ${assign_daoName}.selectPage(new Page<Users>(page, rowSize), null);
 		Map<String, Object> result = new HashMap<>();
-		result.put("content", data.getContent());
-		result.put("totalPages", data.getTotalPages());
-		result.put("totalElements", data.getTotalElements());
-		result.put("number", data.getNumber());
-		result.put("numberOfElements", data.getNumberOfElements());
+		result.put("pages", data.getPages());
+		result.put("current", data.getCurrent());
+		result.put("total", data.getTotal());
 		result.put("size", data.getSize());
+		result.put("records", data.getRecords());
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("执行获取数据[${assign_ClassName}.limit]-->成功:" + result);
 		}
@@ -72,14 +70,14 @@ public class ${assign_ClassName} implements ${content.items.service.className} {
 			LOG.debug("执行更新数据[${assign_ClassName}.save]-->请求数据:" + data);
 		}
 		<#if content.content.cantNullField??>
-		if (data == null || (<#list content.content.cantNullField as cnf>data.get${cnf.fieldNamePascal}() == null <#if cnf?has_next> && </#if></#list>)) {
+		if (<#list content.content.cantNullField as cnf>data.get${cnf.fieldNamePascal}() == null <#if cnf?has_next> && </#if></#list>) {
 			if (LOG.isDebugEnabled()) {
 				LOG.debug("执行更新数据[${assign_ClassName}.save]-->失败:缺少必填参数");
 			}
 			return formatFailed(412, "操作失败,缺少必填的数据!", "缺少必填项参数", data);
 		}
 		</#if>
-		${assign_EntityName} result = ${assign_daoName}.save(data);
+		int result = ${assign_daoName}.insert(data);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("执行更新数据[${assign_ClassName}.save]-->结果:" + result);
 		}
@@ -87,6 +85,7 @@ public class ${assign_ClassName} implements ${content.items.service.className} {
 	}
 	<#if content.content.primaryField??>
 	<#assign assign_fieldType = content.content.primaryField[0].fieldType>
+	<#assign assign_fieldName = content.content.primaryField[0].fieldName>
 	@Override
 	public Map<String, Object> findOne(${assign_fieldType} id) {
 		if (LOG.isDebugEnabled()) {
@@ -98,10 +97,25 @@ public class ${assign_ClassName} implements ${content.items.service.className} {
 			}
 			return formatFailed(412, "获取数据失败,请求中缺少必填的参数!", "id不能为空", null);
 		}
-		${assign_EntityName} result = ${assign_daoName}.findById(id).orElse(null);
+		${assign_EntityName} result = ${assign_daoName}.selectById(id);;
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("执行获取数据[${assign_ClassName}.findOne]-->结果:" + result);
 		}
+		return formatSucceed(result);
+	}
+	
+	@Override
+	public Map<String, Object> update(${assign_EntityName} data) {
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("执行更新数据[${assign_ClassName}.update]-->请求数据:" + data);
+		}
+		if (data == null || (<#list content.content.fields as cnf><#if cnf.fieldType != "boolean" && cnf.fieldName != assign_fieldName>data.get${cnf.fieldNamePascal}() == null <#if cnf?has_next> && </#if></#if></#list>)) {
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("执行更新数据[${assign_ClassName}.update]-->失败:缺少必填参数");
+			}
+			return formatFailed(412, "操作失败,缺少必填的数据!", "缺少必填项参数", 0);
+		}
+		int result = ${assign_daoName}.updateById(data);
 		return formatSucceed(result);
 	}
 
@@ -116,8 +130,8 @@ public class ${assign_ClassName} implements ${content.items.service.className} {
 			}
 			return formatFailed(412, "操作失败,缺少必填的数据!", "缺少必填项参数", 0);
 		}
-		${assign_daoName}.deleteById(id);
-		return formatSucceed(1);
+		int result = ${assign_daoName}.deleteById(id);
+		return formatSucceed(result);
 	}
 	</#if>
 

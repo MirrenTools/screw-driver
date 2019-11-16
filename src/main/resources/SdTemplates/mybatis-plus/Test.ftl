@@ -75,6 +75,32 @@ class ${content.items.test.className} {
 	<#else>
 	<#assign assign_idData = assign_idName>
 	</#if>
+	
+	@Test
+	public void testUpdate() throws Exception {
+		String result = mockMvc.perform(post("/${assign_EntityLowerName}/update")
+				.param("${assign_idName}", "${assign_idData}")
+				<#if content.content.cantNullField??>
+					<#list content.content.cantNullField as item>
+					<#if item.fieldName != assign_idName>
+						<#if item.fieldType  ==  "Integer" || item.fieldType  ==  "int" || item.fieldType  ==  "Long" || item.fieldType  ==  "long">
+				.param("${item.fieldName}", "2")
+						<#elseif item.fieldType  ==  "Float" || item.fieldType  ==  "float" || item.fieldType  ==  "Double" || item.fieldType  ==  "double">
+				.param("${item.fieldName}", "2.0")
+						<#else>
+				.param("${item.fieldName}", "new_${item.fieldName}")
+						</#if>
+					</#if>
+					</#list>
+				</#if>
+				)
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$." + CODE_KEY).value(200))
+				.andDo(print()).andReturn()
+				.getResponse().getContentAsString();
+		System.out.println("testSave /${assign_EntityLowerName}/update: " + result);
+	}
+	
 	@Test
 	public void testGet() throws Exception {
 		String result = mockMvc.perform(get("/${assign_EntityLowerName}/get")
