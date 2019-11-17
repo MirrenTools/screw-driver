@@ -127,29 +127,35 @@ public class User {
 ``` java
 String packageName="org.mirrentools."; 
 String entityName="Users"; 
+String templatePath="/SdTemplates/vertx/"; 
 Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 templates.put("entity", new SdTemplate()
+	.setPath(templatePath)
 	.setFile("Entity.ftl")//Lombok模板为EntityLombok.ftl
 	.setPackageName(packageName + "entity")
 	.setClassName(entityName));
 templates.put("sql", new SdTemplate()
+	.setPath(templatePath)
 	.setFile("SQL.ftl")
 	.setPackageName(packageName + "sql")
 	.setClassName(entityName + "SQL"));
 templates.put("service", new SdTemplate()
+	.setPath(templatePath)
 	.setFile("Service.ftl")
 	.setPackageName(packageName + "service")
 	.setClassName(entityName + "Service"));
 templates.put("serviceImpl", new SdTemplate()
+	.setPath(templatePath)
 	.setFile("ServiceImpl.ftl")
 	.setPackageName(packageName + "service.impl")
 	.setClassName(entityName + "ServiceImpl"));
 templates.put("router", new SdTemplate()
+	.setPath(templatePath)
 	.setFile("Router.ftl")
 	.setPackageName(packageName + "router")
 	.setClassName(entityName + "Router"));
 templates.put("test", new SdTemplate()
-	.setPath("/SdTemplates/vertx/")
+	.setPath(templatePath)
 	.setFile("Test.ftl")
 	.setSourceFolder(SdConstant.MAVEN_TEST)
 	.setPackageName(packageName + "test")
@@ -161,34 +167,35 @@ templates.put("test", new SdTemplate()
 ``` java
 String packageName="com.mirrentools."; 
 String entityName="Users"; 
+String templatePath="/SdTemplates/jpa/"; 
 Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 templates.put("entity", new SdTemplate()
-	.setPath("/SdTemplates/jpa/")
+	.setPath(templatePath)
 	.setFile("Entity.ftl")//Lombok模板为EntityLombok.ftl
 	.setPackageName(packageName + "entity")
 	.setClassName(entityName));
 templates.put("dao", new SdTemplate()
-	.setPath("/SdTemplates/jpa/")
+	.setPath(templatePath)
 	.setFile("Dao.ftl")
 	.setPackageName(packageName + "repository")
 	.setClassName(entityName + "Repository"));
 templates.put("service", new SdTemplate()
-	.setPath("/SdTemplates/jpa/")
+	.setPath(templatePath)
 	.setFile("Service.ftl")
 	.setPackageName(packageName + "service")
 	.setClassName(entityName + "Service"));
 templates.put("serviceImpl", new SdTemplate()
-	.setPath("/SdTemplates/jpa/")
+	.setPath(templatePath)
 	.setFile("ServiceImpl.ftl")
 	.setPackageName(packageName + "service.impl")
 	.setClassName(entityName + "ServiceImpl"));
 templates.put("controller", new SdTemplate()
-	.setPath("/SdTemplates/jpa/")
+	.setPath(templatePath)
 	.setFile("Controller.ftl")
 	.setPackageName(packageName + "controller")
 	.setClassName(entityName + "Controller"));
 templates.put("test", new SdTemplate()
-	.setPath("/SdTemplates/jpa/")
+	.setPath(templatePath)
 	.setFile("Test.ftl")
 	.setSourceFolder(org.mirrentools.sd.constant.SdConstant.MAVEN_TEST)
 	.setPackageName(packageName + "test")
@@ -196,40 +203,97 @@ templates.put("test", new SdTemplate()
 	);
 ```
 ## MyBatis模板
-实体类属性的描述
+模板路径:
+``` java
+String packageName="com.mirrentools."; 
+String entityName="Users"; 
+String templatePath="/SdTemplates/mybatis/"; 
+Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
+templates.put("entity", new SdTemplate()
+	.setPath(templatePath)
+	.setFile("Entity.ftl")//Lombok模板为EntityLombok.ftl
+	.setPackageName(packageName + "entity")
+	.setClassName(entityName));
+templates.put("dao", new SdTemplate()
+	.setPath(templatePath)
+	.setFile("Dao.ftl")
+	.setPackageName(packageName + "mapper")
+	.setClassName(entityName + "Mapper"));
+templates.put("assist", new SdTemplate()
+	.setPath(templatePath)
+	.setFile("SqlAssist.ftl")
+	.setPackageName(packageName + "common")
+	.setClassName("SqlAssist"));
+templates.put("mapper", new SdTemplate()
+	.setPath(templatePath)
+	//MySQL = MySqlMapper.ftl
+	//PostgreSQL = PostgreSqlMapper.ftl
+	//SQLite = SqliteMapper.ftl
+	//Oracle = OracleMapper.ftl
+	//SQL Server = SqlServerMapper.ftl
+	//DB2 = DB2Mapper.ftl
+	.setFile("MySqlMapper.ftl")
+	.setPackageName("mappers")
+	.setClassName(entityName + "Mapper")
+	.setSuffix(".xml")
+	);
+templates.put("service", new SdTemplate()
+	.setPath(templatePath)
+	.setFile("Service.ftl")
+	.setPackageName(packageName + "service")
+	.setClassName(entityName + "Service"));
+templates.put("serviceImpl", new SdTemplate()
+	.setPath(templatePath)
+	.setFile("ServiceImpl.ftl")
+	.setPackageName(packageName + "service.impl")
+	.setClassName(entityName + "ServiceImpl"));
+templates.put("controller", new SdTemplate()
+	.setPath(templatePath)
+	.setFile("Controller.ftl")
+	.setPackageName(packageName + "controller")
+	.setClassName(entityName + "Controller"));
+templates.put("test", new SdTemplate()
+	.setPath(templatePath)
+	.setFile("Test.ftl")
+	.setSourceFolder(org.mirrentools.sd.constant.SdConstant.MAVEN_TEST)
+	.setPackageName(packageName + "test")
+	.setClassName(entityName + "ControllerTest")
+	);
+```
 ## MyBatis-Plus模板
 模板路径:
 ``` java
 String packageName="com.mirrentools."; 
 String entityName="Users"; 
+String templatePath="/SdTemplates/mybatis-plus/"; 
 Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 templates.put("entity", new SdTemplate()
-	.setPath("/SdTemplates/mybatis-plus/")
+	.setPath(templatePath)
 	.setFile("Entity.ftl")//Lombok模板为EntityLombok.ftl
 	.setPackageName(packageName + "entity")
 	.setClassName(entityName));
 templates.put("dao", new SdTemplate()
-	.setPath("/SdTemplates/mybatis-plus/")
+	.setPath(templatePath)
 	.setFile("Dao.ftl")
 	.setPackageName(packageName + "mapper")
 	.setClassName(entityName + "Mapper"));
 templates.put("service", new SdTemplate()
-	.setPath("/SdTemplates/mybatis-plus/")
+	.setPath(templatePath)
 	.setFile("Service.ftl")
 	.setPackageName(packageName + "service")
 	.setClassName(entityName + "Service"));
 templates.put("serviceImpl", new SdTemplate()
-	.setPath("/SdTemplates/mybatis-plus/")
+	.setPath(templatePath)
 	.setFile("ServiceImpl.ftl")
 	.setPackageName(packageName + "service.impl")
 	.setClassName(entityName + "ServiceImpl"));
 templates.put("controller", new SdTemplate()
-	.setPath("/SdTemplates/mybatis-plus/")
+	.setPath(templatePath)
 	.setFile("Controller.ftl")
 	.setPackageName(packageName + "controller")
 	.setClassName(entityName + "Controller"));
 templates.put("test", new SdTemplate()
-	.setPath("/SdTemplates/mybatis-plus/")
+	.setPath(templatePath)
 	.setFile("Test.ftl")
 	.setSourceFolder(org.mirrentools.sd.constant.SdConstant.MAVEN_TEST)
 	.setPackageName(packageName + "test")

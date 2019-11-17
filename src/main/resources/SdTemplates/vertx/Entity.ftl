@@ -32,7 +32,17 @@ public class ${assign_ClassName} {
 	<#if item.primary == true>@TableId(value = "${item.name}"<#if item.name != item.fieldName>, alias = "${item.fieldName}"</#if>)<#else>@TableColumn(value = "${item.name}"<#if item.name != item.fieldName>, alias = "${item.fieldName}"</#if>)</#if>
 	private ${item.fieldType} ${item.fieldName} <#if item.defaults??> = <#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "String">"</#if>${item.defaults}<#if item.fieldType == "String">"</#if><#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "float">f</#if><#if item.fieldType == "Float">F</#if><#if item.fieldType == "long">l</#if><#if item.fieldType == "Long">L</#if></#if>; 
 	</#list>
-	
+	<#if content.content.additionalField??>
+	<#list content.content.additionalField as item> 
+	<#if item.fieldRemark??>/** ${item.fieldRemark} */</#if>
+	<#if item.annotations??>
+		<#list item.annotations as anno>
+	${anno}
+		</#list>
+	</#if>
+	private ${item.fieldType} ${item.fieldName} <#if item.defaults??> = <#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "String">"</#if>${item.defaults}<#if item.fieldType == "String">"</#if><#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "float">f</#if><#if item.fieldType == "Float">F</#if><#if item.fieldType == "long">l</#if><#if item.fieldType == "Long">L</#if></#if>; 
+	</#list>
+	</#if>
 	<#-- 添加常量 -->
 	<#list content.content.fields as item> 
 	/**${item.fieldName}属性在JsonObject中key的名称*/
@@ -119,9 +129,34 @@ public class ${assign_ClassName} {
 		return this;
 	}
 	</#list>
+	<#if content.content.additionalField??>
+	<#list content.content.additionalField as item> 
+	<#if item.fieldRemark??>
+	/**
+	 * 获取${item.fieldRemark}
+	 * 
+	 * @return
+	 */
+	</#if>
+	public ${item.fieldType} <#if item.fieldType == "boolean">is<#else>get</#if>${item.fieldNamePascal}() {
+		return ${item.fieldName};
+	}
+	<#if item.fieldRemark??>
+	/**
+	 * 设置${item.fieldRemark}
+	 * 
+	 * @param ${item.fieldName}
+	 */
+	</#if>
+	public ${assign_ClassName} set${item.fieldNamePascal}(${item.fieldType} ${item.fieldName}) {
+		this.${item.fieldName} = ${item.fieldName};
+		return this;
+	}
+	</#list>
+	</#if>
 
 	@Override
 	public String toString() {
-		return "${content.items.entity.className} [<#list content.content.fields as item>${item.fieldName}=" + ${item.fieldName} + " <#if item?has_next>,</#if> </#list>]";
+		return "${content.items.entity.className} [<#list content.content.fields as item>${item.fieldName}=" + ${item.fieldName} + " <#if item?has_next>,</#if> </#list><#if content.content.additionalField??><#list content.content.additionalField as item>, ${item.fieldName}=" + ${item.fieldName} + " <#if item?has_next>,</#if> </#list></#if>]";
 	}
 }

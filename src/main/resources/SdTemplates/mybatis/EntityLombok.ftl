@@ -21,29 +21,8 @@ ${anno}
 	</#list>
 </#if>
 @Data
-<#if assign_ClassName != content.content.tableName>@TableName("${content.content.tableName}")</#if>
 public class ${assign_ClassName} {
 	<#list content.content.fields as item> 
-	<#if item.fieldRemark??>/** ${item.fieldRemark} */</#if>
-	<#if item.annotations??>
-		<#list item.annotations as anno>
-	${anno}
-		</#list>
-	</#if>
-	<#if item.primary == true>
-	<#if item.autoIncrement==true || item.identity==true >
-	@TableId(value="${item.name}",type=IdType.AUTO)
-	<#elseif item.fieldName != item.name >
-	@TableId(value="${item.name}")
-	<#else>
-	@TableId
-	</#if>
-	<#else>
-	<#if item.fieldName != item.name>@TableField("${item.name}")</#if>
-	</#if>
-	private ${item.fieldType} ${item.fieldName} <#if item.defaults??> = <#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "String">"</#if>${item.defaults}<#if item.fieldType == "String">"</#if><#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "float">f</#if><#if item.fieldType == "Float">F</#if><#if item.fieldType == "long">l</#if><#if item.fieldType == "Long">L</#if></#if>; 
-	</#list>
-	<#list content.content.additionalField as item> 
 	<#if item.fieldRemark??>/** ${item.fieldRemark} */</#if>
 	<#if item.annotations??>
 		<#list item.annotations as anno>

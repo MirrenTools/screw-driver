@@ -1,10 +1,6 @@
 <#assign assign_ClassName = content.items.entity.className>
 package ${content.items.entity.packageName};
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-
 <#if content.content.imports??>
 	<#list content.content.imports as impt>
 import ${impt};
@@ -20,7 +16,6 @@ import ${impt};
 ${anno}
 	</#list>
 </#if>
-<#if assign_ClassName != content.content.tableName>@TableName("${content.content.tableName}")</#if>
 public class ${assign_ClassName} {
 	<#list content.content.fields as item> 
 	<#if item.fieldRemark??>/** ${item.fieldRemark} */</#if>
@@ -29,17 +24,6 @@ public class ${assign_ClassName} {
 	${anno}
 		</#list>
 	</#if>
-	<#if item.primary == true>
-	<#if item.autoIncrement==true || item.identity==true >
-	@TableId(value="${item.name}",type=IdType.AUTO)
-	<#elseif item.fieldName != item.name >
-	@TableId(value="${item.name}")
-	<#else>
-	@TableId
-	</#if>
-	<#else>
-	<#if item.fieldName != item.name>@TableField("${item.name}")</#if>
-	</#if>
 	private ${item.fieldType} ${item.fieldName} <#if item.defaults??> = <#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "String">"</#if>${item.defaults}<#if item.fieldType == "String">"</#if><#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "float">f</#if><#if item.fieldType == "Float">F</#if><#if item.fieldType == "long">l</#if><#if item.fieldType == "Long">L</#if></#if>; 
 	</#list>
 	<#if content.content.additionalField??>
@@ -99,6 +83,7 @@ public class ${assign_ClassName} {
 	}
 	</#list>
 	</#if>
+
 	@Override
 	public String toString() {
 		return "${content.items.entity.className} [<#list content.content.fields as item>${item.fieldName}=" + ${item.fieldName} + " <#if item?has_next>,</#if> </#list><#if content.content.additionalField??><#list content.content.additionalField as item>, ${item.fieldName}=" + ${item.fieldName} + " <#if item?has_next>,</#if> </#list></#if>]";

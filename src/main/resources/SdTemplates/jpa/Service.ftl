@@ -35,13 +35,14 @@ public interface ${content.items.service.className} {
 	 */
 	Map<String, Object> save(${content.items.entity.className} data);
 	<#if content.content.primaryField??>
+	<#assign assign_fieldType = content.content.primaryField[0].fieldType>
 	/**
 	 * 获取指定数据
 	 * 
 	 * @param id
 	 * @return
 	 */
-	Map<String, Object> findOne(Long id);
+	Map<String, Object> findOne(${assign_fieldType} id);
 
 	/**
 	 * 删除
@@ -49,6 +50,6 @@ public interface ${content.items.service.className} {
 	 * @param id
 	 * @return
 	 */
-	Map<String, Object> delete(Long id);
+	Map<String, Object> delete(${assign_fieldType} id);
 	</#if>
 }

@@ -54,7 +54,8 @@ public class FreeMarkerTest {
 		bean.addColumn(new SdColumn().setType(SdType.FLOAT).setNullable(false).setName("float_test"));
 		bean.addColumn(new SdColumn().setType(SdType.DOUBLE).setNullable(false).setName("double_test"));
 		bean.addColumn(new SdColumn().setType(SdType.LONG).setNullable(false).setName("long_test"));
-		screwDriver.createCode(bean);
+		bean.addAdditionalColumn(new SdColumn().setType(SdType.FLOAT).setNullable(false).setName("lala_test"));
+			screwDriver.createCode(bean);
 
 	}
 }
