@@ -52,8 +52,8 @@ public class SdTemplateContentConverterTest {
 		assertEquals(".java", dao.getSuffix());
 		assertEquals(1, dao.getAttrs().size());
 		SdTemplateAttribute attribute = dao.getAttrs().get("test");
-		assertEquals("classesStudentClassesStudent", attribute.getValue());
-		assertEquals("测试驼峰与帕斯卡还有下划线classes_student,连字符classes-student", attribute.getDescribe());
+		assertEquals("userDaoUserDao", attribute.getValue());
+		assertEquals("测试驼峰与帕斯卡还有下划线user_dao,连字符user-dao", attribute.getDescribe());
 	}
 
 }
