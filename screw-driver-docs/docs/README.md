@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /logo.png
+heroImage: logo.png
 actionText: 使用文档
 actionLink: /start/introduction
 features:
@@ -12,8 +12,8 @@ features:
   details: 插拔式设计二次开发、拓展更简单
 footer: MIT Licensed | Copyright © 2019-present mirrentools.org
 ---
-## 一分钟了解ScrewDriver
-<video src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls="controls" style="max-width:100%">
+## 快速了解ScrewDriver的作用
+<video src="https://gitee.com/mirren/screw-driver-docs/raw/master/video.mp4" controls="controls" style="max-width:100%">
 您的浏览器不支持 video 标签。
 </video>
 
