@@ -13,6 +13,8 @@ features:
 footer: MIT Licensed | Copyright © 2019-present mirrentools.org
 ---
 ## 快速了解ScrewDriver的作用
+视频可能需要登录gitee才能正常观看,如果不能观看你可以在 [哔哩哔哩中查看视频](https://www.bilibili.com/video/av76507691/)
+
 <video src="https://gitee.com/mirren/screw-driver-docs/raw/master/video.mp4" controls="controls" style="max-width:100%">
 您的浏览器不支持 video 标签。
 </video>
