@@ -127,7 +127,7 @@ public class User {
 ``` java
 String packageName="org.mirrentools."; 
 String entityName="Users"; 
-String templatePath="/SdTemplates/vertx/"; 
+String templatePath="vertx"; 
 Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 templates.put("entity", new SdTemplate()
 	.setPath(templatePath)
@@ -167,7 +167,7 @@ templates.put("test", new SdTemplate()
 ``` java
 String packageName="com.mirrentools."; 
 String entityName="Users"; 
-String templatePath="/SdTemplates/jpa/"; 
+String templatePath="jpa"; 
 Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 templates.put("entity", new SdTemplate()
 	.setPath(templatePath)
@@ -207,7 +207,7 @@ templates.put("test", new SdTemplate()
 ``` java
 String packageName="com.mirrentools."; 
 String entityName="Users"; 
-String templatePath="/SdTemplates/mybatis/"; 
+String templatePath="mybatis"; 
 Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 templates.put("entity", new SdTemplate()
 	.setPath(templatePath)
@@ -234,6 +234,7 @@ templates.put("mapper", new SdTemplate()
 	//DB2 = DB2Mapper.ftl
 	.setFile("MySqlMapper.ftl")
 	.setPackageName("mappers")
+	.setSourceFolder("src/main/resources")
 	.setClassName(entityName + "Mapper")
 	.setSuffix(".xml")
 	);
@@ -265,7 +266,7 @@ templates.put("test", new SdTemplate()
 ``` java
 String packageName="com.mirrentools."; 
 String entityName="Users"; 
-String templatePath="/SdTemplates/mybatis-plus/"; 
+String templatePath="mybatis-plus"; 
 Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 templates.put("entity", new SdTemplate()
 	.setPath(templatePath)

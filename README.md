@@ -1,6 +1,7 @@
 # 起步
 ScrewDriver是一个用于生成代码、创建或读取数据库表信息的工具包,该工具想达到的目的是藉着IDE的代码块,通过快捷键快速生成代码,或成为其他生成工具的基础工具!
-
+## 使用帮助
+[帮助文档](http://mirren.gitee.io/screw-driver-docs/)
 ```
 运行环境要求: java >= 1.6
 ```
@@ -17,10 +18,10 @@ QQ交流群:519714660 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a
 ```
 
 ## 创建代码与生成表示例
-1. 定义 [SdBean](./core-class-intro.md#SdBean)
-2. 添加生成模板 [SdTemplate](./core-class-intro.md#SdTemplate)
-3. 设置数据库连接信息 [SdDatabaseOptions](./core-class-intro.md#SdDatabaseOptions)
-4. 初始化	[ScrewDriver](./core-class-intro.md#ScrewDriver) 并执行创建
+1. 定义 [SdBean](http://mirren.gitee.io/screw-driver-docs/start/core-class-intro.html#sdbean-%E5%AE%9E%E4%BD%93%E6%8F%8F%E8%BF%B0)
+2. 添加生成模板 [SdTemplate](http://mirren.gitee.io/screw-driver-docs/start/core-class-intro.html#sdtemplate-%E6%A8%A1%E6%9D%BF%E4%BF%A1%E6%81%AF)
+3. 设置数据库连接信息 [SdDatabaseOptions](http://mirren.gitee.io/screw-driver-docs/start/core-class-intro.html#sddatabaseoptions-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF)
+4. 初始化	[ScrewDriver](http://mirren.gitee.io/screw-driver-docs/start/core-class-intro.html#screwdriver-%E5%B7%A5%E5%85%B7) 并执行创建
 ``` java
 public static void main(String[] args) throws Exception {
 	// 创建一个实体描述
@@ -52,9 +53,9 @@ public static void main(String[] args) throws Exception {
 ```
 
 ## 读取数据库表信息并生成代码示例
-1. 添加生成模板 [SdTemplate](./core-class-intro.md#SdTemplate)
-2. 设置数据库连接信息 [SdDatabaseOptions](./core-class-intro.md#SdDatabaseOptions)
-3. 初始化	[ScrewDriver](./core-class-intro.md#ScrewDriver) 
+1. 添加生成模板 [SdTemplate](http://mirren.gitee.io/screw-driver-docs/start/core-class-intro.html#sdtemplate-%E6%A8%A1%E6%9D%BF%E4%BF%A1%E6%81%AF)
+2. 设置数据库连接信息 [SdDatabaseOptions](http://mirren.gitee.io/screw-driver-docs/start/core-class-intro.html#sddatabaseoptions-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF)
+3. 初始化	[ScrewDriver](http://mirren.gitee.io/screw-driver-docs/start/core-class-intro.html#screwdriver-%E5%B7%A5%E5%85%B7) 
 4. 读取表信息并执行创建
 ``` java
 public static void main(String[] args) throws Exception {

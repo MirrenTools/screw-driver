@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /logo.png
+heroImage: logo.png
 actionText: 使用文档
 actionLink: /start/introduction
 features:
@@ -12,10 +12,10 @@ features:
   details: 插拔式设计二次开发、拓展更简单
 footer: MIT Licensed | Copyright © 2019-present mirrentools.org
 ---
-## 一分钟了解ScrewDriver
-<video src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls="controls" style="max-width:100%">
-您的浏览器不支持 video 标签。
-</video>
+## 快速了解ScrewDriver的作用
+如果不能观看你可以在 [哔哩哔哩中查看视频](https://www.bilibili.com/video/av76507691/)
+
+<iframe src="//player.bilibili.com/player.html?aid=76507691&cid=130869495&page=1" width='100%' height='600px' scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 ScrewDriver是一个用于生成代码、创建或读取数据库表信息的工具包,可用于IDE编程式生成代码(包括数据库表的读取与创建)或作为其他工具的支持包!
 ``` XML
