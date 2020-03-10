@@ -16,6 +16,7 @@ import org.mirrentools.sd.converter.SdTemplateContentConverter;
 import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.def.ScrewDriverDB2Options;
 import org.mirrentools.sd.options.def.ScrewDriverMySqlOptions;
+import org.mirrentools.sd.options.def.ScrewDriverOnlyCodeOptions;
 import org.mirrentools.sd.options.def.ScrewDriverOracleOptions;
 import org.mirrentools.sd.options.def.ScrewDriverPostgreSqlOptions;
 import org.mirrentools.sd.options.def.ScrewDriverSqlServerOptions;
@@ -61,17 +62,17 @@ public class ScrewDriverOptions {
 	private Map<String, Object> extensions;
 
 	/**
-	 * 实例化
-	 */
-	public ScrewDriverOptions(ScrewDriverOptions options) {
-		wrap(options);
-	}
-
-	/**
 	 * 实例化一个空的配置,后续添加自定义配置
 	 */
 	public ScrewDriverOptions() {
 		super();
+	}
+
+	/**
+	 * 实例化
+	 */
+	public ScrewDriverOptions(ScrewDriverOptions options) {
+		wrap(options);
 	}
 
 	/**
@@ -83,6 +84,17 @@ public class ScrewDriverOptions {
 	public ScrewDriverOptions(SdDatabaseOptions databaseOptions) {
 		super();
 		init(null, databaseOptions);
+	}
+
+	/**
+	 * 实例化一个仅创建代码的配置
+	 * 
+	 * @param templateMaps
+	 *          模板
+	 */
+	public ScrewDriverOptions(Map<String, SdTemplate> templateMaps) {
+		super();
+		init(templateMaps, null);
 	}
 
 	/**
@@ -107,22 +119,29 @@ public class ScrewDriverOptions {
 	 *          数据库连接信息
 	 */
 	private void init(Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
-		SdUtil.requireNonNull(databaseOptions, "数据库连接信息不能为空!");
-		String groupId = databaseOptions.getDriverClass();
-		if (groupId.contains("mysql")) {
-			wrap(new ScrewDriverMySqlOptions(templateMaps, databaseOptions));
-		} else if (groupId.contains("postgresql")) {
-			wrap(new ScrewDriverPostgreSqlOptions(templateMaps, databaseOptions));
-		} else if (groupId.contains("db2")) {
-			wrap(new ScrewDriverDB2Options(templateMaps, databaseOptions));
-		} else if (groupId.contains("oracle")) {
-			wrap(new ScrewDriverOracleOptions(templateMaps, databaseOptions));
-		} else if (groupId.contains("sqlserver")) {
-			wrap(new ScrewDriverSqlServerOptions(templateMaps, databaseOptions));
-		} else if (groupId.contains("sqlite")) {
-			wrap(new ScrewDriverSqliteOptions(templateMaps, databaseOptions));
+		if (databaseOptions == null) {
+			wrap(new ScrewDriverOnlyCodeOptions(templateMaps));
 		} else {
-			throw new ScrewDriverException("Unable to recognize database types through DriverClass,You can try new ScrewDriver(DB name)Options and complete the initialization");
+			String groupId = databaseOptions.getDriverClass();
+			if (groupId.contains("mysql")) {
+				wrap(new ScrewDriverMySqlOptions(templateMaps, databaseOptions));
+			} else if (groupId.contains("postgresql")) {
+				wrap(new ScrewDriverPostgreSqlOptions(templateMaps, databaseOptions));
+			} else if (groupId.contains("db2")) {
+				wrap(new ScrewDriverDB2Options(templateMaps, databaseOptions));
+			} else if (groupId.contains("oracle")) {
+				wrap(new ScrewDriverOracleOptions(templateMaps, databaseOptions));
+			} else if (groupId.contains("sqlserver")) {
+				wrap(new ScrewDriverSqlServerOptions(templateMaps, databaseOptions));
+			} else if (groupId.contains("sqlite")) {
+				wrap(new ScrewDriverSqliteOptions(templateMaps, databaseOptions));
+			} else {
+				if (templateMaps == null) {
+					throw new ScrewDriverException("Unable to recognize database types through DriverClass,You can try new ScrewDriver(DB name)Options and complete the initialization");
+				} else {
+					wrap(new ScrewDriverOnlyCodeOptions(templateMaps));
+				}
+			}
 		}
 	}
 
