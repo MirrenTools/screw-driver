@@ -13,7 +13,7 @@ QQ交流群:519714660 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a
 <dependency>
     <groupId>org.mirrentools</groupId>
     <artifactId>screw-driver</artifactId>
-    <version>1.1.0</version>
+    <version>[1.0.0,2.0.0)</version>
 </dependency>
 ```
 ## 仅创建代码示例

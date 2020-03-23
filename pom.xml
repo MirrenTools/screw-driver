@@ -5,7 +5,7 @@
 
 	<groupId>org.mirrentools</groupId>
 	<artifactId>screw-driver</artifactId>
-	<version>1.1.0</version>
+	<version>1.1.1</version>
 	<packaging>jar</packaging>
 	<name>screw-driver</name>
 	<description>ScrewDriver is a toolkit for generating code, create or read database tables. The purpose of this tool is to quickly generate code through ide code block, shortcut key, or become the basic tool of other generating tools!</description>
