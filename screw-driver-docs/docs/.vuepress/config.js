@@ -14,7 +14,7 @@ module.exports = {
 			},
 			{
 				text: 'gitee',
-				link: 'https://gitee.com/duhua/screw-driver'
+				link: 'https://gitee.com/mirren/screw-driver'
 			}
 		],
 		sidebar: {

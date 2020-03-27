@@ -8,8 +8,34 @@ QQ交流群:519714660  <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=
 <dependency>
     <groupId>org.mirrentools</groupId>
     <artifactId>screw-driver</artifactId>
-    <version>1.1.0</version>
+    <version>最新版</version>
 </dependency>
+```
+
+## 仅创建代码示例
+1. 定义 [SdBean](http://mirren.gitee.io/screw-driver-docs/start/core-class-intro.html#sdbean-%E5%AE%9E%E4%BD%93%E6%8F%8F%E8%BF%B0)
+2. 添加生成模板 [SdTemplate](http://mirren.gitee.io/screw-driver-docs/start/core-class-intro.html#sdtemplate-%E6%A8%A1%E6%9D%BF%E4%BF%A1%E6%81%AF)
+``` java
+public static void main(String[] args) throws Exception {
+	// 创建一个实体描述
+	SdBean bean = new SdBean();
+	bean.setName("user").setRemark("用户");
+	bean.addColumn(new SdColumn().setName("id").setType(SdType.LONG).setPrimary(true).setRemark("用户的id"));
+	bean.addColumn(new SdColumn().setName("name").setType(SdType.STRING).setLength(30).setRemark("用户的名字"));
+	bean.addColumn(new SdColumn().setName("pwd").setType(SdType.STRING).setLength(60).setRemark("用户的的密码"));
+
+	// 设置实体生成模板
+	Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
+	templates.put("entity", new SdTemplate().setFile("JavaEntity.ftl").setPackageName("entity").setClassName("User"));
+	templates.put("dao", new SdTemplate().setFile("Dao.ftl").setPackageName("dao").setClassName("Dao"));
+	templates.put("service", new SdTemplate().setFile("Service.ftl").setPackageName("service").setClassName("Service"));
+	templates.put("controller", new SdTemplate().setFile("Controller.ftl").setPackageName("controller").setClassName("Controller"));
+
+	// 初始化执行工具
+	ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(templates));
+	// 创建代码
+	screwDriver.createCode(bean);
+}
 ```
 
 ## 创建代码与生成表示例
