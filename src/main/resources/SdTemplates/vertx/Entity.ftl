@@ -67,7 +67,7 @@ public class ${assign_ClassName} {
 		<#if item.fieldType  ==  "Integer" || item.fieldType  ==  "int">
 		if(params.get("${item.fieldName}") != null){
 			try {
-				this.set${item.fieldNamePascal}(new Integer(params.get("${item.fieldName}")));
+				this.set${item.fieldNamePascal}(Integer.valueOf(params.get("${item.fieldName}")));
 			} catch (Exception e) {
 				throw new IllegalArgumentException("无法识别参数:${item.fieldName},请检查是否符合要求!");
 			}
@@ -75,7 +75,7 @@ public class ${assign_ClassName} {
 		<#elseif item.fieldType  ==  "Long" || item.fieldType  ==  "long">
 		if(params.get("${item.fieldName}") != null){
 			try {
-				this.set${item.fieldNamePascal}(new Long(params.get("${item.fieldName}")));
+				this.set${item.fieldNamePascal}(Long.valueOf(params.get("${item.fieldName}")));
 			} catch (Exception e) {
 				throw new IllegalArgumentException("无法识别参数:${item.fieldName},请检查是否符合要求!");
 			}
@@ -83,7 +83,7 @@ public class ${assign_ClassName} {
 		<#elseif item.fieldType  ==  "Float" || item.fieldType  ==  "float">
 		if(params.get("${item.fieldName}") != null){
 			try {
-				this.set${item.fieldNamePascal}(new Float(params.get("${item.fieldName}")));
+				this.set${item.fieldNamePascal}(Float.valueOf(params.get("${item.fieldName}")));
 			} catch (Exception e) {
 				throw new IllegalArgumentException("无法识别参数:${item.fieldName},请检查是否符合要求!");
 			}
@@ -91,7 +91,7 @@ public class ${assign_ClassName} {
 		<#elseif item.fieldType  ==  "Double" || item.fieldType  ==  "double">
 		if(params.get("${item.fieldName}") != null){
 			try {
-				this.set${item.fieldNamePascal}(new Double(params.get("${item.fieldName}")));
+				this.set${item.fieldNamePascal}(Double.valueOf(params.get("${item.fieldName}")));
 			} catch (Exception e) {
 				throw new IllegalArgumentException("无法识别参数:${item.fieldName},请检查是否符合要求!");
 			}
