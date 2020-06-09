@@ -1,6 +1,7 @@
 package org.mirrentools.sd.common;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -154,6 +155,10 @@ public class SdTemplatePathUtil {
 		}
 		OutputStream outputStream = null;
 		try {
+			File parentFile = file.getParentFile();
+			if (!parentFile.exists()) {
+				parentFile.mkdirs();
+			}
 			boolean newFile = file.createNewFile();
 			if (!newFile) {
 				return null;
