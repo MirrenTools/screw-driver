@@ -48,7 +48,7 @@ public class ${assign_ClassName} {
 	/**${item.fieldName}属性在JsonObject中key的名称*/
   public final static String KEY_${item.fieldName} = "${item.fieldName}";
 	/**${item.fieldName}属性在table中column的名称*/
-  public final static String COL_${item.fieldName} = "${item.fieldName}";
+  public final static String COL_${item.name} = "${item.fieldName}";
 	</#list>
 	
 	/**
