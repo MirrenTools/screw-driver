@@ -8,7 +8,7 @@ import ${impt};
 </#if>
 
 /**
- * ${content.content.remark}
+ * <#if content.content.remark??>${content.content.remark}</#if>
  * @author 
  */ 
 <#if content.content.annotations??>
@@ -24,7 +24,7 @@ public class ${assign_ClassName} {
 	${anno}
 		</#list>
 	</#if>
-	private ${item.fieldType} ${item.fieldName} <#if item.defaults??> = <#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "String">"</#if>${item.defaults}<#if item.fieldType == "String">"</#if><#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "float">f</#if><#if item.fieldType == "Float">F</#if><#if item.fieldType == "long">l</#if><#if item.fieldType == "Long">L</#if></#if>; 
+	private ${item.fieldType} ${item.fieldName}; 
 	</#list>
 	<#if content.content.additionalField??>
 	<#list content.content.additionalField as item> 
@@ -34,7 +34,7 @@ public class ${assign_ClassName} {
 	${anno}
 		</#list>
 	</#if>
-	private ${item.fieldType} ${item.fieldName} <#if item.defaults??> = <#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "String">"</#if>${item.defaults}<#if item.fieldType == "String">"</#if><#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "float">f</#if><#if item.fieldType == "Float">F</#if><#if item.fieldType == "long">l</#if><#if item.fieldType == "Long">L</#if></#if>; 
+	private ${item.fieldType} ${item.fieldName}; 
 	</#list>
 	</#if>
 	<#list content.content.fields as item> 

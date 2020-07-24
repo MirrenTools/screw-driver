@@ -147,7 +147,7 @@ public class ${assign_ClassName} implements ${content.items.service.className} {
 	@Override
 	public void update(MultiMap params, Handler<AsyncResult<JsonObject>> handler) {
 		try {
-			${assign_EntityName}  data = new ${assign_EntityName} (params);
+			${assign_EntityName}  data = new ${assign_EntityName}(params);
 			if (data.get${assign_fieldPascalName}() == null) {
 				handler.handle(formatFailure(412, "修改数据失败,缺少必填的数据!", "id不能为空", 0));
 				return;

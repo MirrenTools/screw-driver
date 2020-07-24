@@ -12,7 +12,7 @@ import ${impt};
 </#if>
 
 /**
- * ${content.content.remark}
+ * <#if content.content.remark??>${content.content.remark}</#if>
  * @author 
  */ 
 <#if content.content.annotations??>
@@ -35,7 +35,7 @@ public class ${assign_ClassName} {
 	<#if item.fieldName != item.name || item.nullable == false || item.length?? || item.unique==true >
 	@Column(<#assign assign_flag=false ><#if item.fieldName != item.name>name = "${item.name}"<#assign assign_flag = true ></#if><#if item.length??><#if assign_flag==true>,</#if> <#if item.precision??>precision = ${item.length}, scale = ${item.precision}<#else>length = ${item.length}</#if><#assign assign_flag =true ></#if><#if item.unique==true><#if assign_flag==true>,</#if> unique = true<#assign assign_flag =true ></#if><#if item.nullable == false ><#if assign_flag==true>,</#if> nullable = false</#if>)
 	</#if>
-	private ${item.fieldType} ${item.fieldName} <#if item.defaults??> = <#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "String">"</#if>${item.defaults}<#if item.fieldType == "String">"</#if><#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "float">f</#if><#if item.fieldType == "Float">F</#if><#if item.fieldType == "long">l</#if><#if item.fieldType == "Long">L</#if></#if>; 
+	private ${item.fieldType} ${item.fieldName}; 
 	</#list>
 	
 	<#if content.content.additionalField??>
@@ -46,7 +46,7 @@ public class ${assign_ClassName} {
 	${anno}
 		</#list>
 	</#if>
-	private ${item.fieldType} ${item.fieldName} <#if item.defaults??> = <#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "String">"</#if>${item.defaults}<#if item.fieldType == "String">"</#if><#if item.fieldType == "char" || item.fieldType == "Character" >'</#if><#if item.fieldType == "float">f</#if><#if item.fieldType == "Float">F</#if><#if item.fieldType == "long">l</#if><#if item.fieldType == "Long">L</#if></#if>; 
+	private ${item.fieldType} ${item.fieldName}; 
 	</#list>
 	</#if>
 	<#list content.content.fields as item> 
