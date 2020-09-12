@@ -4,19 +4,23 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.mirrentools.sd.ScrewDriverDbUtil;
-import org.mirrentools.sd.ScrewDriverException;
 import org.mirrentools.sd.ScrewDriverTemplateEngine;
+import org.mirrentools.sd.SdType;
 import org.mirrentools.sd.common.SdUtil;
+import org.mirrentools.sd.constant.Java;
 import org.mirrentools.sd.constant.SdConstant;
+import org.mirrentools.sd.converter.SdBasicClassConverter;
+import org.mirrentools.sd.converter.SdBasicTypeConverter;
 import org.mirrentools.sd.converter.SdClassConverter;
 import org.mirrentools.sd.converter.SdDatabaseContentConverter;
 import org.mirrentools.sd.converter.SdTableContentConverter;
 import org.mirrentools.sd.converter.SdTableToClassConverter;
 import org.mirrentools.sd.converter.SdTemplateContentConverter;
-import org.mirrentools.sd.models.SdTemplate;
+import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
+import org.mirrentools.sd.enums.SdTypeMode;
+import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 import org.mirrentools.sd.options.def.ScrewDriverDB2Options;
 import org.mirrentools.sd.options.def.ScrewDriverMySqlOptions;
-import org.mirrentools.sd.options.def.ScrewDriverOnlyCodeOptions;
 import org.mirrentools.sd.options.def.ScrewDriverOracleOptions;
 import org.mirrentools.sd.options.def.ScrewDriverPostgreSqlOptions;
 import org.mirrentools.sd.options.def.ScrewDriverSqlServerOptions;
@@ -32,20 +36,16 @@ public class ScrewDriverOptions {
 	// ***************基本配置*******************
 	/** 数据库配置 */
 	private SdDatabaseOptions databaseOptions;
-
-	// ***************code配置*******************
-	/** 创建代码模板集合,key为模板的名字,value为模板属性 */
-	private Map<String, SdTemplate> templateMaps;
 	/** 项目所在路径,默认当前项目 */
 	private String outputPath = SdUtil.getUserDir();
 	/** 生成使用编码格式,默认UTF-8 */
 	private String codeFormat = SdConstant.UTF_8;
 	/** 将SdBean转换成类属性的转换器 */
-	private SdClassConverter beanConverter;
+	private SdClassConverter beanConverter = new SdBasicClassConverter(new SdBasicTypeConverter(Java.OBJECT, SdType.getDictionary(SdTypeMode.JAVA)));
 	/** 模板转换器 */
-	private SdTemplateContentConverter templateContentConverter;
+	private SdTemplateContentConverter templateContentConverter = new SdTemplateContentConverterDefaultImpl();
 	/** 模板生成工具 */
-	private ScrewDriverTemplateEngine templateEngine;
+	private ScrewDriverTemplateEngine templateEngine = new ScrewDriverTemplateFreeMarkerImpl();
 
 	// ***************SQL配置*******************
 	/** 数据库相关操作执行工具 */
@@ -78,70 +78,33 @@ public class ScrewDriverOptions {
 	/**
 	 * 根据数据库配置信息实例化SQL的配置
 	 * 
-	 * @param databaseOptions
-	 *          数据库连接信息
+	 * @param databaseOptions 数据库连接信息
 	 */
 	public ScrewDriverOptions(SdDatabaseOptions databaseOptions) {
 		super();
-		init(null, databaseOptions);
-	}
-
-	/**
-	 * 实例化一个仅创建代码的配置
-	 * 
-	 * @param templateMaps
-	 *          模板
-	 */
-	public ScrewDriverOptions(Map<String, SdTemplate> templateMaps) {
-		super();
-		init(templateMaps, null);
-	}
-
-	/**
-	 * 根据数据库配置信息实例化生成代码与SQL的配置
-	 * 
-	 * @param templateMaps
-	 *          模板
-	 * @param databaseOptions
-	 *          数据库连接信息
-	 */
-	public ScrewDriverOptions(Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
-		super();
-		init(templateMaps, databaseOptions);
+		init(databaseOptions);
 	}
 
 	/**
 	 * 初始化
 	 * 
-	 * @param templateMaps
-	 *          模板
-	 * @param databaseOptions
-	 *          数据库连接信息
+	 * @param templateMaps    模板
+	 * @param databaseOptions 数据库连接信息
 	 */
-	private void init(Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
-		if (databaseOptions == null) {
-			wrap(new ScrewDriverOnlyCodeOptions(templateMaps));
-		} else {
-			String groupId = databaseOptions.getDriverClass();
-			if (groupId.contains("mysql")) {
-				wrap(new ScrewDriverMySqlOptions(templateMaps, databaseOptions));
-			} else if (groupId.contains("postgresql")) {
-				wrap(new ScrewDriverPostgreSqlOptions(templateMaps, databaseOptions));
-			} else if (groupId.contains("db2")) {
-				wrap(new ScrewDriverDB2Options(templateMaps, databaseOptions));
-			} else if (groupId.contains("oracle")) {
-				wrap(new ScrewDriverOracleOptions(templateMaps, databaseOptions));
-			} else if (groupId.contains("sqlserver")) {
-				wrap(new ScrewDriverSqlServerOptions(templateMaps, databaseOptions));
-			} else if (groupId.contains("sqlite")) {
-				wrap(new ScrewDriverSqliteOptions(templateMaps, databaseOptions));
-			} else {
-				if (templateMaps == null) {
-					throw new ScrewDriverException("Unable to recognize database types through DriverClass,You can try new ScrewDriver(DB name)Options and complete the initialization");
-				} else {
-					wrap(new ScrewDriverOnlyCodeOptions(templateMaps));
-				}
-			}
+	private void init(SdDatabaseOptions databaseOptions) {
+		String groupId = databaseOptions.getDriverClass();
+		if (groupId.contains("mysql")) {
+			wrap(new ScrewDriverMySqlOptions(databaseOptions));
+		} else if (groupId.contains("postgresql")) {
+			wrap(new ScrewDriverPostgreSqlOptions(databaseOptions));
+		} else if (groupId.contains("db2")) {
+			wrap(new ScrewDriverDB2Options(databaseOptions));
+		} else if (groupId.contains("oracle")) {
+			wrap(new ScrewDriverOracleOptions(databaseOptions));
+		} else if (groupId.contains("sqlserver")) {
+			wrap(new ScrewDriverSqlServerOptions(databaseOptions));
+		} else if (groupId.contains("sqlite")) {
+			wrap(new ScrewDriverSqliteOptions(databaseOptions));
 		}
 	}
 
@@ -152,7 +115,6 @@ public class ScrewDriverOptions {
 	 */
 	public void wrap(ScrewDriverOptions options) {
 		setDatabaseOptions(options.getDatabaseOptions());
-		setTemplateMaps(options.getTemplateMaps());
 		setOutputPath(options.getOutputPath());
 		setCodeFormat(options.getCodeFormat());
 		setExtensions(options.getExtensions());
@@ -282,26 +244,6 @@ public class ScrewDriverOptions {
 	 */
 	public ScrewDriverOptions setTemplateEngine(ScrewDriverTemplateEngine templateEngine) {
 		this.templateEngine = templateEngine;
-		return this;
-	}
-
-	/**
-	 * 获取创建代码模板集合,key为模板的名字,value为模板属性
-	 * 
-	 * @return
-	 */
-	public Map<String, SdTemplate> getTemplateMaps() {
-		return templateMaps;
-	}
-
-	/**
-	 * 设置创建代码模板集合,key为模板的名字,value为模板属性
-	 * 
-	 * @param templateMaps
-	 * @return
-	 */
-	public ScrewDriverOptions setTemplateMaps(Map<String, SdTemplate> templateMaps) {
-		this.templateMaps = templateMaps;
 		return this;
 	}
 
@@ -439,13 +381,17 @@ public class ScrewDriverOptions {
 		result.append("  ┣━databaseOptions= " + getDatabaseOptions() + "\n");
 		result.append("  ┣━outputPath= " + getOutputPath() + "\n");
 		result.append("  ┣━codeFormat= " + getCodeFormat() + "\n");
-		result.append("  ┣━beanConverter= " + (getBeanConverter() == null ? "null" : getBeanConverter().getClass().getName()) + "\n");
-		result.append("  ┣━templateContentConverter= " + (getTemplateContentConverter() == null ? "null" : getTemplateContentConverter().getClass().getName()) + "\n");
-		result.append("  ┣━templateEngine= " + (getTemplateEngine() == null ? "null" : getTemplateEngine().getClass().getName()) + "\n");
-		result.append("  ┣━templateMaps= " + getTemplateMaps() + "\n");
+		result.append(
+				"  ┣━beanConverter= " + (getBeanConverter() == null ? "null" : getBeanConverter().getClass().getName()) + "\n");
+		result.append("  ┣━templateContentConverter= "
+				+ (getTemplateContentConverter() == null ? "null" : getTemplateContentConverter().getClass().getName()) + "\n");
+		result.append("  ┣━templateEngine= "
+				+ (getTemplateEngine() == null ? "null" : getTemplateEngine().getClass().getName()) + "\n");
 		result.append("  ┣━dbUtil= " + (getDbUtil() == null ? "null" : getDbUtil().getClass().getName()) + "\n");
-		result.append("  ┣━tableConverter= " + (getTableConverter() == null ? "null" : getTableConverter().getClass().getName()) + "\n");
-		result.append("  ┣━databaseConverter= " + (getDatabaseConverter() == null ? "null" : getDatabaseConverter().getClass().getName()) + "\n");
+		result.append("  ┣━tableConverter= "
+				+ (getTableConverter() == null ? "null" : getTableConverter().getClass().getName()) + "\n");
+		result.append("  ┣━databaseConverter= "
+				+ (getDatabaseConverter() == null ? "null" : getDatabaseConverter().getClass().getName()) + "\n");
 		result.append("  ┗━extensions= " + getExtensions());
 		return result.toString();
 	}

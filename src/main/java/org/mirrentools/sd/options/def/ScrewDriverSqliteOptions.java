@@ -1,14 +1,11 @@
 package org.mirrentools.sd.options.def;
 
-import java.util.Map;
-
 import org.mirrentools.sd.converter.impl.SdTemplateContentConverterDefaultImpl;
 import org.mirrentools.sd.converter.impl.sqlite.SdClassConverterSqliteImpl;
 import org.mirrentools.sd.converter.impl.sqlite.SdTableContentConverterSqliteImpl;
 import org.mirrentools.sd.converter.impl.sqlite.SdTableToClassConverterSqliteImpl;
 import org.mirrentools.sd.impl.ScrewDriverTemplateFreeMarkerImpl;
 import org.mirrentools.sd.impl.dbutil.SdDbUtilSqliteImpl;
-import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.ScrewDriverOptions;
 import org.mirrentools.sd.options.SdDatabaseOptions;
 
@@ -23,48 +20,19 @@ public class ScrewDriverSqliteOptions extends ScrewDriverOptions {
 	 * 初始化一个SQLite版的ScrewDriver配置,用于仅生成SQL
 	 * 
 	 * 
-	 * @param databaseOptions
-	 *          数据库连接信息
+	 * @param databaseOptions 数据库连接信息
 	 */
 	public ScrewDriverSqliteOptions(SdDatabaseOptions databaseOptions) {
-		init(null, databaseOptions);
-	}
-
-	/**
-	 * 初始化一个SQLite版的ScrewDriver配置,用于仅生成代码
-	 * 
-	 * 
-	 * @param templateMaps
-	 *          模板集
-	 * 
-	 */
-	public ScrewDriverSqliteOptions(Map<String, SdTemplate> templateMaps) {
-		init(templateMaps, null);
-	}
-
-	/**
-	 * 初始化一个SQLite版的ScrewDriver配置,用于生成代码与SQL
-	 * 
-	 * @param templateMaps
-	 *          模板集
-	 * 
-	 * @param databaseOptions
-	 *          数据库连接信息
-	 */
-	public ScrewDriverSqliteOptions(Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
-		init(templateMaps, databaseOptions);
+		init(databaseOptions);
 	}
 
 	/**
 	 * 初始化
 	 * 
-	 * @param templateMaps
-	 *          模板集合
-	 * @param databaseOptions
-	 *          数据库连接信息
+	 * @param templateMaps    模板集合
+	 * @param databaseOptions 数据库连接信息
 	 */
-	private void init(Map<String, SdTemplate> templateMaps, SdDatabaseOptions databaseOptions) {
-		super.setTemplateMaps(templateMaps);
+	private void init(SdDatabaseOptions databaseOptions) {
 		super.setDatabaseOptions(databaseOptions);
 		super.setTemplateContentConverter(new SdTemplateContentConverterDefaultImpl());
 		super.setTemplateEngine(new ScrewDriverTemplateFreeMarkerImpl());

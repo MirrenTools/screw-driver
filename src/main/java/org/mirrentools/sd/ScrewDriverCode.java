@@ -20,16 +20,20 @@ public interface ScrewDriverCode {
 	/**
 	 * 执行生成
 	 * 
+	 * @param bean         类或表属性的描述
+	 * @param templateMaps 生成类需要用到的模板
 	 * @return
 	 */
-	boolean execute(SdBean bean);
+	boolean execute(SdBean bean, Map<String, SdTemplate> templateMaps);
 
 	/**
 	 * 执行生成
 	 * 
+	 * @param classContent 类属性的描述
+	 * @param templateMaps 生成类需要用到的模板
 	 * @return
 	 */
-	boolean execute(SdClassContent classContent);
+	boolean execute(SdClassContent classContent, Map<String, SdTemplate> templateMaps);
 
 	/**
 	 * 获取项目所在目录
@@ -75,30 +79,6 @@ public interface ScrewDriverCode {
 	 * @return
 	 */
 	ScrewDriverCode setDatabaseOptions(SdDatabaseOptions dbOptions);
-
-	/**
-	 * 获取生成模板
-	 * 
-	 * @return
-	 */
-	Map<String, SdTemplate> getTemplateMaps();
-
-	/**
-	 * 添加一个模板
-	 * 
-	 * @param key
-	 * @param template
-	 * @return
-	 */
-	ScrewDriverCode addTemplate(String key, SdTemplate template);
-
-	/**
-	 * 设置模板集
-	 * 
-	 * @param templates
-	 * @return
-	 */
-	ScrewDriverCode setTemplateMaps(Map<String, SdTemplate> templates);
 
 	/**
 	 * 获取实体类属性转换器

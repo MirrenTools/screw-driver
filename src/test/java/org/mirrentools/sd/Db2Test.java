@@ -29,7 +29,7 @@ public class Db2Test {
 		databaseOptions.setPassword("000000");
 		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverDB2Options(databaseOptions));
 		screwDriver.createTable(bean);
-		screwDriver.createCode(bean);
+		screwDriver.createCode(bean,templates);
 		
 	}
 

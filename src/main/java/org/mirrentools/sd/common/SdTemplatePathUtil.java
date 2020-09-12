@@ -1,7 +1,6 @@
 package org.mirrentools.sd.common;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -86,10 +85,8 @@ public class SdTemplatePathUtil {
 	 * 2. user.dir/SdTemplates/file<br>
 	 * 3. 复制screw-driver-X.jar/SdTemplates/file 到 user.dir/SdTemplates/file<br>
 	 * 
-	 * @param path
-	 *          所在路径
-	 * @param fileName
-	 *          文件的名称
+	 * @param path     所在路径
+	 * @param fileName 文件的名称
 	 * @return
 	 */
 	public static File getFile(String fileName) {
@@ -103,13 +100,10 @@ public class SdTemplatePathUtil {
 	 * 2. user.dir/SdTemplates/path/file<br>
 	 * 3. 复制screw-driver-X.jar/SdTemplates/path/file 到
 	 * user.dir/SdTemplates/path/file<br>
-	 * 4. 复制screw-driver-X.jar/SdTemplates/file 到
-	 * user.dir/SdTemplates/path/file<br>
+	 * 4. 复制screw-driver-X.jar/SdTemplates/file 到 user.dir/SdTemplates/path/file<br>
 	 * 
-	 * @param path
-	 *          所在路径
-	 * @param fileName
-	 *          文件的名称
+	 * @param path     所在路径
+	 * @param fileName 文件的名称
 	 * @return
 	 */
 	public static File getFile(String path, String fileName) {
@@ -122,6 +116,11 @@ public class SdTemplatePathUtil {
 		if (file.exists()) {
 			return file;
 		}
+		File file1 = new File(dir + DEFAULT_PATH + fileName);
+		if (file1.exists()) {
+			return file1;
+		}
+
 		InputStream inputStream = null;
 		if (path == null) {
 			path = "";

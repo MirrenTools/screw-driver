@@ -29,9 +29,9 @@ public class ScrewDriverCreateExample {
 		databaseOptions.setUser("root");
 		databaseOptions.setPassword("root");
 		// 初始化执行工具
-		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(templates, databaseOptions));
+		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions( databaseOptions));
 		// 创建代码
-		screwDriver.createCode(bean);
+		screwDriver.createCode(bean,templates);
 		// 生成表
 		screwDriver.createTable(bean);
 	}

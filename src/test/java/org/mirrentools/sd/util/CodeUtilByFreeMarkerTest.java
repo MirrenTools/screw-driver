@@ -24,7 +24,7 @@ public class CodeUtilByFreeMarkerTest {
 		Map<String, SdTemplate> templates = CommonConstant.templates;
 
 		// 初始化代码执行生成工具
-		ScrewDriverCode codeUtil = new ScrewDriverCodeImpl(new ScrewDriverOptions(templates, MySqlConstant.databaseOptions));
-		codeUtil.execute(bean);
+		ScrewDriverCode codeUtil = new ScrewDriverCodeImpl(new ScrewDriverOptions( MySqlConstant.databaseOptions));
+		codeUtil.execute(bean,templates);
 	}
 }

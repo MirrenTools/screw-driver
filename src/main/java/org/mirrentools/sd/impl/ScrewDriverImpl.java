@@ -1,5 +1,7 @@
 package org.mirrentools.sd.impl;
 
+import java.util.Map;
+
 import org.mirrentools.sd.ScrewDriver;
 import org.mirrentools.sd.ScrewDriverCode;
 import org.mirrentools.sd.ScrewDriverSQL;
@@ -7,6 +9,7 @@ import org.mirrentools.sd.common.SdUtil;
 import org.mirrentools.sd.models.SdBean;
 import org.mirrentools.sd.models.SdClassContent;
 import org.mirrentools.sd.models.SdDatabase;
+import org.mirrentools.sd.models.SdTemplate;
 import org.mirrentools.sd.options.ScrewDriverOptions;
 
 /**
@@ -40,13 +43,13 @@ public class ScrewDriverImpl extends ScrewDriver {
 	// }
 
 	@Override
-	public boolean createCode(SdBean bean) {
-		return codeUtil.execute(bean);
+	public boolean createCode(SdBean bean, Map<String, SdTemplate> templateMaps) {
+		return codeUtil.execute(bean, templateMaps);
 	}
 
 	@Override
-	public boolean createCode(SdClassContent classContent) {
-		return codeUtil.execute(classContent);
+	public boolean createCode(SdClassContent classContent, Map<String, SdTemplate> templateMaps) {
+		return codeUtil.execute(classContent, templateMaps);
 	}
 
 	@Override

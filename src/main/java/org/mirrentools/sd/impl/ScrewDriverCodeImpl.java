@@ -31,9 +31,6 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 
 	/** 数据库连接属性 */
 	private SdDatabaseOptions databaseOptions;
-	/** 模板集合key为模板的名字,value为模板属性 */
-	private Map<String, SdTemplate> templateMaps;
-
 	/** 文件生成输出路径 */
 	private String outputPath;
 	/** 生成使用编码格式,默认UTF-8 */
@@ -51,7 +48,6 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 		super();
 		SdUtil.requireNonNull(options, "The ScrewDriverOptions cannot be null ,you can new ScrewDriver(db name)Options");
 		this.databaseOptions = options.getDatabaseOptions();
-		this.templateMaps = options.getTemplateMaps();
 		this.outputPath = options.getOutputPath();
 		this.beanConverter = options.getBeanConverter();
 		this.templateConverter = options.getTemplateContentConverter();
@@ -60,13 +56,13 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	}
 
 	@Override
-	public boolean execute(SdBean bean) {
+	public boolean execute(SdBean bean, Map<String, SdTemplate> templateMaps) {
 		SdUtil.requireNonNull(bean, "The bean cannot ba null");
-		return execute(beanConverter.converter(bean));
+		return execute(beanConverter.converter(bean), templateMaps);
 	}
 
 	@Override
-	public boolean execute(SdClassContent classContent) {
+	public boolean execute(SdClassContent classContent, Map<String, SdTemplate> templateMaps) {
 		SdUtil.requireNonNull(templateMaps,
 				"SdTemplate cannot be null ,You need to create a SdTemplate first, because you need it to generate it.");
 		String path = getOutputPath();
@@ -115,26 +111,6 @@ public class ScrewDriverCodeImpl implements ScrewDriverCode {
 	@Override
 	public ScrewDriverCodeImpl setDatabaseOptions(SdDatabaseOptions dbOptions) {
 		this.databaseOptions = dbOptions;
-		return this;
-	}
-
-	@Override
-	public Map<String, SdTemplate> getTemplateMaps() {
-		return templateMaps;
-	}
-
-	@Override
-	public ScrewDriverCodeImpl addTemplate(String key, SdTemplate template) {
-		if (getTemplateMaps() == null) {
-			this.templateMaps = new LinkedHashMap<String, SdTemplate>();
-		}
-		this.templateMaps.put(key, template);
-		return this;
-	}
-
-	@Override
-	public ScrewDriverCodeImpl setTemplateMaps(Map<String, SdTemplate> templateMaps) {
-		this.templateMaps = templateMaps;
 		return this;
 	}
 

@@ -17,11 +17,11 @@ public class MvelTest {
 				.setClassName("User"));
 
 		// 初始化执行工具
-		ScrewDriverOptions options = new ScrewDriverOptions(templates, Constant.DATABASEOPTIONS);
+		ScrewDriverOptions options = new ScrewDriverOptions( Constant.DATABASEOPTIONS);
 		options.setOutputPath("D:/TempJect/mvel");
 		options.setTemplateEngine(new ScrewDriverTemplateMvelImpl());
 		ScrewDriver screwDriver = ScrewDriver.instance(options);
-		screwDriver.createCode(Constant.BEAN);
+		screwDriver.createCode(Constant.BEAN,templates);
 
 	}
 }

@@ -1,7 +1,5 @@
 package org.mirrentools.sd.models.db.update;
 
-import org.mirrentools.sd.models.db.update.SdAbstractConstraintContent;
-
 /**
  * 约束的基本实现版实现,实际数据库如果操作相同可以继承该类,不同可以选择重写
  * 

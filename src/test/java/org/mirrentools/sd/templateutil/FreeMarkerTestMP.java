@@ -49,7 +49,7 @@ public class FreeMarkerTestMP {
 				);
 
 		// 初始化执行工具
-		ScrewDriverOptions options = new ScrewDriverOptions(templates, Constant.DATABASEOPTIONS);
+		ScrewDriverOptions options = new ScrewDriverOptions( Constant.DATABASEOPTIONS);
 		options.setOutputPath("D:/TempJect/freemarker");
 		ScrewDriver screwDriver = ScrewDriver.instance(options);
 		SdBean bean = Constant.BEAN;
@@ -57,7 +57,7 @@ public class FreeMarkerTestMP {
 		bean.addColumn(new SdColumn().setType(SdType.DOUBLE).setLength(10, 2).setNullable(false).setName("double_test"));
 		bean.addColumn(new SdColumn().setType(SdType.LONG).setNullable(false).setName("long_test"));
 		bean.addAdditionalColumn(new SdColumn().setType(SdType.FLOAT).setNullable(false).setName("lala_test"));
-		screwDriver.createCode(bean);
+		screwDriver.createCode(bean,templates);
 
 	}
 }

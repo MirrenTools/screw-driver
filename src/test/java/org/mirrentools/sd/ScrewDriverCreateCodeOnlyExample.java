@@ -23,9 +23,9 @@ public class ScrewDriverCreateCodeOnlyExample {
 		templates.put("entity", new SdTemplate().setFile("JavaEntity.ftl").setPackageName("entity").setClassName("User"));
 
 		// 初始化执行工具
-		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(templates));
+		ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions());
 		// 创建代码
-		screwDriver.createCode(bean);
+		screwDriver.createCode(bean,templates);
 				
 	}
 
