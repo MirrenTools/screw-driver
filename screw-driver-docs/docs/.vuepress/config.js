@@ -1,6 +1,6 @@
 module.exports = {
 	base: '/screw-driver-docs/',
-	title: 'ScrewDriver V1.1.0',
+	title: 'ScrewDriver V1.2.0',
 	description: '用于生成代码、创建或读取数据库表的工具包',
 	dest: 'dist',
 	themeConfig: {

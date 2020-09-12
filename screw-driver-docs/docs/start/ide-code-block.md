@@ -41,9 +41,9 @@ SdDatabaseOptions databaseOptions = new SdDatabaseOptions(
 databaseOptions.setUser("root");
 databaseOptions.setPassword("root");
 // 初始化执行工具
-ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(templates, databaseOptions));
+ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(databaseOptions));
 // 创建代码
-screwDriver.createCode(bean);
+screwDriver.createCode(bean,templates);
 // 生成表
 screwDriver.createTable(bean);
 ```
@@ -82,11 +82,11 @@ databaseOptions.setUser("root");
 databaseOptions.setPassword("root");
 
 // 初始化执行工具
-ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(templates, databaseOptions));
+ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(databaseOptions));
 // 读取表信息
 SdClassContent content = screwDriver.readTable(tableName);
 // 创建代码
-screwDriver.createCode(content);
+screwDriver.createCode(content,templates);
 ```
 在Main方法中输入sdr回车
 ## 在IDEA定义创建快捷键
@@ -118,9 +118,9 @@ org.mirrentools.sd.options.SdDatabaseOptions databaseOptions = new SdDatabaseOpt
 databaseOptions.setUser("root");
 databaseOptions.setPassword("root");
 // 初始化执行工具
-org.mirrentools.sd.ScrewDriver screwDriver = ScrewDriver.instance(new org.mirrentools.sd.options.ScrewDriverOptions(templates, databaseOptions));
+org.mirrentools.sd.ScrewDriver screwDriver = ScrewDriver.instance(new org.mirrentools.sd.options.ScrewDriverOptions(databaseOptions));
 // 创建代码
-screwDriver.createCode(bean);
+screwDriver.createCode(bean,templates);
 // 生成表
 screwDriver.createTable(bean);
 ```
@@ -149,10 +149,10 @@ org.mirrentools.sd.options.SdDatabaseOptions databaseOptions = new SdDatabaseOpt
 databaseOptions.setUser("root");
 databaseOptions.setPassword("root");
 // 初始化执行工具
-org.mirrentools.sd.ScrewDriver screwDriver = ScrewDriver.instance(new org.mirrentools.sd.options.ScrewDriverOptions(templates, databaseOptions));
+org.mirrentools.sd.ScrewDriver screwDriver = ScrewDriver.instance(new org.mirrentools.sd.options.ScrewDriverOptions(databaseOptions));
 // 读取表信息
 org.mirrentools.sd.models.SdClassContent content = screwDriver.readTable(tableName);
 // 创建代码
-screwDriver.createCode(content);
+screwDriver.createCode(content,templates);
 ```
 在Main方法中输入sdr回车

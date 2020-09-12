@@ -22,7 +22,7 @@ ScrewDriver是一个用于生成代码、创建或读取数据库表信息的工
 <dependency>
     <groupId>org.mirrentools</groupId>
     <artifactId>screw-driver</artifactId>
-    <version>1.1.0</version>
+    <version>[1.0.0,2.0.0)</version>
 </dependency>
 ```
 ::: warning 运行环境要求

@@ -36,9 +36,9 @@ public static void main(String[] args) throws Exception {
 	templates.put("controller", new SdTemplate().setFile("Controller.ftl").setPackageName("controller").setClassName("Controller"));
 
 	// 初始化执行工具
-	ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(templates));
+	ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions());
 	// 创建代码
-	screwDriver.createCode(bean);
+	screwDriver.createCode(bean,templates);
 }
 ```
 
@@ -69,9 +69,9 @@ public static void main(String[] args) throws Exception {
 	databaseOptions.setPassword("root");
 	
 	// 初始化执行工具
-	ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(templates, databaseOptions));
+	ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(databaseOptions));
 	// 创建代码
-	screwDriver.createCode(bean);
+	screwDriver.createCode(bean,templates);
 	// 生成表
 	screwDriver.createTable(bean);
 }
@@ -97,11 +97,11 @@ public static void main(String[] args) throws Exception {
 	databaseOptions.setPassword("root");
 	
 	// 初始化执行工具
-	ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(templates, databaseOptions));
+	ScrewDriver screwDriver = ScrewDriver.instance(new ScrewDriverOptions(databaseOptions));
 	// 读取表信息
 	SdClassContent content = screwDriver.readTable("root");
 	// 创建代码
-	screwDriver.createCode(content);
+	screwDriver.createCode(content,templates);
 }
 ```
 
