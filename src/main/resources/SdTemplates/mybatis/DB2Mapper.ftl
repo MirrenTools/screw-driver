@@ -274,7 +274,7 @@
 		<set>
 		<#list content.content.fields as item>
 			<#if item.primary != true>
-			<if test="${item.fieldName} != null">name = ${r'#{'}${item.fieldName}${r'}'}<#if item?has_next>,</#if></if>
+			<if test="${item.fieldName} != null">${item.name} = ${r'#{'}${item.fieldName}${r'}'}<#if item?has_next>,</#if></if>
 			</#if>
 		</#list>
 		</set>
