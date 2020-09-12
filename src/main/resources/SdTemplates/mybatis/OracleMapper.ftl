@@ -233,7 +233,7 @@
 	</update>
 	<#if content.content.primaryField??>
 	<#assign assign_idFieldType = content.content.primaryField[0].fieldType>
-	<#assign assign_idFieldName = content.content.primaryField[0].name>
+	<#assign assign_idFieldName = content.content.primaryField[0].fieldName>
 	<#assign assign_idName = content.content.primaryField[0].name>
 	<!-- 通过id获取数据 -->
 	<select id="selectById" parameterType="${assign_idFieldType}" resultMap="result_entity_map">
