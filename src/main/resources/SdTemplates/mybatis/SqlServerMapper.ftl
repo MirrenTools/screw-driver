@@ -216,7 +216,7 @@
 	<delete id="deleteByAssist" parameterType="${assign_AssistFullName}">
 		delete from
 		${assign_TableName}
-		<if test="distinct != null">
+		<if test="condition != null">
 			<include refid="assist" />
 		</if>
 	</delete>
