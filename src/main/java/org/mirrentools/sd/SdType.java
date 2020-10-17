@@ -422,6 +422,18 @@ public class SdType {
 	 */
 	public final static String TEXT = "text";
 	/**
+	 * 数据类型text,对应类型:<br>
+	 * Java=String<br>
+	 * SQLite=NTEXT<br>
+	 * MySQL=TEXT<br>
+	 * SQL Server=NTEXT<br>
+	 * DB2=CLOB<br>
+	 * ORACLE=CLOB<br>
+	 * PostgreSQL=TEXT<br>
+	 */
+	public final static String NTEXT = "ntext";
+	
+	/**
 	 * 数据类型longtext,对应类型:<br>
 	 * Java=String<br>
 	 * SQLite=TEXT<br>
@@ -646,6 +658,7 @@ public class SdType {
 		MYSQL_MAPS.put(NVARCHAR, MySQL.VARCHAR);
 		MYSQL_MAPS.put(VARCHAR2, MySQL.VARCHAR);
 		MYSQL_MAPS.put(TEXT, MySQL.TEXT);
+		MYSQL_MAPS.put(NTEXT, MySQL.TEXT);
 		MYSQL_MAPS.put(LONGTEXT, MySQL.LONGTEXT);
 		MYSQL_MAPS.put(JSON, MySQL.JSON);
 		MYSQL_MAPS.put(JSONB, MySQL.JSON);
@@ -692,6 +705,7 @@ public class SdType {
 		POSTGRE_SQL_MAPS.put(NVARCHAR, PostgreSQL.VARCHAR);
 		POSTGRE_SQL_MAPS.put(VARCHAR2, PostgreSQL.VARCHAR);
 		POSTGRE_SQL_MAPS.put(TEXT, PostgreSQL.TEXT);
+		POSTGRE_SQL_MAPS.put(NTEXT, PostgreSQL.TEXT);
 		POSTGRE_SQL_MAPS.put(LONGTEXT, PostgreSQL.TEXT);
 		POSTGRE_SQL_MAPS.put(JSON, PostgreSQL.JSON);
 		POSTGRE_SQL_MAPS.put(JSONB, PostgreSQL.JSONB);
@@ -738,6 +752,7 @@ public class SdType {
 		DB2_MAPS.put(NVARCHAR, DB2.VARCHAR);
 		DB2_MAPS.put(VARCHAR2, DB2.VARCHAR);
 		DB2_MAPS.put(TEXT, DB2.CLOB);
+		DB2_MAPS.put(NTEXT, DB2.CLOB);
 		DB2_MAPS.put(LONGTEXT, DB2.CLOB);
 		DB2_MAPS.put(JSON, DB2.CLOB);
 		DB2_MAPS.put(JSONB, DB2.CLOB);
@@ -784,6 +799,7 @@ public class SdType {
 		ORACLE_MAPS.put(NVARCHAR, Oracle.VARCHAR2);
 		ORACLE_MAPS.put(VARCHAR2, Oracle.VARCHAR2);
 		ORACLE_MAPS.put(TEXT, Oracle.CLOB);
+		ORACLE_MAPS.put(NTEXT, Oracle.CLOB);
 		ORACLE_MAPS.put(LONGTEXT, Oracle.CLOB);
 		ORACLE_MAPS.put(JSON, Oracle.CLOB);
 		ORACLE_MAPS.put(JSONB, Oracle.CLOB);
@@ -830,6 +846,7 @@ public class SdType {
 		SQL_SERVER_MAPS.put(NVARCHAR, SqlServer.VARCHAR);
 		SQL_SERVER_MAPS.put(VARCHAR2, SqlServer.VARCHAR);
 		SQL_SERVER_MAPS.put(TEXT, SqlServer.TEXT);
+		SQL_SERVER_MAPS.put(NTEXT, SqlServer.NTEXT);
 		SQL_SERVER_MAPS.put(LONGTEXT, SqlServer.TEXT);
 		SQL_SERVER_MAPS.put(JSON, SqlServer.TEXT);
 		SQL_SERVER_MAPS.put(JSONB, SqlServer.TEXT);
@@ -876,6 +893,7 @@ public class SdType {
 		SQLITE_MAPS.put(NVARCHAR, SQLite.NVARCHAR);
 		SQLITE_MAPS.put(VARCHAR2, SQLite.VARCHAR2);
 		SQLITE_MAPS.put(TEXT, SQLite.TEXT);
+		SQLITE_MAPS.put(NTEXT, SQLite.TEXT);
 		SQLITE_MAPS.put(LONGTEXT, SQLite.TEXT);
 		SQLITE_MAPS.put(JSON, SQLite.TEXT);
 		SQLITE_MAPS.put(JSONB, SQLite.TEXT);
@@ -940,6 +958,7 @@ public class SdType {
 		JAVA_MAPS.put(NVARCHAR, Java.STRING);
 		JAVA_MAPS.put(VARCHAR2, Java.STRING);
 		JAVA_MAPS.put(TEXT, Java.STRING);
+		JAVA_MAPS.put(NTEXT, Java.STRING);
 		JAVA_MAPS.put(LONGTEXT, Java.STRING);
 
 		JAVA_MAPS.put(JSON, Java.STRING);
