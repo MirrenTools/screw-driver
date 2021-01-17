@@ -1,7 +1,9 @@
 # 起步
 ScrewDriver是一个用于生成代码、创建或读取数据库表信息的工具包,该工具想达到的目的是藉着IDE的代码块,通过快捷键快速生成代码,或成为其他生成工具的基础工具!
 ## 使用帮助
-[帮助文档](http://mirren.gitee.io/screw-driver-docs/)
+
+使用文档: [http://mirren.gitee.io/screw-driver-docs](http://mirren.gitee.io/screw-driver-docs/)
+
 ```
 运行环境要求: java >= 1.6
 ```
