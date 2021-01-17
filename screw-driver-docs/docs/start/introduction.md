@@ -3,6 +3,8 @@ ScrewDriver是一个用于生成代码、创建或读取数据库表信息的工
 
 QQ交流群:519714660  <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a3a3b32d79453bd9d740662a622d3b620e6adf0488f670a228186a41fbadb257"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="QQ交流群" title="QQ交流群"></a>
 
+基本说明: [哔哩哔哩中查看视频](https://www.bilibili.com/video/BV1h54y1s7Zr)
+
 ## 添加依赖
 ``` XML
 <dependency>

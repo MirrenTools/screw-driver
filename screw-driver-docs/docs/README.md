@@ -13,9 +13,9 @@ features:
 footer: MIT Licensed | Copyright © 2019-present mirrentools.org
 ---
 ## 快速了解ScrewDriver的作用
-如果不能观看你可以在 [哔哩哔哩中查看视频](https://www.bilibili.com/video/av76507691/)
+如果不能观看你可以在 [哔哩哔哩中查看视频](https://www.bilibili.com/video/BV1h54y1s7Zr)
 
-<iframe src="//player.bilibili.com/player.html?aid=76507691&cid=130869495&page=1" width='100%' height='600px' scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe src="//player.bilibili.com/player.html?aid=843721163&bvid=BV1h54y1s7Zr&cid=283393081&page=1" width='100%' height='600px' scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 ScrewDriver是一个用于生成代码、创建或读取数据库表信息的工具包,可用于IDE编程式生成代码(包括数据库表的读取与创建)或作为其他工具的支持包!
 ``` XML

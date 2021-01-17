@@ -20,7 +20,7 @@ import ${content.items.entity.packageName}.${assign_EntityName};
 @RestController
 @RequestMapping("/${content.items.entity.lowerName}")
 public class ${content.items.controller.className} {
-	/***/
+	/**${content.items.entity.className}数据服务接口*/
 	@Autowired
 	private ${content.items.service.className} service;
 
