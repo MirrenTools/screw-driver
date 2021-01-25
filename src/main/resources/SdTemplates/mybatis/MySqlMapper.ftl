@@ -246,7 +246,7 @@
 	
 	<!-- 更新一个对象中所有的属性包括null值,条件为对象中的id -->
 	<update id="updateAllById" parameterType="${assign_EntityFullName}">
-		update ${assign_TableName} set
+		update ${assign_TableName}
 		<set>
 		<#list content.content.fields as item>
 			<#if item.primary != true>
