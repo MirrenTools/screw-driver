@@ -79,18 +79,48 @@ public abstract class SdAbstractDbUtil extends ScrewDriverDbUtil {
 	}
 
 	@Override
+	public boolean execute(String sql) throws Exception {
+		Connection connection = getConnection();
+		Statement statement = null;
+		try {
+			LOG.info("执行SQL语句:\n" + sql);
+			statement = connection.createStatement();
+			statement.execute(sql);
+			return true;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (statement != null) {
+				statement.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+		}
+	}
+
+	@Override
 	public boolean createDatabase(SdAbstractDatabaseContent content) throws Exception {
 		return createDatabase(getConfig(), content);
 	}
 
 	@Override
 	public boolean createDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception {
+		return createDatabase(config, content.createSQL());
+	}
+
+	@Override
+	public boolean createDatabase(String sql) throws Exception {
+		return createDatabase(getConfig(), sql);
+	}
+
+	@Override
+	public boolean createDatabase(SdDatabaseOptions config, String sql) throws Exception {
 		int result = 0;
 		Connection connection = getConnection(config);
 		try {
-			LOG.info("执行SQL语句:\n" + content.createSQL());
-			LOG.info(String.format("正在创建数据库: %s...", content.getDatabaseName()));
-			result = connection.createStatement().executeUpdate(content.createSQL());
+			LOG.info("执行SQL语句:\n" + sql);
+			result = connection.createStatement().executeUpdate(sql);
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -108,14 +138,29 @@ public abstract class SdAbstractDbUtil extends ScrewDriverDbUtil {
 
 	@Override
 	public boolean updateDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception {
+		return updateDatabase(getConfig(), content.updateSQL());
+	}
+
+	@Override
+	public boolean updateDatabase(String sql) throws Exception {
+		return updateDatabase(getConfig(), sql);
+	}
+
+	@Override
+	public boolean updateDatabase(SdDatabaseOptions config, String sql) throws Exception {
 		int result = 0;
 		Connection connection = getConnection(config);
+		Statement statement = null;
 		try {
-			LOG.info("执行SQL语句:\n" + content.updateSQL());
-			result = connection.createStatement().executeUpdate(content.updateSQL());
+			LOG.info("执行SQL语句:\n" + sql);
+			statement = connection.createStatement();
+			result = statement.executeUpdate(sql);
 		} catch (Exception e) {
 			throw e;
 		} finally {
+			if (statement != null) {
+				statement.close();
+			}
 			if (connection != null) {
 				connection.close();
 			}
@@ -125,16 +170,21 @@ public abstract class SdAbstractDbUtil extends ScrewDriverDbUtil {
 
 	@Override
 	public boolean createTable(SdAbstractTableContent content) throws Exception {
+		for (String sql : content.createSQL()) {
+			createTable(sql);
+		}
+		LOG.info(String.format("Create table-->%s Successful", content.getTableName()));
+		return true;
+	}
+
+	@Override
+	public boolean createTable(String sql) throws Exception {
 		Connection connection = getConnection();
 		Statement statement = null;
 		try {
-			LOG.info("执行SQL语句:\n" + content.createSQL());
+			LOG.info("执行SQL语句:\n" + sql);
 			statement = connection.createStatement();
-			for (String sql : content.createSQL()) {
-				statement.execute(sql);
-			}
-
-			LOG.info(String.format("Create table-->%s Successful", content.getTableName()));
+			statement.execute(sql);
 			return true;
 		} catch (Exception e) {
 			throw e;
@@ -146,20 +196,26 @@ public abstract class SdAbstractDbUtil extends ScrewDriverDbUtil {
 				connection.close();
 			}
 		}
+
 	}
 
 	@Override
 	public boolean updateTable(SdAbstractTableContent content) throws Exception {
+		for (String sql : content.updateSQL()) {
+			updateTable(sql);
+		}
+		LOG.info(String.format("Update table-->%s Successful", content.getTableName()));
+		return true;
+	}
+
+	@Override
+	public boolean updateTable(String sql) throws Exception {
 		Connection connection = getConnection();
 		Statement statement = null;
 		try {
-			LOG.info("执行SQL语句:\n" + content.updateSQL());
+			LOG.info("执行SQL语句:\n" + sql);
 			statement = connection.createStatement();
-			List<String> list = content.updateSQL();
-			for (int i = 0; i < list.size(); i++) {
-				statement.execute(list.get(i));
-			}
-			LOG.info(String.format("Update table-->%s Successful", content.getTableName()));
+			statement.execute(sql);
 			return true;
 		} catch (Exception e) {
 			throw e;
@@ -175,13 +231,19 @@ public abstract class SdAbstractDbUtil extends ScrewDriverDbUtil {
 
 	@Override
 	public boolean deleteTable(SdAbstractTableContent content) throws Exception {
+		deleteTable(content.deleteSQL());
+		LOG.info(String.format("Delete table-->%s Successful", content.getTableName()));
+		return true;
+	}
+
+	@Override
+	public boolean deleteTable(String sql) throws Exception {
 		Connection connection = getConnection();
 		Statement statement = null;
 		try {
-			LOG.info("执行SQL语句:\n" + content.deleteSQL());
+			LOG.info("执行SQL语句:\n" + sql);
 			statement = connection.createStatement();
-			statement.execute(content.deleteSQL());
-			LOG.info(String.format("Delete table-->%s Successful", content.getTableName()));
+			statement.execute(sql);
 			return true;
 		} catch (Exception e) {
 			throw e;
@@ -207,7 +269,7 @@ public abstract class SdAbstractDbUtil extends ScrewDriverDbUtil {
 		try {
 			DatabaseMetaData md = connection.getMetaData();
 			String catalog = connection.getCatalog() == null ? null : connection.getCatalog();
-			query = md.getTables(catalog, null, tableName, new String[] { "TABLE" });
+			query = md.getTables(catalog, null, tableName, new String[]{"TABLE"});
 			return query.next();
 		} catch (Exception e) {
 			throw e;
@@ -244,7 +306,7 @@ public abstract class SdAbstractDbUtil extends ScrewDriverDbUtil {
 		ResultSet rs = null;
 		try {
 			DatabaseMetaData md = connection.getMetaData();
-			String[] types = { "TABLE", "VIEW" };
+			String[] types = {"TABLE", "VIEW"};
 			rs = md.getTables(null, null, null, types);
 			while (rs.next()) {
 				result.add(rs.getString(3));
@@ -270,7 +332,7 @@ public abstract class SdAbstractDbUtil extends ScrewDriverDbUtil {
 			connection = getConnection();
 			DatabaseMetaData md = connection.getMetaData();
 			String catalog = connection.getCatalog() == null ? null : connection.getCatalog();
-			String[] types = { "TABLE", "VIEW" };
+			String[] types = {"TABLE", "VIEW"};
 			rs = md.getTables(catalog, null, tableName, types);
 			SdTableAttribute result = null;
 			if (rs.next()) {
@@ -685,4 +747,5 @@ public abstract class SdAbstractDbUtil extends ScrewDriverDbUtil {
 		this.config = config;
 		return this;
 	}
+
 }

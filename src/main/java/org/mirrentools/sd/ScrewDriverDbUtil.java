@@ -47,7 +47,8 @@ public abstract class ScrewDriverDbUtil {
 		} else if (groupId.contains("sqlite")) {
 			return new SdDbUtilSqliteImpl(databaseOptions);
 		} else {
-			throw new ScrewDriverException("Unable to recognize database types through DriverClass,You can extends the SdAbstractDbUtil class and init it");
+			throw new ScrewDriverException(
+					"Unable to recognize database types through DriverClass,You can extends the SdAbstractDbUtil class and init it");
 		}
 	}
 
@@ -66,7 +67,15 @@ public abstract class ScrewDriverDbUtil {
 	 * @return
 	 */
 	public abstract Connection getConnection(SdDatabaseOptions config) throws Exception;
-
+	
+	/**
+	 * 执行SQL
+	 * @param sql
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean execute(String sql) throws Exception;
+	
 	/**
 	 * 数据库是否存在
 	 * 
@@ -120,6 +129,28 @@ public abstract class ScrewDriverDbUtil {
 	public abstract boolean createDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception;
 
 	/**
+	 * 创建数据库
+	 * 
+	 * @param sql
+	 *          数据库创建的语句
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean createDatabase(String sql) throws Exception;
+
+	/**
+	 * 创建数据库
+	 * 
+	 * @param config
+	 *          数据库连接信息
+	 * @param sql
+	 *          数据库创建的SQL
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean createDatabase(SdDatabaseOptions config, String sql) throws Exception;
+
+	/**
 	 * 修改数据库
 	 * 
 	 * @param content
@@ -142,6 +173,28 @@ public abstract class ScrewDriverDbUtil {
 	public abstract boolean updateDatabase(SdDatabaseOptions config, SdAbstractDatabaseContent content) throws Exception;
 
 	/**
+	 * 修改数据库
+	 * 
+	 * @param sql
+	 *          修改数据库的语句
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean updateDatabase(String sql) throws Exception;
+
+	/**
+	 * 修改数据库
+	 * 
+	 * @param config
+	 *          数据库连接信息
+	 * @param sql
+	 *          数据库修改的SQL
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean updateDatabase(SdDatabaseOptions config, String sql) throws Exception;
+
+	/**
 	 * 创建一张表
 	 * 
 	 * @param content
@@ -149,6 +202,16 @@ public abstract class ScrewDriverDbUtil {
 	 * @throws Exception
 	 */
 	public abstract boolean createTable(SdAbstractTableContent content) throws Exception;
+	
+	/**
+	 * 创建一张表
+	 * 
+	 * @param sql
+	 *          创建表的语句
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean createTable(String sql) throws Exception;
 
 	/**
 	 * 修改一张表
@@ -160,6 +223,16 @@ public abstract class ScrewDriverDbUtil {
 	public abstract boolean updateTable(SdAbstractTableContent content) throws Exception;
 
 	/**
+	 * 修改一张表
+	 * 
+	 * @param sql
+	 *          修改表的SQL语句
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean updateTable(String sql) throws Exception;
+
+	/**
 	 * 删除一张表
 	 * 
 	 * @param content
@@ -167,6 +240,16 @@ public abstract class ScrewDriverDbUtil {
 	 * @throws Exception
 	 */
 	public abstract boolean deleteTable(SdAbstractTableContent content) throws Exception;
+
+	/**
+	 * 删除一张表
+	 * 
+	 * @param sql
+	 *          删除表的语句
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean deleteTable(String sql) throws Exception;
 
 	/**
 	 * 获取数据库中指定表的描述
@@ -182,14 +265,12 @@ public abstract class ScrewDriverDbUtil {
 	 * 
 	 * @param tableName
 	 *          表的名字
-	 * @param unique
-	 *          when true, return only indices for unique values;when false,
-	 *          return indices regardless of whether unique or not (get index info
-	 *          )
-	 * @param approximate
-	 *          when true, result is allowed to reflect approximateor out of data
-	 *          values; when false, results are requested to beaccurate (get index
-	 *          info )
+	 * @param unique 
+	 * 				when true, return only indices for unique values;
+	 * 				when false, return indices regardless of whether unique or not (get index info)
+	 * @param approximate  
+	 * 				when true, result is allowed to reflect approximateor out of data values; 
+	 * 				when false, results are requested to beaccurate (get index info )
 	 * @return
 	 * @throws Exception
 	 */
@@ -236,15 +317,16 @@ public abstract class ScrewDriverDbUtil {
 	 * 
 	 * @param tableName
 	 * @param unique
-	 *          when true, return only indices for unique values;when false,
-	 *          return indices regardless of whether unique or not
+	 *          when true, return only indices for unique values;
+	 *          when false, return indices regardless of whether unique or not
 	 * @param approximate
-	 *          when true, result is allowed to reflect approximateor out of data
-	 *          values; when false, results are requested to beaccurate
+	 *          when true, result is allowed to reflect approximateor out of data values; 
+	 *          when false, results are requested to beaccurate
 	 * @return
 	 * @throws Exception
 	 */
-	public abstract List<SdTableIndexKeyAttribute> getTableIndexKeysAttribute(String tableName, boolean unique, boolean approximate) throws Exception;
+	public abstract List<SdTableIndexKeyAttribute> getTableIndexKeysAttribute(String tableName, boolean unique, boolean approximate)
+			throws Exception;
 
 	/**
 	 * 获取指定表的外键索引属性,如果不存在返回长度为0的集合
