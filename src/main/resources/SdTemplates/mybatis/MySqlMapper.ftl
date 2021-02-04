@@ -192,9 +192,7 @@
 	<delete id="deleteByAssist" parameterType="${assign_AssistFullName}">
 		delete from
 		${assign_TableName}
-		<if test="condition != null">
-			<include refid="assist" />
-		</if>
+		<include refid="assist" />
 	</delete>
 
 	<!-- 更新一个对象中所有的属性包括null值,条件为SqlAssist查询帮助类 ,data=对象,assist=查询帮助类 -->
