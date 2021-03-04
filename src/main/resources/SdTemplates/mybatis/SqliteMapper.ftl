@@ -50,7 +50,7 @@
 	<!-- update_assist用于更新数据查询辅助工具类,与assist的SQL块一样作用 -->
 	<sql id="update_assist">
 		<where>
-			<foreach collection="condition" item="req" separator=" ">
+			<foreach collection="assist.condition" item="req" separator=" ">
 				${r'${req.condition}'}
 				<if test="req.value != null">
 					${r'#{req.value}'}
@@ -200,7 +200,7 @@
 		update ${assign_TableName}
 		<set>
 		<#list content.content.fields as item>
-			${item.name} = ${r'#{'}${item.fieldName}${r'}'}<#if item?has_next>,</#if>
+			${item.name} = ${r'#{'}data.${item.fieldName}${r'}'}<#if item?has_next>,</#if>
 		</#list>
 		</set>
 		<if test="assist !=null">
@@ -215,7 +215,7 @@
 		update ${assign_TableName}
 		<set>
 		<#list content.content.fields as item>
-			<if test="data.${item.fieldName} != null">${item.name} = ${r'#{'}${item.fieldName}${r'}'}<#if item?has_next>,</#if></if>
+			<if test="data.${item.fieldName} != null">${item.name} = ${r'#{'}data.${item.fieldName}${r'}'}<#if item?has_next>,</#if></if>
 		</#list>
 		</set>
 		<if test="assist !=null">

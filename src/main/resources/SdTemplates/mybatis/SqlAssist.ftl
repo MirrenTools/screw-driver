@@ -260,7 +260,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist and(String column) {
-		this.setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " ", null));
+		this.setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " ", null));
 		return this;
 	}
 
@@ -273,7 +273,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist or(String column) {
-		this.setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " ", null));
+		this.setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " ", null));
 		return this;
 	}
 
@@ -289,7 +289,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andEq(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " = ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " = ", value));
 		return this;
 	}
 
@@ -304,7 +304,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orEq(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " = ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " = ", value));
 		return this;
 	}
 
@@ -318,7 +318,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andNeq(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " <> ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " <> ", value));
 		return this;
 	}
 
@@ -332,7 +332,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orNeq(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " <> ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " <> ", value));
 		return this;
 	}
 
@@ -346,7 +346,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andLt(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("and " + column + "< ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("and " + column + "< ", value));
 		return this;
 	}
 
@@ -360,7 +360,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orLt(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " < ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " < ", value));
 		return this;
 	}
 
@@ -374,7 +374,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andLte(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " <= ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " <= ", value));
 		return this;
 	}
 
@@ -388,7 +388,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orLte(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " <= ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " <= ", value));
 		return this;
 	}
 
@@ -402,7 +402,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andGt(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " > ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " > ", value));
 		return this;
 	}
 
@@ -416,7 +416,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orGt(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " > ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " > ", value));
 		return this;
 	}
 
@@ -430,7 +430,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andGte(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " >= ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " >= ", value));
 		return this;
 	}
 
@@ -444,7 +444,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orGte(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " >= ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " >= ", value));
 		return this;
 	}
 
@@ -458,7 +458,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andLike(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " like ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " like ", value));
 		return this;
 	}
 
@@ -472,7 +472,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orLike(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " like ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " like ", value));
 		return this;
 	}
 
@@ -486,7 +486,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andNotLike(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " not like ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " not like ", value));
 		return this;
 	}
 
@@ -500,7 +500,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orNotLike(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " not like ", value));
+		setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " not like ", value));
 		return this;
 	}
 
@@ -513,7 +513,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andIsNull(String column) {
-		this.setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " is null ", null));
+		this.setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " is null ", null));
 		return this;
 	}
 
@@ -526,7 +526,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orIsNull(String column) {
-		this.setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " is null ", null));
+		this.setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " is null ", null));
 		return this;
 	}
 
@@ -538,7 +538,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andIsNotNull(String column) {
-		this.setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " is not null ", null));
+		this.setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " is not null ", null));
 		return this;
 	}
 
@@ -564,7 +564,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andIn(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " in (", value, " ) "));
+		setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " in (", value, " ) "));
 		return this;
 	}
 
@@ -578,7 +578,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orIn(String column, T value) {
-		setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " in (", value, " ) "));
+		setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " in (", value, " ) "));
 		return this;
 	}
 
@@ -592,7 +592,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist andIn(String column, Object... values) {
-		setConditions(new SqlAssist().new WhereCondition<T>("and " + column + " in (", " ) ", values));
+		setCondition(new SqlAssist().new WhereCondition<T>("and " + column + " in (", " ) ", values));
 		return this;
 	}
 
@@ -606,7 +606,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist orIn(String column, Object... values) {
-		setConditions(new SqlAssist().new WhereCondition<T>("or " + column + " in (", " ) ", values));
+		setCondition(new SqlAssist().new WhereCondition<T>("or " + column + " in (", " ) ", values));
 		return this;
 	}
 
@@ -630,7 +630,7 @@ public class SqlAssist {
 	 * @return
 	 */
 	public <T> SqlAssist customCondition(String prefix, T value, String suffix) {
-		setConditions(new SqlAssist().new WhereCondition<T>(prefix, value, suffix));
+		setCondition(new SqlAssist().new WhereCondition<T>(prefix, value, suffix));
 		return this;
 	}
 
