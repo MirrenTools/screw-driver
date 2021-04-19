@@ -73,7 +73,7 @@ public class ScrewDriverTemplateFreeMarkerImpl extends ScrewDriverTemplateEngine
 				}
 			}
 			writer = new OutputStreamWriter(new FileOutputStream(outputFilePath), format);
-			// 检查文件是否存在,如果不存在检查默认模板中是否存在,如果存在就创建默认模板文件夹并负责到模板文件夹中
+			// 检查文件是否存在,如果不存在检查默认模板中是否存在,如果存在就创建默认模板文件夹并复制到模板文件夹中
 			SdTemplatePathUtil.getFile(template.getPath(), template.getFile());
 			Template freeTemplate = config.getTemplate(template.getFile());
 			freeTemplate.process(dataModel, writer);

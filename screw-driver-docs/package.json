@@ -1,6 +1,6 @@
 {
   "name": "screw-driver-docs",
-  "version": "1.1.0",
+  "version": "1.2.6",
   "description": "screw-driver的文档",
   "scripts": {
     "docs:dev": "vuepress dev docs",

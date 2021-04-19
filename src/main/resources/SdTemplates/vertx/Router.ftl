@@ -5,9 +5,9 @@ import ${content.items.service.packageName}.${content.items.service.className};
 
 import io.vertx.core.MultiMap;
 import io.vertx.core.http.HttpHeaders;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
-import io.vertx.ext.jdbc.JDBCClient;
+import io.vertx.core.impl.logging.Logger;
+import io.vertx.core.impl.logging.LoggerFactory;
+import io.vertx.jdbcclient.JDBCPool;
 import io.vertx.ext.sql.assist.SQLExecute;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
@@ -24,9 +24,9 @@ public class ${assign_ClassName} {
 	/** 数据服务接口 */
 	private ${assign_ServiceName} service;
 
-	private ${assign_ClassName}(${assign_ServiceName} service) {
+	private ${assign_ClassName}(SQLExecute<JDBCPool> execute) {
 		super();
-		this.service = service;
+		this.service = ${assign_ServiceName}.create(execute);
 	}
 
 	/**
@@ -37,8 +37,8 @@ public class ${assign_ClassName} {
 	 * @param execute
 	 *          数据执行器
 	 */
-	public static void startService(Router router, SQLExecute<JDBCClient> execute) {
-		${assign_ClassName} instance = new ${assign_ClassName}(${assign_ServiceName}.create(execute));
+	public static void startService(Router router, SQLExecute<JDBCPool> execute) {
+		${assign_ClassName} instance = new ${assign_ClassName}(execute);
 		<#assign assign_EntityLowerName = content.items.entity.lowerName >
 		// 获取所有数据
 		router.get("/${assign_EntityLowerName}/find").handler(instance::find);

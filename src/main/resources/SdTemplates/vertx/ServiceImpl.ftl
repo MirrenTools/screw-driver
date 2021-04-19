@@ -15,9 +15,9 @@ import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
-import io.vertx.ext.jdbc.JDBCClient;
+import io.vertx.core.impl.logging.Logger;
+import io.vertx.core.impl.logging.LoggerFactory;
+import io.vertx.jdbcclient.JDBCPool;
 import io.vertx.ext.sql.assist.SQLExecute;
 import io.vertx.ext.sql.assist.SqlAssist;
 
@@ -36,9 +36,9 @@ public class ${assign_ClassName} implements ${content.items.service.className} {
 	/**
 	 * 初始化
 	 * 
-	 * @param execute
+	 * @param execute SQL执行器
 	 */
-	public ${assign_ClassName}(SQLExecute<JDBCClient> execute) {
+	public ${assign_ClassName}(SQLExecute<JDBCPool> execute) {
 		super();
 		this.${assign_SqlName}= new ${content.items.sql.className}(execute);
 	}

@@ -6,7 +6,7 @@ import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonObject;
-import io.vertx.ext.jdbc.JDBCClient;
+import io.vertx.jdbcclient.JDBCPool;
 import io.vertx.ext.sql.assist.SQLExecute;
 
 /**
@@ -22,31 +22,31 @@ public interface ${content.items.service.className} {
 	 * @param execute
 	 * @return
 	 */
-	static ${content.items.service.className} create(SQLExecute<JDBCClient> execute) {
+	static ${content.items.service.className} create(SQLExecute<JDBCPool> execute) {
 		return new ${content.items.serviceImpl.className}(execute);
 	}
 
 	/**
 	 * 获取所有数据
 	 * 
-	 * @param params
-	 * @param handler
+	 * @param params 请求参数
+	 * @param handler 响应结果
 	 */
 	void find(MultiMap params, Handler<AsyncResult<JsonObject>> handler);
 
 	/**
 	 * 获取分页
 	 * 
-	 * @param params
-	 * @param handler
+	 * @param params 请求参数
+	 * @param handler 响应结果
 	 */
 	void limit(MultiMap params, Handler<AsyncResult<JsonObject>> handler);
 
 	/**
 	 * 保存
 	 * 
-	 * @param params
-	 * @param handler
+	 * @param params 请求参数
+	 * @param handler 响应结果
 	 */
 	void save(MultiMap params, Handler<AsyncResult<JsonObject>> handler);
 	<#if content.content.primaryField??>
@@ -54,24 +54,24 @@ public interface ${content.items.service.className} {
 	/**
 	 * 获取指定的数据
 	 * 
-	 * @param params
-	 * @param handler
+	 * @param params 请求参数
+	 * @param handler 响应结果
 	 */
 	void get(MultiMap params, Handler<AsyncResult<JsonObject>> handler);
 
 	/**
 	 * 更新
 	 * 
-	 * @param params
-	 * @param handler
+	 * @param params 请求参数
+	 * @param handler 响应结果
 	 */
 	void update(MultiMap params, Handler<AsyncResult<JsonObject>> handler);
 	
 	/**
 	 * 删除
 	 * 
-	 * @param params
-	 * @param handler
+	 * @param params 请求参数
+	 * @param handler 响应结果
 	 */
 	void delete(MultiMap params, Handler<AsyncResult<JsonObject>> handler);
 	</#if>

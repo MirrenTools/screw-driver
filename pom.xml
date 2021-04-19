@@ -5,7 +5,7 @@
 
 	<groupId>org.mirrentools</groupId>
 	<artifactId>screw-driver</artifactId>
-	<version>1.2.5</version>
+	<version>1.2.6</version>
 	<packaging>jar</packaging>
 	<name>screw-driver</name>
 	<description>ScrewDriver is a toolkit for generating code, create or read database tables. The purpose of this tool is to quickly generate code through ide code block, shortcut key, or become the basic tool of other generating tools!</description>
@@ -25,13 +25,13 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.47</version>
-			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>com.ibm.db2.jcc</groupId>
 			<artifactId>db2jcc</artifactId>
 			<version>db2jcc4</version>
-			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 		<!--oracle的jdbc本地添加依赖 mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc 
 			-Dversion=local -Dpackaging=jar -Dfile=your ojdbc path -->
@@ -39,25 +39,25 @@
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc</artifactId>
 			<version>local</version>
-			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<version>6.1.0.jre7</version>
-			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.2.6.jre6</version>
-			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>3.28.0</version>
-			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>

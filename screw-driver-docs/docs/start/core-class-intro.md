@@ -136,6 +136,33 @@ ScrewDriverOptions为核心工具的配置信息,在org.mirrentools.sd.options.d
 |SdDatabaseContentConverter	|databaseConverter	|将SdDatabase转换为数据库的操作属性	|
 |Map&lt;String,Object&gt;	|extensions	|拓展属性	|
 
+
+
+## ScrewDriverDbUtil 数据库工具
+ScrewDriverDbUtil是数据库的操作工具,可用操作数据库表相关操作
+**实例化方法**
+通过静态方法 instance获取实例,instance接收一个SdDatabaseOptions参数
+|方法名称	|接收参数	|返回结果	|说明	|
+|--	|--	|--	|--	|
+|getConnection	|多种	|Connection	|获取数据库连接 |
+|execute	|String 数据库语句	|boolean	|执行SQL语句 |
+|existDatabase	|String 数据库名称	|boolean	|检查数据库是否存在 |
+|existTable	|String 数据库名称	|boolean	|检查数据库表是否存在 |
+|createDatabase	|多种	|boolean	|创建数据库 |
+|updateDatabase	|多种	|boolean	|修改数据库 |
+|createTable	|多种	|boolean	|创建一张表 |
+|updateTable	|多种	|boolean	|修改一张表 |
+|deleteTable	|多种	|boolean	|删除一张表 |
+|getSdTable	|多种	|SdTable	|获取数据库中指定表的描述 |
+|getTableNames	|无	|List&lt;String&gt;	|获取当前数据库所有数据库表名,如果不存在返回长度为0的集合 |
+|getTableAttribute	|String 表的名称	|SdTableAttribute	|获取指定数据库,指定表的属性,如果不存在返回null |
+|getTableColumnsAttribute	|String 表的名称	|List&lt;SdTableColumnAttribute&gt;	|获取当前数据库中指定表的所有属性,如果不存在抛出异常 |
+|getTablePrimaryKeyAttribute	|String 表的名称	|SdTablePrimaryKeyAttribute	|获取指定表的主键属性,如果不存在返回null |
+|getTableIndexKeysAttribute	|String 表的名称	|List&lt;SdTableIndexKeyAttribute&gt;	|获取指定表的索引属性,如果不存在返回长度为0的集合 |
+|getTableExportedKeysAttribute	|String 表的名称	|List&lt;SdTablePortedKeysAttribute&gt;	|获取指定表的外键索引属性,如果不存在返回长度为0的集合 |
+|getTableImportedKeysAttribute	|String 表的名称	|List&lt;SdTablePortedKeysAttribute&gt;	|获取指定表的主键索引属性,如果不存在返回长度为0的集合 |
+
+
 ## ScrewDriver 工具
 ScrewDriver抽象类是本工具的核心, 用于生成代码与数据库操作
 **实例化方法**
@@ -147,4 +174,3 @@ ScrewDriver抽象类是本工具的核心, 用于生成代码与数据库操作
 |createDatabase	|SdDatabase 数据库描述	|boolean	|执行创建数据库,成功返回true,失败返回false	|
 |createTable	|SdBean 实体类描述	|boolean	|执行创建表,成功返回true,失败返回false	|
 |readTable	|String 表的名称	|SdClassContent	|执行读取表信息,读取成功返回实体描述上下文	|
-

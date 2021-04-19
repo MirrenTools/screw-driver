@@ -6,7 +6,7 @@ import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonObject;
-import io.vertx.ext.jdbc.JDBCClient;
+import io.vertx.jdbcclient.JDBCPool;
 import io.vertx.ext.sql.assist.SQLExecute;
 
 /**
@@ -22,15 +22,15 @@ public interface ${content.items.service.className} {
 	 * @param execute
 	 * @return
 	 */
-	static ${content.items.service.className} create(SQLExecute<JDBCClient> execute) {
+	static ${content.items.service.className} create(SQLExecute<JDBCPool> execute) {
 		return new ${content.items.serviceImpl.className}(execute);
 	}
 
 	/**
 	 * 获取所有数据
 	 * 
-	 * @param params
-	 * @param handler
+	 * @param params 请求参数
+	 * @param handler 响应结果
 	 */
 	//void empty(MultiMap params, Handler<AsyncResult<JsonObject>> handler);
 }

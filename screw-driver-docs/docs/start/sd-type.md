@@ -1,6 +1,13 @@
 # 数据类型说明
 为了屏蔽不同数据库数据类型的差异ScrewDriver提供了**SdType**类,该类为SdColumn数据类型常量,
-它会根据不同的数据库自动转换为java与不同数据库对应的类型,你也可以通过put方法添加自定义类型或覆盖默认提供的类型
+它会根据不同的数据库自动转换为java与不同数据库对应的类型,你也可以在ScrewDriver.instance之前通过put方法添加自定义类型或覆盖默认提供的类型,示例:
+```
+// 将MyType转换为数据库的VARCHAR与java的String
+SdType.put("MyType","VARCHAR", "String");
+// 初始化执行工具
+ScrewDriver screwDriver = ScrewDriver.instance(options);
+
+```
 
 **该类的方法**
 |方法名称	|接收参数	|返回结果	|说明	|
