@@ -123,11 +123,11 @@ public class User {
   <version>${version}</version>
 </dependency>
 ```
-模板路径:
+模板路径: 
 ``` java
 String packageName="org.mirrentools."; 
 String entityName="Users"; 
-String templatePath="vertx"; 
+String templatePath="vertx"; //4.X版本,如果3.x使用vertx3
 Map<String, SdTemplate> templates = new HashMap<String, SdTemplate>();
 templates.put("entity", new SdTemplate()
 	.setPath(templatePath)
